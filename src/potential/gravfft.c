@@ -594,12 +594,20 @@ EXTERN_MSC int GMT_gravfft (void *V_API, int mode, void *args) {
 	}
 
 	if (Ctrl->D.variable) {	/* Read density contrast grid */
+		uint64_t n_set = 0;
 		if ((Rho = GMT_Read_Data (API, GMT_IS_GRID, GMT_IS_FILE, GMT_IS_SURFACE, GMT_CONTAINER_AND_DATA | GMT_GRID_IS_COMPLEX_REAL, NULL, Ctrl->D.file, NULL)) == NULL)
 			Return (API->error);
 		if (!gmt_grd_domains_match (GMT, Orig[0], Rho, "surface and density")) {
 			Return (GMT_RUNTIME_ERROR);
 		}
-		for (m = 0; m < Rho->header->size; m++) if (gmt_M_is_fnan (Rho->data[m])) Rho->data[m] = Rho->header->z_min;	/* Replace any NaNs with the minimum density */
+		for (m = 0; m < Rho->header->size; m++) {
+			if (gmt_M_is_fnan (Rho->data[m])) {
+				Rho->data[m] = Rho->header->z_min;	/* Replace any NaNs with the minimum density */
+				n_set++;
+			}
+		}
+		if (n_set)
+			GMT_Report (API, GMT_MSG_WARNING, "% " PRIu64 " nodes had rho = NaN; replaced with %lg\n", n_set, Rho->header->z_min);
 	}
 
 	/* Grids are compatible. Initialize FFT structs, grid headers, read data, and check for NaNs */
@@ -634,11 +642,15 @@ EXTERN_MSC int GMT_gravfft (void *V_API, int mode, void *args) {
 		FFT_info[k] = GMT_FFT_Create (API, Grid[k], GMT_FFT_DIM, GMT_GRID_IS_COMPLEX_REAL, Ctrl->N.info);	/* Also detrends, if requested */
 	}
 
-	if (Ctrl->D.variable) {	/* No detrending, please */
+	if (Ctrl->D.variable) {	/* Remove mean, the cast density as mean-density * r(x) */
 		int was = Ctrl->N.info->trend_mode;	/* Record what trendmode we had for topography */
-		Ctrl->N.info->trend_mode = GMT_FFT_REMOVE_NOTHING;	/* Temporarily set to no removal */
+		Ctrl->N.info->trend_mode = GMT_FFT_REMOVE_MEAN;	/* Temporarily set to find and remove mean */
 		Rho_info = GMT_FFT_Create (API, Rho, GMT_FFT_DIM, GMT_GRID_IS_COMPLEX_REAL, Ctrl->N.info);
 		Ctrl->N.info->trend_mode = was;	/* Restore what we had */
+		Ctrl->misc.rho = Rho_info->coeff[0];	/* The mean density */
+		GMT_Report (API, GMT_MSG_INFORMATION, "Mean density in density grid: %lg\n", Ctrl->misc.rho);
+		for (m = 0; m < Grid[0]->header->size; m++)	/* Compute r(x) function */
+			Rho->data[m] = 1.0 + Rho->data[m] / Ctrl->misc.rho;
 	}
 
 	K = FFT_info[0];	/* We only need one of these anyway; K is a shorthand */
@@ -766,7 +778,7 @@ EXTERN_MSC int GMT_gravfft (void *V_API, int mode, void *args) {
 			strcpy (Grid[0]->header->title, "Gravity anomalies");
 			strcpy (Grid[0]->header->z_units, "mGal");
 			if (Ctrl->F.slab) {	/* Do the slab adjustment */
-				if (Ctrl->D.variable) Ctrl->misc.rho = Rho->header->z_min;
+				//if (Ctrl->D.variable) Ctrl->misc.rho = Rho->header->z_min;
 				slab_gravity = (gmt_grdfloat) (1.0e5 * 2 * M_PI * Ctrl->misc.rho * NEWTON_G *
 				                        (Ctrl->W.water_depth - Ctrl->misc.z_level));
 				GMT_Report (API, GMT_MSG_INFORMATION, "Add %g mGal to predicted FAA grid to account for implied slab\n", slab_gravity);
