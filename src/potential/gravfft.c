@@ -638,20 +638,31 @@ EXTERN_MSC int GMT_gravfft (void *V_API, int mode, void *args) {
 		Grid[0]->header->z_max -= (gmt_grdfloat)Ctrl->W.water_depth;
 	}
 
-	for (k = 0; k < Ctrl->In.n_grids; k++) {	/* Read, and check that no NaNs are present in either grid */
-		FFT_info[k] = GMT_FFT_Create (API, Grid[k], GMT_FFT_DIM, GMT_GRID_IS_COMPLEX_REAL, Ctrl->N.info);	/* Also detrends, if requested */
+	if (Ctrl->D.variable) {	/* Remove mean, the cast density as mean-density * r(x) and move r(x) into h(x) */
+		int was1 = Ctrl->N.info->trend_mode;	/* Record what trendmode we had for topography */
+		int was2 = Ctrl->N.info->taper_mode;	/* Record what trendmode we had for topography */
+		double r_min = 1e100, r_max = -1e100;
+		Ctrl->N.info->trend_mode = GMT_FFT_REMOVE_NOTHING; /* GMT_FFT_REMOVE_MEAN;	Temporarily remove the mean */
+		Ctrl->N.info->taper_mode = GMT_FFT_EXTEND_NONE; /* GMT_FFT_REMOVE_MEAN;	Temporarily remove the mean */
+		Rho_info = GMT_FFT_Create (API, Rho, GMT_FFT_DIM, GMT_GRID_IS_COMPLEX_REAL, Ctrl->N.info);
+		Ctrl->N.info->trend_mode = was1;	/* Restore what we had */
+		Ctrl->N.info->taper_mode = was2;	/* Restore what we had */
+		Ctrl->misc.rho = Rho_info->coeff[0];	/* The mean density */
+		Ctrl->misc.rho = Rho->header->z_min;	/* The minimum density */
+		GMT_Report (API, GMT_MSG_NOTICE, "Representative density in density grid: %lg\n", Ctrl->misc.rho);
+		/* Remember, Rho now have deviations from the mean density; we restore that when making r(x) */
+		for (m = 0; m < Grid[0]->header->size; m++) {	/* Compute r(x) function = rho(x)/misc_rho */
+			//Rho->data[m] = 1.0 + Rho->data[m] / Ctrl->misc.rho;
+			Rho->data[m] = Rho->data[m] / Ctrl->misc.rho;
+			if (Rho->data[m] < GMT_CONV4_LIMIT) continue;
+			if (Rho->data[m] < r_min) r_min = Rho->data[m];
+			if (Rho->data[m] > r_max) r_max = Rho->data[m];
+		}
+		GMT_Report (API, GMT_MSG_NOTICE, "r(x) goes from %g to %g\n", r_min, r_max);
 	}
 
-	if (Ctrl->D.variable) {	/* Remove mean, the cast density as mean-density * r(x) */
-		int was = Ctrl->N.info->trend_mode;	/* Record what trendmode we had for topography */
-		Ctrl->N.info->trend_mode = GMT_FFT_REMOVE_MEAN;	/* Temporarily set to find and remove mean */
-		Rho_info = GMT_FFT_Create (API, Rho, GMT_FFT_DIM, GMT_GRID_IS_COMPLEX_REAL, Ctrl->N.info);
-		Ctrl->N.info->trend_mode = was;	/* Restore what we had */
-		Ctrl->misc.rho = Rho_info->coeff[0];	/* The mean density */
-		GMT_Report (API, GMT_MSG_INFORMATION, "Mean density in density grid: %lg\n", Ctrl->misc.rho);
-		/* Remember, Rho now have deviations from the mean density; we restore that when making r(x) */
-		for (m = 0; m < Grid[0]->header->size; m++)	/* Compute r(x) function = rho(x)/misc_rho = (rho)(x) + misc_rho)/misc_rho = 1.0 + rho(x)/misc_rho */
-			Rho->data[m] = 1.0 + Rho->data[m] / Ctrl->misc.rho;
+	for (k = 0; k < Ctrl->In.n_grids; k++) {	/* Read, and check that no NaNs are present in either grid */
+		FFT_info[k] = GMT_FFT_Create (API, Grid[k], GMT_FFT_DIM, GMT_GRID_IS_COMPLEX_REAL, Ctrl->N.info);	/* Also detrends, if requested */
 	}
 
 	K = FFT_info[0];	/* We only need one of these anyway; K is a shorthand */
