@@ -217,6 +217,8 @@ struct GMTAPI_CTRL {
 	struct GMT_COMMON *common_snapshot;	/* Holds the latest GMT common option settings after a module completes. */
 	bool inset_shrink;	/* True if gmt inset gets a -R -J that forces us to shrink the scale to fit the inset size */
 	double inset_shrink_scale;	/* The amount of shrinking.  Reset to false and 1 in gmt inset end */
+	bool panel_shrink;	/* True if gmt subplot gets a -R -J that forces us to shrink the scale to fit the subplot size */
+	double panel_shrink_scale;	/* The amount of shrinking.  Reset to false and 1 in gmt subplot end */
 };
 
 /* Macro to test if filename is a special name indicating memory location */

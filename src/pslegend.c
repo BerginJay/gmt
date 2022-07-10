@@ -1947,6 +1947,8 @@ EXTERN_MSC int GMT_pslegend (void *V_API, int mode, void *args) {
 
 	if (API->inset_shrink)	/* Must do that override to counteract scaling in called modules */
 		sprintf (J_arg, "-Jx%.12gi", 1.0 / API->inset_shrink_scale);	/* Undo shrinking if any */
+	else if (API->panel_shrink)	/* Must do that override to counteract scaling in called modules */
+		sprintf (J_arg, "-Jx%.12gi", 1.0 / API->panel_shrink_scale);	/* Undo shrinking if any */
 
 	if (D[FRONT]) {
 		pslegend_free_unused_segments (GMT, D[FRONT]->table[0], n_fronts);

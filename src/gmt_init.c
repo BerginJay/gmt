@@ -13774,6 +13774,9 @@ void gmt_end (struct GMT_CTRL *GMT) {
 	/* Undo any inset shrink scaling memory */
 	GMT->parent->inset_shrink_scale = 1.0;
 	GMT->parent->inset_shrink = false;
+	/* Undo any subplot shrink scaling memory */
+	GMT->parent->panel_shrink_scale = 1.0;
+	GMT->parent->panel_shrink = false;
 
 #ifdef MEMDEBUG
 	gmt_memtrack_report (GMT);

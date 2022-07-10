@@ -2221,11 +2221,20 @@ GMT_LOCAL void gmtmap_setxy (struct GMT_CTRL *GMT, double xmin, double xmax, dou
 			strcpy (GMT->current.setting.map_annot_ortho, "");	/* All annotations will be parallel to axes */
 			GMT->current.setting.map_annot_oblique |= GMT_OBL_ANNOT_LAT_PARALLEL;	/* Plot latitude parallel to frame for geo maps */
 		}
+		if (fx < 1.0) {	/* Need this for modules called within the panel */
+			GMT->parent->panel_shrink = true;
+			GMT->parent->panel_shrink_scale = fx;
+		}
 	}
 	else if (GMT->parent->inset_shrink) {	/* We are in a module called inside a map inset call which may have had to adjust the scale */
 		update_parameters = true;
 		fx = fy = GMT->parent->inset_shrink_scale;
 		GMT_Report (GMT->parent, GMT_MSG_DEBUG, "Rescaling projection scale inside inset by factors fx = %g\n", fx);
+	}
+	else if (GMT->parent->panel_shrink) {	/* We are in a module called inside a subplot panel call which may have had to adjust the scale */
+		update_parameters = true;
+		fx = fy = GMT->parent->panel_shrink_scale;
+		GMT_Report (GMT->parent, GMT_MSG_DEBUG, "Rescaling projection scale inside subplot panel by factors fx = %g\n", fx);
 	}
 
 	if (update_parameters) {	/* Scale the parameters due to inset or subplot adjustments */

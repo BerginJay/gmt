@@ -1575,6 +1575,9 @@ EXTERN_MSC int GMT_subplot (void *V_API, int mode, void *args) {
 		GMT->init.history[id] = strdup ("x1i");	/* Add a scale of 1 inch per unit to match the inches we gave in the -R history */
 
 		gmt_M_memset (&GMT->current.plot.panel, 1, struct GMT_SUBPLOT);	/* Wipe that smile off your face */
+		/* Undo any shrink scaling memory */
+		API->panel_shrink_scale = 1.0;
+		API->panel_shrink = false;
 	}
 
 	Return (error);
