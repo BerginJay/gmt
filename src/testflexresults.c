@@ -1,7 +1,7 @@
 /* Fake GMT test module to scan the large rms table for Emperor flexure and
  * output the desired results.  We read one file: SFILE below, and does a few things
  *
- * 1. We exclude solutions that do not match any given fixed paramters.
+ * 1. We exclude solutions that do not match any given fixed parameters.
  *	    Use --xpos x to only keep solutions for position x
  *	    Use --rhoi x to only keep solutions for infill density x
  *	    Use --rhor x to only keep solutions for root density x
