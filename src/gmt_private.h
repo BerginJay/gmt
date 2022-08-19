@@ -223,6 +223,8 @@ struct GMTAPI_CTRL {
 	bool inset_shrink;	/* True if gmt inset gets a -R -J that forces us to shrink the scale to fit the inset size */
 	double inset_shrink_scale;	/* The amount of shrinking.  Reset to false and 1 in gmt inset end */
 	struct API_META meta;	/* For controlling meta data */
+	char *buffer;	/* Used for reading unlimited ASCII records */
+	size_t buffer_size;	/* Current allocated length of buffer */
 };
 
 /* Macro to test if filename is a special name indicating memory location */

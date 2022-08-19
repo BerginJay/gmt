@@ -53,6 +53,9 @@ struct GMT_XINGS {
 EXTERN_MSC char *dlerror (void);
 #endif
 
+EXTERN_MSC bool gmt_get_line (struct GMTAPI_CTRL *API, FILE *fp);
+EXTERN_MSC void gmt_init_get_line (struct GMTAPI_CTRL *API);
+EXTERN_MSC void gmt_free_line (struct GMTAPI_CTRL *API);
 EXTERN_MSC int gmtlib_colon_pos (struct GMT_CTRL *GMT, char *text);
 EXTERN_MSC bool gmtlib_invalid_symbolname (struct GMT_CTRL *GMT, char *name);
 EXTERN_MSC void gmtlib_terminate_session ();

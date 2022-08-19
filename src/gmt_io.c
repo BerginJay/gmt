@@ -3522,13 +3522,14 @@ GMT_LOCAL inline int gmtio_reached_EOF (struct GMT_CTRL *GMT) {
 /*! This is the lowest-most input function in GMT.  All ASCII table data are read via
  * gmt_ascii_input.  Changes here affect all programs that read such data. */
 GMT_LOCAL void *gmtio_ascii_input (struct GMT_CTRL *GMT, FILE *fp, uint64_t *n, int *status) {
+	struct GMTAPI_CTRL *API = GMT->parent;
 	unsigned int decode_type, decode_type2;
 	uint64_t pos, col_no = 0, col_pos, n_convert, n_ok = 0, kind, add, n_use = 0;
 	uint64_t n_cols_this_record = GMT_MAX_COLUMNS;
 	int64_t in_col;
 	size_t start_of_text;
-	bool done = false, bad_record, set_nan_flag = false, add_aspatial_to_expected = false;
-	char line[GMT_BUFSIZ] = {""}, *p = NULL, *token = NULL, *stringp = NULL;
+	bool done = false, bad_record, got_record, set_nan_flag = false, add_aspatial_to_expected = false;
+	char *line = API->buffer, *token = NULL, *stringp = NULL;
 	double val;
 	static char * (*strscan) (char **, const char *, size_t *);	/* Pointer to strsepz or strsepzp */
 
@@ -3553,7 +3554,7 @@ GMT_LOCAL void *gmtio_ascii_input (struct GMT_CTRL *GMT, FILE *fp, uint64_t *n, 
 		GMT->current.io.rec_no++;		/* Counts up, regardless of what this record is (data, junk, segment header, etc) */
 		GMT->current.io.rec_in_tbl_no++;	/* Counts up, regardless of what this record is (data, junk, segment header, etc) */
 		if (GMT->current.setting.io_header[GMT_IN] && GMT->current.io.rec_in_tbl_no <= GMT->current.setting.io_n_header_items) {	/* Must treat first io_n_header_items as headers */
-			gmt_fgets (GMT, line, GMT_BUFSIZ, fp);	/* Get the line */
+			gmt_get_line (API, fp);	/* Get the line */
 			if (GMT->common.h.mode == GMT_COMMENT_IS_RESET) continue;	/* Simplest way to replace headers on output is to ignore them on input */
 			gmtio_set_current_record (GMT, line);
 			GMT->current.io.status = GMT_IO_TABLE_HEADER;
@@ -3566,13 +3567,13 @@ GMT_LOCAL void *gmtio_ascii_input (struct GMT_CTRL *GMT, FILE *fp, uint64_t *n, 
 
 		/* Here we are done with any header records implied by -h */
 		if (GMT->current.setting.io_blankline[GMT_IN]) {	/* Treat blank lines as segment markers, so only read a single line */
-			p = gmt_fgets (GMT, line, GMT_BUFSIZ, fp);
+			got_record = gmt_get_line (API, fp);
 			GMT->current.io.rec_no++, GMT->current.io.rec_in_tbl_no++;
 		}
 		else {	/* Default is to skip all blank lines until we get something else (or hit EOF) */
-			while ((p = gmt_fgets (GMT, line, GMT_BUFSIZ, fp)) && gmt_is_a_blank_line (line)) GMT->current.io.rec_no++, GMT->current.io.rec_in_tbl_no++;
+			while ((got_record = gmt_get_line (API, fp)) && gmt_is_a_blank_line (line)) GMT->current.io.rec_no++, GMT->current.io.rec_in_tbl_no++;
 		}
-		if (!p) {	/* Ran out of records, which can happen if file ends in a comment record */
+		if (!got_record) {	/* Ran out of records, which can happen if file ends in a comment record */
 			*status = gmtio_reached_EOF (GMT);
 			return (NULL);
 		}
@@ -4325,6 +4326,37 @@ GMT_LOCAL int gmtio_load_aspatial_values (struct GMT_CTRL *GMT, struct GMT_OGR *
 	return (n);
 }
 #endif
+
+/* Three function for handling unlimited-length ASCII records */
+
+EXTERN_MSC bool gmt_get_line (struct GMTAPI_CTRL *API, FILE *fp) {
+	/* Read one full record from ASCII file into a growing API buffer */
+	size_t k = 0;
+	int c;
+
+	if ((c = fgetc (fp)) == EOF) return false;	/* Got to the end of the file */
+	do {	/* Otherwise we keep processing this character */
+		API->buffer[k++] = c;
+		if (k == API->buffer_size) {	/* Need to allocate more buffer space */
+			API->buffer_size <<= 1;		/* Double it */
+			API->buffer = realloc (API->buffer, API->buffer_size);
+		}
+	} while ((c = fgetc (fp)) != '\n');
+	return (true);
+}
+
+EXTERN_MSC void gmt_init_get_line (struct GMTAPI_CTRL *API) {
+	/* Initialize the i/o buffery */
+	if (API->buffer) gmt_free_line (API);
+	API->buffer_size = GMT_BUFSIZ;
+	API->buffer = calloc (API->buffer, API->buffer_size);
+}
+
+EXTERN_MSC void gmt_free_line (struct GMTAPI_CTRL *API) {
+	/* Free the i/o buffery */
+	if (API->buffer) gmt_free_line (API);
+	API->buffer_size = 0;
+}
 
 /*----------------------------------------------------------|
  * Public functions that are part of the GMT Devel library  |
@@ -5621,8 +5653,9 @@ int gmt_get_ogr_id (struct GMT_OGR *G, char *name) {
 
 /*! . */
 void * gmtlib_ascii_textinput (struct GMT_CTRL *GMT, FILE *fp, uint64_t *n, int *status) {
-	bool more = true;
-	char line[GMT_BUFSIZ] = {""}, *p = NULL;
+	struct GMTAPI_CTRL *API = GMT->parent;
+	bool more = true, got_record;
+	char *line = API->buffer;
 
 	/* gmtlib_ascii_textinput will read one text line and return it, setting
 	 * header or segment flags in the process.
@@ -5633,7 +5666,7 @@ void * gmtlib_ascii_textinput (struct GMT_CTRL *GMT, FILE *fp, uint64_t *n, int 
 
 		GMT->current.io.rec_no++;		/* Counts up, regardless of what this record is (data, junk, segment header, etc) */
 		GMT->current.io.rec_in_tbl_no++;	/* Counts up, regardless of what this record is (data, junk, segment header, etc) */
-		while ((p = gmt_fgets (GMT, line, GMT_BUFSIZ, fp)) && gmtio_ogr_parser (GMT, line)) {	/* Exits loop when we successfully have read a data record */
+		while ((got_record = gmt_get_line (API, fp)) && gmtio_ogr_parser (GMT, line)) {	/* Exits loop when we successfully have read a data record */
 			GMT->current.io.rec_no++;		/* Counts up, regardless of what this record is (data, junk, segment header, etc) */
 			GMT->current.io.rec_in_tbl_no++;	/* Counts up, regardless of what this record is (data, junk, segment header, etc) */
 		}
@@ -5646,7 +5679,7 @@ void * gmtlib_ascii_textinput (struct GMT_CTRL *GMT, FILE *fp, uint64_t *n, int 
 			return (NULL);
 		}
 		/* Here we are done with any header records implied by -h */
-		if (!p) {	/* Ran out of records */
+		if (!got_record) {	/* Ran out of records */
 			GMT->current.io.status = GMT_IO_EOF;
 			*n = 0ULL;
 			*status = GMT_NOTSET;

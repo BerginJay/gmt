@@ -3723,6 +3723,7 @@ GMT_LOCAL struct GMT_DATASET * gmtapi_import_dataset (struct GMTAPI_CTRL *API, i
 	use_GMT_io = !(mode & GMT_IO_ASCII);		/* false if we insist on ASCII reading */
 	GMT->current.io.seg_no = GMT->current.io.rec_no = GMT->current.io.rec_in_tbl_no = GMT->current.io.data_record_number_in_tbl[GMT_IN] = GMT->current.io.data_record_number_in_seg[GMT_IN] = 0;	/* Reset for each new dataset */
 	if (GMT->common.R.active[RSET] && GMT->common.R.wesn[XLO] < -180.0 && GMT->common.R.wesn[XHI] > -180.0) greenwich = false;
+	gmt_init_get_line (API);    /* Allocate buffer */
 
 	for (item = first_item; item <= last_item; item++) {	/* Look through all sources for registered inputs (or just one) */
 		S_obj = API->object[item];	/* S_obj is the current data object */
@@ -4097,6 +4098,8 @@ GMT_LOCAL struct GMT_DATASET * gmtapi_import_dataset (struct GMTAPI_CTRL *API, i
 	if (check_col_switch) gmtapi_switch_cols (GMT, D_obj, GMT_IN);	/* Deals with -:, if it was selected */
 	gmt_set_dataset_minmax (GMT, D_obj);	/* Set the min/max values for the entire dataset */
 	if (!via) API->object[this_item]->resource = D_obj;	/* Retain pointer to the allocated data so we use garbage collection later */
+	gmt_free_line (API);
+
 	return (D_obj);
 }
 
@@ -8927,6 +8930,7 @@ int GMT_End_IO (void *V_API, unsigned int direction, unsigned int mode) {
 	}
 	else {	/* Input files were closed when we tried to go to next item */
 		if (API->current_get_V_val) gmt_M_free (API->GMT, API->current_get_V_val);
+		gmt_free_line (API);
 	}
 	API->is_file = true;
 	API->io_enabled[direction] = false;	/* No longer OK to access resources or destinations */
@@ -10097,6 +10101,7 @@ GMT_LOCAL void gmtapi_get_record_init (struct GMTAPI_CTRL *API) {
 	/* Reset to default association for current record's data and text pointers */
 	GMT->current.io.record.text = GMT->current.io.curr_trailing_text;
 	GMT->current.io.record.data = GMT->current.io.curr_rec;
+	gmt_init_get_line (API);    /* Allocate input buffer */
 
 	method = gmtapi_set_method (S);	/* Get the actual method to use */
 	GMT->current.io.status = 0;	/* Initialize status to OK */
