@@ -43,6 +43,30 @@ PostScript code is written to stdout.
 #define THIS_MODULE_NEEDS	"Jd"
 #define THIS_MODULE_OPTIONS "-:>BJKOPRUVXYdehipqt" GMT_OPT("c")
 
+static struct GMT_KEYWORD_DICTIONARY module_kw[] = { /* Local options for this module */
+	/* separator, short_option, long_option,
+	          short_directives,    long_directives,
+	          short_modifiers,     long_modifiers */
+	{ 0, 'S', "format",
+	          "a,c,m,d,z,p,x,y,t", "aki,cmt,smtfull,smtdouble,smtdev,partial,axisfull,axisdouble,axisdev",
+	          "a,f,j,l,m,o,s",     "angle,font,justify,moment,samesize,offset,mreference" },
+	{ 0, 'A', "focaloffset",
+	          "",                  "",
+	          "p,s",               "pen,size" },
+	{ 0, 'C', "cpt",               "", "", "", "" },
+	{ 0, 'D', "depth",             "", "", "", "" },
+	{ 0, 'F', "mode",
+	          "a,e,g,o,p,r,t,z",   "ptaxes,taxisfill,paxisfill,nodepth,paxispen,box,taxispen,overlaypen",
+	          "",                  "" },
+	{ 0, 'H', "scale",             "", "", "", "" },
+	{ 0, 'I', "intensity",         "", "", "", "" },
+	{ 0, 'L', "outlinepen",        "", "", "", "" },
+	{ 0, 'N', "noclip",            "", "", "", "" },
+	{ 0, 'T', "nodal",             "", "", "", "" },
+	{ 0, 'W', "pen",               "", "", "", "" },
+	{ 0, '\0', "", "", "", "", ""}  /* End of list marked with empty option and strings */
+};
+
 #define DEFAULT_FONTSIZE		9.0	/* In points */
 #define DEFAULT_OFFSET			3.0	/* In points */
 #define DEFAULT_SYMBOL_SIZE		6.0 /* In points */
@@ -313,7 +337,7 @@ GMT_LOCAL unsigned int psmeca_A_parse (struct GMT_CTRL *GMT, struct PSMECA_CTRL 
 					}
 					break;
 				case 's':	/* Circle diameter */
-					if (p[1] == '\0' || (Ctrl->A.size = gmt_M_to_inch (GMT, (p+2))) < 0.0) {
+					if (p[1] == '\0' || (Ctrl->A.size = gmt_M_to_inch (GMT, &p[1])) < 0.0) {
 						GMT_Report (GMT->parent, GMT_MSG_ERROR, "Option -A: Circle diameter cannot be negative or not given!\n");
 						n_errors++;
 					}
@@ -365,36 +389,32 @@ static int parse (struct GMT_CTRL *GMT, struct PSMECA_CTRL *Ctrl, struct GMT_OPT
 		switch (opt->option) {
 
 			case '<':	/* Skip input files */
-				if (GMT_Get_FilePath (API, GMT_IS_DATASET, GMT_IN, GMT_FILE_REMOTE, &(opt->arg))) n_errors++;;
+				if (GMT_Get_FilePath (API, GMT_IS_DATASET, GMT_IN, GMT_FILE_REMOTE, &(opt->arg))) n_errors++;
 				break;
 
 			/* Processes program-specific parameters */
 
 			case 'A':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->A.active);
-				Ctrl->A.active = true;
 				n_errors += psmeca_A_parse (GMT, Ctrl, opt->arg);
 				break;
 			case 'C':	/* Either modern -Ccpt option or a deprecated -C now served by -A */
-				n_errors += gmt_M_repeated_module_option (API, Ctrl->C.active);
 				/* Change position [set line attributes] */
 				if (psmeca_is_old_C_option (GMT, opt->arg)) {	/* Need the -A parser for obsolete -C syntax */
 					Ctrl->A.active = true;
 					n_errors += psmeca_A_parse (GMT, Ctrl, opt->arg);
 				}
 				else {	/* Here we have the modern -C<cpt> parsing */
-					Ctrl->C.active = true;
+					n_errors += gmt_M_repeated_module_option (API, Ctrl->C.active);
 					if (opt->arg[0]) Ctrl->C.file = strdup (opt->arg);
 				}
 				break;
 			case 'D':	/* Plot events between depmin and depmax deep */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->D.active);
-				Ctrl->D.active = true;
 				sscanf (opt->arg, "%lf/%lf", &Ctrl->D.depmin, &Ctrl->D.depmax);
 				break;
 			case 'E':	/* Set color for extensive parts  */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->E.active);
-				Ctrl->E.active = true;
 				if (!opt->arg[0] || (opt->arg[0] && gmt_getfill (GMT, opt->arg, &Ctrl->E.fill))) {
 					gmt_fill_syntax (GMT, 'E', NULL, " ");
 					n_errors++;
@@ -469,7 +489,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSMECA_CTRL *Ctrl, struct GMT_OPT
 				break;
 			case 'G':	/* Set color for compressive parts */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->G.active);
-				Ctrl->G.active = true;
 				if (!opt->arg[0] || (opt->arg[0] && gmt_getfill (GMT, opt->arg, &Ctrl->G.fill))) {
 					gmt_fill_syntax (GMT, 'G', NULL, " ");
 					n_errors++;
@@ -477,7 +496,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSMECA_CTRL *Ctrl, struct GMT_OPT
 				break;
 			case 'H':		/* Overall symbol/pen scale column provided */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->H.active);
-				Ctrl->H.active = true;
 				if (opt->arg[0]) {	/* Gave a fixed scale - no reading from file */
 					Ctrl->H.value = atof (opt->arg);
 					Ctrl->H.mode = PSMECA_CONST_SCALE;
@@ -485,7 +503,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSMECA_CTRL *Ctrl, struct GMT_OPT
 				break;
 			case 'I':	/* Adjust symbol color via intensity */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->I.active);
-				Ctrl->I.active = true;
 				if (opt->arg[0])
 					Ctrl->I.value = atof (opt->arg);
 				else
@@ -493,7 +510,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSMECA_CTRL *Ctrl, struct GMT_OPT
 				break;
 			case 'L':	/* Draw outline [set outline attributes] */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->L.active);
-				Ctrl->L.active = true;
 				if (opt->arg[0] && gmt_getpen (GMT, opt->arg, &Ctrl->L.pen)) {
 					gmt_pen_syntax (GMT, 'L', NULL, " ", NULL, 0);
 					n_errors++;
@@ -509,11 +525,10 @@ static int parse (struct GMT_CTRL *GMT, struct PSMECA_CTRL *Ctrl, struct GMT_OPT
 				break;
 			case 'N':	/* Do not skip points outside border */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->N.active);
-				Ctrl->N.active = true;
+				n_errors += gmt_get_no_argument (GMT, opt->arg, opt->option, 0);
 				break;
 			case 'S':	/* Get format and size */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->S.active);
-				Ctrl->S.active = true;
 				switch (opt->arg[0]) {	/* parse format */
 					case 'c':
 						Ctrl->S.readmode = READ_CMT;	Ctrl->S.n_cols = 11;
@@ -607,7 +622,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSMECA_CTRL *Ctrl, struct GMT_OPT
 				break;
 			case 'T':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->T.active);
-				Ctrl->T.active = true;
 				sscanf (opt->arg, "%d", &Ctrl->T.n_plane);
 				if (strlen (opt->arg) > 2 && gmt_getpen (GMT, &opt->arg[2], &Ctrl->T.pen)) {	/* Set transparent attributes */
 					gmt_pen_syntax (GMT, 'T', NULL, " ", NULL, 0);
@@ -616,7 +630,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSMECA_CTRL *Ctrl, struct GMT_OPT
 				break;
 			case 'W':	/* Set line attributes */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->W.active);
-				Ctrl->W.active = true;
 				if (opt->arg && gmt_getpen (GMT, opt->arg, &Ctrl->W.pen)) {
 					gmt_pen_syntax (GMT, 'W', NULL, " ", NULL, 0);
 					n_errors++;
@@ -626,7 +639,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSMECA_CTRL *Ctrl, struct GMT_OPT
 				if (gmt_M_compat_check (GMT, 6)) {
 					GMT_Report (API, GMT_MSG_COMPAT, "-Z is deprecated from 6.2.0; use -C instead.\n");
 					n_errors += gmt_M_repeated_module_option (API, Ctrl->C.active);
-					Ctrl->C.active = true;
 					if (opt->arg[0]) Ctrl->C.file = strdup (opt->arg);
 				}
 				else {
@@ -710,7 +722,7 @@ EXTERN_MSC int GMT_psmeca (void *V_API, int mode, void *args) {
 
 	/* Parse the command-line arguments; return if errors are encountered */
 
-	if ((GMT = gmt_init_module (API, THIS_MODULE_LIB, THIS_MODULE_CLASSIC_NAME, THIS_MODULE_KEYS, THIS_MODULE_NEEDS, NULL, &options, &GMT_cpy)) == NULL) bailout (API->error); /* Save current state */
+	if ((GMT = gmt_init_module (API, THIS_MODULE_LIB, THIS_MODULE_CLASSIC_NAME, THIS_MODULE_KEYS, THIS_MODULE_NEEDS, module_kw, &options, &GMT_cpy)) == NULL) bailout (API->error); /* Save current state */
 	if (GMT_Parse_Common (API, THIS_MODULE_OPTIONS, options)) Return (API->error);
 	Ctrl = New_Ctrl (GMT);	/* Allocate and initialize a new control structure */
 	if ((error = parse (GMT, Ctrl, options)) != 0) Return (error);
@@ -866,8 +878,20 @@ EXTERN_MSC int GMT_psmeca (void *V_API, int mode, void *args) {
 						else if (n_scanned == 2)	/* Got no title */
 							event_title[0] = '\0';
 					}
-					else if (n_scanned == 1)	/* Only got event title */
+					else if (n_scanned == 1) {	/* Only got event title */
 						strncpy (event_title, S->text[row], GMT_BUFSIZ-1);
+						/* So here's the story. For some historical reason the parser only reads the strict number
+						   of columns needed for each convention and if there are more they are left as text.
+						   When it's asked to plot an offset ball the plotting coords are scanned from the remaining
+						   text (the n_scanned = sscanf(...) above). But from externals all numeric columns were read
+						   and the fishing in text fails resulting in no offset. The following patch solves the
+						   issue but it's only that a dumb patch. Better would be to solve in origin but that's risky.
+						*/
+						if (API->external && Ctrl->A.active && (S->n_columns - GMT->current.io.max_cols_to_read) == 2) {
+							xynew[GMT_X] = S->data[GMT->current.io.max_cols_to_read][row];
+							xynew[GMT_Y] = S->data[GMT->current.io.max_cols_to_read+1][row];
+						}
+					}
 					else	/* Got no title */
 						event_title[0] = '\0';
 				}

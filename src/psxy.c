@@ -36,6 +36,34 @@
 #define THIS_MODULE_NEEDS	"Jd"
 #define THIS_MODULE_OPTIONS "-:>BJKOPRUVXYabdefghilpqtw" GMT_OPT("Mmc")
 
+static struct GMT_KEYWORD_DICTIONARY module_kw[] = { /* Local options for this module */
+	/* separator, short_option, long_option,
+	          short_directives,          long_directives,
+	          short_modifiers,           long_modifiers */
+	{ 0, 'A', "straightlines",
+	          "m,p,x,y,r,t",             "mpfollow,pmfollow,xyalong,yxalong,rtalong,tralong",
+	          "",                        "" },
+	{ 0, 'C', "cpt",                     "", "", "", "" },
+	{ 0, 'D', "offset",                  "", "", "", "" },
+	{ 0, 'E', "errorbars",
+	          "x,y,X,Y",                 "xbar,ybar,boxwhisker,stemleaf",
+	          "a,A,c,n,w,p",             "asymmetrical,lhbounds,symbolfill,notch,capwidth,pen" },
+	{ 0, 'F', "connection",
+	          "c,n,p",                   "continuous,network,refpoint",
+	          "",                        "" },
+	{ 0, 'H', "scale",                   "", "", "", "" },
+	{ 0, 'I', "intensity",               "", "", "", "" },
+	{ 0, 'L', "polygon",
+		  "",                        "",
+	          "b,d,D,x,y,p",             "bounds,symdev,asymdev,xanchor,yanchor,pen" },
+	{ 0, 'N', "noclip",
+	          "c,r",                     "clipnorepeat,repeatnoclip",
+	          "",                        "" },
+	{ 0, 'T', "ignoreinfiles",           "", "", "", "" },
+	{ 0, 'Z', "zvalue",                  "", "", "", "" },
+	{ 0, '\0', "", "", "", "", ""}  /* End of list marked with empty option and strings */
+};
+
 /* Control structure for psxy */
 
 #define PSXY_E_OPT "-E[x|y|X|Y][+a|A][+c[l|f]][+n][+p<pen>][+w<width>]"
@@ -787,8 +815,8 @@ static int parse (struct GMT_CTRL *GMT, struct PSXY_CTRL *Ctrl, struct GMT_OPTIO
 
 		switch (opt->option) {
 
-			case '<':	/* Skip input files */
-				if (GMT_Get_FilePath (API, GMT_IS_DATASET, GMT_IN, GMT_FILE_REMOTE, &(opt->arg))) n_errors++;;
+			case '<':	/* Skip input files after checking they exist */
+				if (GMT_Get_FilePath (API, GMT_IS_DATASET, GMT_IN, GMT_FILE_REMOTE, &(opt->arg))) n_errors++;
 				n_files++;
 				break;
 
@@ -796,7 +824,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSXY_CTRL *Ctrl, struct GMT_OPTIO
 
 			case 'A':	/* Turn off draw_arc mode */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->A.active);
-				Ctrl->A.active = true;
 				switch (opt->arg[0]) {
 					case 'm': case 'y': case 'r': Ctrl->A.mode = GMT_STAIRS_Y; break;
 					case 'p': case 'x': case 't': Ctrl->A.mode = GMT_STAIRS_X; break;
@@ -808,7 +835,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSXY_CTRL *Ctrl, struct GMT_OPTIO
 				break;
 			case 'C':	/* Vary symbol color with z */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->C.active);
-				Ctrl->C.active = true;
 				gmt_M_str_free (Ctrl->C.file);
 				if (opt->arg[0]) Ctrl->C.file = strdup (opt->arg);
 				break;
@@ -821,12 +847,10 @@ static int parse (struct GMT_CTRL *GMT, struct PSXY_CTRL *Ctrl, struct GMT_OPTIO
 				else {
 					Ctrl->D.dx = gmt_M_to_inch (GMT, txt_a);
 					Ctrl->D.dy = (j == 2) ? gmt_M_to_inch (GMT, txt_b) : Ctrl->D.dx;
-					Ctrl->D.active = true;
 				}
 				break;
 			case 'E':	/* Get info for error bars and box-whisker bars */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->E.active);
-				Ctrl->E.active = true;
 				if (gmt_found_modifier (GMT, opt->arg, "aAcnpw")) {
 					/* New parser for -E[x|y|X|Y][+a|A][+cl|f][+n][+p<pen>][+w<capwidth>] */
 					char p[GMT_LEN64] = {""};
@@ -884,12 +908,10 @@ static int parse (struct GMT_CTRL *GMT, struct PSXY_CTRL *Ctrl, struct GMT_OPTIO
 				break;
 			case 'F':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->F.active);
-				Ctrl->F.active = true;
 				n_errors += gmt_parse_segmentize (GMT, opt->option, opt->arg, 0, &(Ctrl->F.S));
 				break;
 			case 'G':		/* Set fill for symbols or polygon */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->G.active);
-				Ctrl->G.active = true;
 				if (strncmp (opt->arg, "+z", 2U) == 0)
 					Ctrl->G.set_color = true;
 				else if (!opt->arg[0] || gmt_getfill (GMT, opt->arg, &Ctrl->G.fill)) {
@@ -899,7 +921,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSXY_CTRL *Ctrl, struct GMT_OPTIO
 				break;
 			case 'H':		/* Overall symbol/pen scale column provided */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->H.active);
-				Ctrl->H.active = true;
 				if (opt->arg[0]) {	/* Gave a fixed scale - no reading from file */
 					Ctrl->H.value = atof (opt->arg);
 					Ctrl->H.mode = PSXY_CONST_SCALE;
@@ -907,7 +928,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSXY_CTRL *Ctrl, struct GMT_OPTIO
 				break;
 			case 'I':	/* Adjust symbol color via intensity */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->I.active);
-				Ctrl->I.active = true;
 				if (opt->arg[0])
 					Ctrl->I.value = atof (opt->arg);
 				else
@@ -915,7 +935,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSXY_CTRL *Ctrl, struct GMT_OPTIO
 				break;
 			case 'L':		/* Close line segments */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->L.active);
-				Ctrl->L.active = true;
 				if ((c = strstr (opt->arg, "+b")) != NULL)	/* Build asymmetric polygon from lower and upper bounds */
 					Ctrl->L.anchor = PSXY_POL_ASYMM_ENV;
 				else if ((c = strstr (opt->arg, "+d")) != NULL)	/* Build symmetric polygon from deviations about y(x) */
@@ -950,7 +969,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSXY_CTRL *Ctrl, struct GMT_OPTIO
 				break;
 			case 'N':		/* Do not skip points outside border */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->N.active);
-				Ctrl->N.active = true;
 				if (opt->arg[0] == 'r') Ctrl->N.mode = PSXY_NO_CLIP_REPEAT;
 				else if (opt->arg[0] == 'c') Ctrl->N.mode = PSXY_CLIP_NO_REPEAT;
 				else if (opt->arg[0] == '\0') Ctrl->N.mode = PSXY_NO_CLIP_NO_REPEAT;
@@ -961,16 +979,14 @@ static int parse (struct GMT_CTRL *GMT, struct PSXY_CTRL *Ctrl, struct GMT_OPTIO
 				break;
 			case 'S':		/* Get symbol [and size] */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->S.active);
-				Ctrl->S.active = true;
 				Ctrl->S.arg = strdup (opt->arg);
 				break;
 			case 'T':		/* Skip all input files */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->T.active);
-				Ctrl->T.active = true;
+				n_errors += gmt_get_no_argument (GMT, opt->arg, opt->option, 0);
 				break;
 			case 'W':		/* Set line attributes */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->W.active);
-				Ctrl->W.active = true;
 				if ((c = strstr (opt->arg, "+z"))) {
 					Ctrl->W.set_color = true;
 					c[0] = '\0';	/* Chop off this modifier */
@@ -998,7 +1014,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSXY_CTRL *Ctrl, struct GMT_OPTIO
 
 			case 'Z':		/* Get value for CPT lookup */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->Z.active);
-				Ctrl->Z.active = true;
 				if (gmt_not_numeric (GMT, opt->arg) && !gmt_access (GMT, opt->arg, R_OK)) {	/* Got a file */
 					Ctrl->Z.file = strdup (opt->arg);
 					n_errors += gmt_M_check_condition (GMT, Ctrl->Z.file && gmt_access (GMT, Ctrl->Z.file, R_OK),
@@ -1099,7 +1114,7 @@ EXTERN_MSC int GMT_psxy (void *V_API, int mode, void *args) {
 
 	/* Parse the command-line arguments; return if errors are encountered */
 
-	if ((GMT = gmt_init_module (API, THIS_MODULE_LIB, THIS_MODULE_CLASSIC_NAME, THIS_MODULE_KEYS, THIS_MODULE_NEEDS, NULL, &options, &GMT_cpy)) == NULL) bailout (API->error); /* Save current state */
+	if ((GMT = gmt_init_module (API, THIS_MODULE_LIB, THIS_MODULE_CLASSIC_NAME, THIS_MODULE_KEYS, THIS_MODULE_NEEDS, module_kw, &options, &GMT_cpy)) == NULL) bailout (API->error); /* Save current state */
 	if (GMT_Parse_Common (API, THIS_MODULE_OPTIONS, options)) Return (API->error);
 
 	/* Initialize GMT_SYMBOL structure */
@@ -1240,8 +1255,7 @@ EXTERN_MSC int GMT_psxy (void *V_API, int mode, void *args) {
 		xy_errors[GMT_Y] += (S.read_size + rgb_from_z);
 	}
 	else if (not_line)	/* Here we have the usual x y [z] [size] [other args] [symbol] record */
-		for (j = n_cols_start; j < 6; j++) gmt_set_column_type (GMT, GMT_IN, j, GMT_IS_DIMENSION);		/* Since these may have units appended */
-	for (j = 0; j < S.n_nondim; j++) gmt_set_column_type (GMT, GMT_IN, S.nondim_col[j]+rgb_from_z, GMT_IS_FLOAT);	/* Since these are angles, not dimensions */
+		gmt_set_column_types (GMT, n_cols_start, rgb_from_z, 6, &S);	/* Handle the dimensional vs non-dimensional column types including if -i is used */
 
 	if (gmt_is_barcolumn (GMT, &S)) {
 		n_z = gmt_get_columbar_bands (GMT, &S);	/* > 0 for multiband, else 0 */
@@ -1451,7 +1465,7 @@ EXTERN_MSC int GMT_psxy (void *V_API, int mode, void *args) {
 					GMT_Report (API, GMT_MSG_WARNING, "Cannot use auto-legend -l for variable symbol size unless +S<size> is used. Option -l ignored.\n");
 				else {
 					/* For specified symbol, size, color we can do an auto-legend entry under modern mode */
-					gmt_add_legend_item (API, &S, Ctrl->G.active, &(Ctrl->G.fill), Ctrl->W.active, &(Ctrl->W.pen), &(GMT->common.l.item));
+					gmt_add_legend_item (API, &S, Ctrl->G.active, &(Ctrl->G.fill), Ctrl->W.active, &(Ctrl->W.pen), &(GMT->common.l.item), NULL);
 				}
 
 			}
@@ -2304,7 +2318,7 @@ EXTERN_MSC int GMT_psxy (void *V_API, int mode, void *args) {
 	}
 	else {	/* Line/polygon part */
 		uint64_t seg, seg_out = 0, n_new, n_cols = 2;
-		bool duplicate, resampled;
+		bool duplicate, resampled, conf_line = false;
 		struct GMT_DATASET *D = NULL;	/* Pointer to GMT multisegment table(s) */
 		struct GMT_PALETTE *A = NULL;
 		struct GMT_DATASET_HIDDEN *DH = NULL;
@@ -2317,6 +2331,7 @@ EXTERN_MSC int GMT_psxy (void *V_API, int mode, void *args) {
 
 		if (Ctrl->L.anchor == PSXY_POL_SYMM_DEV) n_cols = 3;
 		else if (Ctrl->L.anchor == PSXY_POL_ASYMM_DEV || Ctrl->L.anchor == PSXY_POL_ASYMM_ENV) n_cols = 4;
+		conf_line = (Ctrl->L.anchor >= PSXY_POL_SYMM_DEV && Ctrl->L.anchor <= PSXY_POL_ASYMM_ENV);
 
 		if (GMT_Init_IO (API, GMT_IS_DATASET, geometry, GMT_IN, GMT_ADD_DEFAULT, 0, options) != GMT_NOERROR) {	/* Register data input */
 			Return (API->error);
@@ -2394,17 +2409,18 @@ EXTERN_MSC int GMT_psxy (void *V_API, int mode, void *args) {
 
 		if (!seq_legend && GMT->common.l.active) {
 			if (S.symbol == GMT_SYMBOL_LINE) {
-				if (polygon || Ctrl->L.active) {	/* Place a rectangle in the legend */
+				if (polygon || conf_line) {	/* Place a rectangle in the legend */
 					int symbol = S.symbol;
-					S.symbol = PSL_RECT;
-					gmt_add_legend_item (API, &S, Ctrl->G.active, &(Ctrl->G.fill), Ctrl->W.active, &(Ctrl->W.pen), &(GMT->common.l.item));
+					struct GMT_PEN *cpen = (Ctrl->L.outline) ? &(Ctrl->L.pen) : NULL;
+					S.symbol = (Ctrl->L.active && Ctrl->G.active && Ctrl->W.active) ? 'L' : PSL_RECT;	/* L means confidence-line */
+					gmt_add_legend_item (API, &S, Ctrl->G.active, &(Ctrl->G.fill), Ctrl->W.active, &(Ctrl->W.pen), &(GMT->common.l.item), cpen);
 					S.symbol = symbol;
 				}
 				else	/* For specified line, width, color we can do an auto-legend entry under modern mode */
-					gmt_add_legend_item (API, &S, false, NULL, Ctrl->W.active, &(Ctrl->W.pen), &(GMT->common.l.item));
+					gmt_add_legend_item (API, &S, false, NULL, Ctrl->W.active, &(Ctrl->W.pen), &(GMT->common.l.item), NULL);
 			}
 			else	/* Decorated or quoted lines */
-				gmt_add_legend_item (API, &S, Ctrl->G.active, &(Ctrl->G.fill), Ctrl->W.active, &(Ctrl->W.pen), &(GMT->common.l.item));
+				gmt_add_legend_item (API, &S, Ctrl->G.active, &(Ctrl->G.fill), Ctrl->W.active, &(Ctrl->W.pen), &(GMT->common.l.item), NULL);
 				//GMT_Report (API, GMT_MSG_WARNING, "Cannot use auto-legend -l for selected feature. Option -l ignored.\n");
 		}
 
@@ -2443,14 +2459,15 @@ EXTERN_MSC int GMT_psxy (void *V_API, int mode, void *args) {
 				if (seq_legend && seq_n_legends >= 0 && (seq_frequency == GMT_COLOR_AUTO_SEGMENT || seg == 0)) {
 					if (GMT->common.l.item.label_type == GMT_LEGEND_LABEL_HEADER && L->header)	/* Use a segment label if found in header */
 						gmt_extract_label (GMT, L->header, GMT->common.l.item.label, SH->ogr);
-					if (polygon) {	/* Place a rectangle in the legend */
+					if (polygon || conf_line) {	/* Place a rectangle in the legend */
 						int symbol = S.symbol;
-						S.symbol = PSL_RECT;
-						gmt_add_legend_item (API, &S, Ctrl->G.active, &current_fill, Ctrl->W.active, &current_pen, &(GMT->common.l.item));
+						struct GMT_PEN *cpen = (Ctrl->L.outline) ? &(Ctrl->L.pen) : NULL;
+						S.symbol = (Ctrl->L.active && Ctrl->G.active && Ctrl->W.active) ? 'L' : PSL_RECT;	/* L means confidence-line */
+						gmt_add_legend_item (API, &S, Ctrl->G.active, &current_fill, Ctrl->W.active, &current_pen, &(GMT->common.l.item), cpen);
 						S.symbol = symbol;
 					}
 					else	/* For specified line, width, color we can do an auto-legend entry under modern mode */
-						gmt_add_legend_item (API, &S, false, NULL, Ctrl->W.active, &current_pen, &(GMT->common.l.item));
+						gmt_add_legend_item (API, &S, false, NULL, Ctrl->W.active, &current_pen, &(GMT->common.l.item), NULL);
 					seq_n_legends--;	/* One less to do */
 					GMT->common.l.item.ID++;	/* Increment the label counter */
 				}

@@ -106,8 +106,8 @@ Optional Arguments
     Change certain pixel values to another color or make them transparent.
     For 1-bit images you can specify an alternate *color* for the background (**+b**)
     or the foreground (**+f**) pixels, or give no color to make those pixels
-    transparent.  Alternatively, for color images you can select a single *color*
-    that should be made transparent instead  (**+t**).
+    transparent. Alternatively, for color images you can select a single *color*
+    that should be made transparent instead  (**+t**). This option may be repeated with different settings.
 
 .. _-I:
 
@@ -150,7 +150,7 @@ Optional Arguments
     :start-after: **Syntax**
     :end-before: **Description**
 
-.. |Add_perspective| replace:: (Requires **-R** and **-J** for proper functioning).
+.. |Add_perspective| replace:: (Requires |-R| and |-J| for proper functioning).
 .. include:: explain_perspective.rst_
 
 .. include:: explain_-t.rst_
@@ -160,7 +160,7 @@ Optional Arguments
 Notes
 -----
 
-The **-G** and **-I** options are for raster images only. They have
+The |-G| and |-I| options are for raster images only. They have
 no effect when placing Encapsulated *PostScript* files.
 
 .. module_common_ends

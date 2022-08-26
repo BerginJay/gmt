@@ -644,7 +644,7 @@ static int parse (struct GMT_CTRL *GMT, struct PSHISTOGRAM_CTRL *Ctrl, struct GM
 	 * returned when registering these sources/destinations with the API.
 	 */
 
-	unsigned int n_errors = 0, n_files = 0, mode = 0, pos = 0;
+	unsigned int n_errors = 0, mode = 0, pos = 0;
 	int sval;
 	size_t L;
 	char *c = NULL, *l_arg = NULL, *t_arg = NULL, *w_arg = NULL, p[GMT_BUFSIZ] = {""};
@@ -655,25 +655,22 @@ static int parse (struct GMT_CTRL *GMT, struct PSHISTOGRAM_CTRL *Ctrl, struct GM
 
 		switch (opt->option) {
 
-			case '<':	/* Skip input files */
-				if (GMT_Get_FilePath (API, GMT_IS_DATASET, GMT_IN, GMT_FILE_REMOTE, &(opt->arg))) n_errors++;;
+			case '<':	/* Skip input files after checking they exist */
+				if (GMT_Get_FilePath (API, GMT_IS_DATASET, GMT_IN, GMT_FILE_REMOTE, &(opt->arg))) n_errors++;
 				break;
 			case '>':	/* Got named output file */
-				if (n_files++ > 0) { n_errors++; continue; }
-				Ctrl->Out.active = true;
-				if (opt->arg[0]) Ctrl->Out.file = strdup (opt->arg);
-				if (GMT_Get_FilePath (API, GMT_IS_DATASET, GMT_OUT, GMT_FILE_LOCAL, &(Ctrl->Out.file))) n_errors++;
+				n_errors += gmt_M_repeated_module_option (API, Ctrl->Out.active);
+				n_errors += gmt_get_required_file (GMT, opt->arg, opt->option, 0, GMT_IS_DATASET, GMT_OUT, GMT_FILE_LOCAL, &(Ctrl->Out.file));
 				break;
 
 			/* Processes program-specific parameters */
 
 			case 'A':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->A.active);
-				Ctrl->A.active = true;
+				n_errors += gmt_get_no_argument (GMT, opt->arg, opt->option, 0);
 				break;
 			case 'C':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->C.active);
-				Ctrl->C.active = true;
 				if (opt->arg[0] && (c = strstr (opt->arg, "+b"))) {
 					Ctrl->C.binval = true;
 					c[0] = '\0';	/* Remove modifier */
@@ -684,7 +681,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSHISTOGRAM_CTRL *Ctrl, struct GM
 				break;
 			case 'D':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->D.active);
-				Ctrl->D.active = true;
 				while (gmt_getmodopt (GMT, 'D', opt->arg, "bfor", &pos, p, &n_errors) && n_errors == 0) {	/* Looking for +b, +f, +o, +r */
 					switch (p[0]) {
 						case 'b':	/* beneath */
@@ -705,7 +701,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSHISTOGRAM_CTRL *Ctrl, struct GM
 				break;
 			case 'E':	/* Alternative histogram bar width */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->E.active);
-				Ctrl->E.active = true;
 				if ((c = strstr (opt->arg, "+o"))) {	/* Asking for offset */
 					Ctrl->E.do_offset = true;
 					L = strlen (c);
@@ -730,11 +725,10 @@ static int parse (struct GMT_CTRL *GMT, struct PSHISTOGRAM_CTRL *Ctrl, struct GM
 				break;
 			case 'F':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->F.active);
-				Ctrl->F.active = true;
+				n_errors += gmt_get_no_argument (GMT, opt->arg, opt->option, 0);
 				break;
 			case 'G':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->G.active);
-				Ctrl->G.active = true;
 				if (gmt_getfill (GMT, opt->arg, &Ctrl->G.fill)) {
 					gmt_fill_syntax (GMT, 'G', NULL, " ");
 					n_errors++;
@@ -742,7 +736,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSHISTOGRAM_CTRL *Ctrl, struct GM
 				break;
 			case 'I':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->I.active);
-				Ctrl->I.active = true;
 				if (opt->arg[0] == 'o') Ctrl->I.mode = 1;
 				if (opt->arg[0] == 'O') Ctrl->I.mode = 2;
 				break;
@@ -771,24 +764,20 @@ static int parse (struct GMT_CTRL *GMT, struct PSHISTOGRAM_CTRL *Ctrl, struct GM
 				break;
 			case 'Q':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->Q.active);
-				Ctrl->Q.active = true;
 				Ctrl->Q.mode = (opt->arg[0] == 'r') ? -1 : +1;
 				break;
 			case 'S':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->S.active);
-				Ctrl->S.active = true;
+				n_errors += gmt_get_no_argument (GMT, opt->arg, opt->option, 0);
 				break;
 			case 'T':
-				n_errors += gmt_M_repeated_module_option (API, Ctrl->T.active);
 				t_arg = opt->arg;
 				break;
 			case 'W':
-				n_errors += gmt_M_repeated_module_option (API, Ctrl->W.active);
 				w_arg = opt->arg;
 				break;
 			case 'Z':
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->Z.active);
-				Ctrl->Z.active = true;
 				if ((c = strstr (opt->arg, "+w")) != NULL) {	/* Use weights instead of counts */
 					Ctrl->Z.weights = true;
 					c[0] = '\0';	/* Chop of temporarily */
@@ -887,7 +876,6 @@ static int parse (struct GMT_CTRL *GMT, struct PSHISTOGRAM_CTRL *Ctrl, struct GM
 	n_errors += gmt_M_check_condition (GMT, GMT->common.w.active && (Ctrl->N.selected[PSHISTOGRAM_L1] || Ctrl->N.selected[PSHISTOGRAM_LMS]), "Option -N: Only -N is supported when -w is selected.\n");
 	n_errors += gmt_M_check_condition (GMT, GMT->common.w.active && Ctrl->N.selected[PSHISTOGRAM_L2] && Ctrl->Q.active, "Option -N: Cannot use -Q when -w is selected.\n");
 	n_errors += gmt_check_binary_io (GMT, 0);
-	n_errors += gmt_M_check_condition (GMT, n_files > 1, "Only one output destination can be specified\n");
 
 	return (n_errors ? GMT_PARSE_ERROR : GMT_NOERROR);
 }
@@ -939,9 +927,15 @@ EXTERN_MSC int GMT_pshistogram (void *V_API, int mode, void *args) {
 
 	/*---------------------------- This is the pshistogram main code ----------------------------*/
 
-	if (!Ctrl->I.active && GMT->current.proj.projection != GMT_LINEAR) {
-		GMT_Report (API, GMT_MSG_ERROR, "Option -J: Only Cartesian scaling available in this module.\n");
-		Return (GMT_RUNTIME_ERROR);
+	if (!Ctrl->I.active) {	/* Need a linear projection either set explicitly (classic) or implicitly (modern only) */
+		if (GMT->current.setting.run_mode == GMT_CLASSIC && !GMT->common.J.active) {	/* -J is required, exit at this point */
+			GMT_Report (API, GMT_MSG_ERROR, "Must specify Cartesian scales or dimensions of the domain via -Jx or -JX.\n");
+			Return (GMT_RUNTIME_ERROR);
+		}
+		if (GMT->current.proj.projection != GMT_LINEAR) {	/* Must have given a nonlinear map projection by mistake */
+			GMT_Report (API, GMT_MSG_ERROR, "Option -J: Only Cartesian scaling available in this module.\n");
+			Return (GMT_RUNTIME_ERROR);
+		}
 	}
 
 	GMT_Report (API, GMT_MSG_INFORMATION, "Processing input table data\n");
@@ -1365,7 +1359,7 @@ EXTERN_MSC int GMT_pshistogram (void *V_API, int mode, void *args) {
 			else
 				S.size_y = S.size_x / 1.5;	/* Width to height ratio is 3:2 */
 		}
-		gmt_add_legend_item (API, &S, Ctrl->G.active, &(Ctrl->G.fill), Ctrl->W.active, &(Ctrl->W.pen), &(GMT->common.l.item));
+		gmt_add_legend_item (API, &S, Ctrl->G.active, &(Ctrl->G.fill), Ctrl->W.active, &(Ctrl->W.pen), &(GMT->common.l.item), NULL);
 	}
 	
 	if (Ctrl->N.active) {	/* Want to draw one or more normal distributions; we use 101 points to do so */

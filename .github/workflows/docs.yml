@@ -52,13 +52,13 @@ jobs:
 
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
+        uses: styfle/cancel-workflow-action@0.10.0
 
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Setup vcpkg (Windows)
-        uses: dawidd6/action-download-artifact@v2.17.0
+        uses: dawidd6/action-download-artifact@v2.22.0
         with:
           workflow: ci-caches.yml
           name: vcpkg-cache
@@ -114,7 +114,7 @@ jobs:
         if: runner.os == 'Windows'
 
       - name: Download cached GMT remote data from GitHub Artifacts
-        uses: dawidd6/action-download-artifact@v2.17.0
+        uses: dawidd6/action-download-artifact@v2.22.0
         with:
           workflow: ci-caches.yml
           name: gmt-cache
@@ -132,7 +132,9 @@ jobs:
           set -x -e
           cd build
           cmake --build . --target docs_depends
-          cmake --build . --target optimize_images
+          if [ -x "$(command -v pngquant)" ]; then  # optional step
+            cmake --build . --target optimize_images
+          fi
           cmake --build . --target docs_html
           # if html.log isn't empty (i.e., sphinx raise warnings), return 1
           ! [ -s doc/rst/html.log ]

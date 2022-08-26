@@ -18,7 +18,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Link Checker
-      uses: lycheeverse/lychee-action@v1.4.1
+      uses: lycheeverse/lychee-action@v1.5.1
       with:
         # 429: Too many requests
         args: >
@@ -33,6 +33,10 @@ jobs:
           --exclude ^http://topex.ucsd.edu/marine_grav/mar_grav.html
           --exclude ^https://topex.ucsd.edu/sandwell/
           --exclude ^http://topex.ucsd.edu
+          --exclude ^https://doi.org
+          --exclude ^https://www.researchgate.net/
+          --exclude ^http://www.eumetsat.int
+          --exclude ^http://nsis.sourceforge.io
           --verbose
           **/*.rst
           **/*.rst_

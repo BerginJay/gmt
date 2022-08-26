@@ -42,13 +42,19 @@
 
 static struct GMT_KEYWORD_DICTIONARY module_kw[] = { /* Local options for this module */
 	/* separator, short_option, long_option, short_directives, long_directives, short_modifiers, long_modifiers */
-	{ 0, 'A', "fields", "", "", "", "" },
-	{ 0, 'C', "center", "", "", "", "" },
-	{ 0, 'E', "extend", "", "", "P,p", "prop-simple,prop-weighted" },
-	{ 0, 'G', "gridfile", "", "", "", "" },
+	{ 0, 'A', "fields",    "", "", "", "" },
+	{ 0, 'C', "center",    "", "", "", "" },
+	{ 0, 'E', "extend",
+                  "",          "",
+                  "p,P",       "weighted,simple" },
+	{ 0, 'G', "outgrid",   "", "", "", "" },
 	GMT_INCREMENT_KW,	/* Defined in gmt_constant.h since not a true GMT common option (but almost) */
-	{ 0, 'S', "select", "m,n,s,w", "mean,count,sum,weight", "", "" },
-	{ 0, 'W', "weights", "i,o", "in,out", "s", "sigma" },
+	{ 0, 'S', "statistic",
+                  "m,n,s,w",   "mean,count,sum,weight",
+                  "",          "" },
+	{ 0, 'W', "weights",
+                  "i,o",       "in,out",
+                  "s",         "sigma" },
 	{ 0, '\0', "", "", "", "", ""}	/* End of list marked with empty option and strings */
 };
 
@@ -136,14 +142,13 @@ static int parse (struct GMT_CTRL *GMT, struct BLOCKMEAN_CTRL *Ctrl, struct GMT_
 		switch (opt->option) {
 
 			case '<':	/* Skip input files */
-				if (GMT_Get_FilePath (API, GMT_IS_DATASET, GMT_IN, GMT_FILE_REMOTE, &(opt->arg))) n_errors++;;
+				if (GMT_Get_FilePath (API, GMT_IS_DATASET, GMT_IN, GMT_FILE_REMOTE, &(opt->arg))) n_errors++;
 				break;
 
 			/* Processes program-specific parameters */
 
 			case 'A':	/* Requires -G and selects which fields should be written as grids */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->A.active);
-				Ctrl->A.active = true;
 				BLK_strip_commas (opt->arg, arg);	/* Make local copy with any commas removed */
 				for (k = 0; arg[k] && Ctrl->A.n_selected < BLK_N_FIELDS; k++) {
 					switch (arg[k]) {
@@ -159,49 +164,49 @@ static int parse (struct GMT_CTRL *GMT, struct BLOCKMEAN_CTRL *Ctrl, struct GMT_
 					}
 					Ctrl->A.n_selected++;
 				}
-				if (Ctrl->A.n_selected == 0) {	/* Let -Az be the default */
+				if (Ctrl->A.n_selected == 0) {	/* No argument; let -Az be the default */
 					GMT_Report (API, GMT_MSG_DEBUG, "-A interpreted to mean -Az.\n");
 					Ctrl->A.selected[0] = true;
-					Ctrl->A.n_selected = 1;
+					Ctrl->A.n_selected  = 1;
 				}
 				break;
 			case 'C':	/* Report center of block instead */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->C.active);
-				Ctrl->C.active = true;
+				n_errors += gmt_get_no_argument (GMT, opt->arg, opt->option, 0);
 				break;
 			case 'E':	/* Extended report with standard deviation, min, and max in cols 4-6 */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->E.active);
-				Ctrl->E.active = true;
 				if (opt->arg[0] == 'p') {	/* Old -Ep option */
 					GMT_Report (API, GMT_MSG_COMPAT, "-Ep is deprecated; see -E+p|P instead.\n");
 					Ctrl->E.mode = BLK_MODE_OBSOLETE;
 				}
-				else if (strstr (opt->arg, "+p"))	/* Error propagation on simple mean */
+				else if (opt->arg[0] && strstr (opt->arg, "+p"))	/* Error propagation on simple mean */
 					Ctrl->E.mode = BLK_MODE_WEIGHTED;
-				else if (strstr (opt->arg, "+P"))	/* Error propagation on weighted mean */
+				else if (opt->arg[0] && strstr (opt->arg, "+P"))	/* Error propagation on weighted mean */
 					Ctrl->E.mode = BLK_MODE_SIMPLE;
 				break;
 			case 'G':	/* Write output grid(s) */
 				if (!API->external) n_errors += gmt_M_repeated_module_option (API, Ctrl->G.active);
-				Ctrl->G.active = true;
-				if (!GMT->parent->external && Ctrl->G.n) {	/* Command line interface */
+				if (!GMT->parent->external && Ctrl->G.n) {	/* Command line interface and we gave more than one -G */
 					GMT_Report (API, GMT_MSG_ERROR, "-G can only be set once!\n");
 					n_errors++;
 				}
-				else {
-					Ctrl->G.file[Ctrl->G.n] = strdup (opt->arg);
-					if (GMT_Get_FilePath (API, GMT_IS_GRID, GMT_OUT, GMT_FILE_LOCAL, &(Ctrl->G.file[Ctrl->G.n]))) n_errors++;
+				else {	/* From externals, or the first time (n == 0) from the command line */
+					if (Ctrl->G.n == BLK_N_FIELDS) {
+						GMT_Report (API, GMT_MSG_COMPAT, "Option -G: Too many output grids specified!\n");
+						n_errors++;
+					}
+					else 	/* We can add one more */
+						n_errors += gmt_get_required_file (GMT, opt->arg, opt->option, 0, GMT_IS_GRID, GMT_OUT, GMT_FILE_LOCAL, &(Ctrl->G.file[Ctrl->G.n]));
 					Ctrl->G.n++;
 				}
 				break;
 			case 'I':	/* Get block dimensions */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->I.active);
-				Ctrl->I.active = true;
 				n_errors += gmt_parse_inc_option (GMT, 'I', opt->arg);
 				break;
 			case 'S':	/* Set report mode for z */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->S.active);
-				Ctrl->S.active = true;
 				switch (opt->arg[0]) {
 					case '\0': case 'z':	/* GMT4 LEVEL: Report data sums */
 						if (gmt_M_compat_check (GMT, 4)) {
@@ -220,12 +225,13 @@ static int parse (struct GMT_CTRL *GMT, struct BLOCKMEAN_CTRL *Ctrl, struct GMT_
 					case 'n': 	/* Report number of points (i.e., weight sum with all weights == 1) */
 						Ctrl->S.mode = BLK_OUT_COUNT; break;
 					default:
-						n_errors++; break;
+						GMT_Report (API, GMT_MSG_COMPAT, "Option -S: Unrecognized mode %s\n", opt->arg);
+						n_errors++;
+						break;
 				}
 				break;
 			case 'W':	/* Use in|out weights -W[i|o][+s] */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->W.active);
-				Ctrl->W.active = true;
 				n_errors += BLK_parse_weight_opt (API, opt->arg, Ctrl->W.weighted, Ctrl->W.sigma);
 				break;
 
@@ -259,7 +265,7 @@ static int parse (struct GMT_CTRL *GMT, struct BLOCKMEAN_CTRL *Ctrl, struct GMT_
 	                                   "Option -G requires -A\n");
 	if (Ctrl->G.active) {	/* Make sure -A sets valid fields, some require -E */
 		if (Ctrl->A.active && Ctrl->A.n_selected > 1 && !GMT->parent->external && !strstr (Ctrl->G.file[0], "%s")) {
-			GMT_Report (API, GMT_MSG_ERROR, "-G file format must contain a %%s for field type substitution.\n");
+			GMT_Report (API, GMT_MSG_ERROR, "Option -G: File format must contain a %%s for field type substitution.\n");
 			n_errors++;
 		}
 		else if (!Ctrl->A.active)	/* Set default z output grid */
@@ -276,10 +282,8 @@ static int parse (struct GMT_CTRL *GMT, struct BLOCKMEAN_CTRL *Ctrl, struct GMT_
 		}
 	}
 	n_errors += gmt_M_check_condition (GMT, !GMT->common.R.active[RSET], "Must specify -R option\n");
-	n_errors += gmt_M_check_condition (GMT, Ctrl->E.mode == BLK_MODE_OBSOLETE && !Ctrl->W.weighted[GMT_IN],
+	n_errors += gmt_M_check_condition (GMT, Ctrl->E.mode == BLK_MODE_OBSOLETE && (!Ctrl->W.weighted[GMT_IN] || Ctrl->W.sigma[GMT_IN]),
 	                                   "The deprecated -Ep option requires -W (not -W+s) with precomputed weights (= 1/sigma^2) on input\n");
-	n_errors += gmt_M_check_condition (GMT, Ctrl->E.mode == BLK_MODE_OBSOLETE && Ctrl->W.sigma[GMT_IN],
-	                                   "The deprecated -Ep option requires plain -W (not -W+s) with precomputed weights (= 1/sigma^2) on input\n");
 	n_errors += gmt_M_check_condition (GMT, GMT->common.R.inc[GMT_X] <= 0.0 || GMT->common.R.inc[GMT_Y] <= 0.0,
 	                                   "Option -I: Must specify positive increment(s)\n");
 	n_errors += gmt_check_binary_io (GMT, (Ctrl->W.weighted[GMT_IN]) ? 4 : 3);
@@ -343,7 +347,7 @@ EXTERN_MSC int GMT_blockmean (void *V_API, int mode, void *args) {
 	if (Ctrl->W.weighted[GMT_IN] && ((Ctrl->W.sigma[GMT_IN] && use_xy) || Ctrl->E.active)) np = gmt_M_memory (GMT, NULL, Grid->header->size, uint64_t);
 
 	/* Specify input and output expected columns */
-	n_input = (Ctrl->S.mode == BLK_OUT_COUNT) ? 2 : 3;
+	n_input = (Ctrl->S.mode == BLK_OUT_COUNT && !Ctrl->E.active) ? 2 : 3;	/* Only need 2 for counts unless -E is set */
 	if ((error = GMT_Set_Columns (API, GMT_IN, n_input + Ctrl->W.weighted[GMT_IN], GMT_COL_FIX_NO_TEXT)) != GMT_NOERROR) {
 		Return (error);
 	}

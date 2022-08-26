@@ -1,3 +1,5 @@
+:orphan:
+
 Contributors Guide
 ==================
 
@@ -5,7 +7,7 @@ This is a community driven project and everyone is welcome to contribute. The pr
 `GMT GitHub repository <https://github.com/GenericMappingTools/gmt>`_.
 
 The goal is to maintain a diverse community that's pleasant for everyone. **Please be considerate and respectful of
-others**. Everyone must abide by our `Code of Conduct <https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md>`_
+others**. Everyone must abide by our `Code of Conduct <https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md>`_
 and we encourage all to read it carefully.
 
 Ways to Contribute
@@ -331,7 +333,7 @@ As the baseline images are large blob files that can change often, it is not ide
 we use `data version control (dvc) <https://dvc.org/>`_ to track the test images, which is like ``git`` but for data.
 ``dvc`` stores the hash (md5sum) of a file or an md5sum that describes the contents of a directory. For each test
 ``test/<module>/*.sh`` that generates a .PS file, there is a baseline image file in ``test/baseline/<module>/``
-that is compared to the test result using `GraphicsMagick <www.graphicsmagick.org>`_. Each of the
+that is compared to the test result using `GraphicsMagick <http://www.graphicsmagick.org/>`_. Each of the
 directories ``test/baseline/<module>`` are tracked by ``dvc`` using the file ``test/baseline/<module>.dvc``. This file
 contains the hash of a JSON .dir file stored in the .dvc cache. The .dir file contains information about each tracked
 file in the directory, which is used to push/pull the files to/from remote storage. The ``test/baseline/<module>.dvc``
@@ -345,7 +347,7 @@ Setting up your local environment for dvc
 #. If you will need to push baseline images to the remote, ask a GMT maintainer to add you as a collaborator on
    `DAGsHub <https://dagshub.com/GenericMappingTools/gmt>`_.
 #. If you will need to push baseline imaged to the remote, set up
-   `authentication for the DVC remote <https://dagshub.com/docs/reference/dagshub_storage/#pushing-files-or-using-a-private-repo>`_.
+   `authentication for the DVC remote <https://dagshub.com/docs/feature_guide/dagshub_storage/#pushing-files-or-using-a-private-repo>`_.
 
 Pulling files from the remote for testing
 *****************************************
@@ -423,7 +425,7 @@ using the following steps:
   ``build/doc/examples/`` to ``test/baseline/<module>``, ``doc/scripts/images/``, or ``doc/examples/images/`` respectively.
 - Run the tests to ensure that the failing tests now pass.
 - Run ``dvc diff`` to check that modified files are in the correct directory.
-- Add the modified images to dvc using ``dvc add test/baseline/<module>``, ``dvc add doc/scripts/images``, or ``dvc add doc/scripts/examples``
+- Add the modified images to dvc using ``dvc add test/baseline/<module>``, ``dvc add doc/scripts/images``, or ``dvc add doc/examples/images``
   depending on the type of test modified.
 - Check that the .dvc file was updated by running ``git status``.
 - Stage the modified .dvc file in git using ``git add test/baseline/<module>.dvc``, ``dvc add doc/scripts/images.dvc``, or
@@ -437,7 +439,7 @@ Adding new tests
 ^^^^^^^^^^^^^^^^
 
 If you are fixing a bug or adding a new feature, you should add a test with your pull request. Most of the tests are
-image based and compare a result against a reference PostScript file using `GraphicsMagick <www.graphicsmagick.org>`_.
+image based and compare a result against a reference PostScript file using `GraphicsMagick <http://www.graphicsmagick.org/>`_.
 
 To add a PostScript based test (e.g., `box.sh <https://github.com/GenericMappingTools/gmt/blob/master/test/modern/box.sh>`_):
 
