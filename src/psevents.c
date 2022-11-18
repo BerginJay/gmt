@@ -516,7 +516,7 @@ maybe_set_two:
 					if (!opt->arg[2])	/*  Must read individual event symbol sizes for file using prevailing length-unit setting */
 						Ctrl->S.mode = 1;
 				}
-				else if (strchr ("-+aAcCdDgGhHiInNsStTxy", opt->arg[0])) {	/* Regular symbols of form <code>[<size>], where <code> is 1-char */
+				else if (strchr ("-+aAcCdDgGhHiInNsStTuxy", opt->arg[0])) {	/* Regular symbols of form <code>[<size>], where <code> is 1-char */
 					if (opt->arg[1] && !strchr (GMT_DIM_UNITS, opt->arg[1]))	/* Gave a fixed size */
 						Ctrl->S.symbol = strdup (opt->arg);
 					else if (opt->arg[1] && strchr (GMT_DIM_UNITS, opt->arg[1])) {	/* Must read symbol sizes in this unit from file */
@@ -627,7 +627,7 @@ maybe_set_two:
 	}
 	if (GMT->common.b.active[GMT_IN] && GMT->common.b.ncol[GMT_IN] == 0) GMT->common.b.ncol[GMT_IN] = n_col;
 	n_errors += gmt_M_check_condition (GMT, GMT->common.b.active[GMT_IN] && GMT->common.b.ncol[GMT_IN] < n_col, "Binary input data (-bi) must have at least %u columns.\n", n_col);
-	n_errors += gmt_M_check_condition (GMT, (Ctrl->A.active + Ctrl->S.active + Ctrl->Z.active) != 1 && Ctrl->E.active[PSEVENTS_SYMBOL], "Must specify either -A, -S or -Z unless just plotting labels.\n");
+	n_errors += gmt_M_check_condition (GMT, (Ctrl->A.active + Ctrl->S.active + Ctrl->Z.custom) != 1 && Ctrl->E.active[PSEVENTS_SYMBOL], "Must specify either -A, -S or -Z unless just plotting labels.\n");
 	n_errors += gmt_M_check_condition (GMT, Ctrl->C.active && Ctrl->G.active, "Cannot specify both -C and -G.\n");
 	n_errors += gmt_M_check_condition (GMT, Ctrl->A.mode == PSEVENTS_LINE_REC && Ctrl->G.active, "Option -G: Cannot be used with lines (-Ar).\n");
 	n_errors += gmt_M_check_condition (GMT, Ctrl->A.mode == PSEVENTS_LINE_REC && Ctrl->C.active, "Option -C: Cannot be used with lines (-Ar).\n");
@@ -1360,12 +1360,17 @@ Do_txt:			if (Ctrl->E.active[PSEVENTS_TEXT] && has_text) {	/* Also plot trailing
 			module = (GMT->current.setting.run_mode == GMT_MODERN && !strncmp (Ctrl->Z.module, "ps", 2U)) ? &Ctrl->Z.module[2] : Ctrl->Z.module;
 		}
 		else {	/* Command to plot standard symbols may need -C -G -W -N */
-			sprintf (cmd, "%s -R -J -O -K -H -I -t -S%s --GMT_HISTORY=readonly --PROJ_LENGTH_UNIT=%s", tmp_file_symbols, Ctrl->S.symbol, GMT->session.unit_name[GMT->current.setting.proj_length_unit]);
+			sprintf (cmd, "%s -R -J%s -O -K -H -I -t -S%s --GMT_HISTORY=readonly --PROJ_LENGTH_UNIT=%s", tmp_file_symbols, GMT->common.J.string, Ctrl->S.symbol, GMT->session.unit_name[GMT->current.setting.proj_length_unit]);
 			if (Ctrl->C.active) {strcat (cmd, " -C"); strcat (cmd, Ctrl->C.file);}
 			if (Ctrl->G.active) {strcat (cmd, " -G"); strcat (cmd, Ctrl->G.fill);}
 			if (Ctrl->W.pen) {strcat (cmd, " -W");    strcat (cmd, Ctrl->W.pen);}
 			if (Ctrl->N.active) strcat (cmd, Ctrl->N.arg);
-			if (Ctrl->Z.plot3d) module = "plot3d";
+			if (Ctrl->Z.plot3d) {	/* Need to pass out the vertical projection info to psxyz/plot3d */
+				strcat (cmd, " -p -J");
+				strcat (cmd, GMT->common.J.zstring);
+				GMT->common.J.zactive = false;	/* To avoid parsing errors */
+				module = (GMT->current.setting.run_mode == GMT_CLASSIC) ? "psxyz" : "plot3d";
+			}
 		}
 		GMT_Report (API, GMT_MSG_DEBUG, "cmd: gmt %s %s\n", module, cmd);
 
