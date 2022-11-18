@@ -138,8 +138,10 @@ struct PSEVENTS_CTRL {
 		bool active;
 		char *pen;
 	} W;
-	struct PSEVENTS_Z {	/* 	-Z<cmd> */
+	struct PSEVENTS_Z {	/* 	-Z[<cmd>] */
 		bool active;
+		bool plot3d;	/* Set if just -Z is given to indicate plot3d use */
+		bool custom;	/* Set if plotting custom external symbols (meca, etc) */
 		int Slongopt;		/* Long-option (--format) used in -Z argument string instead of -S? */
 		char *module;
 		char *cmd;
@@ -188,7 +190,7 @@ static int usage (struct GMTAPI_CTRL *API, int level) {
 	if (level == GMT_MODULE_PURPOSE) return (GMT_NOERROR);
 	GMT_Usage (API, 0, "usage: %s [<table>] %s %s -T<now> [-Ar[<dpu>[c|i][+v[<value>]]]|s] [%s] [-C<cpt>] [-D[j|J]<dx>[/<dy>][+v[<pen>]]] "
 		"[-E[s|t][+o|O<dt>][+r<dt>][+p<dt>][+d<dt>][+f<dt>][+l<dt>]] [-F[+a<angle>][+f<font>][+r[<first>]|+z[<fmt>]][+j<justify>]] "
-		"[-G<fill>] [-H<labelinfo>] [-L[t|<length>]] [-Mi|s|t|v<val1>[+c<val2>]] [-N[c|r]] [-Q<prefix>] [-S<symbol>[<size>]] [%s] [%s] [-W[<pen>]] [%s] [%s] [-Z\"<command>\"] "
+		"[-G<fill>] [-H<labelinfo>] [-L[t|<length>]] [-Mi|s|t|v<val1>[+c<val2>]] [-N[c|r]] [-Q<prefix>] [-S<symbol>[<size>]] [%s] [%s] [-W[<pen>]] [%s] [%s] [-Z[\"<command>\"]] "
 		"[%s] [%s] %s[%s] [%s] [%s] [%s] [%s] [%s] [%s] [%s] [%s] [%s]\n", name, GMT_J_OPT, GMT_Rgeoz_OPT, GMT_B_OPT, GMT_U_OPT, GMT_V_OPT, GMT_X_OPT, GMT_Y_OPT, GMT_a_OPT, GMT_b_OPT,
 		API->c_OPT, GMT_d_OPT, GMT_e_OPT, GMT_f_OPT, GMT_h_OPT, GMT_i_OPT, GMT_l_OPT, GMT_qi_OPT, GMT_w_OPT, GMT_colon_OPT, GMT_PAR_OPT);
 
@@ -273,7 +275,7 @@ static int usage (struct GMTAPI_CTRL *API, int level) {
 	GMT_Usage (API, 1, "\n-Z\"<command>\"");
 	GMT_Usage (API, -2, "Append core external <command> and required options that must include -S<format><size>. "
 		"The quoted <command> must start with [ps]coupe, [ps]meca, or [ps]velo. "
-		"(Note: The <command> cannot contain options -C, -G, -I, -J, -N, -R, -W, -t).");
+		"(Note: The <command> cannot contain options -C, -G, -I, -J, -N, -R, -W, -t). For plot3d just give -Z.");
 	GMT_Option (API, "a,bi2,c,di,e,f,h,i,l,p,qi,w,:,.");
 
 	return (GMT_MODULE_USAGE);
@@ -547,8 +549,10 @@ maybe_set_two:
 			case 'Z':	/* Select advanced seismologic/geodetic symbols */
 				n_errors += gmt_M_repeated_module_option (API, Ctrl->Z.active);
 
+				if (opt->arg[0] == '\0')	/* Just want to use plot3d */
+					Ctrl->Z.plot3d = true;
 				/* Check for both short- and long-option flags within the -Z argument string */
-				if (opt->arg[0] && (strstr (opt->arg, "-S") || strstr (opt->arg, "--format="))) {	/* Got the required -S option as part of the command */
+				else if (opt->arg[0] && (strstr (opt->arg, "-S") || strstr (opt->arg, "--format="))) {	/* Got the required -S option as part of the command */
 					if ((c = strchr (opt->arg, ' '))) {	/* First space in the command ends the module name */
 						char *q;
 						c[0] = '\0';	/* Temporarily hide the rest of the command so we can isolate the module name */
@@ -587,7 +591,8 @@ maybe_set_two:
 							Ctrl->Z.cmd = strdup (txt_a);
 					}
 				}
-				if (Ctrl->Z.cmd == NULL || Ctrl->Z.module == NULL) {	/* Sanity checks */
+				Ctrl->Z.custom = !Ctrl->Z.plot3d;
+				if (Ctrl->Z.custom && (Ctrl->Z.cmd == NULL || Ctrl->Z.module == NULL)) {	/* Sanity checks */
 					GMT_Report (API, GMT_MSG_ERROR, "Option -Z: Requires a core [ps]coupe, [ps]meca, or [ps]velo command with valid -S option and fixed size\n");
 					n_errors++;
 				}
@@ -651,7 +656,7 @@ maybe_set_two:
 	n_errors += gmt_M_check_condition (GMT, Ctrl->Z.active && (!Ctrl->C.active && !Ctrl->G.active && !Ctrl->W.active), "Option -Z: Must specify at least one of -C, -G, -W to plot visible symbols.\n");
 	n_errors += gmt_M_check_condition (GMT, !GMT->common.R.active[RSET], "Must specify -R option\n");
 	n_errors += gmt_M_check_condition (GMT, !GMT->common.J.active, "Must specify a map projection with the -J option\n");
-	n_errors += gmt_M_check_condition (GMT, Ctrl->Z.active && !(strstr (Ctrl->Z.module, &coupe[2]) || strstr (Ctrl->Z.module, &meca[2]) || strstr (Ctrl->Z.module, &velo[2])),
+	n_errors += gmt_M_check_condition (GMT, Ctrl->Z.custom && !(strstr (Ctrl->Z.module, &coupe[2]) || strstr (Ctrl->Z.module, &meca[2]) || strstr (Ctrl->Z.module, &velo[2])),
 		"Option Z: Module command must begin with one of [ps]coupe, [ps]meca, or [ps]velo\n");
 
 	return (n_errors ? GMT_PARSE_ERROR : GMT_NOERROR);
@@ -1062,7 +1067,14 @@ EXTERN_MSC int GMT_psevents (void *V_API, int mode, void *args) {
 	/* Now we are ready to take on some input values */
 
 	n_cols_needed = 3;	/* We always will need lon, lat and time */
-	if (Ctrl->Z.active) {	/* We read points for symbols */
+	if (Ctrl->Z.plot3d) {	/* We read 3D points for symbols */
+		n_cols_needed = 4;	/* Always need lon, lat, depth and time */
+		if (Ctrl->C.active) n_cols_needed++;	/* Must allow for w in input */
+		if (Ctrl->S.mode) n_cols_needed++;	/* Must allow for size in input */
+		if (Ctrl->L.mode == PSEVENTS_VAR_DURATION || Ctrl->L.mode == PSEVENTS_VAR_ENDTIME) n_cols_needed++;	/* Must allow for length/time in input */
+		n_copy_to_out = 3 + Ctrl->C.active + Ctrl->S.mode;
+	}
+	else if (Ctrl->Z.custom) {	/* We read points for symbols */
 		unsigned int n_cols = psevents_determine_columns (GMT, Ctrl->Z.module, Ctrl->Z.cmd, Ctrl->Z.Slongopt, Ctrl->S.mode);	/* Must allow for number of columns needed by the selected module */
 		if (n_cols == 0) {
 			GMT_Report (API, GMT_MSG_ERROR, "Unable to determine columns.  Bad module %s?\n", Ctrl->Z.module);
@@ -1095,7 +1107,7 @@ EXTERN_MSC int GMT_psevents (void *V_API, int mode, void *args) {
 		Return (API->error);
 	}
 
-	if (!Ctrl->Z.active) {
+	if (!Ctrl->Z.custom) {
 		if (Ctrl->C.active) s_in++, t_in++, d_in++, x_col++, i_col++, t_col++;	/* Must allow for z-value in input/output before size, time, length */
 		if (Ctrl->S.mode) t_in++, d_in++, x_col++, i_col++, t_col++;	/* Must allow for size in input/output before time and length */
 	}
@@ -1239,7 +1251,7 @@ EXTERN_MSC int GMT_psevents (void *V_API, int mode, void *args) {
 					psevents_set_XY (GMT, x_type, y_type, out, X, Y);
 
 					fprintf (fp_symbols, "%s\t%s", X, Y);	/* All need the map coordinates */
-					if (Ctrl->Z.active) {	/* A variable set of coordinates */
+					if (Ctrl->Z.custom) {	/* A variable set of coordinates */
 						for (col = GMT_Z; col <= t_col; col++)
 							fprintf (fp_symbols, "\t%g", out[col]);	/* Write out all required and extra columns */
 						if (has_text)	/* Also output the trailing text */
@@ -1339,7 +1351,7 @@ Do_txt:			if (Ctrl->E.active[PSEVENTS_TEXT] && has_text) {	/* Also plot trailing
 			if (Ctrl->A.mode == PSEVENTS_LINE_REC && Ctrl->W.pen)    {strcat (cmd, " -W"); strcat (cmd, Ctrl->W.pen);}
 			if (Ctrl->A.mode == PSEVENTS_LINE_SEG && Ctrl->C.active) {strcat (cmd, " -C"); strcat (cmd, Ctrl->C.file);}
 		}
-		else if (Ctrl->Z.active) {	/* Command for special seismology or geodesy symbols may need -C -G -W -N */
+		else if (Ctrl->Z.custom) {	/* Command for special seismology or geodesy symbols may need -C -G -W -N */
 			sprintf (cmd, "%s %s -R -J -O -K -H -I -t --GMT_HISTORY=readonly --PROJ_LENGTH_UNIT=%s", tmp_file_symbols, Ctrl->Z.cmd, GMT->session.unit_name[GMT->current.setting.proj_length_unit]);
 			if (Ctrl->C.active) {strcat (cmd, " -C"); strcat (cmd, Ctrl->C.file);}
 			if (Ctrl->G.active) {strcat (cmd, " -G"); strcat (cmd, Ctrl->G.fill);}
@@ -1353,6 +1365,7 @@ Do_txt:			if (Ctrl->E.active[PSEVENTS_TEXT] && has_text) {	/* Also plot trailing
 			if (Ctrl->G.active) {strcat (cmd, " -G"); strcat (cmd, Ctrl->G.fill);}
 			if (Ctrl->W.pen) {strcat (cmd, " -W");    strcat (cmd, Ctrl->W.pen);}
 			if (Ctrl->N.active) strcat (cmd, Ctrl->N.arg);
+			if (Ctrl->Z.plot3d) module = "plot3d";
 		}
 		GMT_Report (API, GMT_MSG_DEBUG, "cmd: gmt %s %s\n", module, cmd);
 
