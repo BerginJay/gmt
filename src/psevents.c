@@ -1073,6 +1073,7 @@ EXTERN_MSC int GMT_psevents (void *V_API, int mode, void *args) {
 		if (Ctrl->S.mode) n_cols_needed++;	/* Must allow for size in input */
 		if (Ctrl->L.mode == PSEVENTS_VAR_DURATION || Ctrl->L.mode == PSEVENTS_VAR_ENDTIME) n_cols_needed++;	/* Must allow for length/time in input */
 		n_copy_to_out = 3 + Ctrl->C.active + Ctrl->S.mode;
+		s_in++, t_in++, d_in++, x_col++, i_col++, t_col++;	/* Must allow for z-value in input/output before size, time, length */
 	}
 	else if (Ctrl->Z.custom) {	/* We read points for symbols */
 		unsigned int n_cols = psevents_determine_columns (GMT, Ctrl->Z.module, Ctrl->Z.cmd, Ctrl->Z.Slongopt, Ctrl->S.mode);	/* Must allow for number of columns needed by the selected module */
