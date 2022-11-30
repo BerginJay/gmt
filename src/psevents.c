@@ -1329,7 +1329,6 @@ Do_txt:			if (Ctrl->E.active[PSEVENTS_TEXT] && has_text) {	/* Also plot trailing
 	gmt_set_basemap_orders (GMT, (Ctrl->N.active && strchr (Ctrl->N.arg, 'r')) ? GMT_BASEMAP_FRAME_BEFORE : GMT_BASEMAP_FRAME_AFTER, GMT_BASEMAP_GRID_BEFORE, GMT_BASEMAP_ANNOT_AFTER);
 	gmt_map_basemap (GMT);	/* Plot basemap if requested */
 
-
 	if (fp_symbols) { /* Here we have event symbols to plot as an overlay via a call to plot */
 		char *module = (GMT->current.setting.run_mode == GMT_CLASSIC) ? "psxy" : "plot";	/* Default module to use for symbols, lines, polygons */
 		/* Build plot command with fixed options and those that depend on -C -G -W.
@@ -1354,6 +1353,8 @@ Do_txt:			if (Ctrl->E.active[PSEVENTS_TEXT] && has_text) {	/* Also plot trailing
 			if (Ctrl->W.pen) {strcat (cmd, " -W");    strcat (cmd, Ctrl->W.pen);}
 			if (Ctrl->N.active) strcat (cmd, Ctrl->N.arg);
 		}
+		if (GMT->common.p.active) {strcat (cmd, " -p"); strcat (cmd, GMT->common.p.string);}	/* 3-D perspective */
+
 		GMT_Report (API, GMT_MSG_DEBUG, "cmd: gmt %s %s\n", module, cmd);
 
 		if (GMT_Call_Module (API, module, GMT_MODULE_CMD, cmd) != GMT_NOERROR) {	/* Plot the symbols, lines, or polygons */
@@ -1382,6 +1383,7 @@ Do_txt:			if (Ctrl->E.active[PSEVENTS_TEXT] && has_text) {	/* Also plot trailing
 			}
 			if (Ctrl->H.boxoutline) {strcat (cmd, " -W"); strcat (cmd, Ctrl->H.pen);}
 		}
+		if (GMT->common.p.active) {strcat (cmd, " -p"); strcat (cmd, GMT->common.p.string);}	/* 3-D perspective */
 		GMT_Report (API, GMT_MSG_DEBUG, "cmd: gmt %s %s\n", module, cmd);
 
 		if (GMT_Call_Module (API, module, GMT_MODULE_CMD, cmd) != GMT_NOERROR) {	/* Plot the labels */
