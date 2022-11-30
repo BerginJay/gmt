@@ -1367,7 +1367,9 @@ Do_txt:			if (Ctrl->E.active[PSEVENTS_TEXT] && has_text) {	/* Also plot trailing
 			if (Ctrl->W.pen) {strcat (cmd, " -W");    strcat (cmd, Ctrl->W.pen);}
 			if (Ctrl->N.active) strcat (cmd, Ctrl->N.arg);
 			if (Ctrl->Z.plot3d) {	/* Need to pass out the vertical projection info to psxyz/plot3d */
-				strcat (cmd, " -p -J");
+				strcat (cmd, " -p");
+				strcat (cmd, GMT->common.p.string);
+				strcat (cmd, " -J");
 				strcat (cmd, GMT->common.J.zstring);
 				GMT->common.J.zactive = false;	/* To avoid parsing errors */
 				module = (GMT->current.setting.run_mode == GMT_CLASSIC) ? "psxyz" : "plot3d";

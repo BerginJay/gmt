@@ -2422,6 +2422,8 @@ GMT_LOCAL int gmtinit_parse_p_option (struct GMT_CTRL *GMT, char *item) {
 
 	/* -p[x|y|z]<azim>[/<elev>[/<zlevel>]][+w<lon0>/<lat0>[/<z0>][+v<x0>/<y0>] */
 
+	strncpy (GMT->common.p.string, item, GMT_LEN64-1);	/* Make copy of -p argument verbatim */
+
 	if (!GMT->common.J.active) {
 		gmt_set_missing_options (GMT, "J");	/* If mode is modern and -J exist in the history, and if an overlay we may add these from history automatically */
 		if (!GMT->common.J.active)
