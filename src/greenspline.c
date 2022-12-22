@@ -1571,14 +1571,14 @@ GMT_LOCAL double greenspline_get_dircosine (struct GMT_CTRL *GMT, double *D, dou
 	return (C);
 }
 
-GMT_LOCAL void greenspline_dump_system (double *A, double *b, uint64_t nm, char *string) {
+GMT_LOCAL void greenspline_dump_system (double *A, double *b, uint64_t n_rows, uint64_t n_columns, char *string) {
 	/* Dump an A | b system to stderr for debugging */
 	uint64_t row, col, ij;
 	fprintf (stderr, "\n%s\n", string);
-	for (row = 0; row < nm; row++) {
-		ij = row * nm;
+	for (row = 0; row < n_rows; row++) {
+		ij = row * n_columns;
 		fprintf (stderr, "%12.6f", A[ij++]);
-		for (col = 1; col < nm; col++, ij++) fprintf (stderr, "\t%12.6f", A[ij]);
+		for (col = 1; col < n_columns; col++, ij++) fprintf (stderr, "\t%12.6f", A[ij]);
 		fprintf (stderr, "\t||\t%12.6f\n", b[row]);
 	}
 }
@@ -1599,7 +1599,8 @@ GMT_LOCAL void greenspline_set_filename (char *name, unsigned int k, unsigned in
 
 EXTERN_MSC int GMT_greenspline (void *V_API, int mode, void *args) {
 	openmp_int col, row;
-	uint64_t n_read, p, k, i, j, seg, m, n, nm, n_cr = 0, n_ok = 0, ij, ji, ii, n_duplicates = 0, n_skip = 0;
+	uint64_t n_read, p, k, i, j, seg, m, n, nm, n_cr = 0, n_ok = 0, ij, ji, ii;
+	uint64_t n_duplicates = 0, n_skip = 0, n_rows, n_columns;
 	unsigned int dimension = 0, normalize, n_cols, n_layers = 1, w_col, L_Max = 0;
 	int64_t *kolumn = NULL;
 	size_t n_alloc;
@@ -2298,18 +2299,21 @@ EXTERN_MSC int GMT_greenspline (void *V_API, int mode, void *args) {
 	 * multiplication of the (unity) weights to save time.
 	 */
 
-	mem = (double)nm * (double)nm * (double)sizeof (double);	/* In bytes */
-	GMT_Report (API, GMT_MSG_INFORMATION, "Square matrix A (size %d x %d) requires %s\n", (int)nm, (int)nm, gmt_memory_use ((size_t)mem, 1));
-	A = gmt_M_memory (GMT, NULL, nm * nm, double);
+	n_rows = n + m;	/* Number of constraint equations */
+	n_columns = n + m - n_cr;	/* Number of unknown coefficients */
+
+	mem = (double)n_rows * (double)n_columns * (double)sizeof (double);	/* In bytes */
+	GMT_Report (API, GMT_MSG_INFORMATION, "Square matrix A (size %d x %d) requires %s\n", (int)n_rows, (int)n_columns, gmt_memory_use ((size_t)mem, 1));
+	A = gmt_M_memory (GMT, NULL, n_rows * n_columns, double);
 
 	GMT_Report (API, GMT_MSG_INFORMATION, "Build square linear system Ax = b using %s\n", method[Ctrl->S.mode]);
 
 	/* First do data constraint rows */
 
 	for (row = 0; row < (openmp_int)n; row++) {	/* For each value constraint */
-		for (col = row; col < (openmp_int)nm; col++) {	/* For all points and gradient locations at and beyond */
-			ij = row * nm + col;	/* Entry in this row of A */
-			ji = col * nm + row;	/* Entry in row = col of A for symmetrical ji = ij point */
+		for (col = row; col < (openmp_int)n_columns; col++) {	/* For all points and gradient locations at and beyond */
+			ij = row * n_columns + col;	/* Entry in this row of A */
+			ji = col * n_columns + row;	/* Entry in row = col of A for symmetrical ji = ij point */
 			r = greenspline_get_radius (GMT, X[col], X[row], dimension);
 			/* Value constraint since entire row uses G */
 			A[ij] = G (GMT, r, par, Lz);
@@ -2321,9 +2325,9 @@ EXTERN_MSC int GMT_greenspline (void *V_API, int mode, void *args) {
 	}
 
 	if (m) {	/* Have to build slope constraint rows as well. Tested in 1-D and 2-D */
-		for (row = n; row < (openmp_int)nm; row++) {	/* For each slope constraint [in rows n:nm-1] */
-			for (col = 0; col < (openmp_int)nm; col++) {	/* We do all columns here since most are not symmetrical */
-				ij = row * nm + col;
+		for (row = n; row < (openmp_int)n_rows; row++) {	/* For each slope constraint [in rows n:nm-1] */
+			for (col = 0; col < (openmp_int)n_columns; col++) {	/* We do all columns here since most are not symmetrical */
+				ij = row * n_columns + col;
 				r = greenspline_get_radius (GMT, X[col], X[row], dimension);
 				if (!gmt_M_is_zero (r)) {	/* For all pairs except self-pairs */
 					grad = dGdr (GMT, r, par, Lg);
@@ -2335,11 +2339,11 @@ EXTERN_MSC int GMT_greenspline (void *V_API, int mode, void *args) {
 	}
 
 #ifdef DEBUG
-	if (Ctrl->debug.active) greenspline_dump_system (A, obs, nm, "A Matrix row || obs");	/* Dump the A | b system under debug */
+	if (Ctrl->debug.active) greenspline_dump_system (A, obs, n_rows, n_columns, "A Matrix row || obs");	/* Dump the A | b system under debug */
 #endif
 	if (Ctrl->E.active && Ctrl->C.history == GMT_SVD_NO_HISTORY) {	/* Needed A to evaluate misfit later as predict = A_orig * x */
-		A_orig = gmt_M_memory (GMT, NULL, nm * nm, double);
-		gmt_M_memcpy (A_orig, A, nm * nm, double);
+		A_orig = gmt_M_memory (GMT, NULL, n_rows * n_columns, double);
+		gmt_M_memcpy (A_orig, A, n_rows * n_columns, double);
 	}
 
 	if (Ctrl->W.active) {
@@ -2356,9 +2360,9 @@ EXTERN_MSC int GMT_greenspline (void *V_API, int mode, void *args) {
 		double *At = NULL, *AtS = NULL, *S = NULL;	/* Need temporary work space */
 
 		GMT_Report (API, GMT_MSG_INFORMATION, "Forming weighted normal equations A'SAx = A'Sb -> Nx = r\n");
-		At = gmt_M_memory (GMT, NULL, nm * nm, double);
-		AtS = gmt_M_memory (GMT, NULL, nm * nm, double);
-		S = gmt_M_memory (GMT, NULL, nm, double);
+		At = gmt_M_memory (GMT, NULL, n_columns * n_rows, double);
+		AtS = gmt_M_memory (GMT, NULL, n_columns * n_rows, double);
+		S = gmt_M_memory (GMT, NULL, n_rows, double);
 		/* 1. Transpose A and set diagonal matrix with squared weights (here a vector) S */
 		GMT_Report (API, GMT_MSG_INFORMATION, "Create S = W'*W diagonal matrix, A', and compute A' * S\n");
 		for (row = 0; row < (openmp_int)nm; row++) {
@@ -2383,9 +2387,9 @@ EXTERN_MSC int GMT_greenspline (void *V_API, int mode, void *args) {
 		gmt_matrix_matrix_mult (GMT, AtS, A, nm, nm, nm, At);
 		/* Now free A, AtS and obs and let "A" be N and "obs" be r; these are the weighted normal equations */
 		gmt_M_free (GMT, A);	gmt_M_free (GMT, AtS);	gmt_M_free (GMT, obs);
-		A = At;	obs = S;
+		A = At;	obs = S;	/* These are then passed along to the solvers below */
 #ifdef DEBUG
-		if (Ctrl->debug.active) greenspline_dump_system (A, obs, nm, "Normal equation N row || r");
+		if (Ctrl->debug.active) greenspline_dump_system (A, obs, n_rows, n_columns, "Normal equation N row || r");
 #endif
 	}
 
