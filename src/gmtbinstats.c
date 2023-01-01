@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------
  *
- *	Copyright (c) 1991-2022 by the GMT Team (https://www.generic-mapping-tools.org/team.html)
+ *	Copyright (c) 1991-2023 by the GMT Team (https://www.generic-mapping-tools.org/team.html)
  *	See LICENSE.TXT file for copying and redistribution conditions.
  *
  *	This program is free software; you can redistribute it and/or modify
@@ -497,7 +497,7 @@ EXTERN_MSC int GMT_gmtbinstats (void *V_API, int mode, void *args) {
 			nx = gmt_M_get_n (GMT, GMT->common.R.wesn[XLO], GMT->common.R.wesn[XHI], GMT->common.R.inc[GMT_X], 0.0);
 			xmax = GMT->common.R.wesn[XLO] + (nx - 1) * GMT->common.R.inc[GMT_X];
 			if (!doubleAlmostEqualZero (GMT->common.R.wesn[XHI], xmax)) {
-				GMT_Report (API, GMT_MSG_WARNING, "Hexagonal geometry requires xmax to be adjusted from %g to %g\n", GMT->common.R.wesn[XHI], xmax);
+				GMT_Report (API, GMT_MSG_INFORMATION, "Hexagonal geometry requires xmax to be adjusted from %g to %g\n", GMT->common.R.wesn[XHI], xmax);
 				GMT->common.R.wesn[XHI] = xmax;
 			}
 			/* Divide grid spacings by two for the pseudo-grid parameters. We do this to ensure every hexagonal center

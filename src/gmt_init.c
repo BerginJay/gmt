@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------
  *
- *	Copyright (c) 1991-2022 by the GMT Team (https://www.generic-mapping-tools.org/team.html)
+ *	Copyright (c) 1991-2023 by the GMT Team (https://www.generic-mapping-tools.org/team.html)
  *	See LICENSE.TXT file for copying and redistribution conditions.
  *
  *	This program is free software; you can redistribute it and/or modify
@@ -8014,8 +8014,8 @@ void gmtlib_explain_options (struct GMT_CTRL *GMT, char *options) {
 
 			GMT_Usage (API, 1, "\n%s", GMT_s_OPT);
 			GMT_Usage (API, -2, "Suppress output of data records whose z-value(s) equal NaN [Default prints all records]. "
-				"Append <cols> to test all specified column(s) [2]. Optional modifiers:");
-			GMT_Usage (API, 3, "+a Suppress records where any column equals NaN [all columns must equal NaN].");
+				"Append <cols> to test all specified output column(s) [2]. Optional modifiers:");
+			GMT_Usage (API, 3, "+a Suppress records where any output column equals NaN [all columns must equal NaN].");
 			GMT_Usage (API, 3, "+r Reverse the test (only output record that fail the NaN-test).");
 			break;
 
@@ -17907,12 +17907,12 @@ GMT_LOCAL int gmtinit_parse_proj4 (struct GMT_CTRL *GMT, char *item, char *dest)
  */
 int gmt_parse_common_options (struct GMT_CTRL *GMT, char *list, char option, char *item) {
 
-	int error = 0, i = 0, q = 0;	/* The i and i+= gmt_M_more_than_once are there to avoid compiler warnings... */
+	int error = 0, n_repeat = 0, q = 0;	/* The n_repeat and n_repeat += gmt_M_more_than_once are there just to avoid compiler warnings... */
 
 	if (!list || !strchr (list, option)) return (0);	/* Not a common option we accept */
 
 	if (gmt_M_compat_check (GMT, 4)) {
-		/* Translate some GMT4 options */
+		/* Translate some uppercase old global GMT4 options to GMT6 and beyond equivalent options */
 		switch (option) {
 			case 'E': gmt_M_compat_opt ('p'); break;
 			case 'F': gmt_M_compat_opt ('r'); break;
@@ -17956,8 +17956,8 @@ int gmt_parse_common_options (struct GMT_CTRL *GMT, char *list, char option, cha
 			}
 			break;
 
-		case 'I':
-			if (GMT->hidden.func_level > GMT_CONTROLLER) return (0);	/* Just skip if we are inside a GMT module. -I is an API common option only */
+		case 'I':	/* -I is an API common option only and not a true GMT common option like -R -J etc. */
+			if (GMT->hidden.func_level > GMT_CONTROLLER) return (0);	/* Skip if we are inside a GMT module, else process it. */
 			error = gmt_parse_inc_option (GMT, 'I', item);
 			GMT->common.R.active[ISET] = true;
 			break;
@@ -18032,18 +18032,18 @@ int gmt_parse_common_options (struct GMT_CTRL *GMT, char *list, char option, cha
 			break;
 
 		case 'K':
-			i += gmt_M_more_than_once (GMT, GMT->common.K.active);
+			n_repeat += gmt_M_more_than_once (GMT, GMT->common.K.active);
 			GMT->common.K.active = true;
 			break;
 
 		case 'O':
-			i += gmt_M_more_than_once (GMT, GMT->common.O.active);
+			n_repeat += gmt_M_more_than_once (GMT, GMT->common.O.active);
 			GMT->common.O.active = true;
 			break;
 
 		case 'P':
 			if (GMT->current.setting.run_mode == GMT_CLASSIC) {
-				i += gmt_M_more_than_once (GMT, GMT->common.P.active);
+				n_repeat += gmt_M_more_than_once (GMT, GMT->common.P.active);
 				GMT->common.P.active = true;
 			}
 			else {
@@ -18075,7 +18075,7 @@ int gmt_parse_common_options (struct GMT_CTRL *GMT, char *list, char option, cha
 			break;
 
 		case 'V':
-			i += gmt_M_more_than_once (GMT, GMT->common.V.active);
+			n_repeat += gmt_M_more_than_once (GMT, GMT->common.V.active);
 			GMT->common.V.active = true;
 			if (item && item[0]) {	/* Specified a verbosity level */
 				if (gmtinit_parse_V_option (GMT, item[0])) {
@@ -18317,6 +18317,9 @@ int gmt_parse_common_options (struct GMT_CTRL *GMT, char *list, char option, cha
 			return (1);
 			break;
 	}
+
+	if (n_repeat)
+		GMT_Report (GMT->parent, GMT_MSG_DEBUG, "gmt_parse_common_options: Duplicate options given %d times [not an error]\n", n_repeat);
 
 	/* On error, give syntax message */
 
@@ -20008,6 +20011,8 @@ void gmt_auto_offsets_for_colorbar (struct GMT_CTRL *GMT, double offset[], int j
 		c[0] = '\0';  /* Remove = */
 		n_errors += gmtlib_setparameter (GMT, opt->arg, &c[1], false);
 	}
+	if (n_errors) 
+		GMT_Report (GMT->parent, GMT_MSG_WARNING, "GMT parameter parsing failures for %d settings\n", n_errors);
 	gmt_M_memcpy (GMT->current.map.frame.side, sides, 5U, unsigned int);
 	GMT->current.map.frame.draw = was;
 }

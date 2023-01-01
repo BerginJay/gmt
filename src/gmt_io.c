@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------
  *
- *	Copyright (c) 1991-2022 by the GMT Team (https://www.generic-mapping-tools.org/team.html)
+ *	Copyright (c) 1991-2023 by the GMT Team (https://www.generic-mapping-tools.org/team.html)
  *	See LICENSE.TXT file for copying and redistribution conditions.
  *
  *	This program is free software; you can redistribute it and/or modify
@@ -1059,7 +1059,7 @@ GMT_LOCAL int gmtio_bin_output (struct GMT_CTRL *GMT, FILE *fp, uint64_t n, doub
 /*! . */
 int gmt_ascii_output_no_text (struct GMT_CTRL *GMT, FILE *fp, uint64_t n, double *ptr, char *txt) {
 	uint64_t i, col, last, n_out;
-	int e = 0, wn = 0;
+	int e = 0;
 	double val;
 	gmt_M_unused (txt);
 
@@ -1085,8 +1085,6 @@ int gmt_ascii_output_no_text (struct GMT_CTRL *GMT, FILE *fp, uint64_t n, double
 			putc ('\n', fp);
 		else if (GMT->current.setting.io_col_separator[0])		/* Not last field, and a separator is required */
 			fprintf (fp, "%s", GMT->current.setting.io_col_separator);
-
-		wn += e;
 	}
 	return ((e < 0) ? GMT_NOTSET : 0);
 }
@@ -1124,7 +1122,7 @@ int gmtlib_ascii_output_trailing_text (struct GMT_CTRL *GMT, FILE *fp, uint64_t 
 /*! . */
 GMT_LOCAL int gmtio_ascii_output_with_text (struct GMT_CTRL *GMT, FILE *fp, uint64_t n, double *ptr, char *txt) {
 	uint64_t i, col, n_out;
-	int e = 0, wn = 0;
+	int e = 0;
 	double val;
 
 	if (gmt_skip_output (GMT, ptr, n)) return (GMT_NOTSET);	/* Record was skipped via -s[a|r] */
@@ -1145,8 +1143,6 @@ GMT_LOCAL int gmtio_ascii_output_with_text (struct GMT_CTRL *GMT, FILE *fp, uint
 
 		if (i < (n_out-1) && GMT->current.setting.io_col_separator[0])		/* Not last field, and a separator is required */
 			fprintf (fp, "%s", GMT->current.setting.io_col_separator);
-
-		wn += e;
 	}
 	gmtio_output_trailing_text (GMT, fp, true, txt);
 
@@ -3078,10 +3074,16 @@ GMT_LOCAL void gmtio_adjust_segment (struct GMT_CTRL *GMT, struct GMT_DATASEGMEN
 	/* Change the number of columns in this segment to n_columns (free or allocate as needed) */
 	uint64_t col;
 	struct GMT_DATASEGMENT_HIDDEN *SH = gmt_get_DS_hidden (S);
-	for (col = n_columns; col < S->n_columns; col++) gmt_M_free (GMT, S->data[col]);	/* Free up if n_columns < S->columns */
+	for (col = n_columns; col < S->n_columns; col++) {	/* Free up if n_columns < S->columns if allowed */
+		if (SH->alloc_mode[col] == GMT_ALLOC_INTERNALLY)
+			gmt_M_free (GMT, S->data[col]);
+		else
+			S->data[col] = NULL;	/* Let go of link to an external vector */
+	}
+	/* Reallocate number of columns (increase or decrease lengths) */
 	S->data = gmt_M_memory (GMT, S->data, n_columns, double *);
-	S->min = gmt_M_memory (GMT, S->min, n_columns, double);
-	S->max = gmt_M_memory (GMT, S->max, n_columns, double);
+	S->min  = gmt_M_memory (GMT, S->min,  n_columns, double);
+	S->max  = gmt_M_memory (GMT, S->max,  n_columns, double);
 	SH->alloc_mode = gmt_M_memory (GMT, SH->alloc_mode, n_columns, enum GMT_enum_alloc);
 	for (col = S->n_columns; col < n_columns; col++) {	/* Allocate new columns and initialize the min/max arrays */
 		S->min[col] = +DBL_MAX;
@@ -3089,6 +3091,10 @@ GMT_LOCAL void gmtio_adjust_segment (struct GMT_CTRL *GMT, struct GMT_DATASEGMEN
 		S->data[col] = gmt_M_memory (GMT, NULL, S->n_rows, double);
 		SH->alloc_mode[col] = GMT_ALLOC_INTERNALLY;
 	}
+	/* Change the number of known/active columns to reflect the changes.
+	 * NOTE: If columns were externally allocated they are not freed (which is good)
+	 * but they are also "lost" in the sense they are no longer accessible as the
+	 * data pointer has been shrunk and set to NULL. */
 	S->n_columns = n_columns;
 }
 
@@ -6353,8 +6359,7 @@ void gmtlib_io_binary_header (struct GMT_CTRL *GMT, FILE *fp, unsigned int dir) 
 	uint64_t k;
 	char c = ' ';
 	if (dir == GMT_IN) {	/* Use fread since we don't know if input is a stream or a file */
-		size_t nr = 0;
-		for (k = 0; k < GMT->current.setting.io_n_header_items; k++) nr += gmt_M_fread (&c, sizeof (char), 1U, fp);
+		for (k = 0; k < GMT->current.setting.io_n_header_items; k++) (void)gmt_M_fread (&c, sizeof (char), 1U, fp);
 	}
 	else {
 		for (k = 0; k < GMT->current.setting.io_n_header_items; k++) gmt_M_fwrite (&c, sizeof (char), 1U, fp);
@@ -9076,7 +9081,6 @@ struct GMT_MATRIX * gmtlib_duplicate_matrix (struct GMT_CTRL *GMT, struct GMT_MA
 void gmtlib_free_matrix_ptr (struct GMT_CTRL *GMT, struct GMT_MATRIX *M, bool free_matrix) {
 	/* Free everything but the struct itself  */
 	struct GMT_MATRIX_HIDDEN *MH = NULL;
-	enum GMT_enum_alloc alloc_mode;
 	if (!M) return;	/* Nothing to deallocate */
 	/* Only free M->data if allocated by GMT AND free_matrix is true */
 	MH = gmt_get_M_hidden (M);
@@ -9092,7 +9096,6 @@ void gmtlib_free_matrix_ptr (struct GMT_CTRL *GMT, struct GMT_MATRIX *M, bool fr
 		for (unsigned int k = 0; k < M->n_headers; k++) gmt_M_str_free (M->header[k]);
 		gmt_M_free (GMT, M->header);
 	}
-	alloc_mode = MH->alloc_mode;
 	gmt_M_free (GMT, M->hidden);
 }
 
