@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(14) Gridding of data and trend surfaces &mdash; GMT 6.4.0 documentation</title>
+  <title>(14) Gridding of data and trend surfaces &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -178,34 +175,34 @@ transect using <a class="reference internal" href="../plot.html"><span class="do
 <span class="c1"># GMT modules:	set, plot, surface, subplot</span>
 <span class="c1"># Unix progs:	rm</span>
 <span class="c1">#</span>
-gmt begin ex14
-	gmt <span class="nb">set</span> MAP_GRID_PEN_PRIMARY thinnest,-
-	<span class="c1"># calculate mean data and grids</span>
-	gmt blockmean @Table_5_11.txt -R0/7/0/7 -I1 &gt; mean.xyz
-	gmt surface mean.xyz -Gdata.nc
-	gmt grdtrend data.nc -N10 -Ttrend.nc
-	gmt project -C0/0 -E7/7 -G0.1 -N &gt; track
-	<span class="c1"># Sample along diagonal</span>
-	gmt grdtrack track -Gdata.nc -o2,3 &gt; data.d
-	gmt grdtrack track -Gtrend.nc -o2,3 &gt; trend.d
-	gmt plot -Ra -JX15c/3.5c data.d -Wthick -Bx1 -By50 -BWSne
-	gmt plot trend.d -Wthinner,-
-	gmt subplot begin 2x2 -M0.1c -Ff15c -BWSne -Yh+1c -R0/7/0/7
-		<span class="c1"># First draw network and label the nodes</span>
-		gmt plot @Table_5_11.txt -Sc0.12c -Gblack -c0,0
-		gmt text @Table_5_11.txt -D3p/0 -F+f6p+jLM -N
-		<span class="c1"># Then draw gmt blockmean cells and label data values using one decimal</span>
-		gmt plot mean.xyz -Ss0.12c -Gblack -c0,1
-		gmt text -D11p/0 -F+f6p+jLM+z%.1f -Gwhite -W -C1p -N mean.xyz
-		<span class="c1"># Then gmt surface and contour the data</span>
-		gmt grdcontour data.nc -C25 -A50 -Gd8c -S4 -c1,0
-		gmt plot mean.xyz -Ss0.12c -Gblack
-		<span class="c1"># Fit bicubic trend to data and compare to gridded gmt surface</span>
-		gmt grdcontour trend.nc -C25 -A50 -Glct/cb -S4 -c1,1
-		gmt plot track -Wthick,.
-	gmt subplot end
-gmt end show
-rm -f mean.xyz track trend.nc data.nc data.d trend.d
+gmt<span class="w"> </span>begin<span class="w"> </span>ex14
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAP_GRID_PEN_PRIMARY<span class="w"> </span>thinnest,-
+<span class="w">	</span><span class="c1"># calculate mean data and grids</span>
+<span class="w">	</span>gmt<span class="w"> </span>blockmean<span class="w"> </span>@Table_5_11.txt<span class="w"> </span>-R0/7/0/7<span class="w"> </span>-I1<span class="w"> </span>&gt;<span class="w"> </span>mean.xyz
+<span class="w">	</span>gmt<span class="w"> </span>surface<span class="w"> </span>mean.xyz<span class="w"> </span>-Gdata.nc
+<span class="w">	</span>gmt<span class="w"> </span>grdtrend<span class="w"> </span>data.nc<span class="w"> </span>-N10<span class="w"> </span>-Ttrend.nc
+<span class="w">	</span>gmt<span class="w"> </span>project<span class="w"> </span>-C0/0<span class="w"> </span>-E7/7<span class="w"> </span>-G0.1<span class="w"> </span>-N<span class="w"> </span>&gt;<span class="w"> </span>track
+<span class="w">	</span><span class="c1"># Sample along diagonal</span>
+<span class="w">	</span>gmt<span class="w"> </span>grdtrack<span class="w"> </span>track<span class="w"> </span>-Gdata.nc<span class="w"> </span>-o2,3<span class="w"> </span>&gt;<span class="w"> </span>data.d
+<span class="w">	</span>gmt<span class="w"> </span>grdtrack<span class="w"> </span>track<span class="w"> </span>-Gtrend.nc<span class="w"> </span>-o2,3<span class="w"> </span>&gt;<span class="w"> </span>trend.d
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Ra<span class="w"> </span>-JX15c/3.5c<span class="w"> </span>data.d<span class="w"> </span>-Wthick<span class="w"> </span>-Bx1<span class="w"> </span>-By50<span class="w"> </span>-BWSne
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>trend.d<span class="w"> </span>-Wthinner,-
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>begin<span class="w"> </span>2x2<span class="w"> </span>-M0.1c<span class="w"> </span>-Ff15c<span class="w"> </span>-BWSne<span class="w"> </span>-Yh+1c<span class="w"> </span>-R0/7/0/7
+<span class="w">		</span><span class="c1"># First draw network and label the nodes</span>
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>@Table_5_11.txt<span class="w"> </span>-Sc0.12c<span class="w"> </span>-Gblack<span class="w"> </span>-c0,0
+<span class="w">		</span>gmt<span class="w"> </span>text<span class="w"> </span>@Table_5_11.txt<span class="w"> </span>-D3p/0<span class="w"> </span>-F+f6p+jLM<span class="w"> </span>-N
+<span class="w">		</span><span class="c1"># Then draw gmt blockmean cells and label data values using one decimal</span>
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>mean.xyz<span class="w"> </span>-Ss0.12c<span class="w"> </span>-Gblack<span class="w"> </span>-c0,1
+<span class="w">		</span>gmt<span class="w"> </span>text<span class="w"> </span>-D11p/0<span class="w"> </span>-F+f6p+jLM+z%.1f<span class="w"> </span>-Gwhite<span class="w"> </span>-W<span class="w"> </span>-C1p<span class="w"> </span>-N<span class="w"> </span>mean.xyz
+<span class="w">		</span><span class="c1"># Then gmt surface and contour the data</span>
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>data.nc<span class="w"> </span>-C25<span class="w"> </span>-A50<span class="w"> </span>-Gd8c<span class="w"> </span>-S4<span class="w"> </span>-c1,0
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>mean.xyz<span class="w"> </span>-Ss0.12c<span class="w"> </span>-Gblack
+<span class="w">		</span><span class="c1"># Fit bicubic trend to data and compare to gridded gmt surface</span>
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>trend.nc<span class="w"> </span>-C25<span class="w"> </span>-A50<span class="w"> </span>-Glct/cb<span class="w"> </span>-S4<span class="w"> </span>-c1,1
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>track<span class="w"> </span>-Wthick,.
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>end
+gmt<span class="w"> </span>end<span class="w"> </span>show
+rm<span class="w"> </span>-f<span class="w"> </span>mean.xyz<span class="w"> </span>track<span class="w"> </span>trend.nc<span class="w"> </span>data.nc<span class="w"> </span>data.d<span class="w"> </span>trend.d
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -227,8 +224,8 @@ rm -f mean.xyz track trend.nc data.nc data.d trend.d
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

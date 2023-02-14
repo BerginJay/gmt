@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(40) Line simplification &mdash; GMT 6.4.0 documentation</title>
+  <title>(40) Line simplification &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -164,37 +161,37 @@ different thresholds.</p>
 <span class="c1"># set AWK to awk if undefined</span>
 <span class="nv">AWK</span><span class="o">=</span><span class="si">${</span><span class="nv">AWK</span><span class="k">:-</span><span class="nv">awk</span><span class="si">}</span>
 
-gmt begin ex40
-	gmt spatial @GSHHS_h_Australia.txt -fg -Qk &gt; centroid.txt
-	<span class="nv">$AWK</span> <span class="s1">&#39;{printf &quot;Full area = %.0f km@+2@+\n&quot;, $3}&#39;</span> centroid.txt &gt; area.txt
+gmt<span class="w"> </span>begin<span class="w"> </span>ex40
+<span class="w">	</span>gmt<span class="w"> </span>spatial<span class="w"> </span>@GSHHS_h_Australia.txt<span class="w"> </span>-fg<span class="w"> </span>-Qk<span class="w"> </span>&gt;<span class="w"> </span>centroid.txt
+<span class="w">	</span><span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{printf &quot;Full area = %.0f km@+2@+\n&quot;, $3}&#39;</span><span class="w"> </span>centroid.txt<span class="w"> </span>&gt;<span class="w"> </span>area.txt
 
-	gmt subplot begin 2x1 -Fs14c/12c -R112/154/-40/-10 -JM14c
-		gmt subplot <span class="nb">set</span> <span class="m">0</span>
-		gmt basemap -B20+lightgray -BWsne+g240/255/240
-		gmt plot @GSHHS_h_Australia.txt -Wfaint -G240/240/255
-		gmt plot @GSHHS_h_Australia.txt -Sc0.01c -Gred
-		gmt simplify @GSHHS_h_Australia.txt -T100k &gt; T100k.txt
-		gmt spatial T100k.txt -fg -Qk <span class="p">|</span> <span class="nv">$AWK</span> <span class="s1">&#39;{printf &quot;Reduced area = %.0f km@+2@+\n&quot;, $3}&#39;</span> &gt; area_T100k.txt
-		gmt plot -W1p,blue T100k.txt
-		gmt plot -Sx0.75c -W3p centroid.txt
-		gmt text -Dj8p -F+cLT+jTL+f18p+t<span class="s2">&quot;T = 100 km&quot;</span>
-		gmt text area.txt -F+f14p+cCM -D0/1c
-		gmt text area_T100k.txt -F+f14p+cLB -Dj14p
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>begin<span class="w"> </span>2x1<span class="w"> </span>-Fs14c/12c<span class="w"> </span>-R112/154/-40/-10<span class="w"> </span>-JM14c
+<span class="w">		</span>gmt<span class="w"> </span>subplot<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span>
+<span class="w">		</span>gmt<span class="w"> </span>basemap<span class="w"> </span>-B20+lightgray<span class="w"> </span>-BWsne+g240/255/240
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>@GSHHS_h_Australia.txt<span class="w"> </span>-Wfaint<span class="w"> </span>-G240/240/255
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>@GSHHS_h_Australia.txt<span class="w"> </span>-Sc0.01c<span class="w"> </span>-Gred
+<span class="w">		</span>gmt<span class="w"> </span>simplify<span class="w"> </span>@GSHHS_h_Australia.txt<span class="w"> </span>-T100k<span class="w"> </span>&gt;<span class="w"> </span>T100k.txt
+<span class="w">		</span>gmt<span class="w"> </span>spatial<span class="w"> </span>T100k.txt<span class="w"> </span>-fg<span class="w"> </span>-Qk<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{printf &quot;Reduced area = %.0f km@+2@+\n&quot;, $3}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>area_T100k.txt
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>-W1p,blue<span class="w"> </span>T100k.txt
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Sx0.75c<span class="w"> </span>-W3p<span class="w"> </span>centroid.txt
+<span class="w">		</span>gmt<span class="w"> </span>text<span class="w"> </span>-Dj8p<span class="w"> </span>-F+cLT+jTL+f18p+t<span class="s2">&quot;T = 100 km&quot;</span>
+<span class="w">		</span>gmt<span class="w"> </span>text<span class="w"> </span>area.txt<span class="w"> </span>-F+f14p+cCM<span class="w"> </span>-D0/1c
+<span class="w">		</span>gmt<span class="w"> </span>text<span class="w"> </span>area_T100k.txt<span class="w"> </span>-F+f14p+cLB<span class="w"> </span>-Dj14p
 
-		gmt subplot <span class="nb">set</span> <span class="m">1</span>
-		gmt basemap -B20+lightgray -BWSne+g240/255/240
-		gmt plot @GSHHS_h_Australia.txt -Wfaint -G240/240/255
-		gmt plot @GSHHS_h_Australia.txt -Sc0.01c -Gred
-		gmt simplify @GSHHS_h_Australia.txt -T500k &gt; T500k.txt
-		gmt spatial T500k.txt -fg -Qk <span class="p">|</span> <span class="nv">$AWK</span> <span class="s1">&#39;{printf &quot;Reduced area = %.0f km@+2@+\n&quot;, $3}&#39;</span> &gt; area_T500k.txt
-		gmt plot -W1p,blue T500k.txt
-		gmt plot -Sx0.75c -W3p centroid.txt
-		gmt text -Dj8p -F+cLT+jTL+f18p+t<span class="s2">&quot;T = 500 km&quot;</span>
-		gmt text area.txt -F+f14p+cCM -D0/1c
-		gmt text area_T500k.txt -F+f14p+cLB -Dj14p
-	gmt subplot end
-	rm -f centroid.txt area*.txt T*.txt
-gmt end show
+<span class="w">		</span>gmt<span class="w"> </span>subplot<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">1</span>
+<span class="w">		</span>gmt<span class="w"> </span>basemap<span class="w"> </span>-B20+lightgray<span class="w"> </span>-BWSne+g240/255/240
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>@GSHHS_h_Australia.txt<span class="w"> </span>-Wfaint<span class="w"> </span>-G240/240/255
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>@GSHHS_h_Australia.txt<span class="w"> </span>-Sc0.01c<span class="w"> </span>-Gred
+<span class="w">		</span>gmt<span class="w"> </span>simplify<span class="w"> </span>@GSHHS_h_Australia.txt<span class="w"> </span>-T500k<span class="w"> </span>&gt;<span class="w"> </span>T500k.txt
+<span class="w">		</span>gmt<span class="w"> </span>spatial<span class="w"> </span>T500k.txt<span class="w"> </span>-fg<span class="w"> </span>-Qk<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{printf &quot;Reduced area = %.0f km@+2@+\n&quot;, $3}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>area_T500k.txt
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>-W1p,blue<span class="w"> </span>T500k.txt
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Sx0.75c<span class="w"> </span>-W3p<span class="w"> </span>centroid.txt
+<span class="w">		</span>gmt<span class="w"> </span>text<span class="w"> </span>-Dj8p<span class="w"> </span>-F+cLT+jTL+f18p+t<span class="s2">&quot;T = 500 km&quot;</span>
+<span class="w">		</span>gmt<span class="w"> </span>text<span class="w"> </span>area.txt<span class="w"> </span>-F+f14p+cCM<span class="w"> </span>-D0/1c
+<span class="w">		</span>gmt<span class="w"> </span>text<span class="w"> </span>area_T500k.txt<span class="w"> </span>-F+f14p+cLB<span class="w"> </span>-Dj14p
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>end
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>centroid.txt<span class="w"> </span>area*.txt<span class="w"> </span>T*.txt
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -216,8 +213,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

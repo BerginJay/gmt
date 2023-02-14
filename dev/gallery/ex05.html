@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(5) A 3-D illuminated surface (in bw) &mdash; GMT 6.4.0 documentation</title>
+  <title>(5) A 3-D illuminated surface (in bw) &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -170,13 +167,13 @@ the SW and view the surface from SE:</p>
 <span class="c1"># GMT modules:	grdmath, grdview, text, makecpt</span>
 <span class="c1"># Unix progs:	echo, rm</span>
 <span class="c1">#</span>
-gmt begin ex05
-	gmt grdmath -R-15/15/-15/15 -I0.3 X Y HYPOT DUP <span class="m">2</span> MUL PI MUL <span class="m">8</span> DIV COS EXCH NEG <span class="m">10</span> DIV EXP <span class="nv">MUL</span> <span class="o">=</span> sombrero.nc
-	gmt makecpt -C128 -T-5,5 -N
-	gmt grdview sombrero.nc -JX12c -JZ4c -B -Bz0.5 -BSEwnZ+t<span class="s2">&quot;z(r) = cos (2@~p@~r/8) @~\327@~e@+-r/10@+&quot;</span> -N-1+gwhite -Qs <span class="se">\</span>
-		-I+a225+nt0.75 -C -R-15/15/-15/15/-1/1 -p120/30 --FONT_TITLE<span class="o">=</span>50p,ZapfChancery-MediumItalic --MAP_TITLE_OFFSET<span class="o">=</span>-1c
-	rm -f sombrero.nc
-gmt end show
+gmt<span class="w"> </span>begin<span class="w"> </span>ex05
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span>-R-15/15/-15/15<span class="w"> </span>-I0.3<span class="w"> </span>X<span class="w"> </span>Y<span class="w"> </span>HYPOT<span class="w"> </span>DUP<span class="w"> </span><span class="m">2</span><span class="w"> </span>MUL<span class="w"> </span>PI<span class="w"> </span>MUL<span class="w"> </span><span class="m">8</span><span class="w"> </span>DIV<span class="w"> </span>COS<span class="w"> </span>EXCH<span class="w"> </span>NEG<span class="w"> </span><span class="m">10</span><span class="w"> </span>DIV<span class="w"> </span>EXP<span class="w"> </span><span class="nv">MUL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>sombrero.nc
+<span class="w">	</span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-C128<span class="w"> </span>-T-5,5<span class="w"> </span>-N
+<span class="w">	</span>gmt<span class="w"> </span>grdview<span class="w"> </span>sombrero.nc<span class="w"> </span>-JX12c<span class="w"> </span>-JZ4c<span class="w"> </span>-B<span class="w"> </span>-Bz0.5<span class="w"> </span>-BSEwnZ+t<span class="s2">&quot;z(r) = cos (2@~p@~r/8) @~\327@~e@+-r/10@+&quot;</span><span class="w"> </span>-N-1+gwhite<span class="w"> </span>-Qs<span class="w"> </span><span class="se">\</span>
+<span class="w">		</span>-I+a225+nt0.75<span class="w"> </span>-C<span class="w"> </span>-R-15/15/-15/15/-1/1<span class="w"> </span>-p120/30<span class="w"> </span>--FONT_TITLE<span class="o">=</span>50p,ZapfChancery-MediumItalic<span class="w"> </span>--MAP_TITLE_OFFSET<span class="o">=</span>-1c
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>sombrero.nc
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>The variations in intensity could be made more dramatic by using
@@ -205,8 +202,8 @@ will result in a plot like the one in Figure.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

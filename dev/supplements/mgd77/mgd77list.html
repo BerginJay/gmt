@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mgd77list &mdash; GMT 6.4.0 documentation</title>
+  <title>mgd77list &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -562,7 +559,7 @@ countries given by the codes. Simply append one or more comma-separated countrie
 <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
 country name (e.g., Norway). To select a state within a country (if available), append .state (e.g, US.TX),
 or the full state name (e.g., Texas). To specify a whole continent, spell out the full continent name (e.g., -RAfrica).
-Finally, append any <a class="reference internal" href="../../coast.html#id1"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
+Finally, append any <a class="reference internal" href="../../coast.html#dcw-collections"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
 the collection or named region. All names are case-insensitive. The following modifiers can be appended:</p>
 <blockquote>
 <div><ul class="simple">
@@ -677,7 +674,7 @@ any module-specific option (but not the GMT common options), then exit.</p>
 01010047.mgd77, starting at June 3 1971 20:45 and ending at distance =
 5000 km, use the following command:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt mgd77list <span class="m">01010047</span> -Da1971-06-03T20:45 -Sb5000 -Fdist,azim,faa,depth &gt; myfile.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>mgd77list<span class="w"> </span><span class="m">01010047</span><span class="w"> </span>-Da1971-06-03T20:45<span class="w"> </span>-Sb5000<span class="w"> </span>-Fdist,azim,faa,depth<span class="w"> </span>&gt;<span class="w"> </span>myfile.txt
 </pre></div>
 </div>
 </div></blockquote>
@@ -685,7 +682,7 @@ any module-specific option (but not the GMT common options), then exit.</p>
 from all the cruises listed in the file cruises.lis, but only the data
 that are inside the specified area, and make the output binary:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt mgd77list <span class="sb">`</span>cat cruises.lis<span class="sb">`</span> -Flon,lat,faa -R-40/-30/25/35 -bo &gt; allgrav.b
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>mgd77list<span class="w"> </span><span class="sb">`</span>cat<span class="w"> </span>cruises.lis<span class="sb">`</span><span class="w"> </span>-Flon,lat,faa<span class="w"> </span>-R-40/-30/25/35<span class="w"> </span>-bo<span class="w"> </span>&gt;<span class="w"> </span>allgrav.b
 </pre></div>
 </div>
 </div></blockquote>
@@ -693,7 +690,7 @@ that are inside the specified area, and make the output binary:</p>
 interpolated (<strong>btc</strong> != 1) from all the cruises listed in the file
 cruises.lis:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt mgd77list <span class="sb">`</span>cat cruises.lis<span class="sb">`</span> -F<span class="s2">&quot;depth,DEPTH&gt;9000,BTC!=1&quot;</span> &gt; really_deep.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>mgd77list<span class="w"> </span><span class="sb">`</span>cat<span class="w"> </span>cruises.lis<span class="sb">`</span><span class="w"> </span>-F<span class="s2">&quot;depth,DEPTH&gt;9000,BTC!=1&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>really_deep.txt
 </pre></div>
 </div>
 </div></blockquote>
@@ -702,8 +699,8 @@ shallower than 3 km and where none of the requested fields are NaN, from
 all the MGD77+ netCDF files whose cruise ids are listed in the file
 cruises.lis, we try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt mgd77list <span class="sb">`</span>cat cruises.lis<span class="sb">`</span> -E -Ia -F<span class="s2">&quot;dist,faa,grav12_2,depth&lt;3000&quot;</span> &gt; <span class="se">\</span>
-    shallow_grav.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>mgd77list<span class="w"> </span><span class="sb">`</span>cat<span class="w"> </span>cruises.lis<span class="sb">`</span><span class="w"> </span>-E<span class="w"> </span>-Ia<span class="w"> </span>-F<span class="s2">&quot;dist,faa,grav12_2,depth&lt;3000&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>shallow_grav.txt
 </pre></div>
 </div>
 </div></blockquote>
@@ -711,7 +708,7 @@ cruises.lis, we try</p>
 whose cruise ids are listed in the file cruises.lis, but only retrieve
 records whose bitflag for faa indicates BAD values, we try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt mgd77list <span class="sb">`</span>cat cruises.lis<span class="sb">`</span> -E -Ia -F<span class="s2">&quot;dist,faa,grav12_2:+faa&quot;</span> &gt; bad_grav.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>mgd77list<span class="w"> </span><span class="sb">`</span>cat<span class="w"> </span>cruises.lis<span class="sb">`</span><span class="w"> </span>-E<span class="w"> </span>-Ia<span class="w"> </span>-F<span class="s2">&quot;dist,faa,grav12_2:+faa&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>bad_grav.txt
 </pre></div>
 </div>
 </div></blockquote>
@@ -719,7 +716,7 @@ records whose bitflag for faa indicates BAD values, we try</p>
 cruises.lis, but recalculate the two residuals based on the latest
 reference fields, try:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt mgd77list <span class="sb">`</span>cat cruises.lis<span class="sb">`</span> -Flon,lat,mag,faa -Af2,4 -Am2 &gt; data.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>mgd77list<span class="w"> </span><span class="sb">`</span>cat<span class="w"> </span>cruises.lis<span class="sb">`</span><span class="w"> </span>-Flon,lat,mag,faa<span class="w"> </span>-Af2,4<span class="w"> </span>-Am2<span class="w"> </span>&gt;<span class="w"> </span>data.txt
 </pre></div>
 </div>
 </div></blockquote>
@@ -818,8 +815,8 @@ corrected by a strange dependency on ship heading and latitude, and
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

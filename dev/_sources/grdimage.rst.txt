@@ -149,7 +149,7 @@ Optional Arguments
     specific intensity scenario then run :doc:`grdgradient` separately first.
     If we should derive intensities from another file than *grid*, specify the
     file with suitable modifiers [Default is no illumination].  **Note**: If
-    the input data is an *image* then an *intensfile* or constant *intensity*
+    the input data represent an *image* then an *intensfile* or constant *intensity*
     must be provided.
 
 .. _-M:
@@ -281,12 +281,6 @@ color levels in the file colors.cpt, with linear scaling at 10
 inch/x-unit, tickmarks every 5 units::
 
     gmt grdimage image.nc -Jx10i -Ccolors.cpt -Iintens.nc -B5 -pdf image
-
-To create an false color plot from the three grid files
-red.nc, green.nc, and blue.nc, with linear scaling at 10 inch/x-unit,
-tickmarks every 5 units::
-
-    gmt grdimage red.nc green.nc blue.nc -Jx10i -B5 -pdf rgbimage
 
 To create a sinusoidal projection of a remotely located Jessica Rabbit::
 

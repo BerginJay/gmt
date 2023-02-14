@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>img2grd &mdash; GMT 6.4.0 documentation</title>
+  <title>img2grd &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -199,7 +196,7 @@ automatic scaling to preserve precision for integer grids [Default
 is 1].</p></li>
 </ul>
 </div></blockquote>
-<p>Note: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
+<p><strong>Note</strong>: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
 (unless overridden). To write specific formats via GDAL, use =<em>gd</em>
 and supply <em>driver</em> (and optionally <em>dataType</em>) and/or one or more
 concatenated GDAL <strong>-co</strong> options using <strong>+c</strong>. See
@@ -226,7 +223,7 @@ countries given by the codes. Simply append one or more comma-separated countrie
 <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
 country name (e.g., Norway). To select a state within a country (if available), append .state (e.g, US.TX),
 or the full state name (e.g., Texas). To specify a whole continent, spell out the full continent name (e.g., -RAfrica).
-Finally, append any <a class="reference internal" href="../../coast.html#id1"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
+Finally, append any <a class="reference internal" href="../../coast.html#dcw-collections"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
 the collection or named region. All names are case-insensitive. The following modifiers can be appended:</p>
 <blockquote>
 <div><ul class="simple">
@@ -383,7 +380,7 @@ in geographic coordinates. To extract data in the region
 <strong>-R</strong>-40/40/-70/-30 from <em>world_grav.img.7.2</em> and reproject to yield
 geographic coordinates, you can try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt img2grd world_grav.img.16.1 -Gmerc_grav.nc -R-40/40/-70/-30 -V
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>img2grd<span class="w"> </span>world_grav.img.16.1<span class="w"> </span>-Gmerc_grav.nc<span class="w"> </span>-R-40/40/-70/-30<span class="w"> </span>-V
 </pre></div>
 </div>
 </div></blockquote>
@@ -393,14 +390,14 @@ and the latitude spacing will not equal the longitude spacing. If you
 need an exact match with your <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> and the same spacing in longitude
 and latitude, use the <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong> option:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt img2grd world_grav.img.16.1 -Gmerc_grav.nc -R-40/40/-70/-30 -E -V
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>img2grd<span class="w"> </span>world_grav.img.16.1<span class="w"> </span>-Gmerc_grav.nc<span class="w"> </span>-R-40/40/-70/-30<span class="w"> </span>-E<span class="w"> </span>-V
 </pre></div>
 </div>
 </div></blockquote>
 </section>
 <section id="mercator-examples">
 <h2>Mercator Examples<a class="headerlink" href="#mercator-examples" title="Permalink to this heading">¶</a></h2>
-<p>Since the img files are in a Mercator projection, you should NOT extract
+<p>Since the img files are in a Mercator projection, you should <strong>not</strong> extract
 a geographic grid if your plan is to make a Mercator map. If you did
 that you end of projecting and reprojection the grid, losing
 short-wavelength detail. Better to use <a class="reference internal" href="#m"><span><strong>-M</strong></span></a></strong> and plot the grid using a
@@ -409,7 +406,7 @@ linear projection with the same scale as the desired Mercator projection
 To extract data in the region <strong>-R</strong>-40/40/-70/-30 from
 <em>world_grav.img.7.2</em>, run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt img2grd -M world_grav.img.7.2 -Gmerc_grav.nc -R-40/40/-70/-30 -V
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>img2grd<span class="w"> </span>-M<span class="w"> </span>world_grav.img.7.2<span class="w"> </span>-Gmerc_grav.nc<span class="w"> </span>-R-40/40/-70/-30<span class="w"> </span>-V
 </pre></div>
 </div>
 </div></blockquote>
@@ -423,11 +420,11 @@ Spherical Mercator projection using
 <strong>-R</strong>-40/40/-70.0004681551/-29.9945810754 and <strong>-Jm</strong>1. Thus, to take
 ship.lonlatgrav and use it to sample the merc_grav.nc, we can do this:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt <span class="nb">set</span> PROJ_ELLIPSOID Sphere
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>PROJ_ELLIPSOID<span class="w"> </span>Sphere
 
-gmt mapproject -R-40/40/-70.0004681551/-29.9945810754 -Jm1i -C ship.lonlatgrav <span class="p">|</span> <span class="se">\</span>
-          gmt grdtrack -Gmerc_grav.nc <span class="p">|</span> <span class="se">\</span>
-          gmt mapproject -R-40/40/-70.0004681551/-29.9945810754 -Jm1i -I -C &gt; ship.lonlatgravsat
+gmt<span class="w"> </span>mapproject<span class="w"> </span>-R-40/40/-70.0004681551/-29.9945810754<span class="w"> </span>-Jm1i<span class="w"> </span>-C<span class="w"> </span>ship.lonlatgrav<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">          </span>gmt<span class="w"> </span>grdtrack<span class="w"> </span>-Gmerc_grav.nc<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">          </span>gmt<span class="w"> </span>mapproject<span class="w"> </span>-R-40/40/-70.0004681551/-29.9945810754<span class="w"> </span>-Jm1i<span class="w"> </span>-I<span class="w"> </span>-C<span class="w"> </span>&gt;<span class="w"> </span>ship.lonlatgravsat
 </pre></div>
 </div>
 </div></blockquote>
@@ -438,7 +435,7 @@ grid file to lon,lat and then sample it, there are two interpolation
 steps (in conversion and in sampling).</p>
 <p>To make a lon,lat grid from the above grid we can use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdproject merc_grav.nc -R-40/40/-70.0004681551/-29.9945810754 -Jm1i -I -D2m -Ggrav.nc
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdproject<span class="w"> </span>merc_grav.nc<span class="w"> </span>-R-40/40/-70.0004681551/-29.9945810754<span class="w"> </span>-Jm1i<span class="w"> </span>-I<span class="w"> </span>-D2m<span class="w"> </span>-Ggrav.nc
 </pre></div>
 </div>
 </div></blockquote>
@@ -446,9 +443,9 @@ steps (in conversion and in sampling).</p>
 systems may not align well. When this happens, we can also use (in fact,
 it may be always better to use)</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grd2xyz merc_grav.nc <span class="p">|</span> <span class="se">\</span>
-    gmt mapproject -R-40/40/-70.0004681551/-29.994581075 -Jm1i -I <span class="p">|</span> <span class="se">\</span>
-    gmt surface -R-40/40/-70/70 -I2m -Ggrav.nc
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grd2xyz<span class="w"> </span>merc_grav.nc<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>gmt<span class="w"> </span>mapproject<span class="w"> </span>-R-40/40/-70.0004681551/-29.994581075<span class="w"> </span>-Jm1i<span class="w"> </span>-I<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>gmt<span class="w"> </span>surface<span class="w"> </span>-R-40/40/-70/70<span class="w"> </span>-I2m<span class="w"> </span>-Ggrav.nc
 </pre></div>
 </div>
 </div></blockquote>
@@ -471,7 +468,7 @@ satisfied with 100 pixels per inch, so we want to average the data into
 average the data much more (e.g., 6 by 6) to get smooth contours.) Since
 2039 isn’t divisible by 3 we will get a different adjusted <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> this time:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt img2grd -M world_grav.img.7.2 -Gmerc_grav_2.nc -R-40/40/-70/-30 -N3 -V
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>img2grd<span class="w"> </span>-M<span class="w"> </span>world_grav.img.7.2<span class="w"> </span>-Gmerc_grav_2.nc<span class="w"> </span>-R-40/40/-70/-30<span class="w"> </span>-N3<span class="w"> </span>-V
 </pre></div>
 </div>
 </div></blockquote>
@@ -480,17 +477,17 @@ average the data much more (e.g., 6 by 6) to get smooth contours.) Since
 pixels, a better size for us. Now we can create an artificial
 illumination file for this using <a class="reference internal" href="../../grdgradient.html"><span class="doc">grdgradient</span></a>:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdgradient merc_grav_2.nc -Gillum.nc -A0/270 -Ne0.6
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdgradient<span class="w"> </span>merc_grav_2.nc<span class="w"> </span>-Gillum.nc<span class="w"> </span>-A0/270<span class="w"> </span>-Ne0.6
 </pre></div>
 </div>
 </div></blockquote>
 <p>and if we also have a CPT called “grav.cpt” we can create a color
 shaded relief map like this:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
-  gmt grdimage merc_grav_2.nc -Iillum.nc -Cgrav.cpt -Jx0.1i
-  gmt basemap -R-40/40/-70.023256525/-29.9368261101 -Jm0.1i -Ba10
-gmt end
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin
+<span class="w">  </span>gmt<span class="w"> </span>grdimage<span class="w"> </span>merc_grav_2.nc<span class="w"> </span>-Iillum.nc<span class="w"> </span>-Cgrav.cpt<span class="w"> </span>-Jx0.1i
+<span class="w">  </span>gmt<span class="w"> </span>basemap<span class="w"> </span>-R-40/40/-70.023256525/-29.9368261101<span class="w"> </span>-Jm0.1i<span class="w"> </span>-Ba10
+gmt<span class="w"> </span>end
 </pre></div>
 </div>
 </div></blockquote>
@@ -516,8 +513,8 @@ eliminate NaNs, and pipe through <a class="reference internal" href="../../mappr
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

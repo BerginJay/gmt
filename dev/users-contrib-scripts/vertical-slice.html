@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Vertical slice &mdash; GMT 6.4.0 documentation</title>
+  <title>A Vertical slice &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -161,7 +158,7 @@ the track does not have “folds” and if it has them you must break it into pa
 <p>Due to my slice is f(lat, height) I must dump it, add the column for the fixed
 longitude, and project the coordinates using mappproject and then re-grid it.</p>
 <p>The biggest problem that I found, and it took longer to me was how to locate
-the slice. In a 2D map it is easy to do, transforming (lat, lon) to (x, y) with
+the slice. In a 2-D map it is easy to do, transforming (lat, lon) to (x, y) with
 mapproject, and then using J[xX] but in this case it was trial and error for me.
 Maybe someone has the recipe to do it analytically.</p>
 <p>The grid in the horizontal plane is to make sure the slice is located exactly where it should be.</p>
@@ -174,66 +171,66 @@ Eduardo A. Suarez
 Facultad de Ciencias Astronomicas y Geofisicas - UNLP</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
 <span class="c1">#</span>
-gmt <span class="nb">set</span> <span class="nv">GMT_COMPATIBILITY</span><span class="o">=</span><span class="m">5</span> <span class="nv">MAP_FRAME_TYPE</span><span class="o">=</span>plain
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">GMT_COMPATIBILITY</span><span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="nv">MAP_FRAME_TYPE</span><span class="o">=</span>plain
 <span class="c1">#</span>
 <span class="c1">#  f(x,y,z) = sin(x+y)*e(-(x+y)*(3 - (z/1e4)))</span>
 <span class="c1">#</span>
 <span class="c1"># create base grid (z = 0)</span>
 <span class="c1">#</span>
-gmt grdmath -R-75/-60/-50/-40 -I0.005 X D2R Y D2R ADD STO@xySum SIN @xySum <span class="se">\</span>
-    <span class="m">3</span> MUL NEG EXP <span class="nv">MUL</span> <span class="o">=</span> base.nc
+gmt<span class="w"> </span>grdmath<span class="w"> </span>-R-75/-60/-50/-40<span class="w"> </span>-I0.005<span class="w"> </span>X<span class="w"> </span>D2R<span class="w"> </span>Y<span class="w"> </span>D2R<span class="w"> </span>ADD<span class="w"> </span>STO@xySum<span class="w"> </span>SIN<span class="w"> </span>@xySum<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="m">3</span><span class="w"> </span>MUL<span class="w"> </span>NEG<span class="w"> </span>EXP<span class="w"> </span><span class="nv">MUL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>base.nc
 <span class="c1">#</span>
 <span class="c1"># create slice grid (lon = -67.5) (-47.5 &lt;= lat &lt;= 42.5)  (0 &lt;= z &lt;= 999)</span>
 <span class="c1">#</span>
-gmt grdmath -R-47.5/-42.5/0/999 -I0.005/0.5 X D2R -67.5 D2R ADD STO@xySum SIN @xySum <span class="se">\</span>
-    <span class="m">3</span> Y 1E4 DIV SUB MUL NEG EXP <span class="nv">MUL</span> <span class="o">=</span> slice.nc
+gmt<span class="w"> </span>grdmath<span class="w"> </span>-R-47.5/-42.5/0/999<span class="w"> </span>-I0.005/0.5<span class="w"> </span>X<span class="w"> </span>D2R<span class="w"> </span>-67.5<span class="w"> </span>D2R<span class="w"> </span>ADD<span class="w"> </span>STO@xySum<span class="w"> </span>SIN<span class="w"> </span>@xySum<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="m">3</span><span class="w"> </span>Y<span class="w"> </span>1E4<span class="w"> </span>DIV<span class="w"> </span>SUB<span class="w"> </span>MUL<span class="w"> </span>NEG<span class="w"> </span>EXP<span class="w"> </span><span class="nv">MUL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>slice.nc
 <span class="c1">#</span>
 <span class="c1"># dump slice grid and reproject X</span>
 <span class="c1">#</span>
-gmt grd2xyz slice.nc <span class="p">|</span> awk <span class="s1">&#39;{print -67.5,$0}&#39;</span> <span class="p">|</span> gmt mapproject -R-75/-60/-50/-40 -JM-67.5/-45/16 <span class="p">|</span> <span class="se">\</span>
-    awk <span class="s1">&#39;{print $2,$3,$4}&#39;</span>&gt; points.txt
+gmt<span class="w"> </span>grd2xyz<span class="w"> </span>slice.nc<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print -67.5,$0}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>mapproject<span class="w"> </span>-R-75/-60/-50/-40<span class="w"> </span>-JM-67.5/-45/16<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>awk<span class="w"> </span><span class="s1">&#39;{print $2,$3,$4}&#39;</span>&gt;<span class="w"> </span>points.txt
 <span class="c1">#</span>
 <span class="c1"># calculate projected region X-limits</span>
 <span class="c1">#</span>
-<span class="nv">lMin</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="s1">&#39;-67.5 -47.5&#39;</span> <span class="p">|</span> gmt mapproject -R-75/-60/-50/-40 -JM-67.5/-45/16 <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-<span class="nv">lMax</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="s1">&#39;-67.5 -42.5&#39;</span> <span class="p">|</span> gmt mapproject -R-75/-60/-50/-40 -JM-67.5/-45/16 <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+<span class="nv">lMin</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;-67.5 -47.5&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>mapproject<span class="w"> </span>-R-75/-60/-50/-40<span class="w"> </span>-JM-67.5/-45/16<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+<span class="nv">lMax</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;-67.5 -42.5&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>mapproject<span class="w"> </span>-R-75/-60/-50/-40<span class="w"> </span>-JM-67.5/-45/16<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
 <span class="c1">#</span>
 <span class="c1"># re-grid slice</span>
 <span class="c1">#</span>
-gmt surface points.txt -Gslice_cut.nc -R<span class="nv">$lMin</span>/<span class="nv">$lMax</span>/0/999 -I1500+/2000+ -C0.1 -T0.25
+gmt<span class="w"> </span>surface<span class="w"> </span>points.txt<span class="w"> </span>-Gslice_cut.nc<span class="w"> </span>-R<span class="nv">$lMin</span>/<span class="nv">$lMax</span>/0/999<span class="w"> </span>-I1500+/2000+<span class="w"> </span>-C0.1<span class="w"> </span>-T0.25
 <span class="c1">#</span>
 <span class="c1"># create CPT</span>
 <span class="c1">#</span>
-<span class="nv">deltaZ</span><span class="o">=</span><span class="sb">`</span>gmt grdinfo -T10 slice_cut.nc base.nc<span class="sb">`</span>
-gmt makecpt -Cseis -I <span class="nv">$deltaZ</span> -Z &gt; colors.cpt
+<span class="nv">deltaZ</span><span class="o">=</span><span class="sb">`</span>gmt<span class="w"> </span>grdinfo<span class="w"> </span>-T10<span class="w"> </span>slice_cut.nc<span class="w"> </span>base.nc<span class="sb">`</span>
+gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cseis<span class="w"> </span>-I<span class="w"> </span><span class="nv">$deltaZ</span><span class="w"> </span>-Z<span class="w"> </span>&gt;<span class="w"> </span>colors.cpt
 <span class="c1">#</span>
 <span class="c1"># make basemap (this is not necessary but...)</span>
 <span class="c1">#</span>
-gmt basemap -R-75/-60/-50/-40/0/999 -JM-67.5/-45/16 -JZ8 -Bxa2f1 -Bya1f1 -Bza250f50g250+l<span class="s2">&quot;Km&quot;</span> <span class="se">\</span>
-    -B+b -BwESn -pz135/30+v10/5 -K &gt; mag.ps
+gmt<span class="w"> </span>basemap<span class="w"> </span>-R-75/-60/-50/-40/0/999<span class="w"> </span>-JM-67.5/-45/16<span class="w"> </span>-JZ8<span class="w"> </span>-Bxa2f1<span class="w"> </span>-Bya1f1<span class="w"> </span>-Bza250f50g250+l<span class="s2">&quot;Km&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-B+b<span class="w"> </span>-BwESn<span class="w"> </span>-pz135/30+v10/5<span class="w"> </span>-K<span class="w"> </span>&gt;<span class="w"> </span>mag.ps
 <span class="c1">#</span>
 <span class="c1"># plot base grid (z = 0)</span>
 <span class="c1">#</span>
-gmt grdimage base.nc -R -JM -JZ -Bxa2f1 -Bya1f1 -Bza250f50g250+l<span class="s2">&quot;Km&quot;</span> -B+b -BwESn <span class="se">\</span>
-    -Ccolors.cpt -p -O -K &gt;&gt; mag.ps
+gmt<span class="w"> </span>grdimage<span class="w"> </span>base.nc<span class="w"> </span>-R<span class="w"> </span>-JM<span class="w"> </span>-JZ<span class="w"> </span>-Bxa2f1<span class="w"> </span>-Bya1f1<span class="w"> </span>-Bza250f50g250+l<span class="s2">&quot;Km&quot;</span><span class="w"> </span>-B+b<span class="w"> </span>-BwESn<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-Ccolors.cpt<span class="w"> </span>-p<span class="w"> </span>-O<span class="w"> </span>-K<span class="w"> </span>&gt;&gt;<span class="w"> </span>mag.ps
 <span class="c1">#</span>
 <span class="c1"># plot map (coast, country borders). Grid plotted to check slice location</span>
 <span class="c1">#</span>
-gmt coast -R -JM -JZ -Bxa2f1g0.5 -Bya1f1g0.5 -Bza250f50g250+l<span class="s2">&quot;Km&quot;</span> -B+b -BwESn -Df -A0/0/1 <span class="se">\</span>
-    -N1/0.5p,black,-..- -W0.5p,black -p -O -K &gt;&gt; mag.ps
+gmt<span class="w"> </span>coast<span class="w"> </span>-R<span class="w"> </span>-JM<span class="w"> </span>-JZ<span class="w"> </span>-Bxa2f1g0.5<span class="w"> </span>-Bya1f1g0.5<span class="w"> </span>-Bza250f50g250+l<span class="s2">&quot;Km&quot;</span><span class="w"> </span>-B+b<span class="w"> </span>-BwESn<span class="w"> </span>-Df<span class="w"> </span>-A0/0/1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-N1/0.5p,black,-..-<span class="w"> </span>-W0.5p,black<span class="w"> </span>-p<span class="w"> </span>-O<span class="w"> </span>-K<span class="w"> </span>&gt;&gt;<span class="w"> </span>mag.ps
 <span class="c1">#</span>
 <span class="c1"># calculate max X projected</span>
 <span class="c1">#</span>
-<span class="nv">xMax</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="s1">&#39;-60 -40&#39;</span> <span class="p">|</span> gmt mapproject -R-75/-60/-50/-40 -JM-67.5/-45/16 <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+<span class="nv">xMax</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;-60 -40&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>mapproject<span class="w"> </span>-R-75/-60/-50/-40<span class="w"> </span>-JM-67.5/-45/16<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
 <span class="c1">#</span>
 <span class="c1"># plot slice</span>
 <span class="c1">#</span>
-gmt grdimage slice_cut.nc -R0/<span class="nv">$xMax</span>/0/999 -JX15.0922064999/8 -Bxa0f0 -Bya250f50+l<span class="s2">&quot;Km&quot;</span> -Ccolors.cpt <span class="se">\</span>
-    -px135/30+v12.59/0.96 -O -K --MAP_FRAME_AXES<span class="o">=</span><span class="s1">&#39;&#39;</span> &gt;&gt; mag.ps
+gmt<span class="w"> </span>grdimage<span class="w"> </span>slice_cut.nc<span class="w"> </span>-R0/<span class="nv">$xMax</span>/0/999<span class="w"> </span>-JX15.0922064999/8<span class="w"> </span>-Bxa0f0<span class="w"> </span>-Bya250f50+l<span class="s2">&quot;Km&quot;</span><span class="w"> </span>-Ccolors.cpt<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-px135/30+v12.59/0.96<span class="w"> </span>-O<span class="w"> </span>-K<span class="w"> </span>--MAP_FRAME_AXES<span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>mag.ps
 <span class="c1">#</span>
 <span class="c1"># plot slice box</span>
 <span class="c1">#</span>
-gmt plot -R -JX -W1p,black -px135/30+v12.59/0.96 -O -K &gt;&gt; mag.ps <span class="s">&lt;&lt; EOF</span>
+gmt<span class="w"> </span>plot<span class="w"> </span>-R<span class="w"> </span>-JX<span class="w"> </span>-W1p,black<span class="w"> </span>-px135/30+v12.59/0.96<span class="w"> </span>-O<span class="w"> </span>-K<span class="w"> </span>&gt;&gt;<span class="w"> </span>mag.ps<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">$lMin 0</span>
 <span class="s">$lMin 999</span>
 <span class="s">$lMax 999</span>
@@ -243,7 +240,7 @@ gmt plot -R -JX -W1p,black -px135/30+v12.59/0.96 -O -K &gt;&gt; mag.ps <span cla
 <span class="c1">#</span>
 <span class="c1"># add missing Z-box lines overwritten by slice plot</span>
 <span class="c1">#</span>
-gmt plot3d -R-75/-60/-50/-40/0/999 -JM-67.5/-45/16 -JZ8 -W1p,black -pz135/30+v10/5 -O &gt;&gt; mag.ps <span class="s">&lt;&lt; EOF</span>
+gmt<span class="w"> </span>plot3d<span class="w"> </span>-R-75/-60/-50/-40/0/999<span class="w"> </span>-JM-67.5/-45/16<span class="w"> </span>-JZ8<span class="w"> </span>-W1p,black<span class="w"> </span>-pz135/30+v10/5<span class="w"> </span>-O<span class="w"> </span>&gt;&gt;<span class="w"> </span>mag.ps<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s"> -75 -50 999</span>
 <span class="s"> -75 -40 999</span>
 <span class="s"> -60 -40 999</span>
@@ -254,9 +251,9 @@ gmt plot3d -R-75/-60/-50/-40/0/999 -JM-67.5/-45/16 -JZ8 -W1p,black -pz135/30+v10
 <span class="s"> -60 -50 999</span>
 <span class="s">EOF</span>
 <span class="c1">#</span>
-gmt psconvert -Tg -Qt4 -Qg4 -E300 -P mag.ps
+gmt<span class="w"> </span>psconvert<span class="w"> </span>-Tg<span class="w"> </span>-Qt4<span class="w"> </span>-Qg4<span class="w"> </span>-E300<span class="w"> </span>-P<span class="w"> </span>mag.ps
 <span class="c1">#</span>
-rm -f base.nc points.txt slice.nc slice_cut.nc gmt.history gmt.conf
+rm<span class="w"> </span>-f<span class="w"> </span>base.nc<span class="w"> </span>points.txt<span class="w"> </span>slice.nc<span class="w"> </span>slice_cut.nc<span class="w"> </span>gmt.history<span class="w"> </span>gmt.conf
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -278,8 +275,8 @@ rm -f base.nc points.txt slice.nc slice_cut.nc gmt.history gmt.conf
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

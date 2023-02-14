@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(44) Map insets &mdash; GMT 6.4.0 documentation</title>
+  <title>(44) Map insets &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -163,19 +160,19 @@ unknown map sizes.</p>
 <span class="c1"># GMT modules:  coast, basemap, mapproject</span>
 <span class="c1">#</span>
 
-gmt begin ex44
-	gmt subplot begin 2x1 -Fs15c/10c -B -BWSne
-		gmt coast -R10W/5E/35N/44N -JM15c -EES+gbisque -Gbrown -Wfaint -N1/1p -Sazure1 -Dh --FORMAT_GEO_MAP<span class="o">=</span>dddF -c0
-		gmt inset begin -DjTR+w5c/2.35c+o0.4c/0.25c -F+gwhite+p1p+c0.1c+s
-			gmt coast -R15W/35E/30N/48N -JM? -Da -Gbrown -B0 -EES+gbisque --MAP_FRAME_TYPE<span class="o">=</span>plain
-		gmt inset end
+gmt<span class="w"> </span>begin<span class="w"> </span>ex44
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>begin<span class="w"> </span>2x1<span class="w"> </span>-Fs15c/10c<span class="w"> </span>-B<span class="w"> </span>-BWSne
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R10W/5E/35N/44N<span class="w"> </span>-JM15c<span class="w"> </span>-EES+gbisque<span class="w"> </span>-Gbrown<span class="w"> </span>-Wfaint<span class="w"> </span>-N1/1p<span class="w"> </span>-Sazure1<span class="w"> </span>-Dh<span class="w"> </span>--FORMAT_GEO_MAP<span class="o">=</span>dddF<span class="w"> </span>-c0
+<span class="w">		</span>gmt<span class="w"> </span>inset<span class="w"> </span>begin<span class="w"> </span>-DjTR+w5c/2.35c+o0.4c/0.25c<span class="w"> </span>-F+gwhite+p1p+c0.1c+s
+<span class="w">			</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R15W/35E/30N/48N<span class="w"> </span>-JM?<span class="w"> </span>-Da<span class="w"> </span>-Gbrown<span class="w"> </span>-B0<span class="w"> </span>-EES+gbisque<span class="w"> </span>--MAP_FRAME_TYPE<span class="o">=</span>plain
+<span class="w">		</span>gmt<span class="w"> </span>inset<span class="w"> </span>end
 
-		gmt coast -R110E/170E/44S/9S -JM15c -Wfaint -N2/1p -EAU+gbisque -Gbrown -Sazure1 -Da --FORMAT_GEO_MAP<span class="o">=</span>dddF -c1
-		gmt inset begin -DjTR+w3.8c+o0.4c/0.25c -F+gwhite+p1p+c0.1c+s
-			gmt coast -Rg -JG120/30S/? -Da -Gbrown -A5000 -Bg -Wfaint -EAU+gbisque
-		gmt inset end
-	gmt subplot end
-gmt end show
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R110E/170E/44S/9S<span class="w"> </span>-JM15c<span class="w"> </span>-Wfaint<span class="w"> </span>-N2/1p<span class="w"> </span>-EAU+gbisque<span class="w"> </span>-Gbrown<span class="w"> </span>-Sazure1<span class="w"> </span>-Da<span class="w"> </span>--FORMAT_GEO_MAP<span class="o">=</span>dddF<span class="w"> </span>-c1
+<span class="w">		</span>gmt<span class="w"> </span>inset<span class="w"> </span>begin<span class="w"> </span>-DjTR+w3.8c+o0.4c/0.25c<span class="w"> </span>-F+gwhite+p1p+c0.1c+s
+<span class="w">			</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JG120/30S/?<span class="w"> </span>-Da<span class="w"> </span>-Gbrown<span class="w"> </span>-A5000<span class="w"> </span>-Bg<span class="w"> </span>-Wfaint<span class="w"> </span>-EAU+gbisque
+<span class="w">		</span>gmt<span class="w"> </span>inset<span class="w"> </span>end
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>end
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -197,8 +194,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

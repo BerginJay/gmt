@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contributors Guide &mdash; GMT 6.4.0 documentation</title>
+  <title>Contributors Guide &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributors Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#ways-to-contribute">Ways to Contribute</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ways-to-contribute-documentation-and-or-code">Ways to Contribute Documentation and/or Code</a></li>
@@ -198,7 +195,7 @@
 <p>This is a community driven project and everyone is welcome to contribute. The project is hosted at the
 <a class="reference external" href="https://github.com/GenericMappingTools/gmt">GMT GitHub repository</a>.</p>
 <p>The goal is to maintain a diverse community that’s pleasant for everyone. <strong>Please be considerate and respectful of
-others</strong>. Everyone must abide by our <a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+others</strong>. Everyone must abide by our <a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>
 and we encourage all to read it carefully.</p>
 <section id="ways-to-contribute">
 <h2>Ways to Contribute<a class="headerlink" href="#ways-to-contribute" title="Permalink to this heading">¶</a></h2>
@@ -340,30 +337,30 @@ building the documentation.</p>
 <p>To enable testing, you need to <em>uncomment</em> the following lines in your <code class="docutils literal notranslate"><span class="pre">ConfigUserAdvanced.cmake</span></code> when
 <a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/BUILDING.md#configuring">configuring GMT</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>enable_testing<span class="o">()</span>
-<span class="nb">set</span> <span class="o">(</span>DO_EXAMPLES TRUE<span class="o">)</span>
-<span class="nb">set</span> <span class="o">(</span>DO_TESTS TRUE<span class="o">)</span>
+<span class="nb">set</span><span class="w"> </span><span class="o">(</span>DO_EXAMPLES<span class="w"> </span>TRUE<span class="o">)</span>
+<span class="nb">set</span><span class="w"> </span><span class="o">(</span>DO_TESTS<span class="w"> </span>TRUE<span class="o">)</span>
 
-<span class="nb">set</span> <span class="o">(</span>SUPPORT_EXEC_IN_BINARY_DIR TRUE<span class="o">)</span>
+<span class="nb">set</span><span class="w"> </span><span class="o">(</span>SUPPORT_EXEC_IN_BINARY_DIR<span class="w"> </span>TRUE<span class="o">)</span>
 
-<span class="nb">set</span> <span class="o">(</span>DO_API_TESTS ON<span class="o">)</span>
+<span class="nb">set</span><span class="w"> </span><span class="o">(</span>DO_API_TESTS<span class="w"> </span>ON<span class="o">)</span>
 </pre></div>
 </div>
 <p>Optionally, uncomment the following line to run tests on the supplement modules:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="o">(</span>DO_SUPPLEMENT_TESTS ON<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span><span class="o">(</span>DO_SUPPLEMENT_TESTS<span class="w"> </span>ON<span class="o">)</span>
 </pre></div>
 </div>
 <p>Optionally, uncomment the following line and change <code class="docutils literal notranslate"><span class="pre">4</span></code> to the number of ctest jobs to run simultaneously:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="o">(</span>N_TEST_JOBS <span class="m">4</span><span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span><span class="o">(</span>N_TEST_JOBS<span class="w"> </span><span class="m">4</span><span class="o">)</span>
 </pre></div>
 </div>
 <section id="updating-the-development-source-codes">
 <h3>Updating the development source codes<a class="headerlink" href="#updating-the-development-source-codes" title="Permalink to this heading">¶</a></h3>
 <p>Assuming you did not delete the build directory, this is just as simple as:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;path-to-gmt&gt;
-git pull
-<span class="nb">cd</span> build
-cmake --build .
-cmake --build . --target install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;path-to-gmt&gt;
+git<span class="w"> </span>pull
+<span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>--build<span class="w"> </span>.
+cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--target<span class="w"> </span>install
 </pre></div>
 </div>
 <p>CMake will detect any changes to the source files and will automatically reconfigure. If you deleted all files inside
@@ -375,8 +372,8 @@ the build directory you have to run CMake again manually.</p>
 use. New pull requests with other aliases that you find helpful are welcome. This file is version controlled, so you
 should copy the file to a different location in order to edit and use it. For example, use these commands to copy it to
 your home directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> &lt;path-to-gmt&gt;
-cp admin/bashrc_for_gmt ~/.bashrc_for_gmt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;path-to-gmt&gt;
+cp<span class="w"> </span>admin/bashrc_for_gmt<span class="w"> </span>~/.bashrc_for_gmt
 </pre></div>
 </div>
 <p>Here are the steps for setting up <code class="docutils literal notranslate"><span class="pre">bashrc_for_gmt</span></code> after copying it to a new location:</p>
@@ -429,11 +426,11 @@ You may need to know some basic reST syntax before making changes. Please refer 
 to install the <a class="reference external" href="http://www.sphinx-doc.org/">Sphinx</a> documentation builder. After configuring and
 <a class="reference external" href="https://github.com/GenericMappingTools/gmt/tree/master/BUILDING.md">building GMT</a>, you can build GMT documentation using
 the following commands within the build directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dvc pull
-cmake --build . --target docs_depends     <span class="c1"># Generate images included in the documentation</span>
-cmake --build . --target optimize_images  <span class="c1"># Optimize PNG images for documentation [optional]</span>
-cmake --build . --target docs_man         <span class="c1"># UNIX manual pages</span>
-cmake --build . --target docs_html        <span class="c1"># HTML manual, tutorial, cookbook, and API reference</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dvc<span class="w"> </span>pull
+cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--target<span class="w"> </span>docs_depends<span class="w">     </span><span class="c1"># Generate images included in the documentation</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--target<span class="w"> </span>optimize_images<span class="w">  </span><span class="c1"># Optimize PNG images for documentation [optional]</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--target<span class="w"> </span>docs_man<span class="w">         </span><span class="c1"># UNIX manual pages</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--target<span class="w"> </span>docs_html<span class="w">        </span><span class="c1"># HTML manual, tutorial, cookbook, and API reference</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -458,22 +455,22 @@ and unix programs used, and any relevant notes. Use enough comments in your scri
 example. Follow the same format as the other anim??.rst files, including the ReST target <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">_anim??:</span></code> at the top,
 a title, and a description of the animation.</p></li>
 <li><p>Add a directive that will include the source code in the built documentation in <code class="docutils literal notranslate"><span class="pre">doc/rst/source/animations/anim??.rst</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. literalinclude:: /_verbatim/anim??.txt
-  :language: bash
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>..<span class="w"> </span>literalinclude::<span class="w"> </span>/_verbatim/anim??.txt
+<span class="w">  </span>:language:<span class="w"> </span>bash
 </pre></div>
 </div>
 </li>
 <li><p>Add a placeholder <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">youtube::</span></code> directive to the <code class="docutils literal notranslate"><span class="pre">doc/rst/source/animations/anim??.rst</span></code> file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>..  youtube:: Pvvc4vb8G4Y
-  :width: <span class="m">100</span>%
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>..<span class="w">  </span>youtube::<span class="w"> </span>Pvvc4vb8G4Y
+<span class="w">  </span>:width:<span class="w"> </span><span class="m">100</span>%
 </pre></div>
 </div>
 </li>
 <li><p>Add a placeholder gallery item to the end of the list of animations in <code class="docutils literal notranslate"><span class="pre">doc/rst/source/animations.rst</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. youtube:: Pvvc4vb8G4Y
-  :width: <span class="m">100</span>%
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>..<span class="w"> </span>youtube::<span class="w"> </span>Pvvc4vb8G4Y
+<span class="w">  </span>:width:<span class="w"> </span><span class="m">100</span>%
 
-  :doc:<span class="sb">`</span>/animations/anim??<span class="sb">`</span>
+<span class="w">  </span>:doc:<span class="sb">`</span>/animations/anim??<span class="sb">`</span>
 </pre></div>
 </div>
 </li>
@@ -519,7 +516,7 @@ test script. These tests are tracked in <a class="reference external" href="http
 we use <a class="reference external" href="https://dvc.org/">data version control (dvc)</a> to track the test images, which is like <code class="docutils literal notranslate"><span class="pre">git</span></code> but for data.
 <code class="docutils literal notranslate"><span class="pre">dvc</span></code> stores the hash (md5sum) of a file or an md5sum that describes the contents of a directory. For each test
 <code class="docutils literal notranslate"><span class="pre">test/&lt;module&gt;/*.sh</span></code> that generates a .PS file, there is a baseline image file in <code class="docutils literal notranslate"><span class="pre">test/baseline/&lt;module&gt;/</span></code>
-that is compared to the test result using <a class="reference external" href="www.graphicsmagick.org">GraphicsMagick</a>. Each of the
+that is compared to the test result using <a class="reference external" href="http://www.graphicsmagick.org/">GraphicsMagick</a>. Each of the
 directories <code class="docutils literal notranslate"><span class="pre">test/baseline/&lt;module&gt;</span></code> are tracked by <code class="docutils literal notranslate"><span class="pre">dvc</span></code> using the file <code class="docutils literal notranslate"><span class="pre">test/baseline/&lt;module&gt;.dvc</span></code>. This file
 contains the hash of a JSON .dir file stored in the .dvc cache. The .dir file contains information about each tracked
 file in the directory, which is used to push/pull the files to/from remote storage. The <code class="docutils literal notranslate"><span class="pre">test/baseline/&lt;module&gt;.dvc</span></code>
@@ -538,8 +535,8 @@ files are stored as usual on GitHub, while the .PS files are stored separately o
 <section id="pulling-files-from-the-remote-for-testing">
 <h5>Pulling files from the remote for testing<a class="headerlink" href="#pulling-files-from-the-remote-for-testing" title="Permalink to this heading">¶</a></h5>
 <p>To pull or sync files from the <code class="docutils literal notranslate"><span class="pre">dvc</span></code> remote to your local repository, the commands are similar to <code class="docutils literal notranslate"><span class="pre">git</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dvc status  <span class="c1"># should report any files &#39;not_in_cache&#39;</span>
-dvc pull    <span class="c1"># pull down files from DVC remote cache (fetch + checkout)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dvc<span class="w"> </span>status<span class="w">  </span><span class="c1"># should report any files &#39;not_in_cache&#39;</span>
+dvc<span class="w"> </span>pull<span class="w">    </span><span class="c1"># pull down files from DVC remote cache (fetch + checkout)</span>
 </pre></div>
 </div>
 <p>Once the sync is complete, you should notice that there are images stored in the <code class="docutils literal notranslate"><span class="pre">test/baseline/&lt;module&gt;</span></code>
@@ -550,27 +547,27 @@ of the files under the <code class="docutils literal notranslate"><span class="p
 <section id="running-tests">
 <h4>Running tests<a class="headerlink" href="#running-tests" title="Permalink to this heading">¶</a></h4>
 <p>First, pull any baseline images stored in the DAGsHub repository using dvc:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dvc pull
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dvc<span class="w"> </span>pull
 </pre></div>
 </div>
 <p>After configuring CMake and building GMT, you can run all the tests by running this command in the build directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake --build . --target check
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--target<span class="w"> </span>check
 </pre></div>
 </div>
 <p>You can also run <code class="docutils literal notranslate"><span class="pre">ctest</span></code> commands in the build directory. Below are some common used ctest commands.</p>
 <ul>
 <li><p>Run all tests in 4 parallel jobs:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctest -j <span class="m">4</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctest<span class="w"> </span>-j<span class="w"> </span><span class="m">4</span>
 </pre></div>
 </div>
 </li>
 <li><p>Re-run all failing tests in previous run in 4 parallel jobs:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctest -j <span class="m">4</span> --rerun-failed
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctest<span class="w"> </span>-j<span class="w"> </span><span class="m">4</span><span class="w"> </span>--rerun-failed
 </pre></div>
 </div>
 </li>
 <li><p>Select individual tests using regexp with ctest:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctest --output-on-failure -R ex2<span class="o">[</span><span class="m">3</span>-6<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctest<span class="w"> </span>--output-on-failure<span class="w"> </span>-R<span class="w"> </span>ex2<span class="o">[</span><span class="m">3</span>-6<span class="o">]</span>
 </pre></div>
 </div>
 </li>
@@ -592,7 +589,7 @@ each failing test. For plot-based tests, the directory associated with each fail
 script, a <code class="docutils literal notranslate"><span class="pre">gmt.conf</span></code> file, an alias to the test script, a PostScript file and PDF document generated by the test
 script, and a PNG image that shows differences between the reference plot and new plot in magenta. In addition to these
 files, running the failing tests with verbose output can be helpful for evaluating failures:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctest --rerun-failed --verbose
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctest<span class="w"> </span>--rerun-failed<span class="w"> </span>--verbose
 </pre></div>
 </div>
 </section>
@@ -625,7 +622,7 @@ to query the diff between your local environment and the remote repository.</p><
 <section id="adding-new-tests">
 <h4>Adding new tests<a class="headerlink" href="#adding-new-tests" title="Permalink to this heading">¶</a></h4>
 <p>If you are fixing a bug or adding a new feature, you should add a test with your pull request. Most of the tests are
-image based and compare a result against a reference PostScript file using <a class="reference external" href="www.graphicsmagick.org">GraphicsMagick</a>.</p>
+image based and compare a result against a reference PostScript file using <a class="reference external" href="http://www.graphicsmagick.org/">GraphicsMagick</a>.</p>
 <p>To add a PostScript based test (e.g., <a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/test/modern/box.sh">box.sh</a>):</p>
 <ul class="simple">
 <li><p>Create a new shell script in the subdirectory under <code class="docutils literal notranslate"><span class="pre">test/</span></code> that corresponds to the module you are testing. The
@@ -689,8 +686,8 @@ section.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

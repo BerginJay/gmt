@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gmtbinstats &mdash; GMT 6.4.0 documentation</title>
+  <title>gmtbinstats &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -183,7 +180,7 @@
 <p><strong>gmtbinstats</strong> reads arbitrarily located (x,y[,z][,w]) points
 (2-4 columns) from standard input [or <em>table</em>] and for each
 node in the specified grid layout determines which points are
-within the given radius.  These point are then used in the
+within the given radius.  These points are then used in the
 calculation of the specified statistic. The results may be
 presented as is or may be normalized by the circle area to
 perhaps give density estimates.  Alternatively, select
@@ -228,7 +225,7 @@ automatic scaling to preserve precision for integer grids [Default
 is 1].</p></li>
 </ul>
 </div></blockquote>
-<p>Note: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
+<p><strong>Note</strong>: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
 (unless overridden). To write specific formats via GDAL, use =<em>gd</em>
 and supply <em>driver</em> (and optionally <em>dataType</em>) and/or one or more
 concatenated GDAL <strong>-co</strong> options using <strong>+c</strong>. See
@@ -403,15 +400,15 @@ Other commands requiring input files are just dummy examples of the types
 of uses that are common but cannot be run verbatim as written.</p>
 <p>To examine the population inside a circle of 1000 km radius for all nodes in a 5x5 arc degree grid,
 using the remote file &#64;capitals.gmt, and plot the resulting grid using default projection and colors, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin map
-  gmt gmtbinstats @capitals.gmt -a2<span class="o">=</span>population -Rg -I5 -Cz -Gpop.nc -S1000k
-  gmt grdimage pop.nc -B
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>map
+<span class="w">  </span>gmt<span class="w"> </span>gmtbinstats<span class="w"> </span>@capitals.gmt<span class="w"> </span>-a2<span class="o">=</span>population<span class="w"> </span>-Rg<span class="w"> </span>-I5<span class="w"> </span>-Cz<span class="w"> </span>-Gpop.nc<span class="w"> </span>-S1000k
+<span class="w">  </span>gmt<span class="w"> </span>grdimage<span class="w"> </span>pop.nc<span class="w"> </span>-B
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>To do hexagonal binning of the data in the file mydata.txt and counting the number of points inside
 each hexagon, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt gmtbinstats mydata.txt -R0/5/0/3 -I1 -Th -Cn &gt; counts.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>gmtbinstats<span class="w"> </span>mydata.txt<span class="w"> </span>-R0/5/0/3<span class="w"> </span>-I1<span class="w"> </span>-Th<span class="w"> </span>-Cn<span class="w"> </span>&gt;<span class="w"> </span>counts.txt
 </pre></div>
 </div>
 </section>
@@ -437,8 +434,8 @@ each hexagon, try:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

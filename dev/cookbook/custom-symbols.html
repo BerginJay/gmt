@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>18. Custom Plot Symbols &mdash; GMT 6.4.0 documentation</title>
+  <title>18. Custom Plot Symbols &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -132,7 +129,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -216,8 +213,8 @@ while others duplicate what is already available as standard built-in symbols.</
 </figure>
 <div class="toggle docutils container">
 <p>Here is the source script for the figure above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep -v <span class="s1">&#39;^#&#39;</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">GMT_SOURCE_DIR</span><span class="si">}</span><span class="s2">&quot;</span>/share/custom/gmt_custom_symbols.conf <span class="p">|</span> <span class="nv">$AWK</span> <span class="s1">&#39;{print $1}&#39;</span> &gt; tt.lis
-<span class="nv">n</span><span class="o">=</span><span class="k">$(</span>cat tt.lis <span class="p">|</span> wc -l<span class="k">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">&#39;^#&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">GMT_SOURCE_DIR</span><span class="si">}</span><span class="s2">&quot;</span>/share/custom/gmt_custom_symbols.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>tt.lis
+<span class="nv">n</span><span class="o">=</span><span class="k">$(</span>cat<span class="w"> </span>tt.lis<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span>
 
 
 <span class="nv">width</span><span class="o">=</span><span class="m">0</span>.85
@@ -227,39 +224,39 @@ while others duplicate what is already available as standard built-in symbols.</
 <span class="nv">fs</span><span class="o">=</span><span class="m">9</span>
 <span class="nv">dy</span><span class="o">=</span><span class="m">0</span>.15
 
-<span class="nv">n_pages</span><span class="o">=</span><span class="k">$(</span>gmt math -Q <span class="nv">$n</span> <span class="nv">$n_cols</span> DIV CEIL <span class="nv">$n_rows_p1</span> SUB <span class="m">0</span> MAX <span class="nv">$n_rows</span> DIV CEIL <span class="m">1</span> <span class="nv">ADD</span> <span class="o">=</span><span class="k">)</span>
+<span class="nv">n_pages</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="nv">$n</span><span class="w"> </span><span class="nv">$n_cols</span><span class="w"> </span>DIV<span class="w"> </span>CEIL<span class="w"> </span><span class="nv">$n_rows_p1</span><span class="w"> </span>SUB<span class="w"> </span><span class="m">0</span><span class="w"> </span>MAX<span class="w"> </span><span class="nv">$n_rows</span><span class="w"> </span>DIV<span class="w"> </span>CEIL<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nv">ADD</span><span class="w"> </span><span class="o">=</span><span class="k">)</span>
 
 <span class="nv">p</span><span class="o">=</span><span class="m">0</span>
 <span class="nv">s</span><span class="o">=</span><span class="m">0</span>
-<span class="k">while</span> <span class="o">[</span> <span class="nv">$p</span> -lt <span class="nv">$n_pages</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
-	<span class="nv">p</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$p</span> + <span class="m">1</span><span class="k">)</span>
-	<span class="k">if</span> <span class="o">[</span> <span class="nv">$p</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-		<span class="nv">max_rows</span><span class="o">=</span><span class="nv">$n_rows_p1</span>
-	<span class="k">else</span>
-		<span class="nv">max_rows</span><span class="o">=</span><span class="nv">$n_rows</span>
-	<span class="k">fi</span>
+<span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$p</span><span class="w"> </span>-lt<span class="w"> </span><span class="nv">$n_pages</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">	</span><span class="nv">p</span><span class="o">=</span><span class="k">$(</span>expr<span class="w"> </span><span class="nv">$p</span><span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$p</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">		</span><span class="nv">max_rows</span><span class="o">=</span><span class="nv">$n_rows_p1</span>
+<span class="w">	</span><span class="k">else</span>
+<span class="w">		</span><span class="nv">max_rows</span><span class="o">=</span><span class="nv">$n_rows</span>
+<span class="w">	</span><span class="k">fi</span>
 
-	<span class="nv">n_rows_to_go</span><span class="o">=</span><span class="k">$(</span>gmt math -Q <span class="nv">$n</span> <span class="nv">$s</span> SUB <span class="nv">$n_cols</span> DIV CEIL <span class="nv">$max_rows</span> <span class="nv">MIN</span> <span class="o">=</span><span class="k">)</span>
-	<span class="nv">H</span><span class="o">=</span><span class="k">$(</span>gmt math -Q <span class="nv">$n_rows_to_go</span> <span class="m">1</span> <span class="nv">$dy</span> ADD <span class="nv">MUL</span> <span class="o">=</span><span class="k">)</span>
-	rm -f tt.lines tt.symbols tt.text tt.bars
-	touch tt.lines tt.symbols tt.text tt.bars
-	<span class="nv">c</span><span class="o">=</span><span class="m">0</span>
-	<span class="k">while</span> <span class="o">[</span> <span class="nv">$c</span> -lt <span class="nv">$n_cols</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
-		<span class="nv">c</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$c</span> + <span class="m">1</span><span class="k">)</span>
-		cat <span class="s">&lt;&lt; EOF &gt;&gt; tt.lines</span>
+<span class="w">	</span><span class="nv">n_rows_to_go</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="nv">$n</span><span class="w"> </span><span class="nv">$s</span><span class="w"> </span>SUB<span class="w"> </span><span class="nv">$n_cols</span><span class="w"> </span>DIV<span class="w"> </span>CEIL<span class="w"> </span><span class="nv">$max_rows</span><span class="w"> </span><span class="nv">MIN</span><span class="w"> </span><span class="o">=</span><span class="k">)</span>
+<span class="w">	</span><span class="nv">H</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="nv">$n_rows_to_go</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nv">$dy</span><span class="w"> </span>ADD<span class="w"> </span><span class="nv">MUL</span><span class="w"> </span><span class="o">=</span><span class="k">)</span>
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>tt.lines<span class="w"> </span>tt.symbols<span class="w"> </span>tt.text<span class="w"> </span>tt.bars
+<span class="w">	</span>touch<span class="w"> </span>tt.lines<span class="w"> </span>tt.symbols<span class="w"> </span>tt.text<span class="w"> </span>tt.bars
+<span class="w">	</span><span class="nv">c</span><span class="o">=</span><span class="m">0</span>
+<span class="w">	</span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$c</span><span class="w"> </span>-lt<span class="w"> </span><span class="nv">$n_cols</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">		</span><span class="nv">c</span><span class="o">=</span><span class="k">$(</span>expr<span class="w"> </span><span class="nv">$c</span><span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+<span class="w">		</span>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt;&gt; tt.lines</span>
 <span class="s">&gt; vertical line</span>
 <span class="s">$c	0</span>
 <span class="s">$c	$H</span>
 <span class="s">EOF</span>
-	<span class="k">done</span>
-	<span class="nv">r</span><span class="o">=</span><span class="m">0</span>
-	<span class="k">while</span> <span class="o">[</span> <span class="nv">$r</span> -lt <span class="nv">$n_rows_to_go</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>			<span class="c1"># Loop over the rows that will fit this page</span>
-		<span class="nv">r</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$r</span> + <span class="m">1</span><span class="k">)</span>
-		<span class="nv">yt</span><span class="o">=</span><span class="k">$(</span>gmt math -Q <span class="nv">$n_rows_to_go</span> <span class="nv">$r</span> SUB <span class="m">1</span>.0 <span class="nv">$dy</span> ADD MUL <span class="m">0</span>.5 <span class="nv">$dy</span> MUL <span class="nv">ADD</span> <span class="o">=</span><span class="k">)</span>
-		<span class="nv">ys</span><span class="o">=</span><span class="k">$(</span>gmt math -Q <span class="nv">$yt</span> <span class="m">1</span>.0 <span class="nv">$dy</span> ADD <span class="m">0</span>.5 MUL <span class="nv">ADD</span> <span class="o">=</span><span class="k">)</span>
-		<span class="nv">ysb</span><span class="o">=</span><span class="k">$(</span>gmt math -Q <span class="nv">$ys</span> <span class="m">0</span>.5 <span class="nv">SUB</span> <span class="o">=</span><span class="k">)</span>
-		<span class="nv">ytb</span><span class="o">=</span><span class="k">$(</span>gmt math -Q <span class="nv">$yt</span> <span class="m">0</span>.5 <span class="nv">$dy</span> MUL <span class="nv">SUB</span> <span class="o">=</span><span class="k">)</span>
-		cat <span class="s">&lt;&lt; EOF &gt;&gt; tt.lines</span>
+<span class="w">	</span><span class="k">done</span>
+<span class="w">	</span><span class="nv">r</span><span class="o">=</span><span class="m">0</span>
+<span class="w">	</span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$r</span><span class="w"> </span>-lt<span class="w"> </span><span class="nv">$n_rows_to_go</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w">			</span><span class="c1"># Loop over the rows that will fit this page</span>
+<span class="w">		</span><span class="nv">r</span><span class="o">=</span><span class="k">$(</span>expr<span class="w"> </span><span class="nv">$r</span><span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+<span class="w">		</span><span class="nv">yt</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="nv">$n_rows_to_go</span><span class="w"> </span><span class="nv">$r</span><span class="w"> </span>SUB<span class="w"> </span><span class="m">1</span>.0<span class="w"> </span><span class="nv">$dy</span><span class="w"> </span>ADD<span class="w"> </span>MUL<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span><span class="nv">$dy</span><span class="w"> </span>MUL<span class="w"> </span><span class="nv">ADD</span><span class="w"> </span><span class="o">=</span><span class="k">)</span>
+<span class="w">		</span><span class="nv">ys</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="nv">$yt</span><span class="w"> </span><span class="m">1</span>.0<span class="w"> </span><span class="nv">$dy</span><span class="w"> </span>ADD<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>MUL<span class="w"> </span><span class="nv">ADD</span><span class="w"> </span><span class="o">=</span><span class="k">)</span>
+<span class="w">		</span><span class="nv">ysb</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="nv">$ys</span><span class="w"> </span><span class="m">0</span>.5<span class="w"> </span><span class="nv">SUB</span><span class="w"> </span><span class="o">=</span><span class="k">)</span>
+<span class="w">		</span><span class="nv">ytb</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="nv">$yt</span><span class="w"> </span><span class="m">0</span>.5<span class="w"> </span><span class="nv">$dy</span><span class="w"> </span>MUL<span class="w"> </span><span class="nv">SUB</span><span class="w"> </span><span class="o">=</span><span class="k">)</span>
+<span class="w">		</span>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt;&gt; tt.lines</span>
 <span class="s">&gt; base of symbol line</span>
 <span class="s">0	$ysb</span>
 <span class="s">$n_cols	$ysb</span>
@@ -267,26 +264,26 @@ while others duplicate what is already available as standard built-in symbols.</
 <span class="s">0	$ytb</span>
 <span class="s">$n_cols	$ytb</span>
 <span class="s">EOF</span>
-		<span class="nv">c</span><span class="o">=</span><span class="m">0</span>
-		<span class="k">while</span> <span class="o">[</span> <span class="nv">$c</span> -lt <span class="nv">$n_cols</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nv">$s</span> -lt <span class="nv">$n</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>	<span class="c1"># Loop over this row, but watch for end of symbols</span>
-			<span class="nv">c</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$c</span> + <span class="m">1</span><span class="k">)</span>
-			<span class="nv">s</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$s</span> + <span class="m">1</span><span class="k">)</span>
-			<span class="nv">x</span><span class="o">=</span><span class="k">$(</span>gmt math -Q <span class="nv">$c</span> <span class="m">1</span> SUB <span class="m">0</span>.5 <span class="nv">ADD</span> <span class="o">=</span><span class="k">)</span>
-			<span class="nv">symbol</span><span class="o">=</span><span class="k">$(</span>sed -n <span class="si">${</span><span class="nv">s</span><span class="si">}</span>p tt.lis<span class="k">)</span>
-			<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$x</span><span class="s2"> </span><span class="nv">$ys</span><span class="s2"> k</span><span class="si">${</span><span class="nv">symbol</span><span class="si">}</span><span class="s2">&quot;</span> &gt;&gt; tt.symbols
-			<span class="nv">name</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$symbol</span> <span class="p">|</span> tr <span class="s1">&#39;a-z&#39;</span> <span class="s1">&#39;A-Z&#39;</span><span class="k">)</span>
-			<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$x</span><span class="s2"> </span><span class="nv">$yt</span><span class="s2"> </span><span class="nv">$name</span><span class="s2">&quot;</span> &gt;&gt; tt.text
-			<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$x</span><span class="s2"> </span><span class="nv">$yt</span><span class="s2"> </span><span class="nv">$width</span><span class="s2"> </span><span class="nv">$dy</span><span class="s2">&quot;</span> &gt;&gt; tt.bars
-		<span class="k">done</span>
-	<span class="k">done</span>
-	gmt begin GMT_App_N_<span class="nv">$p</span>
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt plot -R0/<span class="nv">$n_cols</span>/0/<span class="nv">$H</span> -Jx<span class="si">${</span><span class="nv">width</span><span class="si">}</span>i tt.lines -Wthick -B0
-	gmt plot -S<span class="si">${</span><span class="nv">width</span><span class="si">}</span>i -W0.5p tt.symbols  -Ggray
-	gmt plot -Sri -Gblack tt.bars
-	<span class="c1"># Shorten the spelling of QR_TRANSPARENT to QR_TRANSP to fit the figure</span>
-	sed -e <span class="s1">&#39;s/TRANSPARENT/TRANSP/&#39;</span> &lt; tt.text <span class="p">|</span> gmt text -F+f<span class="si">${</span><span class="nv">fs</span><span class="si">}</span>p,white
-	gmt end show
+<span class="w">		</span><span class="nv">c</span><span class="o">=</span><span class="m">0</span>
+<span class="w">		</span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$c</span><span class="w"> </span>-lt<span class="w"> </span><span class="nv">$n_cols</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$s</span><span class="w"> </span>-lt<span class="w"> </span><span class="nv">$n</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w">	</span><span class="c1"># Loop over this row, but watch for end of symbols</span>
+<span class="w">			</span><span class="nv">c</span><span class="o">=</span><span class="k">$(</span>expr<span class="w"> </span><span class="nv">$c</span><span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+<span class="w">			</span><span class="nv">s</span><span class="o">=</span><span class="k">$(</span>expr<span class="w"> </span><span class="nv">$s</span><span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+<span class="w">			</span><span class="nv">x</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="nv">$c</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>SUB<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span><span class="nv">ADD</span><span class="w"> </span><span class="o">=</span><span class="k">)</span>
+<span class="w">			</span><span class="nv">symbol</span><span class="o">=</span><span class="k">$(</span>sed<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">s</span><span class="si">}</span>p<span class="w"> </span>tt.lis<span class="k">)</span>
+<span class="w">			</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$x</span><span class="s2"> </span><span class="nv">$ys</span><span class="s2"> k</span><span class="si">${</span><span class="nv">symbol</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.symbols
+<span class="w">			</span><span class="nv">name</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$symbol</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;a-z&#39;</span><span class="w"> </span><span class="s1">&#39;A-Z&#39;</span><span class="k">)</span>
+<span class="w">			</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$x</span><span class="s2"> </span><span class="nv">$yt</span><span class="s2"> </span><span class="nv">$name</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.text
+<span class="w">			</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$x</span><span class="s2"> </span><span class="nv">$yt</span><span class="s2"> </span><span class="nv">$width</span><span class="s2"> </span><span class="nv">$dy</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.bars
+<span class="w">		</span><span class="k">done</span>
+<span class="w">	</span><span class="k">done</span>
+<span class="w">	</span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_N_<span class="nv">$p</span>
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-R0/<span class="nv">$n_cols</span>/0/<span class="nv">$H</span><span class="w"> </span>-Jx<span class="si">${</span><span class="nv">width</span><span class="si">}</span>i<span class="w"> </span>tt.lines<span class="w"> </span>-Wthick<span class="w"> </span>-B0
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-S<span class="si">${</span><span class="nv">width</span><span class="si">}</span>i<span class="w"> </span>-W0.5p<span class="w"> </span>tt.symbols<span class="w">  </span>-Ggray
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Sri<span class="w"> </span>-Gblack<span class="w"> </span>tt.bars
+<span class="w">	</span><span class="c1"># Shorten the spelling of QR_TRANSPARENT to QR_TRANSP to fit the figure</span>
+<span class="w">	</span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/TRANSPARENT/TRANSP/&#39;</span><span class="w"> </span>&lt;<span class="w"> </span>tt.text<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f<span class="si">${</span><span class="nv">fs</span><span class="si">}</span>p,white
+<span class="w">	</span>gmt<span class="w"> </span>end<span class="w"> </span>show
 <span class="k">done</span>
 </pre></div>
 </div>
@@ -294,7 +291,7 @@ while others duplicate what is already available as standard built-in symbols.</
 <p>You may find it convenient to examine some of these and use them as a
 starting point for your own design; they can be found in GMT’s
 share/custom directory.  In addition to the ones listed in Figure <a class="reference internal" href="#custom-symbols"><span class="std std-ref">Custom symbols</span></a>
-you can use the symbol <strong>QR</strong> to place the GMT QR Code that links to www.generic-mapping-tools.org;
+you can use the symbol <strong>QR</strong> to place the GMT QR Code that links to <a class="reference external" href="https://www.generic-mapping-tools.org/">https://www.generic-mapping-tools.org/</a>;
 alternatively use <strong>QR_transparent</strong> to <em>not</em> plot the background opaque white square.</p>
 </section>
 <section id="the-macro-language">
@@ -311,7 +308,7 @@ in a 1 by 1 relative canvas area. This 1 x 1 square will be scaled to your
 actual symbol size when plotted.  However, there are no requirement that
 all your design fit inside this domain.  This command will produce a nice
 template for you to draw your design:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt basemap -R-0.5/0.5/-0.5/0.5 -JX15c -Bpa0.1fg0.02 -Bsg0.1 --GRID_PEN_PRIMARY<span class="o">=</span>faint -pdf template
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>basemap<span class="w"> </span>-R-0.5/0.5/-0.5/0.5<span class="w"> </span>-JX15c<span class="w"> </span>-Bpa0.1fg0.02<span class="w"> </span>-Bsg0.1<span class="w"> </span>--GRID_PEN_PRIMARY<span class="o">=</span>faint<span class="w"> </span>-pdf<span class="w"> </span>template
 </pre></div>
 </div>
 <section id="comment-lines">
@@ -680,7 +677,7 @@ $3, etc., or a constant. You must document what these additional parameters cont
 example, to plot a small cyan circle at (0.2, 0.3) with diameter 0.4
 only if $2 exceeds 45 you would write</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nv">$2</span> &gt; <span class="m">45</span> <span class="k">then</span> <span class="m">0</span>.2 <span class="m">0</span>.3 <span class="m">0</span>.4 c -Gcyan
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="m">0</span>.2<span class="w"> </span><span class="m">0</span>.3<span class="w"> </span><span class="m">0</span>.4<span class="w"> </span>c<span class="w"> </span>-Gcyan
 </pre></div>
 </div>
 </div></blockquote>
@@ -688,15 +685,15 @@ only if $2 exceeds 45 you would write</p>
 <strong>else</strong> branch, but this can be accomplished by repeating the test but
 reversing the logic for the second copy, e.g.,</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nv">$1</span> &gt; <span class="m">10</span> <span class="k">then</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.5 c -Gred
-<span class="k">if</span> <span class="nv">$1</span> &lt;<span class="o">=</span> <span class="m">10</span> <span class="k">then</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.5 c -Gblue
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>c<span class="w"> </span>-Gred
+<span class="k">if</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>c<span class="w"> </span>-Gblue
 </pre></div>
 </div>
 </div></blockquote>
 <p>or you may instead consider the complete conditional construct below.
 Using a comparison between variables is similarly straightforward:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nv">$2</span> &gt; <span class="nv">$3</span> <span class="k">then</span> <span class="m">0</span>.2 <span class="m">0</span>.3 <span class="m">0</span>.4 c -Ggreen
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$3</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="m">0</span>.2<span class="w"> </span><span class="m">0</span>.3<span class="w"> </span><span class="m">0</span>.4<span class="w"> </span>c<span class="w"> </span>-Ggreen
 </pre></div>
 </div>
 </div></blockquote>
@@ -730,17 +727,17 @@ same line (and nothing else). If you need comments please add them as
 separate lines.  You may nest tests as well (up to 10
 levels deep), e.g.,</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nv">$1</span> &gt; <span class="m">45</span> <span class="k">then</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="nv">$2</span> <span class="o">[</span>&gt; <span class="m">0</span>:10 <span class="k">then</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.5 c -Gred
-<span class="o">}</span> elseif <span class="nv">$1</span> &lt; <span class="m">15</span> <span class="k">then</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="nv">$2</span> <span class="o">[</span>&gt; <span class="m">0</span>:10 <span class="k">then</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.5 c -Ggreen
-<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="nv">$2</span> <span class="o">[</span>&gt; <span class="m">10</span>:20 <span class="k">then</span> <span class="o">{</span>
-                <span class="m">0</span> <span class="m">0</span> M -W1p,blue
-                <span class="m">0</span>.3 <span class="m">0</span>.3 D
-                S
-                <span class="m">0</span>.3 <span class="m">0</span>.3 <span class="m">0</span>.3 c -Gcyan
-        <span class="o">}</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span><span class="o">[</span>&gt;<span class="w"> </span><span class="m">0</span>:10<span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>c<span class="w"> </span>-Gred
+<span class="o">}</span><span class="w"> </span>elseif<span class="w"> </span><span class="nv">$1</span><span class="w"> </span>&lt;<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span><span class="o">[</span>&gt;<span class="w"> </span><span class="m">0</span>:10<span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>c<span class="w"> </span>-Ggreen
+<span class="o">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span><span class="o">[</span>&gt;<span class="w"> </span><span class="m">10</span>:20<span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="o">{</span>
+<span class="w">                </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>M<span class="w"> </span>-W1p,blue
+<span class="w">                </span><span class="m">0</span>.3<span class="w"> </span><span class="m">0</span>.3<span class="w"> </span>D
+<span class="w">                </span>S
+<span class="w">                </span><span class="m">0</span>.3<span class="w"> </span><span class="m">0</span>.3<span class="w"> </span><span class="m">0</span>.3<span class="w"> </span>c<span class="w"> </span>-Gcyan
+<span class="w">        </span><span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -761,8 +758,8 @@ levels deep), e.g.,</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

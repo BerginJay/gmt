@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>x2sys_init &mdash; GMT 6.4.0 documentation</title>
+  <title>x2sys_init &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -262,7 +259,7 @@ countries given by the codes. Simply append one or more comma-separated countrie
 <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
 country name (e.g., Norway). To select a state within a country (if available), append .state (e.g, US.TX),
 or the full state name (e.g., Texas). To specify a whole continent, spell out the full continent name (e.g., -RAfrica).
-Finally, append any <a class="reference internal" href="../../coast.html#id1"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
+Finally, append any <a class="reference internal" href="../../coast.html#dcw-collections"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
 the collection or named region. All names are case-insensitive. The following modifiers can be appended:</p>
 <blockquote>
 <div><ul class="simple">
@@ -464,7 +461,7 @@ we want to keep track of the data distribution at a 1 x 1 degree
 resolution, with distances in km calculated along geodesics and with
 speeds given in knots, we may run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt x2sys_init LINE -V -G -Dline -Rg -je -Ndk -Nsn -I1/1 -Etrk
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>x2sys_init<span class="w"> </span>LINE<span class="w"> </span>-V<span class="w"> </span>-G<span class="w"> </span>-Dline<span class="w"> </span>-Rg<span class="w"> </span>-je<span class="w"> </span>-Ndk<span class="w"> </span>-Nsn<span class="w"> </span>-I1/1<span class="w"> </span>-Etrk
 </pre></div>
 </div>
 </div></blockquote>
@@ -491,7 +488,7 @@ actually observed (not all tracks may have all three kinds of
 observations everywhere). For instance, if your tracks are listed in
 the file tracks.lis we may run this command:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt x2sys_binlist -V -TLINE <span class="o">=</span>tracks.lis &gt; tracks.tbf
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>x2sys_binlist<span class="w"> </span>-V<span class="w"> </span>-TLINE<span class="w"> </span><span class="o">=</span>tracks.lis<span class="w"> </span>&gt;<span class="w"> </span>tracks.tbf
 </pre></div>
 </div>
 </div></blockquote>
@@ -499,7 +496,7 @@ the file tracks.lis we may run this command:</p>
 <dt><strong>Update index data base:</strong></dt><dd><p>Next, the track bin-index files are fed to <a class="reference internal" href="x2sys_put.html"><span class="doc">x2sys_put</span></a> which will
 insert the information into the TAG databases:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt x2sys_put -V -TLINE tracks.tbf
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>x2sys_put<span class="w"> </span>-V<span class="w"> </span>-TLINE<span class="w"> </span>tracks.tbf
 </pre></div>
 </div>
 </div></blockquote>
@@ -509,7 +506,7 @@ certain sub-region, and optionally limit the search to those tracks
 that have a particular combination of observables. E.g., to find all
 the tracks which has both obs1 and obs3 inside the specified region, run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt x2sys_get -V -TLINE -R20/40/-40/-20 -Fobs1,obs3 &gt; tracks.tbf
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>x2sys_get<span class="w"> </span>-V<span class="w"> </span>-TLINE<span class="w"> </span>-R20/40/-40/-20<span class="w"> </span>-Fobs1,obs3<span class="w"> </span>&gt;<span class="w"> </span>tracks.tbf
 </pre></div>
 </div>
 </div></blockquote>
@@ -522,7 +519,7 @@ and speed in m/s. There are also format definition files for plain x,y[,z]
 and lon,lat[,z] tracks. To initiate new track databases to be used
 with MGD77 data from NCEI, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt x2sys_init MGD77 -V -Dmgd77 -Emgd77 -Rd -Gd -Nsn -I1/1 -Wt900 -Wd5
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>x2sys_init<span class="w"> </span>MGD77<span class="w"> </span>-V<span class="w"> </span>-Dmgd77<span class="w"> </span>-Emgd77<span class="w"> </span>-Rd<span class="w"> </span>-Gd<span class="w"> </span>-Nsn<span class="w"> </span>-I1/1<span class="w"> </span>-Wt900<span class="w"> </span>-Wd5
 </pre></div>
 </div>
 </div></blockquote>
@@ -728,8 +725,8 @@ package. <em>Computers and Geosciences</em>, <strong>36</strong>, 348-354, <a cl
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

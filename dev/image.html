@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>image &mdash; GMT 6.4.0 documentation</title>
+  <title>image &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -238,7 +235,7 @@ modifiers can be appended to <a class="reference internal" href="#f"><span><stro
 cookbook section:</p>
 <ul class="simple">
 <li><p><strong>+c</strong><em>clearance</em> where <em>clearance</em> is either <em>gap</em>, <em>xgap</em>/<em>ygap</em>, or <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> and <em>gap</em> gives a uniform <a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearance</span></a>, <em>xgap</em>/<em>ygap</em> gives separate
-<a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> in the x- and y- directions, and <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> gives
+<a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> in the <em>x</em>- and <em>y</em>- directions, and <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> gives
 individual <a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> between the map embellishment and the border for each side.</p></li>
 <li><p><strong>+g</strong><em>fill</em> to fill the box with a color specified by <a class="reference internal" href="gmtcolors.html"><span class="doc">fill</span></a> [default is no fill].</p></li>
 <li><p><strong>+i</strong>[[<em>gap</em>/]<em>pen</em>] to draw a secondary, inner border as well. Optionally, specify the
@@ -256,8 +253,8 @@ individual <a class="reference internal" href="cookbook/features.html#plt-units"
 <dt><strong>-G</strong>[<em>color</em>][<strong>+b</strong>|<strong>f</strong>|<strong>t</strong>]</dt><dd><p>Change certain pixel values to another color or make them transparent.
 For 1-bit images you can specify an alternate <em>color</em> for the background (<strong>+b</strong>)
 or the foreground (<strong>+f</strong>) pixels, or give no color to make those pixels
-transparent.  Alternatively, for color images you can select a single <em>color</em>
-that should be made transparent instead  (<strong>+t</strong>).</p>
+transparent. Alternatively, for color images you can select a single <em>color</em>
+that should be made transparent instead  (<strong>+t</strong>). This option may be repeated with different settings.</p>
 </dd>
 </dl>
 <dl class="simple" id="i">
@@ -283,7 +280,7 @@ YIQ-transformation.</p>
 <div><p>For perspective view <strong>-p</strong>, optionally append /<em>zmin</em>/<em>zmax</em>. <a class="reference internal" href="gmt.html#rz-full"><span class="std std-ref">(more …)</span></a>  </p>
 </div></blockquote>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -330,28 +327,28 @@ no effect when placing Encapsulated <em>PostScript</em> files.</p>
 modern mode <a class="reference internal" href="cookbook/one-liner.html"><span class="doc">GMT Modern Mode One-line Commands</span></a> syntax, which simplifies such short scripts.</p>
 <p>To plot the remote image needle.jpg, scaling it be 7 cm wide (height is scaled
 accordingly), use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt image @needle.jpg -Dx0/0+w7c -pdf plot
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>image<span class="w"> </span>@needle.jpg<span class="w"> </span>-Dx0/0+w7c<span class="w"> </span>-pdf<span class="w"> </span>plot
 </pre></div>
 </div>
 <p>To plot the same file but reversing the bands, use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt image @needle.jpg+b2,1,0 -Dx0/0+w7c -pdf plot
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>image<span class="w"> </span>@needle.jpg+b2,1,0<span class="w"> </span>-Dx0/0+w7c<span class="w"> </span>-pdf<span class="w"> </span>plot
 </pre></div>
 </div>
 <p>To only plot its red band as gray shade, use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt image @needle.jpg+b0 -Dx0/0+w7c -pdf plot
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>image<span class="w"> </span>@needle.jpg+b0<span class="w"> </span>-Dx0/0+w7c<span class="w"> </span>-pdf<span class="w"> </span>plot
 </pre></div>
 </div>
 <p>To include an Encapsulated PostScript file gallo.eps with its upper
 right corner 2 inch to the right and 1 inch up from the current
 location, and have its width scaled to 3 inches, while keeping the
 aspect ratio, use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt image @gallo.eps -Dx2i/1i+jTR+w3i -pdf image
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>image<span class="w"> </span>@gallo.eps<span class="w"> </span>-Dx2i/1i+jTR+w3i<span class="w"> </span>-pdf<span class="w"> </span>image
 </pre></div>
 </div>
 <p>To replicate the 1-bit remote raster image vader1.png, colorize it
 (dark gray background and yellow foreground), and setting each of 6 by 12 tiles
 to be 2.5 cm wide, use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt image @vader1.png -Gdarkgray+b -Gyellow+f -Dx0/0+w2.5c+n6/12 -pdf image
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>image<span class="w"> </span>@vader1.png<span class="w"> </span>-Gdarkgray+b<span class="w"> </span>-Gyellow+f<span class="w"> </span>-Dx0/0+w2.5c+n6/12<span class="w"> </span>-pdf<span class="w"> </span>image
 </pre></div>
 </div>
 </section>
@@ -376,8 +373,8 @@ to be 2.5 cm wide, use:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

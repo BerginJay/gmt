@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdimage &mdash; GMT 6.4.0 documentation</title>
+  <title>grdimage &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -288,7 +285,7 @@ default arguments (<strong>+a</strong>-45<strong>+nt</strong>1<strong>+m</strong
 specific intensity scenario then run <a class="reference internal" href="grdgradient.html"><span class="doc">grdgradient</span></a> separately first.
 If we should derive intensities from another file than <em>grid</em>, specify the
 file with suitable modifiers [Default is no illumination].  <strong>Note</strong>: If
-the input data is an <em>image</em> then an <em>intensfile</em> or constant <em>intensity</em>
+the input data represent an <em>image</em> then an <em>intensfile</em> or constant <em>intensity</em>
 must be provided.</p>
 </dd>
 </dl>
@@ -321,7 +318,7 @@ smaller region than specified in the grid file will result in a
 subset of the grid [Default is the region given by the grid file].</p>
 </div></blockquote>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -450,7 +447,7 @@ of uses that are common but cannot be run verbatim as written.</p>
 <p>For a quick-and-dirty illuminated color map of the data in the file stuff.nc, with
 the maximum map dimension limited to be 6 inches, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdimage stuff.nc -JX6i+ -I+d -P &gt; quick.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdimage<span class="w"> </span>stuff.nc<span class="w"> </span>-JX6i+<span class="w"> </span>-I+d<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>quick.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -458,7 +455,7 @@ the maximum map dimension limited to be 6 inches, try</p>
 on a Lambert map at 1.5 cm/degree along the standard parallels 18 and
 24, and using 1 degree tickmarks:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdimage hawaii_grav.nc -Jl18/24/1.5c -Cshades.cpt -B1 -P &gt; hawaii_grav_image.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdimage<span class="w"> </span>hawaii_grav.nc<span class="w"> </span>-Jl18/24/1.5c<span class="w"> </span>-Cshades.cpt<span class="w"> </span>-B1<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>hawaii_grav_image.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -467,7 +464,7 @@ image.nc, using the intensities provided by the file intens.nc, and
 color levels in the file colors.cpt, with linear scaling at 10
 inch/x-unit, tickmarks every 5 units:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdimage image.nc -Jx10i -Ccolors.cpt -Iintens.nc -B5 -P &gt; image.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdimage<span class="w"> </span>image.nc<span class="w"> </span>-Jx10i<span class="w"> </span>-Ccolors.cpt<span class="w"> </span>-Iintens.nc<span class="w"> </span>-B5<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>image.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -475,13 +472,13 @@ inch/x-unit, tickmarks every 5 units:</p>
 red.nc, green.nc, and blue.nc, with linear scaling at 10 inch/x-unit,
 tickmarks every 5 units:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdimage red.nc green.nc blue.nc -Jx10i -B5 -P &gt; rgbimage.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdimage<span class="w"> </span>red.nc<span class="w"> </span>green.nc<span class="w"> </span>blue.nc<span class="w"> </span>-Jx10i<span class="w"> </span>-B5<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>rgbimage.ps
 </pre></div>
 </div>
 </div></blockquote>
 <p>To create a sinusoidal projection of a remotely located Jessica Rabbit</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdimage -JI15c -Rd http://larryfire.files.wordpress.com/2009/07/untooned_jessicarabbit.jpg -P &gt; jess.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdimage<span class="w"> </span>-JI15c<span class="w"> </span>-Rd<span class="w"> </span>http://larryfire.files.wordpress.com/2009/07/untooned_jessicarabbit.jpg<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>jess.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -509,8 +506,8 @@ tickmarks every 5 units:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

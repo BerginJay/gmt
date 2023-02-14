@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>psvelo &mdash; GMT 6.4.0 documentation</title>
+  <title>psvelo &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -240,7 +237,7 @@ countries given by the codes. Simply append one or more comma-separated countrie
 <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
 country name (e.g., Norway). To select a state within a country (if available), append .state (e.g, US.TX),
 or the full state name (e.g., Texas). To specify a whole continent, spell out the full continent name (e.g., -RAfrica).
-Finally, append any <a class="reference internal" href="../../coast.html#id1"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
+Finally, append any <a class="reference internal" href="../../coast.html#dcw-collections"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
 the collection or named region. All names are case-insensitive. The following modifiers can be appended:</p>
 <blockquote>
 <div><ul class="simple">
@@ -442,12 +439,12 @@ pen and fill color.</p>
 </dd>
 </dl>
 <dl class="simple" id="n">
-<dt><strong>-N</strong></dt><dd><p>Do <strong>NOT</strong> skip symbols that fall outside the frame boundary
+<dt><strong>-N</strong></dt><dd><p>Do <strong>not</strong> skip symbols that fall outside the frame boundary
 specified by <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong>. [Default plots symbols inside frame only].</p>
 </dd>
 </dl>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="../../gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="../../cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="../../gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="../../cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -456,7 +453,7 @@ specified by <a class="reference internal" href="#r"><span><strong>-R</strong></
 </dl>
 <dl class="simple" id="w">
 <dt><strong>-W</strong>[<em>pen</em>][<strong>+c</strong>[<strong>f</strong>|<strong>l</strong>]]</dt><dd><p>Set pen attributes for velocity arrows, ellipse circumference and
-fault plane edges. [Defaults: width = default, color = black, style = solid].
+fault plane edges. [Defaults: width = 0.25p, color = black, style = solid].
 If the modifier <strong>+cl</strong> is appended then the color of the pen are updated from the CPT (see
 <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong>). If instead modifier <strong>+cf</strong> is appended then the color from the cpt
 file is applied to symbol fill only [Default].  Use just <strong>+c</strong> to set both
@@ -554,7 +551,7 @@ end point (<strong>e</strong>) of a line segment:</p>
 <blockquote>
 <div><p><strong>+a</strong><em>angle</em> sets the angle <span class="math notranslate nohighlight">\(\theta\)</span> of the vector head apex [30].</p>
 <p><strong>+b</strong> places a vector head at the <strong>b</strong>eginning of the vector path [none].
-Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle,
+Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle, <strong>s</strong> for a square,
 <strong>a</strong> for arrow [Default], <strong>i</strong> for tail, <strong>A</strong> for plain open arrow,
 and <strong>I</strong> for plain open tail. <strong>Note</strong>: For geovectors only <strong>a</strong> and <strong>A</strong> are available.
 Further append <strong>l</strong>|<strong>r</strong> to only draw the left or right
@@ -563,7 +560,7 @@ half-sides of this head [both sides].</p>
 requires a separate data column following the 2 or 3 coordinates]. Requires that data
 quantity scaling (with unit <strong>q</strong> via <strong>+v</strong> or <strong>+z</strong>) and a CPT have been selected.</p>
 <p><strong>+e</strong> places a vector head at the <strong>e</strong>nd of the vector path [none].
-Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle,
+Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle, <strong>s</strong> for a square,
 <strong>a</strong> for arrow [Default], <strong>i</strong> for tail, <strong>A</strong> for plain open arrow,
 and <strong>I</strong> for plain open tail. <strong>Note</strong>: For geovectors only <strong>a</strong> and <strong>A</strong> are available.
 Further append <strong>l</strong>|<strong>r</strong> to only draw the left or right
@@ -666,7 +663,7 @@ require extra columns, as will a <a class="reference internal" href="#s"><span><
 selected via <strong>-Zu</strong> for color lookup purposes.  The order of the data record
 is fixed regardless of option order, even if not all items may be activated.
 We expect data columns to come in the following order:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lon lat symbol-columns <span class="o">[</span>usercol<span class="o">]</span> <span class="o">[</span>size<span class="o">]</span> <span class="o">[</span>scale<span class="o">]</span> <span class="o">[</span>intens<span class="o">]</span> <span class="o">[</span>transp <span class="o">[</span>transp2<span class="o">]]</span> <span class="o">[</span>trailing-text<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lon<span class="w"> </span>lat<span class="w"> </span>symbol-columns<span class="w"> </span><span class="o">[</span>usercol<span class="o">]</span><span class="w"> </span><span class="o">[</span>size<span class="o">]</span><span class="w"> </span><span class="o">[</span>scale<span class="o">]</span><span class="w"> </span><span class="o">[</span>intens<span class="o">]</span><span class="w"> </span><span class="o">[</span>transp<span class="w"> </span><span class="o">[</span>transp2<span class="o">]]</span><span class="w"> </span><span class="o">[</span>trailing-text<span class="o">]</span>
 </pre></div>
 </div>
 <p>where <em>symbol-columns</em> represent the normally required data columns, and items
@@ -696,7 +693,7 @@ They are not available when using GMT modern mode.</p>
 <p>The following should make big red arrows with green ellipses, outlined
 in red. Note that the 39% confidence scaling will give an ellipse which
 fits inside a rectangle of dimension Esig by Nsig:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psvelo <span class="s">&lt;&lt; END -R-10/10/-10/10 -W0.25p,red -Ggreen -L -Se0.2i/0.39+f18p \</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psvelo<span class="w"> </span><span class="s">&lt;&lt; END -R-10/10/-10/10 -W0.25p,red -Ggreen -L -Se0.2i/0.39+f18p \</span>
 <span class="s">    -B1g1 -Jx0.4/0.4 -A1c+p3p+e -P -V &gt; test.ps</span>
 <span class="s">#Long. Lat. Evel Nvel Esig Nsig CorEN SITE</span>
 <span class="s">#(deg) (deg) (mm/yr) (mm/yr)</span>
@@ -712,7 +709,7 @@ fits inside a rectangle of dimension Esig by Nsig:</p>
 <p>This example should plot some residual rates of rotation in the Western
 Transverse Ranges, California. The wedges will be dark gray, with light
 gray wedges to represent the 2-sigma uncertainties:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psvelo <span class="s">&lt;&lt; END -Sw0.4i/1.e7 -W0.75p -Gdarkgray -Elightgray -D2 -Jm2.2i \</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psvelo<span class="w"> </span><span class="s">&lt;&lt; END -Sw0.4i/1.e7 -W0.75p -Gdarkgray -Elightgray -D2 -Jm2.2i \</span>
 <span class="s">    -R240./243./32.5/34.75 -Baf -BWeSn -P &gt; test.ps</span>
 <span class="s">#lon lat spin(rad/yr) spin_sigma (rad/yr)</span>
 <span class="s">241.4806 34.2073 5.65E-08 1.17E-08</span>
@@ -746,8 +743,8 @@ Geophysics at University of Wisconsin-Madison, Madison, Wisconsin, USA</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

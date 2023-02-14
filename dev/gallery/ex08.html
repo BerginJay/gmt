@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(8) A 3-D histogram &mdash; GMT 6.4.0 documentation</title>
+  <title>(8) A 3-D histogram &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -154,8 +151,8 @@ three-dimensional symbols, including columnar plots. As a simple
 demonstration, we will convert a gridded netCDF of bathymetry into an
 ASCII <em>xyz</em> table and use the height information to draw a 2-D
 histogram in a 3-D perspective view. We also use the height information
-to set to color of each column via a CPT file.  Our gridded bathymetry file is a remote file
-called <code class="docutils literal notranslate"><span class="pre">guinea_bay.nc</span></code> and covers the region from 0 to 5 E and 0 to 5 N. Depth ranges
+to set to color of each column via a CPT file.  Our gridded bathymetry file is
+the 5 arc-minute global relief. Depth ranges
 from -5000 meter to sea-level. We produce the Figure by running this script:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
 <span class="c1">#		GMT EXAMPLE 08</span>
@@ -164,12 +161,12 @@ from -5000 meter to sea-level. We produce the Figure by running this script:</p>
 <span class="c1"># GMT modules:	grd2xyz, makecpt, text, plot3d</span>
 <span class="c1"># Unix progs:	echo</span>
 <span class="c1">#</span>
-gmt begin ex08
-	gmt makecpt -Ccubhelix -T-5000/0
-	gmt grd2xyz @earth_relief_05m -R0/5/0/5 <span class="p">|</span> gmt plot3d -B -Bz1000+l<span class="s2">&quot;Topography (m)&quot;</span> -BWSneZ+b+tETOPO5 <span class="se">\</span>
-		-R0/5/0/5/-5000/0 -JM12c -JZ14c -p200/30 -So0.0833333ub-5000 -Wthinnest -C -i0:2,2
-	<span class="nb">echo</span> <span class="s1">&#39;0.1 4.9 This is the surface of cube&#39;</span> <span class="p">|</span> gmt text -JZ -Z0 -F+f24p,Helvetica-Bold+jTL -p
-gmt end show
+gmt<span class="w"> </span>begin<span class="w"> </span>ex08
+<span class="w">	</span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Ccubhelix<span class="w"> </span>-T-5000/0
+<span class="w">	</span>gmt<span class="w"> </span>grd2xyz<span class="w"> </span>@earth_relief_05m<span class="w"> </span>-R0/5/0/5<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot3d<span class="w"> </span>-B<span class="w"> </span>-Bz1000+l<span class="s2">&quot;Topography (m)&quot;</span><span class="w"> </span>-BWSneZ+b+tETOPO5<span class="w"> </span><span class="se">\</span>
+<span class="w">		</span>-R0/5/0/5/-5000/0<span class="w"> </span>-JM12c<span class="w"> </span>-JZ14c<span class="w"> </span>-p200/30<span class="w"> </span>-So0.0833333ub-5000<span class="w"> </span>-Wthinnest<span class="w"> </span>-C<span class="w"> </span>-i0:2,2
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;0.1 4.9 This is the surface of cube&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-JZ<span class="w"> </span>-Z0<span class="w"> </span>-F+f24p,Helvetica-Bold+jTL<span class="w"> </span>-p
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -191,8 +188,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

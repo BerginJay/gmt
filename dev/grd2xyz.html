@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grd2xyz &mdash; GMT 6.4.0 documentation</title>
+  <title>grd2xyz &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -238,7 +235,7 @@ use <a class="reference internal" href="grdmath.html"><span class="doc">grdmath<
 <a class="reference internal image-reference" href="_images/GMT_STL.jpg"><img alt="_images/GMT_STL.jpg" src="_images/GMT_STL.jpg" style="width: 600px;" /></a>
 <figcaption>
 <p><span class="caption-text">3-D print of Vailulu’u crater multibeam data (2006, R/V Kilo Moana off Samoa) via a GMT STL file.  Original
-multibeam data processed with <a class="reference external" href="https://www.mbari.org/products/research-software/mb-system">MB-System</a> seen
+multibeam data processed with <a class="reference external" href="https://www.mbari.org/technology/mb-system/">MB-System</a> seen
 on the right. Photos courtesy of Jasper Konter, U of Hawaii at Manoa.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -389,17 +386,17 @@ with <strong>-Lc</strong><em>0</em> and <strong>-Lx</strong><em>xmin</em> (for t
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <p>To edit individual values in the 2’ by 2’ remote AFR.nc file, dump the .nc to ASCII:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grd2xyz @AFR.nc &gt; AFR.xyz
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grd2xyz<span class="w"> </span>@AFR.nc<span class="w"> </span>&gt;<span class="w"> </span>AFR.xyz
 </pre></div>
 </div>
 <p>To write a single precision binary file without the x,y positions from
 the remote file &#64;AFR.nc file, using scanline orientation, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grd2xyz @AFR.nc -ZTLf &gt; AFR.b
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grd2xyz<span class="w"> </span>@AFR.nc<span class="w"> </span>-ZTLf<span class="w"> </span>&gt;<span class="w"> </span>AFR.b
 </pre></div>
 </div>
 <p>To write out <em>lon, lat, topo, area</em> from the &#64;AFR.nc file, selecting meter^2 as the area unit,
 and where <em>area</em> reflects the size of each grid box, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grd2xyz @AFR.nc -Wa+ue &gt; AFR.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grd2xyz<span class="w"> </span>@AFR.nc<span class="w"> </span>-Wa+ue<span class="w"> </span>&gt;<span class="w"> </span>AFR.txt
 </pre></div>
 </div>
 </section>
@@ -422,8 +419,8 @@ and where <em>area</em> reflects the size of each grid box, run:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

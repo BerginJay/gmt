@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>15. Filtering of Data in GMT &mdash; GMT 6.4.0 documentation</title>
+  <title>15. Filtering of Data in GMT &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -120,7 +117,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -211,18 +208,18 @@ diametrical cross-section through the filter weights
 </figure>
 <div class="toggle docutils container">
 <p>Here is the source script for the figure above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_App_J_1
-gmt <span class="nb">set</span> GMT_THEME cookbook
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_J_1
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
 <span class="nv">RJ</span><span class="o">=</span><span class="s2">&quot;-R-0.6/0.6/-0.1/1.1 -JX4i/2i&quot;</span>
-<span class="nb">echo</span> <span class="s2">&quot;-0.5	0&quot;</span> &gt; tt.tmp
-gmt math -T-0.5/0.5/0.01 <span class="nv">1</span> <span class="o">=</span> &gt;&gt; tt.tmp
-<span class="nb">echo</span> <span class="s2">&quot;0.5	0&quot;</span> &gt;&gt; tt.tmp
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;-0.5	0&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>tt.tmp
+gmt<span class="w"> </span>math<span class="w"> </span>-T-0.5/0.5/0.01<span class="w"> </span><span class="nv">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.tmp
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0.5	0&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.tmp
 
-gmt <span class="nb">set</span> FONT_ANNOT_PRIMARY 10p,Times-Roman FONT_TITLE 14p,Times-Roman FONT_LABEL 12p,Times-Roman
-gmt plot tt.tmp <span class="nv">$RJ</span> -Bxa0.5f0.1+l<span class="s2">&quot;Distance (units of filter width)&quot;</span> -Bya0.2f0.1g1+l<span class="s2">&quot;Relative amplitude&quot;</span> -BWeSn -Wthick
-gmt math -T-0.5/0.5/0.01 T PI <span class="m">2</span> MUL MUL COS <span class="m">1</span> ADD <span class="m">0</span>.5 <span class="nv">MUL</span> <span class="o">=</span> <span class="p">|</span> gmt plot <span class="nv">$RJ</span> -Wthick,-
-gmt math -T-0.5/0.5/0.01 T T MUL <span class="m">18</span> MUL NEG <span class="nv">EXP</span> <span class="o">=</span> <span class="p">|</span> gmt plot <span class="nv">$RJ</span> -Wthick,.
-gmt text -F+f9p,Times-Roman+j <span class="s">&lt;&lt; END</span>
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FONT_ANNOT_PRIMARY<span class="w"> </span>10p,Times-Roman<span class="w"> </span>FONT_TITLE<span class="w"> </span>14p,Times-Roman<span class="w"> </span>FONT_LABEL<span class="w"> </span>12p,Times-Roman
+gmt<span class="w"> </span>plot<span class="w"> </span>tt.tmp<span class="w"> </span><span class="nv">$RJ</span><span class="w"> </span>-Bxa0.5f0.1+l<span class="s2">&quot;Distance (units of filter width)&quot;</span><span class="w"> </span>-Bya0.2f0.1g1+l<span class="s2">&quot;Relative amplitude&quot;</span><span class="w"> </span>-BWeSn<span class="w"> </span>-Wthick
+gmt<span class="w"> </span>math<span class="w"> </span>-T-0.5/0.5/0.01<span class="w"> </span>T<span class="w"> </span>PI<span class="w"> </span><span class="m">2</span><span class="w"> </span>MUL<span class="w"> </span>MUL<span class="w"> </span>COS<span class="w"> </span><span class="m">1</span><span class="w"> </span>ADD<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span><span class="nv">MUL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span><span class="nv">$RJ</span><span class="w"> </span>-Wthick,-
+gmt<span class="w"> </span>math<span class="w"> </span>-T-0.5/0.5/0.01<span class="w"> </span>T<span class="w"> </span>T<span class="w"> </span>MUL<span class="w"> </span><span class="m">18</span><span class="w"> </span>MUL<span class="w"> </span>NEG<span class="w"> </span><span class="nv">EXP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span><span class="nv">$RJ</span><span class="w"> </span>-Wthick,.
+gmt<span class="w"> </span>text<span class="w"> </span>-F+f9p,Times-Roman+j<span class="w"> </span><span class="s">&lt;&lt; END</span>
 <span class="s">-0.2	0.3	LM	Solid Line:</span>
 <span class="s">-0.2	0.2	LM	Dotted Line:</span>
 <span class="s">-0.2	0.1	LM	Dashed Line:</span>
@@ -230,7 +227,7 @@ gmt text -F+f9p,Times-Roman+j <span class="s">&lt;&lt; END</span>
 <span class="s">0.2	0.2	RM	Gaussian</span>
 <span class="s">0.2	0.1	RM	Cosine</span>
 <span class="s">END</span>
-gmt end show
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </div>
@@ -258,13 +255,13 @@ they require more work (doubling the width to achieve the same cut-off wavelengt
 </figure>
 <div class="toggle docutils container">
 <p>Here is the source script for the figure above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_App_J_2
-gmt <span class="nb">set</span> GMT_THEME cookbook
-gmt <span class="nb">set</span> FONT_ANNOT_PRIMARY 10p,Times-Roman FONT_TITLE 14p,Times-Roman FONT_LABEL 12p,Times-Roman
-gmt math -T0/5/0.01 T <span class="nv">SINC</span> <span class="o">=</span> <span class="p">|</span> gmt plot -R0/5/-0.3/1 -JX4i/2i -Bxa1f0.2+l<span class="s2">&quot;Frequency (cycles per filter width)&quot;</span> -Bya0.2f0.1g1+l<span class="s2">&quot;Gain&quot;</span> -BWeSn -Wthick
-gmt math -T0/5/0.01 T SINC <span class="m">1</span> T T MUL SUB <span class="nv">DIV</span> <span class="o">=</span> <span class="p">|</span> grep -v <span class="s1">&#39;^&gt;&#39;</span> <span class="p">|</span> <span class="nv">$AWK</span> <span class="s1">&#39;{ if ($1 == 1) print 1, 0.5; else print $0}&#39;</span> <span class="p">|</span> gmt plot -Wthick,-
-gmt math -T0/5/0.01 T PI MUL DUP MUL <span class="m">18</span> DIV NEG <span class="nv">EXP</span> <span class="o">=</span> <span class="p">|</span> gmt plot -Wthick,.
-gmt text -F+f9p,Times-Roman+j <span class="s">&lt;&lt; END</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_J_2
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FONT_ANNOT_PRIMARY<span class="w"> </span>10p,Times-Roman<span class="w"> </span>FONT_TITLE<span class="w"> </span>14p,Times-Roman<span class="w"> </span>FONT_LABEL<span class="w"> </span>12p,Times-Roman
+gmt<span class="w"> </span>math<span class="w"> </span>-T0/5/0.01<span class="w"> </span>T<span class="w"> </span><span class="nv">SINC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-R0/5/-0.3/1<span class="w"> </span>-JX4i/2i<span class="w"> </span>-Bxa1f0.2+l<span class="s2">&quot;Frequency (cycles per filter width)&quot;</span><span class="w"> </span>-Bya0.2f0.1g1+l<span class="s2">&quot;Gain&quot;</span><span class="w"> </span>-BWeSn<span class="w"> </span>-Wthick
+gmt<span class="w"> </span>math<span class="w"> </span>-T0/5/0.01<span class="w"> </span>T<span class="w"> </span>SINC<span class="w"> </span><span class="m">1</span><span class="w"> </span>T<span class="w"> </span>T<span class="w"> </span>MUL<span class="w"> </span>SUB<span class="w"> </span><span class="nv">DIV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">&#39;^&gt;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{ if ($1 == 1) print 1, 0.5; else print $0}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-Wthick,-
+gmt<span class="w"> </span>math<span class="w"> </span>-T0/5/0.01<span class="w"> </span>T<span class="w"> </span>PI<span class="w"> </span>MUL<span class="w"> </span>DUP<span class="w"> </span>MUL<span class="w"> </span><span class="m">18</span><span class="w"> </span>DIV<span class="w"> </span>NEG<span class="w"> </span><span class="nv">EXP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-Wthick,.
+gmt<span class="w"> </span>text<span class="w"> </span>-F+f9p,Times-Roman+j<span class="w"> </span><span class="s">&lt;&lt; END</span>
 <span class="s">2.2	0.6	LM	Solid Line:</span>
 <span class="s">2.2	0.5	LM	Dotted Line:</span>
 <span class="s">2.2	0.4	LM	Dashed Line:</span>
@@ -272,7 +269,7 @@ gmt text -F+f9p,Times-Roman+j <span class="s">&lt;&lt; END</span>
 <span class="s">3.8	0.5	RM	Gaussian</span>
 <span class="s">3.8	0.4	RM	Cosine</span>
 <span class="s">END</span>
-gmt end show
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </div>
@@ -293,7 +290,7 @@ the wavelength at which the transfer function equals 0.5 is about 5.34
 </figure>
 <div class="toggle docutils container">
 <p>Here is the source script for the figure above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt; EOF &gt; tt.r_tr_fns</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; tt.r_tr_fns</span>
 <span class="s">0	1	1	1</span>
 <span class="s">0.01	0.99987664	0.99994254	0.99994517</span>
 <span class="s">0.02	0.9995066	0.99977019	0.9997807</span>
@@ -796,13 +793,13 @@ the wavelength at which the transfer function equals 0.5 is about 5.34
 <span class="s">4.99	0.018329813	-0.0014395575	1.1764518e-06</span>
 <span class="s">5	0.017701225	-0.0013879802	1.1137433e-06</span>
 <span class="s">EOF</span>
-gmt begin GMT_App_J_3
-gmt <span class="nb">set</span> GMT_THEME cookbook
-gmt <span class="nb">set</span> FONT_ANNOT_PRIMARY 10p,Times-Roman FONT_TITLE 14p,Times-Roman FONT_LABEL 12p,Times-Roman
-cut -f1,2 tt.r_tr_fns <span class="p">|</span> gmt plot -R0/5/-0.3/1 -JX4i/2i -Bxa1f0.2+l<span class="s2">&quot;Frequency (cycles per filter width)&quot;</span> -Bya0.2f0.1g1+l<span class="s2">&quot;Gain&quot;</span> -BWeSn -Wthick
-cut -f1,3 tt.r_tr_fns <span class="p">|</span> gmt plot -Wthick,-
-cut -f1,4 tt.r_tr_fns <span class="p">|</span> gmt plot -Wthick,.
-gmt text -F+f9p,Times-Roman+j <span class="s">&lt;&lt; END</span>
+gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_J_3
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FONT_ANNOT_PRIMARY<span class="w"> </span>10p,Times-Roman<span class="w"> </span>FONT_TITLE<span class="w"> </span>14p,Times-Roman<span class="w"> </span>FONT_LABEL<span class="w"> </span>12p,Times-Roman
+cut<span class="w"> </span>-f1,2<span class="w"> </span>tt.r_tr_fns<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-R0/5/-0.3/1<span class="w"> </span>-JX4i/2i<span class="w"> </span>-Bxa1f0.2+l<span class="s2">&quot;Frequency (cycles per filter width)&quot;</span><span class="w"> </span>-Bya0.2f0.1g1+l<span class="s2">&quot;Gain&quot;</span><span class="w"> </span>-BWeSn<span class="w"> </span>-Wthick
+cut<span class="w"> </span>-f1,3<span class="w"> </span>tt.r_tr_fns<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-Wthick,-
+cut<span class="w"> </span>-f1,4<span class="w"> </span>tt.r_tr_fns<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-Wthick,.
+gmt<span class="w"> </span>text<span class="w"> </span>-F+f9p,Times-Roman+j<span class="w"> </span><span class="s">&lt;&lt; END</span>
 <span class="s">2.2	0.6	LM	Solid Line:</span>
 <span class="s">2.2	0.5	LM	Dotted Line:</span>
 <span class="s">2.2	0.4	LM	Dashed Line:</span>
@@ -810,16 +807,18 @@ gmt text -F+f9p,Times-Roman+j <span class="s">&lt;&lt; END</span>
 <span class="s">3.8	0.5	RM	Gaussian</span>
 <span class="s">3.8	0.4	RM	Cosine</span>
 <span class="s">END</span>
-gmt end show
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </div>
 <section id="footnote">
 <h2><span class="section-number">15.1. </span>Footnote<a class="headerlink" href="#footnote" title="Permalink to this heading">¶</a></h2>
+<aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id2" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">30</a><span class="fn-bracket">]</span></span>
 <p>R. Bracewell, <em>The Fourier Transform and its Applications</em>,
 McGraw-Hill, London, 444 p., 1965.</p>
+</aside>
 </aside>
 </section>
 </section>
@@ -835,8 +834,8 @@ McGraw-Hill, London, 444 p., 1965.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

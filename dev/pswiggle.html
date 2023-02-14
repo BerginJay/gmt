@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pswiggle &mdash; GMT 6.4.0 documentation</title>
+  <title>pswiggle &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -185,7 +182,7 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p>Reads (<em>x</em>,<em>y</em>,<em>z</em>) triplets from files [or standard
-input] and plots z as a function of distance along track. This means
+input] and plots <em>z</em> as a function of distance along track. This means
 that two consecutive (<em>x</em>,<em>y</em>) points define the local distance axis,
 and the local <em>z</em> axis is then perpendicular to the distance axis,
 forming a right-handed coordinate system. The
@@ -275,7 +272,7 @@ following modifiers can be appended to <a class="reference internal" href="#f"><
 <a class="reference internal" href="cookbook/features.html#background-panel"><span class="std std-ref">The background panel</span></a> cookbook section:</p>
 <ul class="simple">
 <li><p><strong>+c</strong><em>clearance</em> where <em>clearance</em> is either <em>gap</em>, <em>xgap</em>/<em>ygap</em>, or <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> and <em>gap</em> gives a uniform <a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearance</span></a>, <em>xgap</em>/<em>ygap</em> gives separate
-<a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> in the x- and y- directions, and <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> gives
+<a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> in the <em>x</em>- and <em>y</em>- directions, and <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> gives
 individual <a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> between the map embellishment and the border for each side.</p></li>
 <li><p><strong>+g</strong><em>fill</em> to fill the box with a color specified by <a class="reference internal" href="gmtcolors.html"><span class="doc">fill</span></a> [default is no fill].</p></li>
 <li><p><strong>+i</strong>[[<em>gap</em>/]<em>pen</em>] to draw a secondary, inner border as well. Optionally, specify the
@@ -301,7 +298,7 @@ to select different fills for the positive and negative wiggles.</p>
 <dl class="simple" id="i">
 <dt><strong>-I</strong><em>fix_az</em></dt><dd><p>Set a fixed azimuth projection for wiggles [Default uses track
 azimuth, but see <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong>]. With this option, the calculated
-track-normal azimuths are overridden by <em>fixed_az</em>.</p>
+track-normal azimuths are overridden by <em>fix_az</em>.</p>
 </dd>
 </dl>
 <dl class="simple" id="t">
@@ -310,7 +307,7 @@ track-normal azimuths are overridden by <em>fixed_az</em>.</p>
 </dd>
 </dl>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <span class="target" id="id1"></span><dl class="simple" id="v">
@@ -415,7 +412,7 @@ Other commands requiring input files are just dummy examples of the types
 of uses that are common but cannot be run verbatim as written.</p>
 <p>To demonstrate a basic wiggle plot we create some synthetic data with
 <a class="reference internal" href="gmtmath.html"><span class="doc">gmtmath</span></a> and pipe it through <strong>pswiggle</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -T-8/6/0.01 -N3/0 -C2 T <span class="m">3</span> DIV <span class="m">2</span> POW NEG EXP T PI <span class="m">2</span> MUL MUL COS MUL <span class="m">50</span> <span class="nv">MUL</span> <span class="o">=</span> <span class="p">|</span> gmt pswiggle -R-10/10/-3/3 -JM6i -Baf -Z100i -DjRM+w100+lnT -Tfaint -Gred+p -W1p -BWSne -P &gt; map.ps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-T-8/6/0.01<span class="w"> </span>-N3/0<span class="w"> </span>-C2<span class="w"> </span>T<span class="w"> </span><span class="m">3</span><span class="w"> </span>DIV<span class="w"> </span><span class="m">2</span><span class="w"> </span>POW<span class="w"> </span>NEG<span class="w"> </span>EXP<span class="w"> </span>T<span class="w"> </span>PI<span class="w"> </span><span class="m">2</span><span class="w"> </span>MUL<span class="w"> </span>MUL<span class="w"> </span>COS<span class="w"> </span>MUL<span class="w"> </span><span class="m">50</span><span class="w"> </span><span class="nv">MUL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>pswiggle<span class="w"> </span>-R-10/10/-3/3<span class="w"> </span>-JM6i<span class="w"> </span>-Baf<span class="w"> </span>-Z100i<span class="w"> </span>-DjRM+w100+lnT<span class="w"> </span>-Tfaint<span class="w"> </span>-Gred+p<span class="w"> </span>-W1p<span class="w"> </span>-BWSne<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>map.ps
 </pre></div>
 </div>
 <p>To plot the magnetic anomaly stored in the file track.xym along track &#64;
@@ -424,8 +421,8 @@ of uses that are common but cannot be run verbatim as written.</p>
 mode, with positive anomalies in red on a blue track of width 0.25
 points, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pswiggle track.xym -R-20/10/-80/-60 -JS0/90/15c -Z500 -B5 <span class="se">\</span>
-             -C32000 -P -Gred -T0.25p,blue -DjRM+w1000+lnT -V &gt; track_xym.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>pswiggle<span class="w"> </span>track.xym<span class="w"> </span>-R-20/10/-80/-60<span class="w"> </span>-JS0/90/15c<span class="w"> </span>-Z500<span class="w"> </span>-B5<span class="w"> </span><span class="se">\</span>
+<span class="w">             </span>-C32000<span class="w"> </span>-P<span class="w"> </span>-Gred<span class="w"> </span>-T0.25p,blue<span class="w"> </span>-DjRM+w1000+lnT<span class="w"> </span>-V<span class="w"> </span>&gt;<span class="w"> </span>track_xym.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -434,26 +431,26 @@ We used <a class="reference internal" href="#d"><span><strong>-D</strong></span>
 To instead enforce a fixed azimuth of 45 for the positive wiggles, we add <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong>
 and obtain</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pswiggle track.xym -R-20/10/-80/-60 -JS0/90/15c -Z1000 -B5 <span class="se">\</span>
-          -C32000 -P -Gred -I45 -T0.25p,blue -DjRM+w1000+lnT -V &gt; track_xym.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>pswiggle<span class="w"> </span>track.xym<span class="w"> </span>-R-20/10/-80/-60<span class="w"> </span>-JS0/90/15c<span class="w"> </span>-Z1000<span class="w"> </span>-B5<span class="w"> </span><span class="se">\</span>
+<span class="w">          </span>-C32000<span class="w"> </span>-P<span class="w"> </span>-Gred<span class="w"> </span>-I45<span class="w"> </span>-T0.25p,blue<span class="w"> </span>-DjRM+w1000+lnT<span class="w"> </span>-V<span class="w"> </span>&gt;<span class="w"> </span>track_xym.ps
 </pre></div>
 </div>
 </div></blockquote>
 </section>
 <section id="bugs">
 <h2>Bugs<a class="headerlink" href="#bugs" title="Permalink to this heading">¶</a></h2>
-<p>Sometimes the (x,y) coordinates are not printed with enough significant
+<p>Sometimes the (<em>x,y</em>) coordinates are not printed with enough significant
 digits, so the local perpendicular to the track swings around a lot. To
 see if this is the problem, you should do this:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt mapproject -Af yourdata.xyz <span class="p">|</span> more
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>mapproject<span class="w"> </span>-Af<span class="w"> </span>yourdata.xyz<span class="w"> </span><span class="p">|</span><span class="w"> </span>more
 </pre></div>
 </div>
 </div></blockquote>
 <p>Then if these numbers jump around a lot, you may do this:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk <span class="s1">&#39;{ print NR, $0 }&#39;</span> yourdata.xyz <span class="p">|</span> filter1d -Fb5 -N4/0 <span class="se">\</span>
---FORMAT_FLOAT_OUT<span class="o">=</span>%.12g &gt; smoothed.xyz
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;{ print NR, $0 }&#39;</span><span class="w"> </span>yourdata.xyz<span class="w"> </span><span class="p">|</span><span class="w"> </span>filter1d<span class="w"> </span>-Fb5<span class="w"> </span>-N4/0<span class="w"> </span><span class="se">\</span>
+--FORMAT_FLOAT_OUT<span class="o">=</span>%.12g<span class="w"> </span>&gt;<span class="w"> </span>smoothed.xyz
 </pre></div>
 </div>
 </div></blockquote>
@@ -479,8 +476,8 @@ see if this is the problem, you should do this:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

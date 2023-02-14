@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(19) Color patterns on maps &mdash; GMT 6.4.0 documentation</title>
+  <title>(19) Color patterns on maps &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -171,38 +168,38 @@ have changed places.</p>
 <span class="c1"># Purpose:	Illustrates various color pattern effects for maps</span>
 <span class="c1"># GMT modules:	grdimage, grdmath, makecpt, coast, text, image, makecpt</span>
 <span class="c1"># Unix progs:	echo, rm</span>
-gmt begin ex19
-	gmt grdmath -Rd -I1 -r Y COSD <span class="m">2</span> <span class="nv">POW</span> <span class="o">=</span> lat.nc
-	gmt grdmath <span class="nv">X</span> <span class="o">=</span> lon.nc
-	gmt makecpt -Cwhite,blue -T0/1 -N -H &gt; lat.cpt
-	gmt makecpt -Crainbow -T-180/180 -H &gt; lon.cpt
-	gmt subplot begin 3x1 -Fs16c/0 -M0 -Bbltr -Rd -JI0/16c
-		<span class="c1">#   First make a worldmap with graded blue oceans and rainbow continents</span>
-		gmt grdimage lat.nc -Clat.cpt -nl -c0,0
-		gmt coast -Dc -A5000 -G
-		gmt grdimage lon.nc -Clon.cpt -nl
-		gmt coast -Q
-		gmt coast -Dc -A5000 -Wthinnest
-		<span class="nb">echo</span> <span class="s2">&quot;0 20 17TH INTERNATIONAL&quot;</span> <span class="p">|</span> gmt text -F+f32p,Helvetica-Bold,red<span class="o">=</span>thinner
-		<span class="nb">echo</span> <span class="s2">&quot;0 -10 GMT CONFERENCE&quot;</span> <span class="p">|</span> gmt text -F+f32p,Helvetica-Bold,red<span class="o">=</span>thinner
-		<span class="nb">echo</span> <span class="s2">&quot;0 -30 Honolulu, Hawaii, April 1, 2021&quot;</span> <span class="p">|</span> gmt text -F+f18p,Helvetica-Bold,green<span class="o">=</span>thinnest
-		<span class="c1">#   Then show example of color patterns and placing a PostScript image</span>
-		gmt coast -Dc -A5000 -Gp86+fred+byellow+r100 -Sp@circuit.png+r100 -c1,0
-		<span class="nb">echo</span> <span class="s2">&quot;0 30 SILLY USES OF&quot;</span> <span class="p">|</span> gmt text -F+f32p,Helvetica-Bold,lightgreen<span class="o">=</span>thinner
-		<span class="nb">echo</span> <span class="s2">&quot;0 -30 COLOR PATTERNS&quot;</span> <span class="p">|</span> gmt text -F+f32p,Helvetica-Bold,magenta<span class="o">=</span>thinner
-		gmt image -DjCM+w7.5c @GMT_covertext.eps
-		<span class="c1">#   Finally repeat 1st plot but exchange the colors</span>
-		gmt grdimage lon.nc -Clon.cpt -nl -c2,0
-		gmt coast -Dc -A5000 -G
-		gmt grdimage lat.nc -Clat.cpt -nl
-		gmt coast -Q
-		gmt coast -Dc -A5000 -Wthinnest
-		<span class="nb">echo</span> <span class="s2">&quot;0 20 17TH INTERNATIONAL&quot;</span> <span class="p">|</span> gmt text -F+f32p,Helvetica-Bold,red<span class="o">=</span>thinner
-		<span class="nb">echo</span> <span class="s2">&quot;0 -10 GMT CONFERENCE&quot;</span> <span class="p">|</span> gmt text -F+f32p,Helvetica-Bold,red<span class="o">=</span>thinner
-		<span class="nb">echo</span> <span class="s2">&quot;0 -30 Honolulu, Hawaii, April 1, 2021&quot;</span> <span class="p">|</span> gmt text -F+f18p,Helvetica-Bold,green<span class="o">=</span>thinnest
-	gmt subplot end
-gmt end show
-rm -f lat.nc lon.nc lat.cpt lon.cpt
+gmt<span class="w"> </span>begin<span class="w"> </span>ex19
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span>-Rd<span class="w"> </span>-I1<span class="w"> </span>-r<span class="w"> </span>Y<span class="w"> </span>COSD<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">POW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>lat.nc
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span><span class="nv">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>lon.nc
+<span class="w">	</span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cwhite,blue<span class="w"> </span>-T0/1<span class="w"> </span>-N<span class="w"> </span>-H<span class="w"> </span>&gt;<span class="w"> </span>lat.cpt
+<span class="w">	</span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Crainbow<span class="w"> </span>-T-180/180<span class="w"> </span>-H<span class="w"> </span>&gt;<span class="w"> </span>lon.cpt
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>begin<span class="w"> </span>3x1<span class="w"> </span>-Fs16c/0<span class="w"> </span>-M0<span class="w"> </span>-Bbltr<span class="w"> </span>-Rd<span class="w"> </span>-JI0/16c
+<span class="w">		</span><span class="c1">#   First make a worldmap with graded blue oceans and rainbow continents</span>
+<span class="w">		</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>lat.nc<span class="w"> </span>-Clat.cpt<span class="w"> </span>-nl<span class="w"> </span>-c0,0
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Dc<span class="w"> </span>-A5000<span class="w"> </span>-G
+<span class="w">		</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>lon.nc<span class="w"> </span>-Clon.cpt<span class="w"> </span>-nl
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Q
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Dc<span class="w"> </span>-A5000<span class="w"> </span>-Wthinnest
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 20 17TH INTERNATIONAL&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f32p,Helvetica-Bold,red<span class="o">=</span>thinner
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 -10 GMT CONFERENCE&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f32p,Helvetica-Bold,red<span class="o">=</span>thinner
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 -30 Honolulu, Hawaii, April 1, 2021&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f18p,Helvetica-Bold,green<span class="o">=</span>thinnest
+<span class="w">		</span><span class="c1">#   Then show example of color patterns and placing a PostScript image</span>
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Dc<span class="w"> </span>-A5000<span class="w"> </span>-Gp86+fred+byellow+r100<span class="w"> </span>-Sp@circuit.png+r100<span class="w"> </span>-c1,0
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 30 SILLY USES OF&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f32p,Helvetica-Bold,lightgreen<span class="o">=</span>thinner
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 -30 COLOR PATTERNS&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f32p,Helvetica-Bold,magenta<span class="o">=</span>thinner
+<span class="w">		</span>gmt<span class="w"> </span>image<span class="w"> </span>-DjCM+w7.5c<span class="w"> </span>@GMT_covertext.eps
+<span class="w">		</span><span class="c1">#   Finally repeat 1st plot but exchange the colors</span>
+<span class="w">		</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>lon.nc<span class="w"> </span>-Clon.cpt<span class="w"> </span>-nl<span class="w"> </span>-c2,0
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Dc<span class="w"> </span>-A5000<span class="w"> </span>-G
+<span class="w">		</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>lat.nc<span class="w"> </span>-Clat.cpt<span class="w"> </span>-nl
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Q
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Dc<span class="w"> </span>-A5000<span class="w"> </span>-Wthinnest
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 20 17TH INTERNATIONAL&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f32p,Helvetica-Bold,red<span class="o">=</span>thinner
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 -10 GMT CONFERENCE&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f32p,Helvetica-Bold,red<span class="o">=</span>thinner
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 -30 Honolulu, Hawaii, April 1, 2021&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f18p,Helvetica-Bold,green<span class="o">=</span>thinnest
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>end
+gmt<span class="w"> </span>end<span class="w"> </span>show
+rm<span class="w"> </span>-f<span class="w"> </span>lat.nc<span class="w"> </span>lon.nc<span class="w"> </span>lat.cpt<span class="w"> </span>lon.cpt
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -224,8 +221,8 @@ rm -f lat.nc lon.nc lat.cpt lon.cpt
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

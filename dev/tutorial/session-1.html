@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Session One &mdash; GMT 6.4.0 documentation</title>
+  <title>Session One &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -125,7 +122,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -308,9 +305,9 @@ the relationships shown in Figure <a class="reference internal" href="#gmt-envir
 <em>stdin</em>) or from files, and write their output to the
 terminal (called <em>stdout</em>).  To use files instead one can
 use redirection:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt module input-file &gt; output-file         <span class="c1"># Read a file and redirect output</span>
-gmt module &lt; input-file &gt; output-file       <span class="c1"># Redirect input and output</span>
-gmt module input-file &gt;&gt; output-file        <span class="c1"># Append output to existing file</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>module<span class="w"> </span>input-file<span class="w"> </span>&gt;<span class="w"> </span>output-file<span class="w">         </span><span class="c1"># Read a file and redirect output</span>
+gmt<span class="w"> </span>module<span class="w"> </span>&lt;<span class="w"> </span>input-file<span class="w"> </span>&gt;<span class="w"> </span>output-file<span class="w">       </span><span class="c1"># Redirect input and output</span>
+gmt<span class="w"> </span>module<span class="w"> </span>input-file<span class="w"> </span>&gt;&gt;<span class="w"> </span>output-file<span class="w">        </span><span class="c1"># Append output to existing file</span>
 </pre></div>
 </div>
 <p>In this example, and in all those to follow, it is assumed that you do not have the shell
@@ -321,7 +318,7 @@ That may be a noble cause, but it is extremely annoying. So please, <strong>unse
 <h3>Piping (|)<a class="headerlink" href="#piping" title="Permalink to this heading">¶</a></h3>
 <p>Sometimes we want to use the output from one module as input
 to another module.  This is achieved with <em>pipes</em>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Someprogram <span class="p">|</span> gmt module1 <span class="p">|</span> gmt module1 &gt; OutputFile
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Someprogram<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>module1<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>module1<span class="w"> </span>&gt;<span class="w"> </span>OutputFile
 </pre></div>
 </div>
 </section>
@@ -332,12 +329,12 @@ These are typically written to a separate data stream called
 <em>stderr</em> and can be redirected separately from the standard
 output (which goes to <em>stdout</em>).  To send the error messages to the same location
 as standard output we use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>program &gt; errors.log <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>program<span class="w"> </span>&gt;<span class="w"> </span>errors.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
 </pre></div>
 </div>
 <p>When we want to save both program output and error messages to
 separate files we use the following syntax:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt module &gt; output.txt <span class="m">2</span>&gt; errors.log
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>module<span class="w"> </span>&gt;<span class="w"> </span>output.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>errors.log
 </pre></div>
 </div>
 </section>
@@ -396,10 +393,10 @@ We want it to go from 10 to 70 in <em>x</em> and
 from -3 to 8 in <em>y</em>, with automatic annotation intervals.  Finally,
 we let the canvas be painted light red and have dimensions of
 4 by 3 inches.  Here’s how we do it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_tut_1
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt basemap -R10/70/-3/8 -JX4i/3i -B -B+glightred+t<span class="s2">&quot;My first plot&quot;</span>
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_tut_1
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>basemap<span class="w"> </span>-R10/70/-3/8<span class="w"> </span>-JX4i/3i<span class="w"> </span>-B<span class="w"> </span>-B+glightred+t<span class="s2">&quot;My first plot&quot;</span>
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>This script will open the result GMT_tut_1.pdf in a PDF viewer and it should look like <a class="reference internal" href="#gmt-tut-1"><span class="std std-ref">our example 1 below</span></a>.
@@ -423,10 +420,10 @@ Examine the <a class="reference internal" href="../basemap.html"><span class="do
 no data set yet but we will
 imagine that the raw <em>x</em> data range from 3 to 9613 and that <em>y</em>
 ranges from 10^20 to 10^24.  One possibility is</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_tut_2
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt basemap -R1/10000/1e20/1e25 -JX9il/6il -Bxa2+l<span class="s2">&quot;Wavelength (m)&quot;</span> -Bya1pf3+l<span class="s2">&quot;Power (W)&quot;</span> -BWS
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_tut_2
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>basemap<span class="w"> </span>-R1/10000/1e20/1e25<span class="w"> </span>-JX9il/6il<span class="w"> </span>-Bxa2+l<span class="s2">&quot;Wavelength (m)&quot;</span><span class="w"> </span>-Bya1pf3+l<span class="s2">&quot;Power (W)&quot;</span><span class="w"> </span>-BWS
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>Make sure your plot looks like <a class="reference internal" href="#gmt-tut-2"><span class="std std-ref">our example 2 below</span></a></p>
@@ -491,10 +488,10 @@ to the common switches we may need to use some of several coast-specific options
 </table>
 <p>One of <strong>-W</strong>, <strong>-G</strong>, <strong>-S</strong> must be selected.  Our first coastline
 example is from Latin America:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_tut_3
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -R-90/-70/0/20 -JM6i -B -Gchocolate
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_tut_3
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-90/-70/0/20<span class="w"> </span>-JM6i<span class="w"> </span>-B<span class="w"> </span>-Gchocolate
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>Your plot should look like <a class="reference internal" href="#gmt-tut-3"><span class="std std-ref">our example 3 below</span></a></p>
@@ -527,10 +524,10 @@ The general syntax is</p>
 <p>where (<em>lon_0, lat_0</em>) is the map (projection) center and <em>lat_1, lat_2</em>
 are the two standard parallels where the cone intersects the Earth’s surface.
 We try the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_tut_4
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -R-130/-70/24/52 -JB-100/35/33/45/6i -B -B+t<span class="s2">&quot;Conic Projection&quot;</span> -N1/thicker -N2/thinnest -A500 -Ggray -Wthinnest
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_tut_4
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-130/-70/24/52<span class="w"> </span>-JB-100/35/33/45/6i<span class="w"> </span>-B<span class="w"> </span>-B+t<span class="s2">&quot;Conic Projection&quot;</span><span class="w"> </span>-N1/thicker<span class="w"> </span>-N2/thinnest<span class="w"> </span>-A500<span class="w"> </span>-Ggray<span class="w"> </span>-Wthinnest
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>Your plot should look like <a class="reference internal" href="#gmt-tut-4"><span class="std std-ref">our example 4 below</span></a></p>
@@ -557,10 +554,10 @@ The syntax for this projection is</p>
 <p><strong>-JG</strong><em>lon_0/lat_0/width</em></p>
 <p>where (<em>lon_0, lat_0</em>) is the center of the map (projection).
 As an example we will try</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_tut_5
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -Rg -JG280/30/6i -Bag -Dc -A5000 -Gwhite -SDarkTurquoise
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_tut_5
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JG280/30/6i<span class="w"> </span>-Bag<span class="w"> </span>-Dc<span class="w"> </span>-A5000<span class="w"> </span>-Gwhite<span class="w"> </span>-SDarkTurquoise
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>Your plot should look like <a class="reference internal" href="#gmt-tut-5"><span class="std std-ref">our example 5 below</span></a></p>
@@ -586,10 +583,10 @@ are both equal-area projections whose syntax is</p>
 The <em>lon_0</em> is the central meridian (which takes precedence over
 the mid-value implied by the <strong>-R</strong> setting).  A simple Eckert VI world map
 is thus generated by</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_tut_6
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -Rg -JKs180/9i -Bag -Dc -A5000 -Gchocolate -SDarkTurquoise -Wthinnest
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_tut_6
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JKs180/9i<span class="w"> </span>-Bag<span class="w"> </span>-Dc<span class="w"> </span>-A5000<span class="w"> </span>-Gchocolate<span class="w"> </span>-SDarkTurquoise<span class="w"> </span>-Wthinnest
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>Your plot should look like <a class="reference internal" href="#gmt-tut-6"><span class="std std-ref">our example 6 below</span></a></p>
@@ -619,8 +616,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

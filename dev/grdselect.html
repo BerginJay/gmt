@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdselect &mdash; GMT 6.4.0 documentation</title>
+  <title>grdselect &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -342,25 +339,25 @@ any module-specific option (but not the GMT common options), then exit.</p>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <p>To find the extended region (union) of all the grids given, plus a padding of 2 degrees, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcut @earth_relief_01d -R1/3/1/3 -Gsubset1.nc
-gmt grdcut @earth_relief_01d -R2/5/2/5 -Gsubset2.nc
-gmt grdselect *.nc -Au -M2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcut<span class="w"> </span>@earth_relief_01d<span class="w"> </span>-R1/3/1/3<span class="w"> </span>-Gsubset1.nc
+gmt<span class="w"> </span>grdcut<span class="w"> </span>@earth_relief_01d<span class="w"> </span>-R2/5/2/5<span class="w"> </span>-Gsubset2.nc
+gmt<span class="w"> </span>grdselect<span class="w"> </span>*.nc<span class="w"> </span>-Au<span class="w"> </span>-M2
 </pre></div>
 </div>
 <p>To find the common region (intersection) that all the grids share, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdselect *.nc -Ai
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdselect<span class="w"> </span>*.nc<span class="w"> </span>-Ai
 </pre></div>
 </div>
 <p>To find the common region (intersection) that all the grids share but extend it by 2 degrees and then write the bounding polygon, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdselect *.nc -Ai -M2 -Eb &gt; wesn_polygon.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdselect<span class="w"> </span>*.nc<span class="w"> </span>-Ai<span class="w"> </span>-M2<span class="w"> </span>-Eb<span class="w"> </span>&gt;<span class="w"> </span>wesn_polygon.txt
 </pre></div>
 </div>
 <p>To list all the data sources that have more than 10 NaN nodes and are pixel registered, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdselect *.nc -Nh10 -rp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdselect<span class="w"> </span>*.nc<span class="w"> </span>-Nh10<span class="w"> </span>-rp
 </pre></div>
 </div>
 <p>To list all the grids that are entirely included by the polygon in wesn_polygon.txt, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdselect *.nc -Fwesn_polygon.txt+i
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdselect<span class="w"> </span>*.nc<span class="w"> </span>-Fwesn_polygon.txt+i
 </pre></div>
 </div>
 </section>
@@ -385,8 +382,8 @@ gmt grdselect *.nc -Au -M2
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

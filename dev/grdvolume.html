@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdvolume &mdash; GMT 6.4.0 documentation</title>
+  <title>grdvolume &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -216,7 +213,7 @@ below the <em>cval</em> contour and above the grid surface. <strong>Note</strong
 defines an <em>outside</em> volume.</p></li>
 <li><p><strong>-C</strong><strong>r</strong><em>low/high</em> - Report the area, volume, and mean height
 between <em>low</em> and <em>high</em> and above the grid surface. For example, use
-this form to compute the volume of water between to contours.</p></li>
+this form to compute the volume of water between two contours.</p></li>
 </ul>
 </div></blockquote>
 </dd>
@@ -289,33 +286,35 @@ The examples that use remote files (file names starting with <code class="docuti
 can be cut and pasted into your terminal for testing.
 Other commands requiring input files are just dummy examples of the types
 of uses that are common but cannot be run verbatim as written.</p>
-<p>To determine area (in km^2), volume (in km^3), and mean height (in km) of all land areas
-(above zero contour) in the Hawaiian Islands from the remote grid &#64;earth_relief_05m (height in m), use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdvolume @earth_relief_05m -R190/210/15/25 -C0 -Sk -Z0.001
+<p>To determine area (in km<sup>2</sup>), volume (in km<sup>3</sup>), and mean height (in km) of all land areas
+(above zero contour) in the Hawaiian Islands from the remote grid &#64;earth_relief_05m (height in m), use</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdvolume<span class="w"> </span>@earth_relief_05m<span class="w"> </span>-R190/210/15/25<span class="w"> </span>-C0<span class="w"> </span>-Sk<span class="w"> </span>-Z0.001
 </pre></div>
 </div>
+</div></blockquote>
 <p>To find the volume below the surface peaks.nc and above the contour z = 250 m in meters, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdvolume peaks.nc -Se -C250
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdvolume<span class="w"> </span>peaks.nc<span class="w"> </span>-Se<span class="w"> </span>-C250
 </pre></div>
 </div>
 </div></blockquote>
 <p>To search for the contour, ranging from 100 to 300 in steps of 10, that
 maximizes the ratio of volume to surface area for the file peaks.nc, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdvolume peaks.nc -C0/300/10 -Th &gt; results.d
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdvolume<span class="w"> </span>peaks.nc<span class="w"> </span>-C100/300/10<span class="w"> </span>-Th<span class="w"> </span>&gt;<span class="w"> </span>results.d
 </pre></div>
 </div>
 </div></blockquote>
 <p>To see the areas and volumes for all the contours in the previous example, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdvolume peaks.nc -C100/300/10 &gt; results.d
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdvolume<span class="w"> </span>peaks.nc<span class="w"> </span>-C100/300/10<span class="w"> </span>&gt;<span class="w"> </span>results.d
 </pre></div>
 </div>
 </div></blockquote>
 <p>To find the volume of water in a lake with its free surface at 0 and max depth of 300 meters, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdvolume lake.nc -Cr-300/0
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdvolume<span class="w"> </span>lake.nc<span class="w"> </span>-Cr-300/0
 </pre></div>
 </div>
 </div></blockquote>
@@ -338,7 +337,7 @@ These records are written to standard output.</p></li>
 <li><p>For geographical grids we convert degrees to “Flat Earth” distances in
 meter.  You can use <a class="reference internal" href="#s"><span><strong>-S</strong></span></a></strong> to select another distance unit.  The
 area is then reported in this unit squared while the volume is reported
-in unit^2 * z_unit quantities.</p></li>
+in unit<sup>2</sup> * z_unit quantities.</p></li>
 <li><p><strong>grdvolume</strong> distinguishes between gridline and pixel-registered grids.
 In both cases the area and volume are computed up to the grid
 boundaries. That means that in the first case the grid cells on the
@@ -377,8 +376,8 @@ regional-residual separation of geophysical data, <em>Math. Geol.</em>, <strong>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

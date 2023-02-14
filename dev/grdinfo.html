@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdinfo &mdash; GMT 6.4.0 documentation</title>
+  <title>grdinfo &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -181,7 +178,7 @@ the mode (Least Median of Squares; LMS), LMS scale of <em>v</em>, and number of 
 to NaN. We also report if the grid is pixel- or gridline-registered and
 if it is a Cartesian or Geographic data set (based on metadata in the file).
 We can also report information for 3-D netCDF data cubes, but note that
-data cubes are not compatible with options <a class="reference internal" href="#d"><span><strong>-D</strong></span></a></strong>, <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong>, <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong>, and <strong>-Ib</strong>.</p>
+data cubes are not compatible with options <a class="reference internal" href="#d"><span><strong>-D</strong></span></a></strong>, <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong>, <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong>, and <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong><strong>b</strong>.</p>
 </section>
 <section id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this heading">¶</a></h2>
@@ -211,10 +208,10 @@ supported:</p>
 output is:</p>
 <p><em>name w e s n {b t} v0 v1 dx dy {dz} nx ny {nz}</em> [<em>x0 y0 {z0} x1 y1 {z1}</em>] [<em>med scale</em>] [<em>mean std rms</em>] [<em>n_nan</em>] <em>registration gtype</em></p>
 <p>The data in brackets are
-output only if the corresponding options <a class="reference internal" href="#m"><span><strong>-M</strong></span></a></strong> (with no directive), <strong>-L1</strong>, and <strong>-L2</strong>
+output only if the corresponding options <a class="reference internal" href="#m"><span><strong>-M</strong></span></a></strong> (with no directive), <a class="reference internal" href="#l"><span><strong>-L</strong></span></a></strong><strong>1</strong>, and <a class="reference internal" href="#l"><span><strong>-L</strong></span></a></strong><strong>2</strong>
 are used, respectively, while the data in braces only apply if
-used with 3-D data cubes. Use <strong>-Ct</strong> to place file <em>name</em>
-at the end of the output record or <strong>-Cn</strong> to only output numerical
+used with 3-D data cubes. Use <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong><strong>t</strong> to place file <em>name</em>
+at the end of the output record or <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong><strong>n</strong> to only output numerical
 columns.  The <em>registration</em> is either 0 (gridline) or 1 (pixel),
 while <em>gtype</em> is either 0 (Cartesian) or 1 (geographic).
 If the <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong> option is used, the
@@ -229,13 +226,13 @@ overlap between tiles by appending <em>xoff</em>[/<em>yoff</em>].  If the single
 grid is given you may use the modifier <strong>+i</strong> to ignore tiles that
 have no data within each tile subregion.  Default output is text
 region strings.  Use <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> to instead report four columns with
-<em>xmin xmax ymin ymax</em> per tile, or use <strong>-Ct</strong> to also have the
+<em>xmin xmax ymin ymax</em> per tile, or use <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong><strong>t</strong> to also have the
 region string appended as trailing text.</p>
 </dd>
 </dl>
 <dl class="simple" id="e">
-<dt><strong>-E</strong>[<strong>x</strong>|<strong>y</strong>][<strong>+l</strong>|<strong>L</strong>|<strong>u</strong>|<strong>U</strong>]</dt><dd><p>Report the extreme values found on a per column (<strong>-Ex</strong>) or per
-row (<strong>-Ey</strong>) basis.  By default, we look for the global maxima (<strong>+u</strong>|<strong>U</strong>)
+<dt><strong>-E</strong>[<strong>x</strong>|<strong>y</strong>][<strong>+l</strong>|<strong>L</strong>|<strong>u</strong>|<strong>U</strong>]</dt><dd><p>Report the extreme values found on a per column (<a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong><strong>x</strong>) or per
+row (<a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong><strong>y</strong>) basis.  By default, we look for the global maxima (<strong>+u</strong>|<strong>U</strong>)
 for each column.  Append <strong>+l</strong>|<strong>L</strong> to look for minima instead.
 Upper case <strong>+L</strong> means we find the minimum of the positive values only, while
 upper case <strong>+U</strong> means we find the maximum of the negative values only [use all values].
@@ -254,30 +251,30 @@ to report the requested information [refuse to give the information for tiled gr
 </dl>
 <dl class="simple" id="i">
 <dt><strong>-I</strong>[<em>dx</em>[/<em>dy</em>]|<strong>b</strong>|<strong>i</strong>|<strong>r</strong>]</dt><dd><p>Report the min/max of the region to the nearest multiple of <em>dx</em> and
-<em>dy</em>, and output this in the form <strong>-R</strong><em>w/e/s/n</em> (unless <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong>
-is set). To report the actual grid region, select <strong>-Ir</strong>. For a
+<em>dy</em>, and output this in the form <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong><em>w/e/s/n</em> (unless <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong>
+is set). To report the actual grid region, select <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong><strong>r</strong>. For a
 grid produced by the img supplement (a Cartesian Mercator grid),
-the exact geographic region is given with <strong>-Ii</strong> (if not found
+the exact geographic region is given with <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong><strong>i</strong> (if not found
 then we return the actual grid region instead).  If no
 argument is given then we report the grid increment in the form
-<strong>-I</strong><em>xinc</em>[/<em>yinc</em>]. If <strong>-Ib</strong> is given we write each grid’s
+<a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong><em>xinc</em>[/<em>yinc</em>]. If <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong><strong>b</strong> is given we write each grid’s
 bounding box polygon instead.  Finally, if <a class="reference internal" href="#d"><span><strong>-D</strong></span></a></strong> is in effect then
 <em>dx</em> and <em>dy</em> are the dimensions of the desired tiles.</p>
 </dd>
 </dl>
 <dl id="l">
 <dt><strong>-L</strong>[<strong>0</strong>|<strong>1</strong>|<strong>2</strong>|<strong>p</strong>|<strong>a</strong>]</dt><dd><dl class="simple">
-<dt><strong>-L0</strong></dt><dd><p>Report range of <em>v</em> after actually scanning the data, not just
+<dt><a class="reference internal" href="#l"><span><strong>-L</strong></span></a></strong><strong>0</strong></dt><dd><p>Report range of <em>v</em> after actually scanning the data, not just
 reporting what the header says.</p>
 </dd>
-<dt><strong>-L1</strong></dt><dd><p>Report median and L1 scale of <em>v</em> (L1 scale = 1.4826 * Median
+<dt><a class="reference internal" href="#l"><span><strong>-L</strong></span></a></strong><strong>1</strong></dt><dd><p>Report median and L1 scale of <em>v</em> (L1 scale = 1.4826 * Median
 Absolute Deviation (MAD)).</p>
 </dd>
-<dt><strong>-L2</strong></dt><dd><p>Report mean, standard deviation, and root-mean-square (rms) of <em>v</em>.</p>
+<dt><a class="reference internal" href="#l"><span><strong>-L</strong></span></a></strong><strong>2</strong></dt><dd><p>Report mean, standard deviation, and root-mean-square (rms) of <em>v</em>.</p>
 </dd>
-<dt><strong>-Lp</strong></dt><dd><p>Report mode (LMS) and LMS scale of <em>v</em>.</p>
+<dt><a class="reference internal" href="#l"><span><strong>-L</strong></span></a></strong><strong>p</strong></dt><dd><p>Report mode (LMS) and LMS scale of <em>v</em>.</p>
 </dd>
-<dt><strong>-La</strong></dt><dd><p>All of the above.</p>
+<dt><a class="reference internal" href="#l"><span><strong>-L</strong></span></a></strong><strong>a</strong></dt><dd><p>All of the above.</p>
 </dd>
 </dl>
 <p><strong>Note</strong>: If the grid is geographic then each node represents a physical
@@ -308,7 +305,7 @@ value (in percent [2]): We then sort the values, exclude the data in the
 Give <em>alpha</em> in the format <em>alphaL</em>/<em>alphaR</em> to select unequal tail areas.
 To force a symmetrical range about zero, using minus/plus the max
 absolute value of the two extremes, append <strong>+s</strong>. We report the
-result via the text string <strong>-T</strong><em>vmin/vmax</em> or <strong>-T</strong><em>vmin/vmax/dv</em>
+result via the text string <a class="reference internal" href="#t"><span><strong>-T</strong></span></a></strong><em>vmin/vmax</em> or <a class="reference internal" href="#t"><span><strong>-T</strong></span></a></strong><em>vmin/vmax/dv</em>
 (if <em>dv</em> was given) as expected by <a class="reference internal" href="makecpt.html"><span class="doc">makecpt</span></a>.</p>
 </dd>
 </dl>
@@ -343,15 +340,15 @@ any module-specific option (but not the GMT common options), then exit.</p>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <p>To obtain all the information about the remote data set in file earth_relief_10m:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdinfo -L1 -L2 -M @earth_relief_10m
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdinfo<span class="w"> </span>-L1<span class="w"> </span>-L2<span class="w"> </span>-M<span class="w"> </span>@earth_relief_10m
 </pre></div>
 </div>
 <p>Get the grid spacing in earth_relief_10m:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">dx</span><span class="o">=</span><span class="sb">`</span>gmt grdinfo -Cn -o7 @earth_relief_10m<span class="sb">`</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">dx</span><span class="o">=</span><span class="sb">`</span>gmt<span class="w"> </span>grdinfo<span class="w"> </span>-Cn<span class="w"> </span>-o7<span class="w"> </span>@earth_relief_10m<span class="sb">`</span>
 </pre></div>
 </div>
 <p>To learn about the extreme values and coordinates in the 3-D data cube S362ANI_kmps.nc?vs:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdinfo -M S362ANI_kmps.nc?vs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdinfo<span class="w"> </span>-M<span class="w"> </span>S362ANI_kmps.nc?vs
 </pre></div>
 </div>
 </section>
@@ -376,8 +373,8 @@ any module-specific option (but not the GMT common options), then exit.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

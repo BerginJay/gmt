@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>19. Annotation of Contours and “Quoted Lines” &mdash; GMT 6.4.0 documentation</title>
+  <title>19. Annotation of Contours and “Quoted Lines” &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -137,7 +134,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -463,11 +460,11 @@ Example <a class="reference internal" href="../gallery/ex01.html#example-01"><sp
 <p>Our first example uses the default placement algorithm. Because of the
 size of the map we request contour labels every 1.5 inches along the
 lines:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_App_O_1
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -R50/160/-15/15 -JM5.3i -Gburlywood -Sazure -A500
-	gmt grdcontour @App_O_geoid.nc -B20f10 -BWSne -C10 -A20+f8p -Gd1.5i -S10 -T+lLH
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_O_1
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R50/160/-15/15<span class="w"> </span>-JM5.3i<span class="w"> </span>-Gburlywood<span class="w"> </span>-Sazure<span class="w"> </span>-A500
+<span class="w">	</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@App_O_geoid.nc<span class="w"> </span>-B20f10<span class="w"> </span>-BWSne<span class="w"> </span>-C10<span class="w"> </span>-A20+f8p<span class="w"> </span>-Gd1.5i<span class="w"> </span>-S10<span class="w"> </span>-T+lLH
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>As seen in Figure <a class="reference internal" href="#contour-label-1"><span class="std std-ref">Contour label 1</span></a>, the contours are
@@ -486,11 +483,11 @@ available in previous GMT versions.</span><a class="headerlink" href="#id5" titl
 <h3><span class="section-number">19.3.2. </span>Fixed number of labels<a class="headerlink" href="#fixed-number-of-labels" title="Permalink to this heading">¶</a></h3>
 <p>We now exercise the option for specifying exactly how many labels each
 contour line should have:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_App_O_2
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -R50/160/-15/15 -JM5.3i -Gburlywood -Sazure -A500
-	gmt grdcontour @App_O_geoid.nc -B20f10 -BWSne -C10 -A20+f8p -Gn1/1i -S10 -T+lLH
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_O_2
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R50/160/-15/15<span class="w"> </span>-JM5.3i<span class="w"> </span>-Gburlywood<span class="w"> </span>-Sazure<span class="w"> </span>-A500
+<span class="w">	</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@App_O_geoid.nc<span class="w"> </span>-B20f10<span class="w"> </span>-BWSne<span class="w"> </span>-C10<span class="w"> </span>-A20+f8p<span class="w"> </span>-Gn1/1i<span class="w"> </span>-S10<span class="w"> </span>-T+lLH
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>By selecting only one label per contour and requiring that labels only
@@ -510,17 +507,17 @@ placed. Our points are not exactly on the contour lines so we give a
 nonzero “slop” to be used in the distance calculations: The point on the
 contour closest to our fixed points and within the given maximum
 distance will host the label.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt; EOF &gt; fix.txt</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; fix.txt</span>
 <span class="s">80      -8.5</span>
 <span class="s">55      -7.5</span>
 <span class="s">102     0</span>
 <span class="s">130     10.5</span>
 <span class="s">EOF</span>
-gmt begin GMT_App_O_3
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -R50/160/-15/15 -JM5.3i -Gburlywood -Sazure -A500
-	gmt grdcontour @App_O_geoid.nc -B20f10 -BWSne -C10 -A20+d+f8p -Gffix.txt/0.1i -S10 -T+lLH
-gmt end show
+gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_O_3
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R50/160/-15/15<span class="w"> </span>-JM5.3i<span class="w"> </span>-Gburlywood<span class="w"> </span>-Sazure<span class="w"> </span>-A500
+<span class="w">	</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@App_O_geoid.nc<span class="w"> </span>-B20f10<span class="w"> </span>-BWSne<span class="w"> </span>-C10<span class="w"> </span>-A20+d+f8p<span class="w"> </span>-Gffix.txt/0.1i<span class="w"> </span>-S10<span class="w"> </span>-T+lLH
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>The angle of the label is evaluated from the contour line geometry, and
@@ -540,11 +537,11 @@ closest to the locations given in the file fix.txt in the <strong>-Gf</strong> o
 <p>Often, it will suffice to place contours at the imaginary intersections
 between the contour lines and a well-placed straight line segment. The
 <strong>-Gl</strong> or <strong>-GL</strong> algorithms work well in those cases:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_App_O_4
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -R50/160/-15/15 -JM5.3i -Gburlywood -Sazure -A500
-	gmt grdcontour @App_O_geoid.nc -B20f10 -BWSne -C10 -A20+d+f8p -GLZ-/Z+ -S10 -T+lLH
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_O_4
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R50/160/-15/15<span class="w"> </span>-JM5.3i<span class="w"> </span>-Gburlywood<span class="w"> </span>-Sazure<span class="w"> </span>-A500
+<span class="w">	</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@App_O_geoid.nc<span class="w"> </span>-B20f10<span class="w"> </span>-BWSne<span class="w"> </span>-C10<span class="w"> </span>-A20+d+f8p<span class="w"> </span>-GLZ-/Z+<span class="w"> </span>-S10<span class="w"> </span>-T+lLH
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>The obvious choice in this example is to specify a great circle between
@@ -567,11 +564,11 @@ the desired label positions becomes too large to be given conveniently
 on the command line, or (2) we have another data set or lines whose
 intersections we wish to use, the general crossing algorithm makes more
 sense:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_App_O_5
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -R50/160/-15/15 -JM5.3i -Gburlywood -Sazure -A500
-	gmt grdcontour @App_O_geoid.nc -B20f10 -BWSne -C10 -A20+d+f8p -GX@App_O_cross.txt -S10 -T+lLH
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_O_5
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R50/160/-15/15<span class="w"> </span>-JM5.3i<span class="w"> </span>-Gburlywood<span class="w"> </span>-Sazure<span class="w"> </span>-A500
+<span class="w">	</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@App_O_geoid.nc<span class="w"> </span>-B20f10<span class="w"> </span>-BWSne<span class="w"> </span>-C10<span class="w"> </span>-A20+d+f8p<span class="w"> </span>-GX@App_O_cross.txt<span class="w"> </span>-S10<span class="w"> </span>-T+lLH
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id9">
@@ -600,12 +597,12 @@ across-track, and surrounds the labels with an opaque, outlined text box
 so that the label is more readable. We choose the place the labels every
 1000 km along the line and use that distance as the label. The labels
 are placed normal to the line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_App_O_6
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -R50/160/-15/15 -JM5.3i -Gburlywood -Sazure -A500
-	gmt grdcontour @App_O_geoid.nc -B20f10 -BWSne -C10 -A20+d+f8p -Gl50/10S/160/10S -S10 -T+l
-	gmt plot -SqD1000k:+g+LD+an+p -Wthick @App_O_transect.txt
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_O_6
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R50/160/-15/15<span class="w"> </span>-JM5.3i<span class="w"> </span>-Gburlywood<span class="w"> </span>-Sazure<span class="w"> </span>-A500
+<span class="w">	</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@App_O_geoid.nc<span class="w"> </span>-B20f10<span class="w"> </span>-BWSne<span class="w"> </span>-C10<span class="w"> </span>-A20+d+f8p<span class="w"> </span>-Gl50/10S/160/10S<span class="w"> </span>-S10<span class="w"> </span>-T+l
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-SqD1000k:+g+LD+an+p<span class="w"> </span>-Wthick<span class="w"> </span>@App_O_transect.txt
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id10">
@@ -626,12 +623,12 @@ contour and not the locations of the (local or global) extrema.</p>
 line, use spherical degrees for placement, append the degree symbol as a
 unit for the labels, choose a rounded rectangular text box, and
 inverse-video the label:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_App_O_7
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -R50/160/-15/15 -JM5.3i -Gburlywood -Sazure -A500
-	gmt grdcontour @App_O_geoid.nc -B20f10 -BWSne -C10 -A20+d+u<span class="s2">&quot; m&quot;</span>+f8p -Gl50/10S/160/10S -S10 -T+l
-	gmt plot -SqD15d:+gblack+fwhite+Ld+o+u@. -Wthick @App_O_transect.txt
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_O_7
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R50/160/-15/15<span class="w"> </span>-JM5.3i<span class="w"> </span>-Gburlywood<span class="w"> </span>-Sazure<span class="w"> </span>-A500
+<span class="w">	</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@App_O_geoid.nc<span class="w"> </span>-B20f10<span class="w"> </span>-BWSne<span class="w"> </span>-C10<span class="w"> </span>-A20+d+u<span class="s2">&quot; m&quot;</span>+f8p<span class="w"> </span>-Gl50/10S/160/10S<span class="w"> </span>-S10<span class="w"> </span>-T+l
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-SqD15d:+gblack+fwhite+Ld+o+u@.<span class="w"> </span>-Wthick<span class="w"> </span>@App_O_transect.txt
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>The output is presented as Figure <a class="reference internal" href="#contour-label-7"><span class="std std-ref">Contour label 7</span></a>.</p>
@@ -650,13 +647,13 @@ choose to place labels every 1500 km. To do this we need to pull out
 those records whose distances are multiples of 1500 km and create a
 “fixed points” file that can be used to place labels and specify the
 labels. This is done with <strong>awk</strong>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_App_O_8
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt convert -i0,1,4 -Em150 @App_O_transect.txt <span class="p">|</span> <span class="nv">$AWK</span> <span class="s1">&#39;{print $1,$2,int($3)}&#39;</span> &gt; fix2.txt
-	gmt coast -R50/160/-15/15 -JM5.3i -Gburlywood -Sazure -A500
-	gmt grdcontour @App_O_geoid.nc -B20f10 -BWSne -C10 -A20+d+u<span class="s2">&quot; m&quot;</span>+f8p -Gl50/10S/160/10S -S10 -T+l
-	gmt plot -Sqffix2.txt:+g+an+p+Lf+u<span class="s2">&quot; m&quot;</span>+f8p -Wthick @App_O_transect.txt
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_O_8
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>convert<span class="w"> </span>-i0,1,4<span class="w"> </span>-Em150<span class="w"> </span>@App_O_transect.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{print $1,$2,int($3)}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>fix2.txt
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R50/160/-15/15<span class="w"> </span>-JM5.3i<span class="w"> </span>-Gburlywood<span class="w"> </span>-Sazure<span class="w"> </span>-A500
+<span class="w">	</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@App_O_geoid.nc<span class="w"> </span>-B20f10<span class="w"> </span>-BWSne<span class="w"> </span>-C10<span class="w"> </span>-A20+d+u<span class="s2">&quot; m&quot;</span>+f8p<span class="w"> </span>-Gl50/10S/160/10S<span class="w"> </span>-S10<span class="w"> </span>-T+l
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Sqffix2.txt:+g+an+p+Lf+u<span class="s2">&quot; m&quot;</span>+f8p<span class="w"> </span>-Wthick<span class="w"> </span>@App_O_transect.txt
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>The output is presented as Figure <a class="reference internal" href="#contour-label-8"><span class="std std-ref">Contour label 8</span></a>.</p>
@@ -677,32 +674,32 @@ the previous sections. We make a map showing the tsunami travel times
 Islands <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>37<span class="fn-bracket">]</span></a>. We lay down a color map based on the travel times and the
 shape of the seafloor, and travel time contours with curved labels as
 well as a few quoted lines. The final script is</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_App_O_9
-gmt <span class="nb">set</span> GMT_THEME cookbook
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_O_9
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
 <span class="nv">R</span><span class="o">=</span>-R-85/5/10/55
-gmt grdgradient @earth_relief_05m_g <span class="nv">$R</span> -Nt1 -A45 -Gtopo5_int.nc
-gmt <span class="nb">set</span> FORMAT_GEO_MAP ddd:mm:ssF FONT_ANNOT_PRIMARY +9p FONT_TITLE 22p
-gmt project -E-74/41 -C-17/28 -G10 -Q &gt; great_NY_Canaries.txt
-gmt project -E-74/41 -C2.33/48.87 -G100 -Q &gt; great_NY_Paris.txt
-<span class="nv">km</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -17 <span class="m">28</span> <span class="p">|</span> gmt mapproject -G-74/41+uk -fg --FORMAT_FLOAT_OUT<span class="o">=</span>%.0f -o2<span class="k">)</span>
-gmt makecpt -Clightred,lightyellow,lightgreen -T0,3,6,100 -N
-gmt grdimage @App_O_ttt.nc -Itopo5_int.nc -C <span class="nv">$R</span> -JM5.3i -nc+t1
-gmt grdcontour @App_O_ttt.nc -C0.5 -A1+u<span class="s2">&quot; hour&quot;</span>+v+f8p,Bookman-Demi <span class="se">\</span>
-	-GL80W/31N/17W/26N,17W/28N/17W/50N -S2
-gmt plot -Wfatter,white great_NY_Canaries.txt
-gmt coast -B20f5 -BWSne+t<span class="s2">&quot;Tsunami travel times from the Canaries&quot;</span> -N1/thick <span class="se">\</span>
-	-Glightgray -Wfaint -A500
-gmt convert great_NY_*.txt -E <span class="p">|</span> gmt plot <span class="nv">$R</span> -Sa0.15i -Gred -Wthin
-gmt plot -Wthick great_NY_Canaries.txt <span class="se">\</span>
-	-Sqn1:+f8p,Times-Italic+l<span class="s2">&quot;Distance Canaries to New York = </span><span class="nv">$km</span><span class="s2"> km&quot;</span>+ap+v
-gmt plot great_NY_Paris.txt -Sc0.08c -Gblack
-gmt plot -Wthinner great_NY_Paris.txt -SqD1000k:+an+o+gblue+LDk+f7p,Helvetica-Bold,white
-cat <span class="s">&lt;&lt; EOF | gmt text -Gwhite -Wthin -Dj0.1i -F+f8p,Bookman-Demi+j</span>
+gmt<span class="w"> </span>grdgradient<span class="w"> </span>@earth_relief_05m_g<span class="w"> </span><span class="nv">$R</span><span class="w"> </span>-Nt1<span class="w"> </span>-A45<span class="w"> </span>-Gtopo5_int.nc
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FORMAT_GEO_MAP<span class="w"> </span>ddd:mm:ssF<span class="w"> </span>FONT_ANNOT_PRIMARY<span class="w"> </span>+9p<span class="w"> </span>FONT_TITLE<span class="w"> </span>22p
+gmt<span class="w"> </span>project<span class="w"> </span>-E-74/41<span class="w"> </span>-C-17/28<span class="w"> </span>-G10<span class="w"> </span>-Q<span class="w"> </span>&gt;<span class="w"> </span>great_NY_Canaries.txt
+gmt<span class="w"> </span>project<span class="w"> </span>-E-74/41<span class="w"> </span>-C2.33/48.87<span class="w"> </span>-G100<span class="w"> </span>-Q<span class="w"> </span>&gt;<span class="w"> </span>great_NY_Paris.txt
+<span class="nv">km</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span>-17<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>mapproject<span class="w"> </span>-G-74/41+uk<span class="w"> </span>-fg<span class="w"> </span>--FORMAT_FLOAT_OUT<span class="o">=</span>%.0f<span class="w"> </span>-o2<span class="k">)</span>
+gmt<span class="w"> </span>makecpt<span class="w"> </span>-Clightred,lightyellow,lightgreen<span class="w"> </span>-T0,3,6,100<span class="w"> </span>-N
+gmt<span class="w"> </span>grdimage<span class="w"> </span>@App_O_ttt.nc<span class="w"> </span>-Itopo5_int.nc<span class="w"> </span>-C<span class="w"> </span><span class="nv">$R</span><span class="w"> </span>-JM5.3i<span class="w"> </span>-nc+t1
+gmt<span class="w"> </span>grdcontour<span class="w"> </span>@App_O_ttt.nc<span class="w"> </span>-C0.5<span class="w"> </span>-A1+u<span class="s2">&quot; hour&quot;</span>+v+f8p,Bookman-Demi<span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>-GL80W/31N/17W/26N,17W/28N/17W/50N<span class="w"> </span>-S2
+gmt<span class="w"> </span>plot<span class="w"> </span>-Wfatter,white<span class="w"> </span>great_NY_Canaries.txt
+gmt<span class="w"> </span>coast<span class="w"> </span>-B20f5<span class="w"> </span>-BWSne+t<span class="s2">&quot;Tsunami travel times from the Canaries&quot;</span><span class="w"> </span>-N1/thick<span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>-Glightgray<span class="w"> </span>-Wfaint<span class="w"> </span>-A500
+gmt<span class="w"> </span>convert<span class="w"> </span>great_NY_*.txt<span class="w"> </span>-E<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span><span class="nv">$R</span><span class="w"> </span>-Sa0.15i<span class="w"> </span>-Gred<span class="w"> </span>-Wthin
+gmt<span class="w"> </span>plot<span class="w"> </span>-Wthick<span class="w"> </span>great_NY_Canaries.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>-Sqn1:+f8p,Times-Italic+l<span class="s2">&quot;Distance Canaries to New York = </span><span class="nv">$km</span><span class="s2"> km&quot;</span>+ap+v
+gmt<span class="w"> </span>plot<span class="w"> </span>great_NY_Paris.txt<span class="w"> </span>-Sc0.08c<span class="w"> </span>-Gblack
+gmt<span class="w"> </span>plot<span class="w"> </span>-Wthinner<span class="w"> </span>great_NY_Paris.txt<span class="w"> </span>-SqD1000k:+an+o+gblue+LDk+f7p,Helvetica-Bold,white
+cat<span class="w"> </span><span class="s">&lt;&lt; EOF | gmt text -Gwhite -Wthin -Dj0.1i -F+f8p,Bookman-Demi+j</span>
 <span class="s">74W	41N	RT	New York</span>
 <span class="s">2.33E	48.87N	CT	Paris</span>
 <span class="s">17W	28N	CT	Canaries</span>
 <span class="s">EOF</span>
-gmt end show
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>with the complete illustration presented as Figure
@@ -718,6 +715,7 @@ that New York will experience a large tsunami about 8 hours after the event.</sp
 </section>
 <section id="footnotes">
 <h2><span class="section-number">19.6. </span>Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this heading">¶</a></h2>
+<aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id3" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">36</a><span class="fn-bracket">]</span></span>
 <p>or whatever planet we are dealing with.</p>
@@ -726,6 +724,7 @@ that New York will experience a large tsunami about 8 hours after the event.</sp
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">37</a><span class="fn-bracket">]</span></span>
 <p>Travel times were calculated using Geoware’s travel time calculator,
 <strong>ttt</strong>; see <a class="reference external" href="http://www.geoware-online.com/">http://www.geoware-online.com/</a>.</p>
+</aside>
 </aside>
 </section>
 </section>
@@ -741,8 +740,8 @@ that New York will experience a large tsunami about 8 hours after the event.</sp
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

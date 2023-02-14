@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>inset &mdash; GMT 6.4.0 documentation</title>
+  <title>inset &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -224,7 +221,7 @@ modifiers can be appended to <a class="reference internal" href="#f"><span><stro
 cookbook section:</p>
 <ul class="simple">
 <li><p><strong>+c</strong><em>clearance</em> where <em>clearance</em> is either <em>gap</em>, <em>xgap</em>/<em>ygap</em>, or <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> and <em>gap</em> gives a uniform <a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearance</span></a>, <em>xgap</em>/<em>ygap</em> gives separate
-<a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> in the x- and y- directions, and <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> gives
+<a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> in the <em>x</em>- and <em>y</em>- directions, and <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> gives
 individual <a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> between the map embellishment and the border for each side.</p></li>
 <li><p><strong>+g</strong><em>fill</em> to fill the box with a color specified by <a class="reference internal" href="gmtcolors.html"><span class="doc">fill</span></a> [default is no fill].</p></li>
 <li><p><strong>+i</strong>[[<em>gap</em>/]<em>pen</em>] to draw a secondary, inner border as well. Optionally, specify the
@@ -244,7 +241,7 @@ individual <a class="reference internal" href="cookbook/features.html#plt-units"
 </dd>
 </dl>
 <dl class="simple" id="n">
-<dt><strong>-N</strong></dt><dd><p>Do NOT clip features extruding outside map inset boundaries [Default will clip].</p>
+<dt><strong>-N</strong></dt><dd><p>Do <strong>not</strong> clip features extruding outside map inset boundaries [Default will clip].</p>
 </dd>
 </dl>
 <dl class="simple" id="r">
@@ -292,14 +289,14 @@ any module-specific option (but not the GMT common options), then exits.</p>
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <p>To make a simple basemap plot called inset.pdf that demonstrates the inset module, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin inset pdf
-  gmt basemap -R0/40/20/60 -JM6.5i -Bafg -B+glightgreen
-  gmt inset begin -DjTR+w2.5i+o0.2i -F+gpink+p0.5p -C0.25i
-    gmt basemap -Rg -JA20/20/ -Bafg
-    gmt text -F+f18p+cTR+tINSET -Dj-0.15i -N
-  gmt inset end
-  gmt text -F+f18p+cBL+tMAP -Dj0.2i
-gmt end
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>inset<span class="w"> </span>pdf
+<span class="w">  </span>gmt<span class="w"> </span>basemap<span class="w"> </span>-R0/40/20/60<span class="w"> </span>-JM6.5i<span class="w"> </span>-Bafg<span class="w"> </span>-B+glightgreen
+<span class="w">  </span>gmt<span class="w"> </span>inset<span class="w"> </span>begin<span class="w"> </span>-DjTR+w2.5i+o0.2i<span class="w"> </span>-F+gpink+p0.5p<span class="w"> </span>-C0.25i
+<span class="w">    </span>gmt<span class="w"> </span>basemap<span class="w"> </span>-Rg<span class="w"> </span>-JA20/20/<span class="w"> </span>-Bafg
+<span class="w">    </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f18p+cTR+tINSET<span class="w"> </span>-Dj-0.15i<span class="w"> </span>-N
+<span class="w">  </span>gmt<span class="w"> </span>inset<span class="w"> </span>end
+<span class="w">  </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f18p+cBL+tMAP<span class="w"> </span>-Dj0.2i
+gmt<span class="w"> </span>end
 </pre></div>
 </div>
 </div></blockquote>
@@ -327,8 +324,8 @@ gmt end
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

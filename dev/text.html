@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>text &mdash; GMT 6.4.0 documentation</title>
+  <title>text &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -191,8 +188,8 @@ draw and annotate the map boundaries.</p>
 caps are supported as follows:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
@@ -215,10 +212,10 @@ caps are supported as follows:</p>
 <tr class="row-even"><td><p>&#64;#</p></td>
 <td><p>Toggles small caps on/off</p></td>
 </tr>
-<tr class="row-odd"><td><p>&#64;;<em>color</em></p></td>
+<tr class="row-odd"><td><p>&#64;;<em>color</em>;</p></td>
 <td><p>Changes the font color (&#64;;; resets it)</p></td>
 </tr>
-<tr class="row-even"><td><p>&#64;:<em>size</em></p></td>
+<tr class="row-even"><td><p>&#64;:<em>size</em>:</p></td>
 <td><p>Changes the font size (&#64;:: resets it)</p></td>
 </tr>
 <tr class="row-odd"><td><p>&#64;_</p></td>
@@ -382,7 +379,7 @@ cannot be used with LaTeX expressions.</p>
 </dd>
 </dl>
 <dl class="simple" id="n">
-<dt><strong>-N</strong></dt><dd><p>Do NOT clip text at map boundaries [Default will clip].</p>
+<dt><strong>-N</strong></dt><dd><p>Do <strong>not</strong> clip text at map boundaries [Default will clip].</p>
 </dd>
 </dl>
 <dl class="simple" id="q">
@@ -397,7 +394,7 @@ sets the fill color to use for shading [gray50].</p>
 </dd>
 </dl>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -406,7 +403,7 @@ sets the fill color to use for shading [gray50].</p>
 </dl>
 <dl class="simple" id="w">
 <dt><strong>-W</strong><em>pen</em></dt><dd><p>Sets the pen used to draw a rectangle around the text string (see
-<a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong>) [Default is width = default, color = black, style = solid].
+<a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong>) [Default is width = 0.25p, color = black, style = solid].
 <strong>Note</strong>: cannot be used with LaTeX expressions.</p>
 </dd>
 </dl>
@@ -500,15 +497,15 @@ of uses that are common but cannot be run verbatim as written.</p>
 modern mode <a class="reference internal" href="cookbook/one-liner.html"><span class="doc">GMT Modern Mode One-line Commands</span></a> syntax, which simplifies such short scripts.</p>
 <p>To plot just the red outlines of the (lon lat text strings) stored in the
 file text.txt on a Mercator plot with the given specifications, use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt text text.txt -R-30/30/-10/20 -Jm0.1i -F+f18p,Helvetica,-<span class="o">=</span><span class="m">0</span>.5p,red -B5 -pdf plot
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>text<span class="w"> </span>text.txt<span class="w"> </span>-R-30/30/-10/20<span class="w"> </span>-Jm0.1i<span class="w"> </span>-F+f18p,Helvetica,-<span class="o">=</span><span class="m">0</span>.5p,red<span class="w"> </span>-B5<span class="w"> </span>-pdf<span class="w"> </span>plot
 </pre></div>
 </div>
 <p>To plot a text at the upper left corner of a 10 cm map:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> TopLeft <span class="p">|</span> gmt text -R1/10/1/10 -JX10 -B -F+cTL -pdf plot
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span>TopLeft<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-R1/10/1/10<span class="w"> </span>-JX10<span class="w"> </span>-B<span class="w"> </span>-F+cTL<span class="w"> </span>-pdf<span class="w"> </span>plot
 </pre></div>
 </div>
 <p>To add a typeset figure caption for a 3-inch wide illustration, use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt text -R0/3/0/5 -JX3i -h1 -M -N -F+f12,Times-Roman+jLT -pdf figure <span class="s">&lt;&lt; EOF</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>text<span class="w"> </span>-R0/3/0/5<span class="w"> </span>-JX3i<span class="w"> </span>-h1<span class="w"> </span>-M<span class="w"> </span>-N<span class="w"> </span>-F+f12,Times-Roman+jLT<span class="w"> </span>-pdf<span class="w"> </span>figure<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">This is an unmarked header record not starting with #</span>
 <span class="s">&gt; 0 -0.5 13p 3i j</span>
 <span class="s">@%5%Figure 1.@%% This illustration shows nothing useful, but it still needs</span>
@@ -518,11 +515,11 @@ file text.txt on a Mercator plot with the given specifications, use:</p>
 </pre></div>
 </div>
 <p>To place a line containing a Latex equation, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="m">3</span> <span class="m">3</span> <span class="s1">&#39;Use @[\Delta g = 2\pi\rho Gh@[&#39;</span> <span class="p">|</span> gmt text -R0/6/0/6 -JX15c -B -F+f32p+a30 -pdf map
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="s1">&#39;Use @[\Delta g = 2\pi\rho Gh@[&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-R0/6/0/6<span class="w"> </span>-JX15c<span class="w"> </span>-B<span class="w"> </span>-F+f32p+a30<span class="w"> </span>-pdf<span class="w"> </span>map
 </pre></div>
 </div>
 <p>To place text with a surrounding box and an underlying, shifted shade, both using a rounded rectangle, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt text -R0/10/0/5 -Jx1c -F+f32p+cCM+tWELCOME -B -Gyellow -Wfaint -S -C+tO -pdf map
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>text<span class="w"> </span>-R0/10/0/5<span class="w"> </span>-Jx1c<span class="w"> </span>-F+f32p+cCM+tWELCOME<span class="w"> </span>-B<span class="w"> </span>-Gyellow<span class="w"> </span>-Wfaint<span class="w"> </span>-S<span class="w"> </span>-C+tO<span class="w"> </span>-pdf<span class="w"> </span>map
 </pre></div>
 </div>
 </section>
@@ -590,8 +587,8 @@ trailing text.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

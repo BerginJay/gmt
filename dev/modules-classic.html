@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Modules (Classic Mode) &mdash; GMT 6.4.0 documentation</title>
+  <title>Modules (Classic Mode) &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -119,7 +116,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -525,7 +522,7 @@ All modules are requested via a call to the <a class="reference internal" href="
 <td><p>Resample a grid onto a new lattice</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="grdtrack.html"><span class="doc">grdtrack</span></a></p></td>
-<td><p>Sample grids at specified (x,y) locations</p></td>
+<td><p>Sample one or more grids at specified locations</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="sample1d.html"><span class="doc">sample1d</span></a></p></td>
 <td><p>Resample 1-D table data using splines</p></td>
@@ -732,13 +729,10 @@ All modules are requested via a call to the <a class="reference internal" href="
 <tr class="row-odd"><td><p><a class="reference internal" href="gmtwhich.html"><span class="doc">gmtwhich</span></a></p></td>
 <td><p>Find full path to specified files</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="gmtwhich.html"><span class="doc">gmtwhich</span></a></p></td>
-<td><p>Find full path to specified files</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="kml2gmt.html"><span class="doc">kml2gmt</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="kml2gmt.html"><span class="doc">kml2gmt</span></a></p></td>
 <td><p>Extract GMT table data from Google Earth KML files</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="psconvert.html"><span class="doc">psconvert</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="psconvert.html"><span class="doc">psconvert</span></a></p></td>
 <td><p>Convert [E]PS file(s) to other formats using Ghostscript</p></td>
 </tr>
 </tbody>
@@ -752,7 +746,7 @@ All modules are requested via a call to the <a class="reference internal" href="
 <td><p>Compute grids or time-series of solid Earth tides</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="supplements/geodesy/gpsgridder.html"><span class="doc">gpsgridder</span></a></p></td>
-<td><p>Interpolate GPS strains using Green’s functions for elastic deformation</p></td>
+<td><p>Interpolate GPS velocities using Green’s functions for elastic deformation</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="supplements/geodesy/psvelo.html"><span class="doc">psvelo</span></a></p></td>
 <td><p>Plot velocity vectors, crosses, anisotropy bars and wedges</p></td>
@@ -973,8 +967,8 @@ All modules are requested via a call to the <a class="reference internal" href="
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(47) Linear regression using different norms and types &mdash; GMT 6.4.0 documentation</title>
+  <title>(47) Linear regression using different norms and types &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -166,42 +163,42 @@ four red giants that are outlying with respect to the main trend.</p>
 <span class="c1"># Because all panels are almost identical we make a bash function that plots</span>
 <span class="c1"># one panel.  It takes a few options that differ between panels.</span>
 
-<span class="k">function</span> plot_one <span class="o">{</span> <span class="c1"># First 3-4 args are: -E -N -c [-Barg]</span>
-	gmt plot -B+ghoneydew<span class="si">${</span><span class="nv">4</span><span class="si">}</span> data.txt -Sc0.1c -Gblue <span class="nv">$3</span>
-	gmt plot giants.txt -Sc0.1c -Gred   -N
-	gmt plot giants.txt -Sc0.25c  -W0.25p -N
-	gmt regress data.txt -Fxm <span class="nv">$1</span> <span class="nv">$2</span> -T2.85/5.25/0.1 <span class="p">|</span> gmt plot -W2p
+<span class="k">function</span><span class="w"> </span>plot_one<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="c1"># First 3-4 args are: -E -N -c [-Barg]</span>
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-B+ghoneydew<span class="si">${</span><span class="nv">4</span><span class="si">}</span><span class="w"> </span>data.txt<span class="w"> </span>-Sc0.1c<span class="w"> </span>-Gblue<span class="w"> </span><span class="nv">$3</span>
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>giants.txt<span class="w"> </span>-Sc0.1c<span class="w"> </span>-Gred<span class="w">   </span>-N
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>giants.txt<span class="w"> </span>-Sc0.25c<span class="w">  </span>-W0.25p<span class="w"> </span>-N
+<span class="w">	</span>gmt<span class="w"> </span>regress<span class="w"> </span>data.txt<span class="w"> </span>-Fxm<span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="nv">$2</span><span class="w"> </span>-T2.85/5.25/0.1<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-W2p
 <span class="o">}</span>
 
-gmt begin ex47
-	<span class="nv">file</span><span class="o">=</span><span class="k">$(</span>gmt which -G @hertzsprung-russell.txt<span class="k">)</span>
-	<span class="c1"># Allow outliers (commented out by #) to be included in the analysis:</span>
-	sed -e s/#//g <span class="nv">$file</span> &gt; data.txt
-	<span class="c1"># Identify the red giants (outliers)</span>
-	grep <span class="s1">&#39;#&#39;</span> <span class="nv">$file</span> <span class="p">|</span> sed -e s/#//g &gt; giants.txt
-	gmt subplot begin 4x3 -M0p -Fs5c -R2.85/5.25/3.9/6.3 -JX-5c/5c -Srl+l<span class="s2">&quot;Log light intensity&quot;</span> -Scb+l<span class="s2">&quot;Log temperature&quot;</span>+tc -Bwesn -Bafg
-	<span class="c1"># L1 regressions</span>
-	plot_one -Ey -N1 -c0,0 +tL@-1@-
-	plot_one -Ex -N1 -c1,0
-	plot_one -Eo -N1 -c2,0
-	plot_one -Er -N1 -c3,0
-	<span class="c1">#L2 regressions</span>
-	plot_one -Ey -N2 -c0,1 +tL@-2@-
-	plot_one -Ex -N2 -c1,1
-	plot_one -Eo -N2 -c2,1
-	plot_one -Er -N2 -c3,1
-	<span class="c1">#LMS regressions - also add labels on right side</span>
-	plot_one -Ey -Nr -c0,2 +tLMS
-	gmt text -F+cRM+jTC+a90+t<span class="s2">&quot;Y ON X&quot;</span> -N -Dj15p
-	plot_one -Ex -Nr -c1,2
-	gmt text -F+cRM+jTC+a90+t<span class="s2">&quot;X ON Y&quot;</span> -N -Dj15p
-	plot_one -Eo -Nr -c2,2
-	gmt text -F+cRM+jTC+a90+tORTHOGONAL -N -Dj15p
-	plot_one -Er -Nr -c3,2
-	gmt text -F+cRM+jTC+a90+t<span class="s2">&quot;REDUCED MAJOR AXIS&quot;</span> -N -Dj15p
-	gmt subplot end
-gmt end show
-rm -f data.txt giants.txt hertzsprung-russell.txt
+gmt<span class="w"> </span>begin<span class="w"> </span>ex47
+<span class="w">	</span><span class="nv">file</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>which<span class="w"> </span>-G<span class="w"> </span>@hertzsprung-russell.txt<span class="k">)</span>
+<span class="w">	</span><span class="c1"># Allow outliers (commented out by #) to be included in the analysis:</span>
+<span class="w">	</span>sed<span class="w"> </span>-e<span class="w"> </span>s/#//g<span class="w"> </span><span class="nv">$file</span><span class="w"> </span>&gt;<span class="w"> </span>data.txt
+<span class="w">	</span><span class="c1"># Identify the red giants (outliers)</span>
+<span class="w">	</span>grep<span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="nv">$file</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span>s/#//g<span class="w"> </span>&gt;<span class="w"> </span>giants.txt
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>begin<span class="w"> </span>4x3<span class="w"> </span>-M0p<span class="w"> </span>-Fs5c<span class="w"> </span>-R2.85/5.25/3.9/6.3<span class="w"> </span>-JX-5c/5c<span class="w"> </span>-Srl+l<span class="s2">&quot;Log light intensity&quot;</span><span class="w"> </span>-Scb+l<span class="s2">&quot;Log temperature&quot;</span>+tc<span class="w"> </span>-Bwesn<span class="w"> </span>-Bafg
+<span class="w">	</span><span class="c1"># L1 regressions</span>
+<span class="w">	</span>plot_one<span class="w"> </span>-Ey<span class="w"> </span>-N1<span class="w"> </span>-c0,0<span class="w"> </span>+tL@-1@-
+<span class="w">	</span>plot_one<span class="w"> </span>-Ex<span class="w"> </span>-N1<span class="w"> </span>-c1,0
+<span class="w">	</span>plot_one<span class="w"> </span>-Eo<span class="w"> </span>-N1<span class="w"> </span>-c2,0
+<span class="w">	</span>plot_one<span class="w"> </span>-Er<span class="w"> </span>-N1<span class="w"> </span>-c3,0
+<span class="w">	</span><span class="c1">#L2 regressions</span>
+<span class="w">	</span>plot_one<span class="w"> </span>-Ey<span class="w"> </span>-N2<span class="w"> </span>-c0,1<span class="w"> </span>+tL@-2@-
+<span class="w">	</span>plot_one<span class="w"> </span>-Ex<span class="w"> </span>-N2<span class="w"> </span>-c1,1
+<span class="w">	</span>plot_one<span class="w"> </span>-Eo<span class="w"> </span>-N2<span class="w"> </span>-c2,1
+<span class="w">	</span>plot_one<span class="w"> </span>-Er<span class="w"> </span>-N2<span class="w"> </span>-c3,1
+<span class="w">	</span><span class="c1">#LMS regressions - also add labels on right side</span>
+<span class="w">	</span>plot_one<span class="w"> </span>-Ey<span class="w"> </span>-Nr<span class="w"> </span>-c0,2<span class="w"> </span>+tLMS
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>-F+cRM+jTC+a90+t<span class="s2">&quot;Y ON X&quot;</span><span class="w"> </span>-N<span class="w"> </span>-Dj15p
+<span class="w">	</span>plot_one<span class="w"> </span>-Ex<span class="w"> </span>-Nr<span class="w"> </span>-c1,2
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>-F+cRM+jTC+a90+t<span class="s2">&quot;X ON Y&quot;</span><span class="w"> </span>-N<span class="w"> </span>-Dj15p
+<span class="w">	</span>plot_one<span class="w"> </span>-Eo<span class="w"> </span>-Nr<span class="w"> </span>-c2,2
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>-F+cRM+jTC+a90+tORTHOGONAL<span class="w"> </span>-N<span class="w"> </span>-Dj15p
+<span class="w">	</span>plot_one<span class="w"> </span>-Er<span class="w"> </span>-Nr<span class="w"> </span>-c3,2
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>-F+cRM+jTC+a90+t<span class="s2">&quot;REDUCED MAJOR AXIS&quot;</span><span class="w"> </span>-N<span class="w"> </span>-Dj15p
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>end
+gmt<span class="w"> </span>end<span class="w"> </span>show
+rm<span class="w"> </span>-f<span class="w"> </span>data.txt<span class="w"> </span>giants.txt<span class="w"> </span>hertzsprung-russell.txt
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -223,8 +220,8 @@ rm -f data.txt giants.txt hertzsprung-russell.txt
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

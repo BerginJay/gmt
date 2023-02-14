@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdflexure &mdash; GMT 6.4.0 documentation</title>
+  <title>grdflexure &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -154,7 +151,7 @@
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
 <p><strong>gmt grdflexure</strong> <em>input</em>
-<a class="reference internal" href="#d"><span><strong>-D</strong></span></a></strong><em>rm</em>/<em>rl</em>[/<em>ri</em>]/<em>rw</em>
+<a class="reference internal" href="#d"><span><strong>-D</strong></span></a></strong><em>rm</em>/<em>rl</em>[/<em>ri</em>]/<em>rw</em>[<strong>+r</strong><em>rr</em>]
 <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong>[<em>Te</em>[<strong>k</strong>][/<em>Te2</em>[<strong>k</strong>]]]
 <a class="reference internal" href="#g"><span><strong>-G</strong></span></a></strong><em>outgrid</em>
 [ <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong><em>Nx</em>/<em>Ny</em>/<em>Nxy</em> ]
@@ -189,16 +186,16 @@ for five different types of rheological foundations, all involving <em>constant 
 <p>These conditions will require the <em>elastic</em> [1; <span class="math notranslate nohighlight">\(\Phi_e(\mathbf{k})\)</span>],
 <em>firmoviscous</em> [2,3; <span class="math notranslate nohighlight">\(\Phi_{fv}(\mathbf{k},t)\)</span>],
 <em>viscoelastic</em> [4; <span class="math notranslate nohighlight">\(\Phi_{ve}(\mathbf{k},t)\)</span>],
-and <em>general linear</em> (viscoelastic) response functions [5; <span class="math notranslate nohighlight">\(\Phi_{gl}(\mathbf{k},t)\)</span>]
+and <em>general linear</em> (viscoelastic) response functions [5; <span class="math notranslate nohighlight">\(\Phi_{gl}(\mathbf{k},t)\)</span>].
 If the (visco)elastic plate vanishes (zero thickness) then we obtain Airy isostasy
 (1,4) or a purely <em>viscous</em> response (2,3).  Temporal evolution can
 also be modeled by providing incremental load grids for select times and specifying a
-range of model output times.  A wide range of options allow specifying the desired
+range of model output times.  A wide range of options allows for specifying the desired
 rheology and related constants, including in-plate forces.</p>
 </section>
 <section id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this heading">¶</a></h2>
-<dl class="simple">
+<dl>
 <dt><em>input</em></dt><dd><p>Supplies the topographic load information in one of many forms:</p>
 <ul class="simple">
 <li><p>A single 2-D binary grid file with the topography of the load
@@ -218,12 +215,22 @@ setting in <a class="reference internal" href="#d"><span><strong>-D</strong></sp
 <li><p>A file list with extension “.lis” does not need the <strong>+l</strong> modifier
 and will be automatically recognized as a file list.</p></li>
 </ul>
+<p><strong>Note</strong>: The horizontal dimensions are expected to be in meters.  If you
+have grids in km then you can append <strong>+uk</strong> to do the required conversion
+when the grid is read.  All input grids must have the same dimensions. If
+a grid contains NaNs then they are quietly replaced with zeros; use <a class="reference internal" href="#v"><span><strong>-V</strong></span></a></strong> to
+get a report when this happens.</p>
 </dd>
 </dl>
 <dl class="simple" id="d">
-<dt><strong>-D</strong><em>rm</em>/<em>rl</em>[/<em>ri</em>]/<em>rw</em></dt><dd><p>Sets density for mantle, load, infill, and water (or air).  If <em>ri</em> differs from
-<em>rl</em> then an approximate solution will be found.  If <em>ri</em> is not given
-then it defaults to <em>rl</em>.  Values may be given in km/m^3 or g/cm^3.</p>
+<dt><strong>-D</strong><em>rm</em>/<em>rl</em>[/<em>ri</em>]/<em>rw</em>[<strong>+r</strong><em>rr</em>]</dt><dd><p>Sets density for mantle, load, infill, and water (or air).  If <em>ri</em> differs from
+<em>rl</em> then an approximate solution will be found.  If <em>ri</em> is not given then it
+defaults to <em>rl</em>.  Values may be given in <span class="math notranslate nohighlight">\(\mbox{kg/m}^3\)</span> or <span class="math notranslate nohighlight">\(\mbox{g/cm}^3\)</span>.
+<strong>Note</strong>: If a variable load density grid is supplied via <a class="reference internal" href="#h"><span><strong>-H</strong></span></a></strong> then <em>rl</em>
+must be given as -. Whether the load density is variable or not, you can (via
+the <strong>+r</strong> modifier) specify a fixed <em>root</em> density, i.e., the infill density
+just beneath the load. This will force the load topography to be rescaled by
+the ratio <em>rl/rr</em> and then <em>rl</em> will be reset to <em>rr</em> for flexure calculations.</p>
 </dd>
 </dl>
 <dl class="simple" id="e">
@@ -231,9 +238,9 @@ then it defaults to <em>rl</em>.  Values may be given in km/m^3 or g/cm^3.</p>
 If the elastic thickness exceeds 1e10 it will be interpreted as
 a flexural rigidity <em>D</em> (by default, <em>D</em> is computed from <em>Te</em>, Young’s
 modulus, and Poisson’s ratio; see <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> to change these values).
-If just <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong> is given and <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong> is used it means no plate is given
+If <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong> is given with no arguments and <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong> is given it means no plate is present
 and we will return a purely viscous response with or without an asthenospheric layer.
-Select a general linear viscoelastic response by supplying both an initial and
+Select a general linear viscoelastic response instead by supplying both an initial and
 final elastic thickness <em>Te2</em>; this response also requires <a class="reference internal" href="#m"><span><strong>-M</strong></span></a></strong>.</p>
 </dd>
 </dl>
@@ -255,7 +262,7 @@ automatic scaling to preserve precision for integer grids [Default
 is 1].</p></li>
 </ul>
 </div></blockquote>
-<p>Note: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
+<p><strong>Note</strong>: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
 (unless overridden). To write specific formats via GDAL, use =<em>gd</em>
 and supply <em>driver</em> (and optionally <em>dataType</em>) and/or one or more
 concatenated GDAL <strong>-co</strong> options using <strong>+c</strong>. See
@@ -274,7 +281,7 @@ stresses.</p>
 </dd>
 </dl>
 <dl class="simple" id="c">
-<dt><strong>-C</strong><strong>p</strong>|<strong>y</strong><em>value</em></dt><dd><p>Append <strong>p</strong> or <strong>y</strong> to change the current value of Poisson’s ratio [0.25]
+<dt><strong>-C</strong><strong>p</strong>|<strong>y</strong><em>value</em></dt><dd><p>Append directives <strong>p</strong> or <strong>y</strong> to change the current value of Poisson’s ratio [0.25]
 or Young’s modulus [7.0e10 N/m^2], respectively.</p>
 </dd>
 </dl>
@@ -292,7 +299,8 @@ Cannot be used in conjunctions with <a class="reference internal" href="#m"><spa
 <dl class="simple" id="h">
 <dt><strong>-H</strong><em>rhogrid</em></dt><dd><p>Supply optional variable load density grid.  It can be a single
 grid or a grid name template (see <a class="reference internal" href="#name-template">Name Template</a> for details). Requires
-<em>rho_l</em> be set to - in <a class="reference internal" href="#d"><span><strong>-D</strong></span></a></strong>.  <strong>Note</strong>: If <em>input</em> is given as
+<em>rho_l</em> be set to - in <a class="reference internal" href="#d"><span><strong>-D</strong></span></a></strong>.  The density grid may be NaN at nodes where the
+load grid is NaN (or zero).  <strong>Note</strong>: If <em>input</em> is given as
 a list file then the optional density grids must be given as part of
 the list and not via <a class="reference internal" href="#h"><span><strong>-H</strong></span></a></strong>.</p>
 </dd>
@@ -317,9 +325,9 @@ optional parameters. Control the FFT dimension:</p>
 dimensions &gt;= data which optimize speed and accuracy of FFT. If FFT
 dimensions &gt; grid file dimensions, data are extended and tapered to zero.</p>
 </div></blockquote>
-<p>Control detrending of data: Append modifiers for removing a linear trend:</p>
+<p>Control detrending of data: Append modifiers for removing a linear trend. Consult module documentation for the default action:</p>
 <blockquote>
-<div><p><strong>+d</strong>: Detrend data, i.e. remove best-fitting linear trend [Default].</p>
+<div><p><strong>+d</strong>: Detrend data, i.e. remove best-fitting linear trend.</p>
 <p><strong>+a</strong>: Only remove mean value.</p>
 <p><strong>+h</strong>: Only remove mid value, i.e. 0.5 * (max + min).</p>
 <p><strong>+l</strong>: Leave data alone.</p>
@@ -327,8 +335,8 @@ dimensions &gt; grid file dimensions, data are extended and tapered to zero.</p>
 <p>Control extension and tapering of data:
 Use modifiers to control how the extension and tapering are to be performed:</p>
 <blockquote>
-<div><p><strong>+e</strong> extends the grid by imposing edge-point symmetry [Default],</p>
-<p><strong>+m</strong> extends the grid by imposing edge mirror symmetry</p>
+<div><p><strong>+e</strong> extends the grid by imposing edge-point symmetry [Default].</p>
+<p><strong>+m</strong> extends the grid by imposing edge mirror symmetry.</p>
 <p><strong>+n</strong> turns off data extension.</p>
 <p>Tapering is performed from the data edge to the FFT grid edge [100%].
 Change this percentage via <strong>+t</strong><em>width</em>. When <strong>+n</strong> is in effect,
@@ -447,6 +455,11 @@ netCDF COARDS geographic grids will automatically be recognized as geographic.</
 geographic region is close to either pole, you should consider using a Cartesian
 setup instead; you can always project it back to geographic using <a class="reference internal" href="../../grdproject.html"><span class="doc">grdproject</span></a>.</p>
 </section>
+<section id="data-detrending">
+<h2>Data Detrending<a class="headerlink" href="#data-detrending" title="Permalink to this heading">¶</a></h2>
+<p>The default detrending mode is to remove a best-fitting linear plane (<strong>+d</strong>).
+Consult and use <a class="reference internal" href="#n"><span><strong>-N</strong></span></a></strong> to select other modes.</p>
+</section>
 <section id="transfer-functions">
 <h2>Transfer Functions<a class="headerlink" href="#transfer-functions" title="Permalink to this heading">¶</a></h2>
 <p>If <a class="reference internal" href="#q"><span><strong>-Q</strong></span></a></strong> is given we perform no actual flexure calculations and no input data file is required.
@@ -464,43 +477,43 @@ in km (and 0 if <strong>-E</strong>[0] was used for a viscous response only).</p
 <p>We will use a Gaussian seamount load to demonstrate <strong>grdflexure</strong>.  First, we make
 a grid of for that shape by placing a Gaussian truncated seamount at position (300,300)
 with a radius of 50 km and height of 5000 m:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="m">300</span> <span class="m">300</span> <span class="m">0</span>  <span class="m">40</span>  <span class="m">40</span>  <span class="m">5000</span> <span class="p">|</span> gmt grdseamount -R0/600/0/600+uk -I1000 -Gsmt.nc t.txt -Dk -E -F0.1 -Cg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="m">300</span><span class="w"> </span><span class="m">300</span><span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="m">40</span><span class="w">  </span><span class="m">40</span><span class="w">  </span><span class="m">5000</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>grdseamount<span class="w"> </span>-R0/600/0/600+uk<span class="w"> </span>-I1000<span class="w"> </span>-Gsmt.nc<span class="w"> </span>t.txt<span class="w"> </span>-Dk<span class="w"> </span>-E<span class="w"> </span>-F0.1<span class="w"> </span>-Cg
 </pre></div>
 </div>
 <p>To compute elastic plate flexure from the load <em>smt.nc</em>,
 for a 10 km thick plate with typical densities, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdflexure smt.nc -Gflex.nc -E10k -D2700/3300/1035
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdflexure<span class="w"> </span>smt.nc<span class="w"> </span>-Gflex.nc<span class="w"> </span>-E10k<span class="w"> </span>-D2700/3300/1035
 </pre></div>
 </div>
 <p>To see how in-plane stresses affect the result, we use <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong>.  Remember that we need to depth-
 integrated forces, not pressures, hence we try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdflexure smt.nc -Gflex.nc -E10k -D2700/3300/1035 -A-4e11/2e11/-1e12
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdflexure<span class="w"> </span>smt.nc<span class="w"> </span>-Gflex.nc<span class="w"> </span>-E10k<span class="w"> </span>-D2700/3300/1035<span class="w"> </span>-A-4e11/2e11/-1e12
 </pre></div>
 </div>
 <p>To compute viscoelastic plate flexure from the load <em>smt.nc</em>,
 for a 20 km thick plate with typical densities and a Maxwell time of 40kyr, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdflexure smt.nc -Gflex.nc -E20k -D2700/3300/1035 -M40k
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdflexure<span class="w"> </span>smt.nc<span class="w"> </span>-Gflex.nc<span class="w"> </span>-E20k<span class="w"> </span>-D2700/3300/1035<span class="w"> </span>-M40k
 </pre></div>
 </div>
 <p>To compute firmoviscous plate flexure from the load <em>smt.nc</em>,
 for a 15 km thick plate with typical densities overlying a viscous mantle with viscosity 2e21, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdflexure smt.nc -Gflex.nc -E15k -D2700/3300/1035 -F2e21
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdflexure<span class="w"> </span>smt.nc<span class="w"> </span>-Gflex.nc<span class="w"> </span>-E15k<span class="w"> </span>-D2700/3300/1035<span class="w"> </span>-F2e21
 </pre></div>
 </div>
 <p>To compute the general linear viscoelastic plate flexure from the load <em>smt.nc</em>,
 for an initial Te of 40 km and a final Te of 15 km  with typical densities and a Maxwell time of 100 kyr, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdflexure smt.nc -Gflex.nc -E40k/15k -D2700/3300/1035 -M100k
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdflexure<span class="w"> </span>smt.nc<span class="w"> </span>-Gflex.nc<span class="w"> </span>-E40k/15k<span class="w"> </span>-D2700/3300/1035<span class="w"> </span>-M100k
 </pre></div>
 </div>
 <p>To just compute the firmoviscous response functions using the specified rheological values, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdflexure -D3300/2800/2800/1000 -Q -F2e20
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdflexure<span class="w"> </span>-D3300/2800/2800/1000<span class="w"> </span>-Q<span class="w"> </span>-F2e20
 </pre></div>
 </div>
 <p>The following are not user-reproducible but shows the kind of calculations that can be done.
 To compute the firmoviscous response to a series of incremental loads given by
 file name and load time in the table l.lis at the single time 1 Ma using the
 specified rheological values, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdflexure -T1M <span class="o">=</span>l.lis -D3300/2800/2800/1000 -E5k -Gflx/smt_fv_%03.1f_%s.nc -F2e20 -Nf+a
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdflexure<span class="w"> </span>-T1M<span class="w"> </span><span class="o">=</span>l.lis<span class="w"> </span>-D3300/2800/2800/1000<span class="w"> </span>-E5k<span class="w"> </span>-Gflx/smt_fv_%03.1f_%s.nc<span class="w"> </span>-F2e20<span class="w"> </span>-Nf+a
 </pre></div>
 </div>
 </section>
@@ -516,6 +529,19 @@ topographic load in the wavenumber domain, <em>A</em> is the Airy density ratio,
 on the infill density, and <span class="math notranslate nohighlight">\(\Phi(\mathbf{k},t)\)</span> is the response function for the selected rheology. The <strong>grdflexure</strong>
 module read one or more loads <em>h</em>, transforms them to <em>H</em>, evaluates and applies the response function, and
 inversely transform the results back to yield on or more <em>w</em> solutions.</p>
+<section id="variable-load-density">
+<h3>Variable load density<a class="headerlink" href="#variable-load-density" title="Permalink to this heading">¶</a></h3>
+<p>If the load density is variable (i.e., provided as a grid via <a class="reference internal" href="#h"><span><strong>-H</strong></span></a></strong>) then we simply adjust the load height to be
+the equivalent height for the average load density. This is accomplished on a node-by-node basis by honoring the
+equality <span class="math notranslate nohighlight">\(\rho_l(\mathbf{x})\cdot h(\mathbf{x}) = \bar{\rho_l}\cdot h'(\mathbf{x})\)</span>, where the prime height
+is the adjusted amplitude.</p>
+</section>
+<section id="submarine-and-subaerial-loads">
+<h3>Submarine and subaerial loads<a class="headerlink" href="#submarine-and-subaerial-loads" title="Permalink to this heading">¶</a></h3>
+<p>If the water depth is specified via <a class="reference internal" href="#w"><span><strong>-W</strong></span></a></strong> then we check if the (possibly adjusted) load height exceeds the water
+depth for any node.  If so, then we adjust the load height that is above water to what it needs to be if the density
+contrast were against water and not air.  The subaerial height component is thus extended by <span class="math notranslate nohighlight">\(\frac{\rho_l}{\rho_l - \rho_w}\)</span>.</p>
+</section>
 <section id="variable-infill-approximation">
 <h3>Variable infill approximation<a class="headerlink" href="#variable-infill-approximation" title="Permalink to this heading">¶</a></h3>
 <p>If <span class="math notranslate nohighlight">\(\rho_i = \rho_l\)</span> then <span class="math notranslate nohighlight">\(\gamma = 1\)</span>, otherwise the infill density varies spatially and the Fourier
@@ -630,8 +656,8 @@ J. Geophys. Res., 106(B9), 19,431-19,441,
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

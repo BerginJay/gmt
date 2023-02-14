@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdfft &mdash; GMT 6.4.0 documentation</title>
+  <title>grdfft &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -31,6 +28,7 @@
         <script>let toggleOpenOnPrint = 'true';</script>
         <script src="_static/togglebutton.js"></script>
         <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -52,7 +50,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -218,9 +216,10 @@ the field <em>zlevel</em> meters.</p>
 </dd>
 </dl>
 <dl class="simple" id="d">
-<dt><strong>-D</strong>[<em>scale</em>|<strong>g</strong>]</dt><dd><p>Differentiate the field, i.e., take d(field)/dz. This is equivalent
-to multiplying by kr in the frequency domain (kr is radial wave
-number). Append a scale to multiply by (kr * <em>scale</em>) instead.
+<dt><strong>-D</strong>[<em>scale</em>|<strong>g</strong>]</dt><dd><p>Differentiate the field, i.e., take <span class="math notranslate nohighlight">\(\frac{\partial}{\partial z}\)</span>
+of the grid <em>z</em>. This is equivalent
+to multiplying by <span class="math notranslate nohighlight">\(k_r\)</span> in the frequency domain (<span class="math notranslate nohighlight">\(k_r\)</span> is radial wave
+number). Append a scale to multiply by <span class="math notranslate nohighlight">\(k_r \cdot\)</span><em>scale</em>) instead.
 Alternatively, append <strong>g</strong> to indicate that your data are geoid
 heights in meters and output should be gravity anomalies in mGal.
 [Default is no scale].</p>
@@ -291,9 +290,9 @@ all other options that require a grid output.</p>
 </dd>
 </dl>
 <dl class="simple" id="i">
-<dt><strong>-I</strong>[<em>scale</em>|<strong>g</strong>]</dt><dd><p>Integrate the field, i.e., compute integral_over_z (field * dz).
-This is equivalent to divide by kr in the frequency domain (kr is
-radial wave number). Append a scale to divide by (kr * <em>scale</em>)
+<dt><strong>-I</strong>[<em>scale</em>|<strong>g</strong>]</dt><dd><p>Integrate the field, i.e., compute <span class="math notranslate nohighlight">\(\int z(x,y) dz\)</span>.
+This is equivalent to divide by <span class="math notranslate nohighlight">\(k_r\)</span> in the frequency domain (<span class="math notranslate nohighlight">\(k_r\)</span> is
+radial wave number). Append a scale to divide by <span class="math notranslate nohighlight">\(k_r \cdot\)</span><em>scale</em>
 instead. Alternatively, append <strong>g</strong> to indicate that your data set
 is gravity anomalies in mGal and output should be geoid heights in
 meters. [Default is no scale].</p>
@@ -312,9 +311,9 @@ optional parameters. Control the FFT dimension:</p>
 dimensions &gt;= data which optimize speed and accuracy of FFT. If FFT
 dimensions &gt; grid file dimensions, data are extended and tapered to zero.</p>
 </div></blockquote>
-<p>Control detrending of data: Append modifiers for removing a linear trend:</p>
+<p>Control detrending of data: Append modifiers for removing a linear trend. Consult module documentation for the default action:</p>
 <blockquote>
-<div><p><strong>+d</strong>: Detrend data, i.e. remove best-fitting linear trend [Default].</p>
+<div><p><strong>+d</strong>: Detrend data, i.e. remove best-fitting linear trend.</p>
 <p><strong>+a</strong>: Only remove mean value.</p>
 <p><strong>+h</strong>: Only remove mid value, i.e. 0.5 * (max + min).</p>
 <p><strong>+l</strong>: Leave data alone.</p>
@@ -322,8 +321,8 @@ dimensions &gt; grid file dimensions, data are extended and tapered to zero.</p>
 <p>Control extension and tapering of data:
 Use modifiers to control how the extension and tapering are to be performed:</p>
 <blockquote>
-<div><p><strong>+e</strong> extends the grid by imposing edge-point symmetry [Default],</p>
-<p><strong>+m</strong> extends the grid by imposing edge mirror symmetry</p>
+<div><p><strong>+e</strong> extends the grid by imposing edge-point symmetry [Default].</p>
+<p><strong>+m</strong> extends the grid by imposing edge mirror symmetry.</p>
 <p><strong>+n</strong> turns off data extension.</p>
 <p>Tapering is performed from the data edge to the FFT grid edge [100%].
 Change this percentage via <strong>+t</strong><em>width</em>. When <strong>+n</strong> is in effect,
@@ -391,6 +390,11 @@ meters, select <strong>-f</strong><a class="reference internal" href="gmt.html#f
 consider projecting the grid file onto a rectangular coordinate system
 using <a class="reference internal" href="grdproject.html"><span class="doc">grdproject</span></a></p>
 </section>
+<section id="data-detrending">
+<h2>Data Detrending<a class="headerlink" href="#data-detrending" title="Permalink to this heading">¶</a></h2>
+<p>The default detrending mode is to remove a best-fitting linear plane (<strong>+d</strong>).
+Consult and use <a class="reference internal" href="#n"><span><strong>-N</strong></span></a></strong> to select other modes.</p>
+</section>
 <section id="normalization-of-spectrum">
 <h2>Normalization of Spectrum<a class="headerlink" href="#normalization-of-spectrum" title="Permalink to this heading">¶</a></h2>
 <p>By default, the power spectrum returned by <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong> simply sums the contributions
@@ -412,20 +416,20 @@ Other commands requiring input files are just dummy examples of the types
 of uses that are common but cannot be run verbatim as written.</p>
 <p>To obtain the normalized radial spectrum from the remote data grid &#64;white_noise.nc,
 after removing the mean, let us try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdfft @white_noise.nc -Er+n -N+a &gt; spectrum.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdfft<span class="w"> </span>@white_noise.nc<span class="w"> </span>-Er+n<span class="w"> </span>-N+a<span class="w"> </span>&gt;<span class="w"> </span>spectrum.txt
 </pre></div>
 </div>
 <p>To upward continue the sea-level magnetic anomalies in the file
 mag_0.nc to a level 800 m above sealevel:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdfft mag_0.nc -C800 -V -Gmag_800.nc
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdfft<span class="w"> </span>mag_0.nc<span class="w"> </span>-C800<span class="w"> </span>-V<span class="w"> </span>-Gmag_800.nc
 </pre></div>
 </div>
 </div></blockquote>
 <p>To transform geoid heights in m (geoid.nc) on a geographical grid to
 free-air gravity anomalies in mGal:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdfft geoid.nc -Dg -V -Ggrav.nc
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdfft<span class="w"> </span>geoid.nc<span class="w"> </span>-Dg<span class="w"> </span>-V<span class="w"> </span>-Ggrav.nc
 </pre></div>
 </div>
 </div></blockquote>
@@ -434,24 +438,24 @@ vertical (in micro-radians) in the 038 direction, we must first
 integrate gravity to get geoid, then take the directional derivative,
 and finally scale radians to micro-radians:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdfft faa.nc -Ig -A38 -S1e6 -V -Gdefl_38.nc
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdfft<span class="w"> </span>faa.nc<span class="w"> </span>-Ig<span class="w"> </span>-A38<span class="w"> </span>-S1e6<span class="w"> </span>-V<span class="w"> </span>-Gdefl_38.nc
 </pre></div>
 </div>
 </div></blockquote>
 <p>Second vertical derivatives of gravity anomalies are related to the
 curvature of the field. We can compute these as mGal/m^2 by:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdfft gravity.nc -D -D -V -Ggrav_2nd_derivative.nc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdfft<span class="w"> </span>gravity.nc<span class="w"> </span>-D<span class="w"> </span>-D<span class="w"> </span>-V<span class="w"> </span>-Ggrav_2nd_derivative.nc
 </pre></div>
 </div>
 <p>To compute cross-spectral estimates for co-registered bathymetry and
 gravity grids, and report result as functions of wavelengths in km, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdfft bathymetry.nc gravity.grd -E+wk -fg -V &gt; cross_spectra.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdfft<span class="w"> </span>bathymetry.nc<span class="w"> </span>gravity.grd<span class="w"> </span>-E+wk<span class="w"> </span>-fg<span class="w"> </span>-V<span class="w"> </span>&gt;<span class="w"> </span>cross_spectra.txt
 </pre></div>
 </div>
 <p>To examine the pre-FFT grid after detrending, point-symmetry reflection,
 and tapering has been applied, as well as saving the real and imaginary
 components of the raw spectrum of the data in topo.nc, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdfft topo.nc -N+w+z -fg -V -Q
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdfft<span class="w"> </span>topo.nc<span class="w"> </span>-N+w+z<span class="w"> </span>-fg<span class="w"> </span>-V<span class="w"> </span>-Q
 </pre></div>
 </div>
 <p>You can now make plots of the data in topo_taper.nc, topo_real.nc, and topo_imag.nc.</p>
@@ -477,8 +481,8 @@ components of the raw spectrum of the data in topo.nc, try:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

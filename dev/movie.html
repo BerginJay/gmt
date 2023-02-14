@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>movie &mdash; GMT 6.4.0 documentation</title>
+  <title>movie &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -278,7 +275,7 @@ The values in the columns will be available to the <em>mainscript</em> as named 
 number of records equals the number of frames. Note that the <em>background</em> script is allowed to create
 <em>timefile</em>, hence we check for its existence both before <em>and</em> after the background script has completed.
 <strong>Note</strong>: If just <em>nframes</em> is given then only <strong>MOVIE_FRAME</strong> is available as no data file is available.
-For details on array creation, see <a class="reference internal" href="#generate-1d-array">Generate 1D Array</a>.  Several modifiers are also available:</p>
+For details on array creation, see <a class="reference internal" href="#generate-1-d-array">Generate 1-D Array</a>.  Several modifiers are also available:</p>
 <ul class="simple">
 <li><p><strong>+n</strong> indicates that <em>inc</em> is the desired <em>number</em> of frames from <em>min</em> to <em>max</em> instead of an increment.</p></li>
 <li><p><strong>+p</strong> can be used to set the tag <em>width</em> of the frame number format used in naming frames.  For
@@ -390,7 +387,7 @@ Several modifiers control the appearance of the label:</p>
 <ul class="simple">
 <li><p><strong>+c</strong><em>dx</em>[/<em>dy</em>] sets the clearance between label and bounding box; only used if <strong>+g</strong> or <strong>+p</strong> are set.
 Append units <strong>c</strong>|<strong>i</strong>|<strong>p</strong> or % of the font size [15%].</p></li>
-<li><p><strong>+f</strong> seelcts a specific <em>font</em> [<a class="reference internal" href="gmt.conf.html#term-FONT_TAG"><span class="xref std std-term">FONT_TAG</span></a>].</p></li>
+<li><p><strong>+f</strong> selects a specific <em>font</em> [<a class="reference internal" href="gmt.conf.html#term-FONT_TAG"><span class="xref std std-term">FONT_TAG</span></a>].</p></li>
 <li><p><strong>+g</strong> will fill the label bounding box with <em>fill</em> color [no fill].</p></li>
 <li><p><strong>+h</strong>[<em>dx</em>/<em>dy</em>/][<em>shade</em>] will place drop-down shade behind the label bounding box. You can
 adjust the offset with <em>dx</em>/<em>dy</em> [4p/-4p] and shade color [gray50]; requires <strong>+g</strong> [no shade].</p></li>
@@ -429,6 +426,8 @@ for more information on what these are).</p></li>
 <li><p><strong>+o</strong><em>dx</em>[/<em>dy</em>] offsets the indicator in direction implied by <em>justify</em>.</p></li>
 <li><p><strong>+p</strong><em>pen</em> sets the moving item <em>pen</em>.</p></li>
 <li><p><strong>+P</strong><em>pen</em> sets the static item <em>pen</em>.</p></li>
+<li><p><strong>+s</strong><em>scale</em> means we compute elapsed time as frame number times <em>scale</em>.</p></li>
+<li><p><strong>+t</strong><em>format</em> sets a C-format statement to be used with the item selected [none].</p></li>
 <li><p><strong>+w</strong><em>width</em> sets the dimension of the indicator [5% of max canvas dimension for circular indicators and
 60% of relevant canvas dimension (height or width depending on <strong>+j</strong>) for the linear indicators].</p></li>
 </ul>
@@ -501,11 +500,11 @@ any module-specific option (but not the GMT common options), then exit.</p>
 </dd>
 </dl>
 </section>
-<section id="generate-1d-array">
-<h2>Generate 1D Array<a class="headerlink" href="#generate-1d-array" title="Permalink to this heading">¶</a></h2>
+<section id="generate-1-d-array">
+<h2>Generate 1-D Array<a class="headerlink" href="#generate-1-d-array" title="Permalink to this heading">¶</a></h2>
 <p>We will demonstrate the use of options for creating 1-D arrays via <a class="reference internal" href="gmtmath.html"><span class="doc">gmtmath</span></a>.
 Make an evenly spaced coordinate array from <em>min</em> to <em>max</em> in steps of <em>inc</em>, e.g.,:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T3.1/4.2/0.1 <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T3.1/4.2/0.1<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">3</span>.1
 <span class="m">3</span>.2
 <span class="m">3</span>.3
@@ -518,7 +517,7 @@ Make an evenly spaced coordinate array from <em>min</em> to <em>max</em> in step
 <p>Append <strong>+b</strong> if we should take log2 of <em>min</em> and <em>max</em>, get their nearest integers,
 build an equidistant log2-array using <em>inc</em> integer increments in log2, then undo
 the log2 conversion. E.g., <strong>-T</strong>3/20/1<strong>+b</strong> will produce this sequence:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T3/20/1+b <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T3/20/1+b<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">4</span>
 <span class="m">8</span>
 <span class="m">16</span>
@@ -527,7 +526,7 @@ the log2 conversion. E.g., <strong>-T</strong>3/20/1<strong>+b</strong> will pro
 <p>Append <strong>+l</strong> if we should take log10 of <em>min</em> and <em>max</em> and build an
 array where <em>inc</em> can be 1 (every magnitude), 2, (1, 2, 5 times magnitude) or 3
 (1-9 times magnitude).  E.g., <strong>-T</strong>7/135/2<strong>+l</strong> will produce this sequence:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T7/135/2+l <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T7/135/2+l<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">10</span>
 <span class="m">20</span>
 <span class="m">50</span>
@@ -535,7 +534,7 @@ array where <em>inc</em> can be 1 (every magnitude), 2, (1, 2, 5 times magnitude
 </pre></div>
 </div>
 <p>For output values less frequently than every magnitude, use a negative integer <em>inc</em>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T1e-4/1e4/-2+l <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T1e-4/1e4/-2+l<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">0</span>.0001
 <span class="m">0</span>.01
 <span class="m">1</span>
@@ -545,7 +544,7 @@ array where <em>inc</em> can be 1 (every magnitude), 2, (1, 2, 5 times magnitude
 </div>
 <p>Append <strong>+i</strong> if <em>inc</em> is a fractional number and it is cleaner to give its reciprocal
 value instead.  To set up times for a 24-frames per second animation lasting 1 minute, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T0/60/24+i <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T0/60/24+i<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">0</span>
 <span class="m">0</span>.0416666666667
 <span class="m">0</span>.0833333333333
@@ -556,7 +555,7 @@ value instead.  To set up times for a 24-frames per second animation lasting 1 m
 </div>
 <p>Append <strong>+n</strong> if <em>inc</em> is meant to indicate the <em>number</em> of equidistant coordinates
 instead.  To have exactly 5 equidistant values from 3.44 and 7.82, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T3.44/7.82/5+n <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T3.44/7.82/5+n<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">3</span>.44
 <span class="m">4</span>.535
 <span class="m">5</span>.63
@@ -567,7 +566,7 @@ instead.  To have exactly 5 equidistant values from 3.44 and 7.82, run:</p>
 <p>Alternatively, let <em>inc</em> be a <em>file</em> with output coordinates in the first column,
 or provide a comma-separated <em>list</em> of specific coordinates, such as the first 6
 Fibonacci numbers:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T0,1,1,2,3,5 <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T0,1,1,2,3,5<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">0</span>
 <span class="m">1</span>
 <span class="m">1</span>
@@ -584,7 +583,7 @@ then you must append a comma to distinguish the list from the setting of an incr
 <strong>y</strong>ear, m<strong>o</strong>nth, <strong>d</strong>ay, <strong>h</strong>our, <strong>m</strong>inute, and <strong>s</strong>econd
 to the given increment; add <strong>+t</strong> to ensure time column (or use <strong>-f</strong>). <strong>Note</strong>: The internal time
 unit is still controlled independently by <a class="reference internal" href="gmt.conf.html#term-TIME_UNIT"><span class="xref std std-term">TIME_UNIT</span></a>.  The first 7 days of March 2020:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T2020-03-01T/2020-03-07T/1d <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T2020-03-01T/2020-03-07T/1d<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">2020</span>-03-01T00:00:00
 <span class="m">2020</span>-03-02T00:00:00
 <span class="m">2020</span>-03-03T00:00:00
@@ -687,7 +686,7 @@ exact canvas dimensions.</p>
 <p>Instead of passing GMT modern scripts to <a class="reference internal" href="#s"><span><strong>-S</strong></span></a></strong> you can alternatively provide the name of <em>PostScript</em>
 plot layer files. Note that these must exactly match the canvas size.  As a simple example, if you are
 making a HD movie using the US unit dimensions then a background pink layer would be created by:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt basemap -R0/9.6/0/5.4 -Jx1i -B+gpink -X0 -Y0 --PS_MEDIA<span class="o">=</span><span class="m">9</span>.6ix5.4i -ps background
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>basemap<span class="w"> </span>-R0/9.6/0/5.4<span class="w"> </span>-Jx1i<span class="w"> </span>-B+gpink<span class="w"> </span>-X0<span class="w"> </span>-Y0<span class="w"> </span>--PS_MEDIA<span class="o">=</span><span class="m">9</span>.6ix5.4i<span class="w"> </span>-ps<span class="w"> </span>background
 </pre></div>
 </div>
 <p>Note the canvas selection via <a class="reference internal" href="gmt.conf.html#term-PS_MEDIA"><span class="xref std std-term">PS_MEDIA</span></a>, the matching region and projection, and
@@ -816,25 +815,25 @@ those static images (via modifier <strong>+p</strong>) in order to preserve the 
 <p>To make an animated GIF movie based on the script globe.sh, which simply spins a globe using the
 frame number to serve as the view longitude, using a custom square 600 by 600 pixel canvas and 360 frames,
 place a frame counter in the top left corner, and place a progress indicator in the top right corner, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt movie globe.sh -Nglobe -T360 -Fgif -C6ix6ix100 -Lf -P
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>movie<span class="w"> </span>globe.sh<span class="w"> </span>-Nglobe<span class="w"> </span>-T360<span class="w"> </span>-Fgif<span class="w"> </span>-C6ix6ix100<span class="w"> </span>-Lf<span class="w"> </span>-P
 </pre></div>
 </div>
 <p>Here, the globe.sh bash script simply plots a map with <a class="reference internal" href="coast.html"><span class="doc">coast</span></a> but uses the frame number variable
 as the center longitude:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
-   gmt coast -Rg -JG<span class="si">${</span><span class="nv">MOVIE_FRAME</span><span class="si">}</span>/20/<span class="si">${</span><span class="nv">MOVIE_WIDTH</span><span class="si">}</span> -Gmaroon -Sturquoise -Bg -X0 -Y0
-gmt end
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin
+<span class="w">   </span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JG<span class="si">${</span><span class="nv">MOVIE_FRAME</span><span class="si">}</span>/20/<span class="si">${</span><span class="nv">MOVIE_WIDTH</span><span class="si">}</span><span class="w"> </span>-Gmaroon<span class="w"> </span>-Sturquoise<span class="w"> </span>-Bg<span class="w"> </span>-X0<span class="w"> </span>-Y0
+gmt<span class="w"> </span>end
 </pre></div>
 </div>
 <p>As the automatic frame loop is executed the different frames will be produced with different
 longitudes.  The equivalent DOS batch script setup would be:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt movie globe.bat -Nglobe -T360 -Fgif -C6ix6ix100 -Lf -P
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>movie<span class="w"> </span>globe.bat<span class="w"> </span>-Nglobe<span class="w"> </span>-T360<span class="w"> </span>-Fgif<span class="w"> </span>-C6ix6ix100<span class="w"> </span>-Lf<span class="w"> </span>-P
 </pre></div>
 </div>
 <p>Now, the globe.bat DOS script is simply:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
-   gmt coast -Rg -JG%MOVIE_FRAME%/20/%MOVIE_WIDTH% -Gmaroon -Sturquoise -Bg -X0 -Y0
-gmt end
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin
+<span class="w">   </span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JG%MOVIE_FRAME%/20/%MOVIE_WIDTH%<span class="w"> </span>-Gmaroon<span class="w"> </span>-Sturquoise<span class="w"> </span>-Bg<span class="w"> </span>-X0<span class="w"> </span>-Y0
+gmt<span class="w"> </span>end
 </pre></div>
 </div>
 <p>i.e., the syntax of how variables are used vary according to the scripting language. At the
@@ -865,7 +864,7 @@ as QuickTime Player, iMovie, MovieMaker, and other commercial programs to make a
 how the movie is put together from all the still images.  If you kept all the frame images then
 you do not have to rerun the whole render process.  Assuming you want a MP4 movie and that you
 want to rerun just the ffmpeg command, here is an example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -loglevel warning -f image2 -framerate <span class="m">24</span> -y -i <span class="s2">&quot;mydir/myimages_%04d.png&quot;</span> -vcodec libx264 -pix_fmt yuv420p mymovie.mp4
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg<span class="w"> </span>-loglevel<span class="w"> </span>warning<span class="w"> </span>-f<span class="w"> </span>image2<span class="w"> </span>-framerate<span class="w"> </span><span class="m">24</span><span class="w"> </span>-y<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;mydir/myimages_%04d.png&quot;</span><span class="w"> </span>-vcodec<span class="w"> </span>libx264<span class="w"> </span>-pix_fmt<span class="w"> </span>yuv420p<span class="w"> </span>mymovie.mp4
 </pre></div>
 </div>
 <p>This command is also written out when movie performs this step.
@@ -878,9 +877,9 @@ For other movie formats you will need to consult the <a class="reference externa
 Assume we have four movies called movie_1.mp4, movie_2.mp4, movie_3.mp4, and movie_4.mp4, and you wish to combine
 them into a 2x2 panel showing the four movies simultaneously.  You would first combine movies (1,2) and (3,4)
 horizontally, then combine the two resulting strips vertically:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -i movie_1.mp4 -i movie_2.mp4 -filter_complex <span class="nv">hstack</span><span class="o">=</span><span class="nv">inputs</span><span class="o">=</span><span class="m">2</span> top.mp4
-ffmpeg -i movie_3.mp4 -i movie_4.mp4 -filter_complex <span class="nv">hstack</span><span class="o">=</span><span class="nv">inputs</span><span class="o">=</span><span class="m">2</span> bottom.mp4
-ffmpeg -i top.mp4 -i bottom.mp4 -filter_complex <span class="nv">vstack</span><span class="o">=</span><span class="nv">inputs</span><span class="o">=</span><span class="m">2</span> four_movies.mp4
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg<span class="w"> </span>-i<span class="w"> </span>movie_1.mp4<span class="w"> </span>-i<span class="w"> </span>movie_2.mp4<span class="w"> </span>-filter_complex<span class="w"> </span><span class="nv">hstack</span><span class="o">=</span><span class="nv">inputs</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>top.mp4
+ffmpeg<span class="w"> </span>-i<span class="w"> </span>movie_3.mp4<span class="w"> </span>-i<span class="w"> </span>movie_4.mp4<span class="w"> </span>-filter_complex<span class="w"> </span><span class="nv">hstack</span><span class="o">=</span><span class="nv">inputs</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>bottom.mp4
+ffmpeg<span class="w"> </span>-i<span class="w"> </span>top.mp4<span class="w"> </span>-i<span class="w"> </span>bottom.mp4<span class="w"> </span>-filter_complex<span class="w"> </span><span class="nv">vstack</span><span class="o">=</span><span class="nv">inputs</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>four_movies.mp4
 </pre></div>
 </div>
 <p>For more information on such manipulations, see the FFmpeg documentation.</p>
@@ -890,7 +889,7 @@ ffmpeg -i top.mp4 -i bottom.mp4 -filter_complex <span class="nv">vstack</span><s
 <p>If you wish to add an <em>audio</em> track to the animation, say a narration that explains your animation,
 you can record your audio using a suitable tool and save it to a *.mp3 or *.m4a file.  The audio track
 should be approximately the same length as the video.  Then, simply combine the two with FFmpeg:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -loglevel warning -i yourslientmovie.mp4 -y -i narration.m4a final.mp4
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg<span class="w"> </span>-loglevel<span class="w"> </span>warning<span class="w"> </span>-i<span class="w"> </span>yourslientmovie.mp4<span class="w"> </span>-y<span class="w"> </span>-i<span class="w"> </span>narration.m4a<span class="w"> </span>final.mp4
 </pre></div>
 </div>
 <p>For more information on audio manipulations, see the FFmpeg documentation.</p>
@@ -930,8 +929,8 @@ for various solutions.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

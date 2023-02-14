@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gmt &mdash; GMT 6.4.0 documentation</title>
+  <title>gmt &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -201,7 +198,7 @@ directory.  The figures are placed in the current directory.</p>
 </dl>
 <p>For information on any module, load the module documentation
 in your browser via gmt <a class="reference internal" href="docs.html"><span class="doc">docs</span></a>, e.g.:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt docs grdimage
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>docs<span class="w"> </span>grdimage
 </pre></div>
 </div>
 <p>If no module is given then several other options are available:</p>
@@ -336,8 +333,8 @@ intervals, axes labels, and annotation units.</p>
 <blockquote>
 <div><p><strong>-B</strong>[<em>axes</em>][<strong>+b</strong>][<strong>+g</strong><em>fill</em>][<strong>+i</strong>[<em>val</em>]][<strong>+n</strong>][<strong>+o</strong><em>lon/lat</em>][<strong>+s</strong><em>subtitle</em>][<strong>+t</strong><em>title</em>][<strong>+w</strong>[<em>pen</em>]][<strong>+x</strong><em>fill</em>][<strong>+y</strong><em>fill</em>][<strong>+z</strong><em>fill</em>]</p>
 </div></blockquote>
-<p>The frame setting is optional but can be invoked once to override the defaults. The following modifiers can be appended
-to <strong>-B</strong> to control the Frame settings:</p>
+<p>The frame setting is optional but can be invoked once to override the defaults. The following directives and modifiers
+can be appended to <strong>-B</strong> to control the Frame settings:</p>
 <ul>
 <li><p><em>axes</em> to set which of the axes should be drawn and possibly annotated using a combination of the codes listed
 below [default is <a class="reference internal" href="theme-settings.html"><span class="doc">theme dependent</span></a>]. Borders omitted from the set of codes will not be drawn.
@@ -400,7 +397,7 @@ with &#64;[ markers (or alternatively &lt;math&gt; … &lt;/math&gt;) (requires 
 <div class="line"><strong>-B</strong>[<strong>p</strong>|<strong>s</strong>][<strong>x</strong>|<strong>y</strong>|<strong>z</strong>]<em>intervals</em></div>
 </div>
 </div></blockquote>
-<p>The following modifiers can be appended to <strong>-B</strong> to control the Axes settings:</p>
+<p>The following directives and modifiers can be appended to <strong>-B</strong> to control the Axes settings:</p>
 <ul class="simple">
 <li><p><strong>p</strong>|<strong>s</strong> to set whether the modifiers apply to the <strong>p</strong>(rimary) or <strong>s</strong>(econdary) axes [Default is <strong>p</strong>].
 These settings are mostly used for time axes annotations but are available for geographic axes as well. <strong>Note</strong>:
@@ -950,9 +947,9 @@ and <strong>cs2cs</strong> programs) so users are referred to <a class="referenc
 <p>The usage of <strong>PROJ</strong> follows very closely the syntax of <strong>proj</strong> and <strong>cs2cs</strong>. The projection parameters
 are encapsulated under the <strong>-J</strong> option. Because there are normally several parameters defining a
 referencing system separated by spaces (in <strong>PROJ</strong> or <strong>GDAL</strong>) we can either use double quotes as in
-<strong>-J</strong>“<em>+proj=merc +ellps=WGS84 +units=m</em>” or just glue all parameters like in
+<strong>-J</strong>“<em>+proj=merc +ellps=WGS84 +units=m</em>“ or just glue all parameters like in
 <strong>-J</strong><em>+proj=merc+ellps=WGS84+units=m</em>.</p>
-<p>Using <a class="reference external" href="http://spatialreference.org">EPSG codes</a> is also possible (but need the setting of the <strong>GDAL_DATA</strong>
+<p>Using <a class="reference external" href="https://spatialreference.org">EPSG codes</a> is also possible (but need the setting of the <strong>GDAL_DATA</strong>
 environment variable to point to the GDAL’s <em>data</em> sub-directory). For example <strong>-JEPSG:4326</strong> sets
 the WGS-84 system.</p>
 <p>For <a class="reference internal" href="mapproject.html"><span class="doc">mapproject</span></a> and <a class="reference internal" href="grdproject.html"><span class="doc">grdproject</span></a> we can go directly from the
@@ -965,7 +962,7 @@ Here, only the subset of the <strong>PROJ</strong> projections that can be mappe
 available to use. Another aspect that is not present in <strong>PROJ</strong>, because it’s not a mapping library,
 is how to set the map scale or map dimension. We introduced the two extensions <strong>+width=</strong><em>size</em> and
 <strong>+scale=</strong><em>1:xxxx</em> that work exactly like the <em>map width</em> and <em>scale</em> in classical GMT. It is also allowed
-to provide the scale (but NOT the width) by appending the string “/1:xxx” to the end of the projection parameters.</p>
+to provide the scale (but <strong>not</strong> the width) by appending the string “/1:xxx” to the end of the projection parameters.</p>
 </dd>
 </dl>
 <span class="target" id="r-full"></span></section>
@@ -1001,10 +998,10 @@ the nature of the calling module, this mechanism will also set grid spacing and 
 <li><p><strong>-R</strong><em>code1,code2,…</em>[<strong>+e</strong>|<strong>r</strong>|<strong>R</strong><em>incs</em>]. This indirectly supplies the region by
 consulting the DCW (Digital Chart of the World) database and derives the bounding regions for one or more
 countries given by the codes. Simply append one or more comma-separated countries using either the two-character
-<a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
+<a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
 country name (e.g., Norway). To select a state within a country (if available), append .state (e.g, US.TX),
 or the full state name (e.g., Texas). To specify a whole continent, spell out the full continent name (e.g., -RAfrica).
-Finally, append any <a class="reference internal" href="coast.html#id1"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of the
+Finally, append any <a class="reference internal" href="coast.html#dcw-collections"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of the
 collection or named region. All names are case-insensitive. The following modifiers can be appended:</p>
 <ul class="simple">
 <li><p><strong>+r</strong> to adjust the region boundaries to be multiples of the steps indicated by <em>inc</em>, <em>xinc</em>/<em>yinc</em>, or
@@ -1045,11 +1042,11 @@ perspective view of the plane is plotted, with no third dimension.</p>
 <h3>The <strong>-U</strong> option<a class="headerlink" href="#the-u-option" title="Permalink to this heading">¶</a></h3>
 <p><strong>Syntax</strong></p>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <p><strong>Description</strong></p>
-<p>The <strong>-U</strong> option draws the GMT system time stamp on the plot. The following modifiers are supported:</p>
+<p>The <strong>-U</strong> option draws the GMT system time stamp on the plot. The following argument and modifiers are supported:</p>
 <ul class="simple">
 <li><p><em>label</em> to append the text string given in <em>label</em> (which must be surrounded by double quotes if it contains spaces).</p></li>
 <li><p><strong>+c</strong> to plot the current command string.</p></li>
@@ -1058,6 +1055,8 @@ perspective view of the plane is plotted, with no third dimension.</p>
 <strong>R</strong>(ight)) and a vertical (<strong>T</strong>(op), <strong>M</strong>(iddle), or <strong>B</strong>(ottom)) code [default is <strong>BL</strong>].</p></li>
 <li><p><strong>+o</strong><em>dx</em>[/<em>dy</em>] to offset the <a class="reference internal" href="cookbook/features.html#anchor-point-o"><span class="std std-ref">anchor point</span></a> for the time stamp by <em>dx</em> and optionally
 <em>dy</em> (if different than <em>dx</em>).</p></li>
+<li><p><strong>+t</strong> can be used to replace the UNIX time stamp with a custom <em>text</em> instead (&lt; 64 characters). Place multi-word
+<em>text</em> in quotes and let <strong>+t</strong> be the last modifier used.</p></li>
 </ul>
 <p>The GMT parameters <a class="reference internal" href="gmt.conf.html#term-MAP_LOGO"><span class="xref std std-term">MAP_LOGO</span></a>, <a class="reference internal" href="gmt.conf.html#term-MAP_LOGO_POS"><span class="xref std std-term">MAP_LOGO_POS</span></a>, <a class="reference internal" href="gmt.conf.html#term-FONT_LOGO"><span class="xref std std-term">FONT_LOGO</span></a> and <a class="reference internal" href="gmt.conf.html#term-FORMAT_TIME_STAMP"><span class="xref std std-term">FORMAT_TIME_STAMP</span></a> can affect
 the appearance; see the <a class="reference internal" href="gmt.conf.html"><span class="doc">gmt.conf</span></a> man page for details. The time string will be in the locale set by the
@@ -1100,7 +1099,7 @@ environment variable <strong>TZ</strong> (generally local time).</p>
 <p>The <strong>-X</strong> and <strong>-Y</strong> options shift the plot origin relative to the current origin by (<em>xshift</em>,<em>yshift</em>). Optionally,
 append the length unit (<strong>c</strong>, <strong>i</strong>, or <strong>p</strong>). Default is (<a class="reference internal" href="gmt.conf.html#term-MAP_ORIGIN_X"><span class="xref std std-term">MAP_ORIGIN_X</span></a>, <a class="reference internal" href="gmt.conf.html#term-MAP_ORIGIN_Y"><span class="xref std std-term">MAP_ORIGIN_Y</span></a>) for new
 plots, which ensures that boundary annotations fit on the page. Subsequent overlays will be co-registered with the
-previous plot unless the origin is shifted using these options. The following modifiers are supported
+previous plot unless the origin is shifted using these options. The following directives are supported
 [default is <strong>r</strong>]:</p>
 <ul class="simple">
 <li><p>Prepend <strong>a</strong> to shift the origin back to the original position after plotting.</p></li>
@@ -1130,7 +1129,7 @@ specification (See the cookbook chapter <a class="reference internal" href="cook
 associate certain metadata values with required input and output columns expected by GMT programs. The <strong>-a</strong> option
 allows you to supply one or more comma-separated associations <em>col=name</em>, where <em>name</em> is the name of an aspatial
 attribute field in a OGR/GMT file and whose value we wish to as data input for column <em>col</em>. The given aspatial field
-thus replaces any other value already set. <strong>Note</strong>: <em>col = 0</em> is the first data column. <strong>Note</strong>: If no aspatial
+thus replaces any other value already set. <strong>Notes</strong>: (1) <em>col = 0</em> is the first data column. (2) If no aspatial
 attributes are needed then the <strong>-a</strong> option is not needed – GMT will still process and read such data files.</p>
 </section>
 <section id="ogr-gmt-input-with-a-option">
@@ -1200,8 +1199,8 @@ variables to be read (see <a class="reference internal" href="cookbook/file-form
 <div class="toggle docutils container">
 <p>Here is an example that writes a binary file and reads it back with the first column 4 byte float, the second
 column 8 byte int, and the third column 8 byte double.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="m">1</span>.5 <span class="m">2</span> <span class="m">2</span>.5 <span class="p">|</span> gmt convert -bo1f,1l,1d &gt; test.bin
-gmt convert test.bin -bi1f,1l,1d
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="m">1</span>.5<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">2</span>.5<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>convert<span class="w"> </span>-bo1f,1l,1d<span class="w"> </span>&gt;<span class="w"> </span>test.bin
+gmt<span class="w"> </span>convert<span class="w"> </span>test.bin<span class="w"> </span>-bi1f,1l,1d
 </pre></div>
 </div>
 </div>
@@ -1296,9 +1295,9 @@ or <strong>s</strong> (trailing text). If several consecutive columns have the s
 than a single column. Column ranges must be given in the format <em>start</em>[:<em>inc</em>]:<em>stop</em>, where <em>inc</em> defaults to 1 if
 not specified.  For example, if our input file has geographic coordinates (latitude, longitude) with absolute calendar
 coordinates in the columns 3 and 4, we would specify <strong>fi</strong>0<strong>y</strong>,1<strong>x</strong>,3:4<strong>T</strong>. All other columns are assumed
-to have the default (<strong>f</strong>loating point) format and need not be set individually. <strong>Note</strong>: You can also indicate that
+to have the default (<strong>f</strong>loating point) format and need not be set individually. <strong>Notes</strong>: (1) You can also indicate that
 all items from the given column and to the end of the record should be considered <em>trailing text</em> by giving the code
-<strong>s</strong> (for string). Only the last group may set <strong>s</strong>. <strong>Note</strong>: Types <strong>T</strong> and <strong>s</strong> can only be used with ASCII data sets.</p>
+<strong>s</strong> (for string). Only the last group may set <strong>s</strong>. (2) Types <strong>T</strong> and <strong>s</strong> can only be used with ASCII data sets.</p>
 <p>Three shorthand options for common selections are available. The shorthand <strong>-f</strong>[<strong>i</strong>|<strong>o</strong>]<strong>g</strong> means
 <strong>-f</strong>[<strong>i</strong>|<strong>o</strong>]0x,1y (i.e., geographic coordinates), while <strong>-f</strong>[<strong>i</strong>|<strong>o</strong>]<strong>c</strong> means
 <strong>-f</strong>[<strong>i</strong>|<strong>o</strong>]0:1<strong>f</strong> (i.e., Cartesian coordinates). A special use of <strong>-f</strong> is to select
@@ -1344,7 +1343,7 @@ or (m)<strong>e</strong>(ter), <strong>f</strong>(eet), <strong>k</strong>(ilome
 <li><p><strong>+p</strong> - specify that the current value minus the previous value must exceed <em>gap</em> for a break to be imposed.</p></li>
 </ul>
 <p>Default imposes breaks based on the absolute value of the difference between the current and previous value.
-<strong>Note</strong>: For <strong>x</strong>|<strong>y</strong>|<strong>z</strong> with time data the unit is instead controlled by <a class="reference internal" href="gmt.conf.html#term-TIME_UNIT"><span class="xref std std-term">TIME_UNIT</span></a>. <strong>Note</strong>: GMT
+<strong>Notes</strong>: (1) For <strong>x</strong>|<strong>y</strong>|<strong>z</strong> with time data the unit is instead controlled by <a class="reference internal" href="gmt.conf.html#term-TIME_UNIT"><span class="xref std std-term">TIME_UNIT</span></a>. (2) GMT
 has other mechanisms that can determine line segmentation, including segments defined by multiple segment header
 records (see the cookbook chapter <a class="reference internal" href="cookbook/file-formats.html"><span class="doc">GMT File Formats</span></a>) or segments defined by NaN values when
 <a class="reference internal" href="gmt.conf.html#term-IO_NAN_RECORDS"><span class="xref std std-term">IO_NAN_RECORDS</span></a> is set to <em>pass</em> [default skips NaN values].</p>
@@ -1370,9 +1369,9 @@ indicate line-breaks.</p></li>
 <li><p><strong>+t</strong> to add a <em>title</em> comment to the output [default is no title]. The <em>title</em> string may contain \n to indicate
 line-breaks.</p></li>
 </ul>
-<p><strong>Note</strong>: Blank lines and lines starting with # are always skipped. To use another leading character for indicating
+<p><strong>Notes</strong>: (1) Blank lines and lines starting with # are always skipped. To use another leading character for indicating
 header records, set <a class="reference internal" href="gmt.conf.html#term-IO_HEADER_MARKER"><span class="xref std std-term">IO_HEADER_MARKER</span></a>. With <strong>-h</strong> in effect the first <em>n</em> records are taken verbatim as headers
-and not skipped even if any is starting with #. <strong>Note</strong>: If used with native binary data (using <strong>-b</strong>) we interpret
+and not skipped even if any is starting with #. (2) If used with native binary data (using <strong>-b</strong>) we interpret
 <em>n</em> to instead mean the number of bytes to skip on input or pad on output.</p>
 </section>
 <section id="the-i-option">
@@ -1395,14 +1394,14 @@ one of the following modifiers to any column or column range to transform the in
 km to degrees or <strong>k</strong> to convert degrees to km using <a class="reference internal" href="gmt.conf.html#term-PROJ_MEAN_RADIUS"><span class="xref std std-term">PROJ_MEAN_RADIUS</span></a>.</p></li>
 <li><p><strong>+o</strong> to add the given <em>offset</em> to the input values [default is 0].</p></li>
 </ul>
-<p><strong>Note</strong>: The order of these optional transformations are (1) take log10, (2) scale or divide, and (3)
+<p><strong>Notes</strong>: (1) The order of these optional transformations are (1) take log10, (2) scale or divide, and (3)
 add <em>offset</em>.  To read from a given column until the end of the record,
 leave off <em>stop</em> when specifying the column range. Normally,
 any trailing text will be read but when <strong>-i</strong> is used to specify specific input columns you must explicitly append the
 “column” <strong>t</strong> to retain the trailing text internally. To only ingest a single word from the trailing text, append
 the word number (first word is 0).  If your trailing text columns start with a valid number and you want to ensure
 the content from column <em>col</em> to the end of the record will be considered trailing text, use <strong>-f</strong><em>col</em><strong>s</strong>.
-Finally, <strong>-in</strong> will simply read the numerical input and skip any trailing text. <strong>Note</strong>: Using <strong>-i</strong> assumes
+Finally, <strong>-in</strong> will simply read the numerical input and skip any trailing text. (2) Using <strong>-i</strong> assumes
 there are as many numerical columns as implied in <strong>-i</strong>, so if you have a mix of numerical and text columns we will forge
 ahead and read those text columns (most likely returned as NaNs) and return your selection as numerical values.  The default (no <strong>-i</strong> provided)
 will examine the record and stop conversions when the record switches to trailing text.</p>
@@ -1459,14 +1458,14 @@ no vertical line].</p></li>
 <li><p><strong>+s</strong> to resize all symbol and length sizes in the legend by <em>scale</em> [default is no scaling].</p></li>
 <li><p><strong>+w</strong> to set legend frame <em>width</em> [default is auto].</p></li>
 </ul>
-<p><strong>Note</strong>: Default pen is given by <a class="reference internal" href="gmt.conf.html#term-MAP_DEFAULT_PEN"><span class="xref std std-term">MAP_DEFAULT_PEN</span></a>. <strong>Note</strong>: <strong>+H</strong>, <strong>+g</strong>, <strong>+j</strong>, <strong>+o</strong>, <strong>+p</strong>, <strong>+w</strong>, and
+<p><strong>Notes</strong>: (1) Default pen is given by <a class="reference internal" href="gmt.conf.html#term-MAP_DEFAULT_PEN"><span class="xref std std-term">MAP_DEFAULT_PEN</span></a>. (2) <strong>+H</strong>, <strong>+g</strong>, <strong>+j</strong>, <strong>+o</strong>, <strong>+p</strong>, <strong>+w</strong>, and
 <strong>+s</strong> will only take effect if appended to the very first <strong>-l</strong> option for a plot. The <strong>+N</strong> modifier, if appended
 to the first <strong>-l</strong> option, affects the legend width (unless set via <strong>+w</strong>); otherwise it just subdivides the available
 width among the specified columns. If <strong>legend</strong> is not called explicitly we will call it implicitly when finishing the
-plot via <a class="reference internal" href="end.html"><span class="doc">end</span></a>. <strong>Note</strong>: If auto-coloring is used for pens or fills and <strong>-l</strong> is set then <em>label</em> may contain a
+plot via <a class="reference internal" href="end.html"><span class="doc">end</span></a>. (3) If auto-coloring is used for pens or fills and <strong>-l</strong> is set then <em>label</em> may contain a
 C-format for integers (e.g., %3.3d) or just # and we will use the sequence number with the format to build the label
 entries.  Alternatively, give a list of comma-separated labels, or give no label if your segment headers contain label
-settings. <strong>Note</strong>: Due to this mechanism, if your single label actually contains commas, you must replace these with the
+settings.(4) Due to this mechanism, if your single label actually contains commas, you must replace these with the
 octal code for a comma (\054).</p>
 </section>
 <section id="the-n-option">
@@ -1601,8 +1600,8 @@ Cookbook.)</p>
 </dl>
 <p><strong>Description</strong></p>
 <p>The <strong>-s</strong> option can be used to suppress output for records whose <em>z</em>-value equals NaN [default outputs all records].
-Optionally, supply a comma-separated list of all columns or column ranges to consider for this NaN test [default only
-considers the third data column (i.e., <em>cols = 2</em>)]. Column ranges must be given in the format
+Optionally, supply a comma-separated list of all <em>output</em> columns or column ranges to consider for this NaN test [default only
+considers the third output data column (i.e., <em>cols = 2</em>)]. Column ranges must be given in the format
 <em>start</em>[:<em>inc</em>]:<em>stop</em>, where <em>inc</em> defaults to 1 if not specified. The following modifiers are supported:</p>
 <ul class="simple">
 <li><p><strong>+r</strong> to reverse the suppression, i.e., only output the records whose <em>z</em>-value equals NaN.</p></li>
@@ -1623,9 +1622,9 @@ percentage in the 0-100 range [default is 0 (i.e., opaque)]. Normally, <em>trans
 can limit the transparency to one of them by appending <strong>+f</strong> or <strong>+s</strong> for fill or stroke, respectively. Alternatively,
 append /<em>transp2</em> to set separate transparencies for fills and strokes.</p>
 <p>Transparency may also be controlled on a feature by feature basis when setting color or fill (see the cookbook section
-<a class="reference internal" href="cookbook/features.html#gfill-attrib"><span class="std std-ref">Specifying area fill attributes</span></a>). <strong>Note</strong>: The modules <a class="reference internal" href="plot.html"><span class="doc">plot</span></a>, <a class="reference internal" href="plot3d.html"><span class="doc">plot3d</span></a>, and <a class="reference internal" href="text.html"><span class="doc">text</span></a> can all change
+<a class="reference internal" href="cookbook/features.html#gfill-attrib"><span class="std std-ref">Specifying area fill attributes</span></a>). <strong>Notes</strong>: (1) The modules <a class="reference internal" href="plot.html"><span class="doc">plot</span></a>, <a class="reference internal" href="plot3d.html"><span class="doc">plot3d</span></a>, and <a class="reference internal" href="text.html"><span class="doc">text</span></a> can all change
 transparency on a record-by-record basis if <strong>-t</strong> is given without argument and the input file supplies variable
-transparencies as the last numerical column value(s). <strong>Note</strong>: The transparency is only visible when PDF or raster
+transparencies as the last numerical column value(s). (2) The transparency is only visible when PDF or raster
 format output is selected because the PostScript language does not support transparency. Only the PNG format selection
 adds a transparency layer in the image (for further processing).</p>
 </section>
@@ -1713,8 +1712,8 @@ that are prescribed and only requires the user to specify the corresponding wrap
 <p>Optionally, append <strong>+c</strong><em>col</em> to select the input column with the coordinates to be wrapped, [default <em>col</em> is 0,
 i.e., the first column]. If the custom cycle <strong>c</strong> is chosen then you must also supply the <em>period</em> and optionally
 any <em>phase</em> [default is 0] in the same units of your data (i.e., no units should be appended to <strong>-w</strong>).</p>
-<p><strong>Note</strong>: Coordinates for <strong>w</strong> in the range 0-1 correspond to the first day of the week [Monday] but can be changed
-via <a class="reference internal" href="gmt.conf.html#term-TIME_WEEK_START"><span class="xref std std-term">TIME_WEEK_START</span></a>. <strong>Note</strong>: If a temporal cycle is indicated then we implicitly set <strong>-f</strong> to indicate
+<p><strong>Notes</strong>: (1) Coordinates for <strong>w</strong> in the range 0-1 correspond to the first day of the week [Monday] but can be changed
+via <a class="reference internal" href="gmt.conf.html#term-TIME_WEEK_START"><span class="xref std std-term">TIME_WEEK_START</span></a>. (2) If a temporal cycle is indicated then we implicitly set <strong>-f</strong> to indicate
 absolute time (unless already set separately). See the cookbook section <a class="reference internal" href="cookbook/options.html#option-w"><span class="std std-ref">Examining data cycles: The -w option</span></a> for examples.</p>
 </section>
 <section id="the-x-option">
@@ -1978,8 +1977,8 @@ GMT documentation site <a class="reference external" href="https://docs.generic-
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

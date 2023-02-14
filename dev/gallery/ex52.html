@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(52) Image and grid manipulation &mdash; GMT 6.4.0 documentation</title>
+  <title>(52) Image and grid manipulation &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -165,27 +162,27 @@ Earth viewed from a point near Florida.</p>
 <span class="c1"># Purpose:     Mixing images and overlaying them on the Earth</span>
 <span class="c1"># GMT modules: grdgradient, grdimage, grdmath, grdmix, grdsample, solar</span>
 
-<span class="nv">res</span><span class="o">=</span>20m <span class="c1"># Change to 15m, 10m, 06m, 05m, 04m, 03m, 02m, 01m, 30s for higher resolutions</span>
+<span class="nv">res</span><span class="o">=</span>20m<span class="w"> </span><span class="c1"># Change to 15m, 10m, 06m, 05m, 04m, 03m, 02m, 01m, 30s for higher resolutions</span>
 
-gmt begin ex52
+gmt<span class="w"> </span>begin<span class="w"> </span>ex52
 
-  <span class="c1"># Use the location of the Sun at noon on Jun 22, 2000, Hawaii Standard Time</span>
-  <span class="c1"># Make a global grid with a smooth 2-degree transition across day/night boundary.</span>
-  gmt grdmath -Rd -I<span class="si">${</span><span class="nv">res</span><span class="si">}</span> -r <span class="k">$(</span>gmt solar -C -o0:1 -I+d2000-06-22T24:00+z-10<span class="k">)</span> <span class="m">2</span> <span class="nv">DAYNIGHT</span> <span class="o">=</span> w.grd
+<span class="w">  </span><span class="c1"># Use the location of the Sun at noon on Jun 22, 2000, Hawaii Standard Time</span>
+<span class="w">  </span><span class="c1"># Make a global grid with a smooth 2-degree transition across day/night boundary.</span>
+<span class="w">  </span>gmt<span class="w"> </span>grdmath<span class="w"> </span>-Rd<span class="w"> </span>-I<span class="si">${</span><span class="nv">res</span><span class="si">}</span><span class="w"> </span>-r<span class="w"> </span><span class="k">$(</span>gmt<span class="w"> </span>solar<span class="w"> </span>-C<span class="w"> </span>-o0:1<span class="w"> </span>-I+d2000-06-22T24:00+z-10<span class="k">)</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">DAYNIGHT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>w.grd
 
-  <span class="c1"># We will create an intensity grid based on a pixel-registered DEM so that we can see structures in the oceans</span>
-  gmt grdgradient @earth_relief_<span class="si">${</span><span class="nv">res</span><span class="si">}</span>_p -Nt0.5 -A45 -Gintens.grd
-  
-  <span class="c1"># Blend the earth_day and earth_night geotiffs using the weights, so that when w is 1</span>
-  <span class="c1"># we get the earth_day, and then adjust colors based on the intensity.</span>
+<span class="w">  </span><span class="c1"># We will create an intensity grid based on a pixel-registered DEM so that we can see structures in the oceans</span>
+<span class="w">  </span>gmt<span class="w"> </span>grdgradient<span class="w"> </span>@earth_relief_<span class="si">${</span><span class="nv">res</span><span class="si">}</span>_p<span class="w"> </span>-Nt0.5<span class="w"> </span>-A45<span class="w"> </span>-Gintens.grd
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Blend the earth_day and earth_night geotiffs using the weights, so that when w is 1</span>
+<span class="w">  </span><span class="c1"># we get the earth_day, and then adjust colors based on the intensity.</span>
 
-  gmt grdmix @earth_day_<span class="si">${</span><span class="nv">res</span><span class="si">}</span> @earth_night_<span class="si">${</span><span class="nv">res</span><span class="si">}</span> -Ww.grd -Iintens.grd -Gview.tif
+<span class="w">  </span>gmt<span class="w"> </span>grdmix<span class="w"> </span>@earth_day_<span class="si">${</span><span class="nv">res</span><span class="si">}</span><span class="w"> </span>@earth_night_<span class="si">${</span><span class="nv">res</span><span class="si">}</span><span class="w"> </span>-Ww.grd<span class="w"> </span>-Iintens.grd<span class="w"> </span>-Gview.tif
 
-  <span class="c1"># Plot this image on an Earth with view from over Mexico</span>
-  gmt grdimage view.tif -JG80W/30N/18c -Bafg
-  <span class="c1"># Clean up after use</span>
-  rm -f w.grd intens.grd view.tif
-gmt end show
+<span class="w">  </span><span class="c1"># Plot this image on an Earth with view from over Mexico</span>
+<span class="w">  </span>gmt<span class="w"> </span>grdimage<span class="w"> </span>view.tif<span class="w"> </span>-JG80W/30N/18c<span class="w"> </span>-Bafg
+<span class="w">  </span><span class="c1"># Clean up after use</span>
+<span class="w">  </span>rm<span class="w"> </span>-f<span class="w"> </span>w.grd<span class="w"> </span>intens.grd<span class="w"> </span>view.tif
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -207,8 +204,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

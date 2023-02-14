@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ternary &mdash; GMT 6.4.0 documentation</title>
+  <title>ternary &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -236,8 +233,8 @@ Use a negative <em>width</em> to indicate that positive axes directions be clock
 </dl>
 <dl class="simple" id="l">
 <dt><strong>-L</strong><em>a</em>/<em>b</em>/<em>c</em></dt><dd><p>Set the labels for the three diagram vertices where the component is 100% [none].
-These are placed a distance of three times the <a class="reference internal" href="gmt.conf.html#term-MAP_LABEL_OFFSET"><span class="xref std std-term">MAP_LABEL_OFFSET</span></a>
-setting from their respective corners.  To skip any one of then, specify that
+These are placed at a distance of three times the <a class="reference internal" href="gmt.conf.html#term-MAP_LABEL_OFFSET"><span class="xref std std-term">MAP_LABEL_OFFSET</span></a>
+setting from their respective corners.  To skip any one of them, specify that
 label as -.</p>
 </dd>
 </dl>
@@ -248,7 +245,7 @@ on the triangle (i.e., 0–1 in <em>x</em> and 0–sqrt(3)/2 in <em>y</em>).</p>
 </dd>
 </dl>
 <dl class="simple" id="n">
-<dt><strong>-N</strong></dt><dd><p>Do NOT clip symbols that fall outside map border [Default plots points
+<dt><strong>-N</strong></dt><dd><p>Do <strong>not</strong> clip symbols that fall outside map border [Default plots points
 whose coordinates are strictly inside the map border only].</p>
 </dd>
 </dl>
@@ -362,7 +359,7 @@ These spider-web lines are drawn using the current pen unless <strong>+p</strong
 </dd>
 </dl>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -443,15 +440,15 @@ any module-specific option (but not the GMT common options), then exit.</p>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<p>To plot circles (diameter = 0.1 cm) on a 6-inch-wide ternary diagram at the positions listed
+<p>To plot circles (diameter = 0.1 cm) on a 15-centimeter-wide ternary diagram at the positions listed
 in the file ternary.txt, with default annotations and gridline spacings, using the
 specified labeling, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin map
-gmt makecpt -Cturbo -T0/80/10
-gmt ternary @ternary.txt -R0/100/0/100/0/100 -JX6i -Sc0.1c -C -LWater/Air/Limestone <span class="se">\</span>
-    -Baafg+l<span class="s2">&quot;Water component&quot;</span>+u<span class="s2">&quot; %&quot;</span> -Bbafg+l<span class="s2">&quot;Air component&quot;</span>+u<span class="s2">&quot; %&quot;</span> -Bcagf+l<span class="s2">&quot;Limestone component&quot;</span>+u<span class="s2">&quot; %&quot;</span> <span class="se">\</span>
-    -B+givory+t<span class="s2">&quot;Example data from MATLAB Central&quot;</span>
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>map
+gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cturbo<span class="w"> </span>-T0/80/10
+gmt<span class="w"> </span>ternary<span class="w"> </span>@ternary.txt<span class="w"> </span>-R0/100/0/100/0/100<span class="w"> </span>-JX15c<span class="w"> </span>-Sc0.1c<span class="w"> </span>-C<span class="w"> </span>-LLimestone/Water/Air<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-Baafg+l<span class="s2">&quot;Limestone component&quot;</span>+u<span class="s2">&quot; %&quot;</span><span class="w"> </span>-Bbafg+l<span class="s2">&quot;Water component&quot;</span>+u<span class="s2">&quot; %&quot;</span><span class="w"> </span>-Bcagf+l<span class="s2">&quot;Air component&quot;</span>+u<span class="s2">&quot; %&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-B+givory+t<span class="s2">&quot;Example data from MATLAB Central&quot;</span>
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </section>
@@ -476,8 +473,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

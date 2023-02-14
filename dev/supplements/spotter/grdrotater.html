@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdrotater &mdash; GMT 6.4.0 documentation</title>
+  <title>grdrotater &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -252,7 +249,7 @@ automatic scaling to preserve precision for integer grids [Default
 is 1].</p></li>
 </ul>
 </div></blockquote>
-<p>Note: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
+<p><strong>Note</strong>: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
 (unless overridden). To write specific formats via GDAL, use =<em>gd</em>
 and supply <em>driver</em> (and optionally <em>dataType</em>) and/or one or more
 concatenated GDAL <strong>-co</strong> options using <strong>+c</strong>. See
@@ -280,7 +277,8 @@ polygon to standard output (but see <a class="reference internal" href="#n"><spa
 </dl>
 <dl class="simple" id="f">
 <dt><strong>-F</strong><em>polygonfile</em></dt><dd><p>Specify a multisegment closed polygon file that describes the inside
-area of the grid that should be projected [Default projects entire grid].</p>
+area of the grid that should be projected [Default projects entire grid].
+<strong>Note</strong>: If both <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong> and <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> are given then <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> takes precedence.</p>
 </dd>
 </dl>
 <dl class="simple" id="n">
@@ -308,7 +306,7 @@ countries given by the codes. Simply append one or more comma-separated countrie
 <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
 country name (e.g., Norway). To select a state within a country (if available), append .state (e.g, US.TX),
 or the full state name (e.g., Texas). To specify a whole continent, spell out the full continent name (e.g., -RAfrica).
-Finally, append any <a class="reference internal" href="../../coast.html#id1"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
+Finally, append any <a class="reference internal" href="../../coast.html#dcw-collections"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
 the collection or named region. All names are case-insensitive. The following modifiers can be appended:</p>
 <blockquote>
 <div><ul class="simple">
@@ -438,21 +436,21 @@ is changed to Sphere.</p>
 clip_path.txt, using a total reconstruction rotation with pole at (135.5,
 -33.0) and a rotation angle of 37.3 degrees and bicubic interpolation, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdrotater topo.nc -E135.5/-33/37.3 -V -Fclip_path.txt -Grot_topo.nc &gt; rot_clip_path.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdrotater<span class="w"> </span>topo.nc<span class="w"> </span>-E135.5/-33/37.3<span class="w"> </span>-V<span class="w"> </span>-Fclip_path.txt<span class="w"> </span>-Grot_topo.nc<span class="w"> </span>&gt;<span class="w"> </span>rot_clip_path.txt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To rotate the entire grid faa.nc back to 32 Ma using the rotation file
 <em>rotations.txt</em> and a bilinear interpolation, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdrotater faa.nc -Erotations.txt -T32 -V -Grot_faa.nc -nl &gt; rot_faa_path.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdrotater<span class="w"> </span>faa.nc<span class="w"> </span>-Erotations.txt<span class="w"> </span>-T32<span class="w"> </span>-V<span class="w"> </span>-Grot_faa.nc<span class="w"> </span>-nl<span class="w"> </span>&gt;<span class="w"> </span>rot_faa_path.txt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To just see how the outline of the grid large.nc will plot after the
 same rotation, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdrotater large.nc -Erotations.txt -T32 -V -S <span class="p">|</span> gmt plot -Rg -JH180/6i -B30 -W0.5p <span class="se">\|</span> gv -
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdrotater<span class="w"> </span>large.nc<span class="w"> </span>-Erotations.txt<span class="w"> </span>-T32<span class="w"> </span>-V<span class="w"> </span>-S<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-Rg<span class="w"> </span>-JH180/6i<span class="w"> </span>-B30<span class="w"> </span>-W0.5p<span class="w"> </span><span class="se">\|</span><span class="w"> </span>gv<span class="w"> </span>-
 </pre></div>
 </div>
 </div></blockquote>
@@ -460,7 +458,7 @@ same rotation, try</p>
 <em>rotations.txt</em> and request a reconstruction every 10 Myr, saving
 both grids and outlines to filenames that derive from templates, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdrotater topo.nc -Erotations.txt -T10/100/10 -V -Grot_topo_%g.nc -Drot_topo_path_%g.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdrotater<span class="w"> </span>topo.nc<span class="w"> </span>-Erotations.txt<span class="w"> </span>-T10/100/10<span class="w"> </span>-V<span class="w"> </span>-Grot_topo_%g.nc<span class="w"> </span>-Drot_topo_path_%g.txt
 </pre></div>
 </div>
 </div></blockquote>
@@ -470,7 +468,7 @@ using rotation A = (123W,22S,16,4) and rotation B = (108W, 16S, -14.5),
 yielding rotated grids rot_gridA.nc and rot_gridB.nc. To determine the
 region of overlap between the rotated grids, we use <a class="reference internal" href="../../grdmath.html"><span class="doc">grdmath</span></a>:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdmath <span class="m">1</span> rot_gridA.nc ISNAN SUB <span class="m">1</span> rot_gridB.nc ISNAN SUB <span class="m">2</span> <span class="nv">EQ</span> <span class="o">=</span> overlap.nc
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdmath<span class="w"> </span><span class="m">1</span><span class="w"> </span>rot_gridA.nc<span class="w"> </span>ISNAN<span class="w"> </span>SUB<span class="w"> </span><span class="m">1</span><span class="w"> </span>rot_gridB.nc<span class="w"> </span>ISNAN<span class="w"> </span>SUB<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">EQ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>overlap.nc
 </pre></div>
 </div>
 </div></blockquote>
@@ -509,8 +507,8 @@ To use an alternate rotation file, create an environmental parameters named
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

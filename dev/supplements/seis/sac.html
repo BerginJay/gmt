@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sac &mdash; GMT 6.4.0 documentation</title>
+  <title>sac &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -223,7 +220,7 @@ countries given by the codes. Simply append one or more comma-separated countrie
 <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
 country name (e.g., Norway). To select a state within a country (if available), append .state (e.g, US.TX),
 or the full state name (e.g., Texas). To specify a whole continent, spell out the full continent name (e.g., -RAfrica).
-Finally, append any <a class="reference internal" href="../../coast.html#id1"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
+Finally, append any <a class="reference internal" href="../../coast.html#dcw-collections"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
 the collection or named region. All names are case-insensitive. The following modifiers can be appended:</p>
 <blockquote>
 <div><ul class="simple">
@@ -352,7 +349,7 @@ i.e. cm per second or inch per second.</p>
 </dd>
 </dl>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="../../gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="../../cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="../../gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="../../cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -361,7 +358,7 @@ i.e. cm per second or inch per second.</p>
 </dl>
 <dl class="simple" id="w">
 <dt><strong>-W</strong><em>pen</em></dt><dd><p>Set pen attributes for all traces unless overruled by <em>pen</em> specified in <em>saclist</em>.
-[Defaults: width = default, color = black, style = solid].</p>
+[Defaults: width = 0.25p, color = black, style = solid].</p>
 </dd>
 </dl>
 <dl class="simple" id="x">
@@ -403,19 +400,19 @@ any module-specific option (but not the GMT common options), then exit.</p>
 modern mode <a class="reference internal" href="../../cookbook/one-liner.html"><span class="doc">GMT Modern Mode One-line Commands</span></a> syntax, which simplifies such short scripts.</p>
 <p>To plot a single seismogram seis.SAC (generated by SAC command <code class="docutils literal notranslate"><span class="pre">funcgen</span> <span class="pre">seismogram</span></code>)
 and paint positive portion black and negative portion red:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt sac seis.SAC -JX10c/5c -R9/20/-2/2 -Baf -Fr -Gp+gblack -Gn+gred -pdf single
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>sac<span class="w"> </span>seis.SAC<span class="w"> </span>-JX10c/5c<span class="w"> </span>-R9/20/-2/2<span class="w"> </span>-Baf<span class="w"> </span>-Fr<span class="w"> </span>-Gp+gblack<span class="w"> </span>-Gn+gred<span class="w"> </span>-pdf<span class="w"> </span>single
 </pre></div>
 </div>
 <p>To plot several seismograms (generated by SAC command <code class="docutils literal notranslate"><span class="pre">datagen</span> <span class="pre">sub</span> <span class="pre">tele</span> <span class="pre">*.z</span></code>) on a distance profile:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt sac *.z -R200/1600/12/45 -JX15c/5c -Bx200+l<span class="s1">&#39;T(s)&#39;</span> -By5+lDegree -BWSen <span class="se">\</span>
-    -Ed -M1.5c -W0.5p,red -pdf distance_profile
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>sac<span class="w"> </span>*.z<span class="w"> </span>-R200/1600/12/45<span class="w"> </span>-JX15c/5c<span class="w"> </span>-Bx200+l<span class="s1">&#39;T(s)&#39;</span><span class="w"> </span>-By5+lDegree<span class="w"> </span>-BWSen<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-Ed<span class="w"> </span>-M1.5c<span class="w"> </span>-W0.5p,red<span class="w"> </span>-pdf<span class="w"> </span>distance_profile
 </pre></div>
 </div>
 <p>To plot seismograms (generated by SAC command <code class="docutils literal notranslate"><span class="pre">datagen</span> <span class="pre">sub</span> <span class="pre">tele</span> <span class="pre">*.z</span></code>) on a geographic map:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin map pdf
-gmt sac *.z -JM15c -R-120/-40/35/65 -Baf -M1i -S300c
-saclst stlo stla f *.z <span class="p">|</span> gmt plot -St0.4c -Gblack -i1,2
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>map<span class="w"> </span>pdf
+gmt<span class="w"> </span>sac<span class="w"> </span>*.z<span class="w"> </span>-JM15c<span class="w"> </span>-R-120/-40/35/65<span class="w"> </span>-Baf<span class="w"> </span>-M1i<span class="w"> </span>-S300c
+saclst<span class="w"> </span>stlo<span class="w"> </span>stla<span class="w"> </span>f<span class="w"> </span>*.z<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-St0.4c<span class="w"> </span>-Gblack<span class="w"> </span>-i1,2
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </section>
@@ -449,8 +446,8 @@ University of Science and Technology of China, Hefei, Anhui, China</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

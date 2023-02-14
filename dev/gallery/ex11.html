@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(11) A 3-D RGB color cube &mdash; GMT 6.4.0 documentation</title>
+  <title>(11) A 3-D RGB color cube &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -176,90 +173,90 @@ numbers indicate brightnesses between 0 and 1, with saturation fixed at 1.</p>
 <span class="c1"># Purpose:	Create a 3-D RGB Cube</span>
 <span class="c1"># GMT modules:	set, grdimage, grdmath, text, plot</span>
 <span class="c1"># Unix progs:	rm</span>
-gmt begin ex11
+gmt<span class="w"> </span>begin<span class="w"> </span>ex11
 <span class="c1"># Use gmt plot to plot &quot;cut-along-the-dotted&quot; lines.</span>
-	gmt <span class="nb">set</span> MAP_TICK_LENGTH_PRIMARY <span class="m">0</span>
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAP_TICK_LENGTH_PRIMARY<span class="w"> </span><span class="m">0</span>
 
-	<span class="c1"># First, create grids of ascending X and Y and constant 0.</span>
-	<span class="c1"># These are to be used to represent R, G and B values of the darker 3 faces of the cube.</span>
-	gmt grdmath -I1 -R0/255/0/255 <span class="nv">X</span> <span class="o">=</span> x1.nc
-	gmt grdmath <span class="nv">Y</span> <span class="o">=</span> y1.nc
-	gmt grdmath <span class="nv">0</span> <span class="o">=</span> c1.nc
+<span class="w">	</span><span class="c1"># First, create grids of ascending X and Y and constant 0.</span>
+<span class="w">	</span><span class="c1"># These are to be used to represent R, G and B values of the darker 3 faces of the cube.</span>
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span>-I1<span class="w"> </span>-R0/255/0/255<span class="w"> </span><span class="nv">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>x1.nc
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span><span class="nv">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>y1.nc
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>c1.nc
 
-	<span class="c1"># Second, create grids of descending X and Y and constant 255.</span>
-	<span class="c1"># These are to be used to represent R, G and B values of the lighter 3 faces of the cube.</span>
-	gmt grdmath <span class="m">255</span> X <span class="nv">SUB</span> <span class="o">=</span> x2.nc
-	gmt grdmath <span class="m">255</span> Y <span class="nv">SUB</span> <span class="o">=</span> y2.nc
-	gmt grdmath <span class="nv">255</span>       <span class="o">=</span> c2.nc
+<span class="w">	</span><span class="c1"># Second, create grids of descending X and Y and constant 255.</span>
+<span class="w">	</span><span class="c1"># These are to be used to represent R, G and B values of the lighter 3 faces of the cube.</span>
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span><span class="m">255</span><span class="w"> </span>X<span class="w"> </span><span class="nv">SUB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>x2.nc
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span><span class="m">255</span><span class="w"> </span>Y<span class="w"> </span><span class="nv">SUB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>y2.nc
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span><span class="nv">255</span><span class="w">       </span><span class="o">=</span><span class="w"> </span>c2.nc
 
-	gmt plot @cut-here_11.txt -Wthinnest,. -R-51/306/0/1071 -JX8.4c/25.2c -X6c
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>@cut-here_11.txt<span class="w"> </span>-Wthinnest,.<span class="w"> </span>-R-51/306/0/1071<span class="w"> </span>-JX8.4c/25.2c<span class="w"> </span>-X6c
 
-	gmt <span class="nb">set</span> FONT_ANNOT_PRIMARY 12p,Helvetica-Bold
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FONT_ANNOT_PRIMARY<span class="w"> </span>12p,Helvetica-Bold
 
-	gmt grdimage x1.nc y1.nc c1.nc -JX6c/-6c -R0/255/0/255 -X1.25c
-	gmt plot -Wthinner,white,- @rays_11.txt
-	gmt text --FONT<span class="o">=</span>white -F+a+f <span class="s">&lt;&lt;- END</span>
+<span class="w">	</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>x1.nc<span class="w"> </span>y1.nc<span class="w"> </span>c1.nc<span class="w"> </span>-JX6c/-6c<span class="w"> </span>-R0/255/0/255<span class="w"> </span>-X1.25c
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Wthinner,white,-<span class="w"> </span>@rays_11.txt
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>--FONT<span class="o">=</span>white<span class="w"> </span>-F+a+f<span class="w"> </span><span class="s">&lt;&lt;- END</span>
 <span class="s">	128 128 -45 12p 60@.</span>
 <span class="s">	102  26 -90 12p 0.4</span>
 <span class="s">	204  26 -90 12p 0.8</span>
 <span class="s">	10  140 180 16p G</span>
 <span class="s">	END</span>
-	<span class="nb">echo</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">128</span> <span class="p">|</span> gmt plot -N -Sv0.4c+s+e -Gwhite -W2p,white
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-N<span class="w"> </span>-Sv0.4c+s+e<span class="w"> </span>-Gwhite<span class="w"> </span>-W2p,white
 
-	gmt grdimage x1.nc c1.nc y1.nc -JX6c/6c -Y6c
-	gmt plot -Wthinner,white,- @rays_11.txt
-	gmt text --FONT<span class="o">=</span>white -F+a+f <span class="s">&lt;&lt;- END</span>
+<span class="w">	</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>x1.nc<span class="w"> </span>c1.nc<span class="w"> </span>y1.nc<span class="w"> </span>-JX6c/6c<span class="w"> </span>-Y6c
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Wthinner,white,-<span class="w"> </span>@rays_11.txt
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>--FONT<span class="o">=</span>white<span class="w"> </span>-F+a+f<span class="w"> </span><span class="s">&lt;&lt;- END</span>
 <span class="s">	128 128  45 12p 300@.</span>
 <span class="s">	26  102   0 12p 0.4</span>
 <span class="s">	26  204   0 12p 0.8</span>
 <span class="s">	140  10 -90 16p R</span>
 <span class="s">	100 100 -45 16p V</span>
 <span class="s">	END</span>
-	<span class="nb">echo</span> <span class="m">0</span> <span class="m">0</span> <span class="m">128</span> <span class="m">0</span> <span class="p">|</span> gmt plot -N -Sv0.4c+s+e -Gwhite -W2p,white
-	<span class="nb">echo</span> <span class="m">0</span> <span class="m">0</span> <span class="m">90</span> <span class="m">90</span> <span class="p">|</span> gmt plot -N -Sv0.4c+s+e -Gwhite -W2p,white
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-N<span class="w"> </span>-Sv0.4c+s+e<span class="w"> </span>-Gwhite<span class="w"> </span>-W2p,white
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">90</span><span class="w"> </span><span class="m">90</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-N<span class="w"> </span>-Sv0.4c+s+e<span class="w"> </span>-Gwhite<span class="w"> </span>-W2p,white
 
-	gmt grdimage c1.nc x1.nc y1.nc -JX-6c/6c -X-6c
-	gmt plot -Wthinner,white,- @rays_11.txt
-	gmt text --FONT<span class="o">=</span>white -F+a+f <span class="s">&lt;&lt;- END</span>
+<span class="w">	</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>c1.nc<span class="w"> </span>x1.nc<span class="w"> </span>y1.nc<span class="w"> </span>-JX-6c/6c<span class="w"> </span>-X-6c
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Wthinner,white,-<span class="w"> </span>@rays_11.txt
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>--FONT<span class="o">=</span>white<span class="w"> </span>-F+a+f<span class="w"> </span><span class="s">&lt;&lt;- END</span>
 <span class="s">	128 128 135 12p 180@.</span>
 <span class="s">	102  26  90 12p 0.4</span>
 <span class="s">	204  26  90 12p 0.8</span>
 <span class="s">	10  140   0 16p B</span>
 <span class="s">	END</span>
-	<span class="nb">echo</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">128</span> <span class="p">|</span> gmt plot -N -Sv0.4c+s+e -Gwhite -W2p,white
-	<span class="nb">echo</span> <span class="m">0</span> <span class="m">0</span> <span class="m">128</span> <span class="m">0</span> <span class="p">|</span> gmt plot -N -Sv0.4c+s+e -Gwhite -W2p,white
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-N<span class="w"> </span>-Sv0.4c+s+e<span class="w"> </span>-Gwhite<span class="w"> </span>-W2p,white
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-N<span class="w"> </span>-Sv0.4c+s+e<span class="w"> </span>-Gwhite<span class="w"> </span>-W2p,white
 
-	gmt grdimage x2.nc y2.nc c2.nc -JX-6c/-6c -X6c -Y6c
-	gmt plot -Wthinner,black,- @rays_11.txt
-	gmt text -F+a+f <span class="s">&lt;&lt;- END</span>
+<span class="w">	</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>x2.nc<span class="w"> </span>y2.nc<span class="w"> </span>c2.nc<span class="w"> </span>-JX-6c/-6c<span class="w"> </span>-X6c<span class="w"> </span>-Y6c
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Wthinner,black,-<span class="w"> </span>@rays_11.txt
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>-F+a+f<span class="w"> </span><span class="s">&lt;&lt;- END</span>
 <span class="s">	128 128 225 12p 240@.</span>
 <span class="s">	102  26 270 12p 0.4</span>
 <span class="s">	204  26 270 12p 0.8</span>
 <span class="s">	END</span>
 
-	gmt grdimage c2.nc y2.nc x2.nc -JX6c/-6c -X6c
-	gmt plot -Wthinner,black,- @rays_11.txt
-	gmt text -F+a+f <span class="s">&lt;&lt;- END</span>
+<span class="w">	</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>c2.nc<span class="w"> </span>y2.nc<span class="w"> </span>x2.nc<span class="w"> </span>-JX6c/-6c<span class="w"> </span>-X6c
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Wthinner,black,-<span class="w"> </span>@rays_11.txt
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>-F+a+f<span class="w"> </span><span class="s">&lt;&lt;- END</span>
 <span class="s">	128 128 -45 12p 0@.</span>
 <span class="s">	26  102   0 12p 0.4</span>
 <span class="s">	26  204   0 12p 0.8</span>
 <span class="s">	100 100  45 16p S</span>
 <span class="s">	204  66  90 16p H</span>
 <span class="s">	END</span>
-	<span class="nb">echo</span> <span class="m">0</span> <span class="m">0</span> <span class="m">90</span> <span class="m">90</span> <span class="p">|</span> gmt plot -N -Sv0.4c+s+e -Gblack -W2p
-	<span class="nb">echo</span> <span class="m">204</span> <span class="m">204</span> <span class="m">204</span> <span class="m">76</span> <span class="p">|</span> gmt plot -N -Sv0.4c+s+e -Gblack -W2p
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">90</span><span class="w"> </span><span class="m">90</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-N<span class="w"> </span>-Sv0.4c+s+e<span class="w"> </span>-Gblack<span class="w"> </span>-W2p
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="m">204</span><span class="w"> </span><span class="m">204</span><span class="w"> </span><span class="m">204</span><span class="w"> </span><span class="m">76</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-N<span class="w"> </span>-Sv0.4c+s+e<span class="w"> </span>-Gblack<span class="w"> </span>-W2p
 
-	gmt grdimage x2.nc c2.nc y2.nc -JX-6c/6c -X-6c -Y6c
-	gmt plot -Wthinner,black,- @rays_11.txt
-	gmt text -F+a+f <span class="s">&lt;&lt;- END</span>
+<span class="w">	</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>x2.nc<span class="w"> </span>c2.nc<span class="w"> </span>y2.nc<span class="w"> </span>-JX-6c/6c<span class="w"> </span>-X-6c<span class="w"> </span>-Y6c
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Wthinner,black,-<span class="w"> </span>@rays_11.txt
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>-F+a+f<span class="w"> </span><span class="s">&lt;&lt;- END</span>
 <span class="s">	128 128 135 12p 120@.</span>
 <span class="s">	26  102 180 12p 0.4</span>
 <span class="s">	26  204 180 12p 0.8</span>
 <span class="s">	200 200 225 16p GMT</span>
 <span class="s">	END</span>
 
-	rm -f *.nc
-gmt end show
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>*.nc
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -281,8 +278,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

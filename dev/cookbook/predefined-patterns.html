@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>10. Predefined Bit and Hachure Patterns in GMT &mdash; GMT 6.4.0 documentation</title>
+  <title>10. Predefined Bit and Hachure Patterns in GMT &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -116,7 +113,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -182,42 +179,42 @@ below at 300 dpi using the default black and white shades.</p>
 </figure>
 <div class="toggle docutils container">
 <p>Here is the source script for the figure above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">xwidth</span><span class="o">=</span><span class="m">0</span>.45	<span class="c1"># Width of each box (all units are in inches)</span>
-<span class="nv">ywidth</span><span class="o">=</span><span class="m">0</span>.45	<span class="c1"># Height of each box</span>
-<span class="nv">w</span><span class="o">=</span><span class="m">0</span>.9		<span class="c1"># Width of two adjacent boxes</span>
-<span class="nv">dx</span><span class="o">=</span><span class="m">0</span>.50		<span class="c1"># Amont to translate to the right</span>
-<span class="nv">dy</span><span class="o">=</span><span class="m">0</span>.50		<span class="c1"># Amount to translate up</span>
-<span class="nv">y</span><span class="o">=</span><span class="m">0</span>.05		<span class="c1"># Initial offset in x</span>
-<span class="nv">x</span><span class="o">=</span><span class="m">0</span>.05		<span class="c1"># Initial offset in y</span>
-<span class="nv">back</span><span class="o">=</span>-5.20	<span class="c1"># Amount to translate to left after 1 row</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">xwidth</span><span class="o">=</span><span class="m">0</span>.45<span class="w">	</span><span class="c1"># Width of each box (all units are in inches)</span>
+<span class="nv">ywidth</span><span class="o">=</span><span class="m">0</span>.45<span class="w">	</span><span class="c1"># Height of each box</span>
+<span class="nv">w</span><span class="o">=</span><span class="m">0</span>.9<span class="w">		</span><span class="c1"># Width of two adjacent boxes</span>
+<span class="nv">dx</span><span class="o">=</span><span class="m">0</span>.50<span class="w">		</span><span class="c1"># Amont to translate to the right</span>
+<span class="nv">dy</span><span class="o">=</span><span class="m">0</span>.50<span class="w">		</span><span class="c1"># Amount to translate up</span>
+<span class="nv">y</span><span class="o">=</span><span class="m">0</span>.05<span class="w">		</span><span class="c1"># Initial offset in x</span>
+<span class="nv">x</span><span class="o">=</span><span class="m">0</span>.05<span class="w">		</span><span class="c1"># Initial offset in y</span>
+<span class="nv">back</span><span class="o">=</span>-5.20<span class="w">	</span><span class="c1"># Amount to translate to left after 1 row</span>
 
-cat <span class="s">&lt;&lt; END &gt; tt.App_E.d</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; END &gt; tt.App_E.d</span>
 <span class="s">0	0</span>
 <span class="s">$xwidth	0</span>
 <span class="s">$xwidth	$ywidth</span>
 <span class="s">0	$ywidth</span>
 <span class="s">END</span>
 
-gmt begin GMT_App_E
-gmt <span class="nb">set</span> GMT_THEME cookbook
-gmt basemap -R0/5.75/0/7.55 -Jx1i -B0
-gmt <span class="nb">set</span> MAP_FRAME_PEN thinner
-<span class="k">for</span> iy in <span class="m">14</span> <span class="m">13</span> <span class="m">12</span> <span class="m">11</span> <span class="m">10</span> <span class="m">9</span> <span class="m">8</span> <span class="m">7</span> <span class="m">6</span> <span class="m">5</span> <span class="m">4</span> <span class="m">3</span> <span class="m">2</span> <span class="m">1</span> <span class="m">0</span>
+gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_E
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+gmt<span class="w"> </span>basemap<span class="w"> </span>-R0/5.75/0/7.55<span class="w"> </span>-Jx1i<span class="w"> </span>-B0
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAP_FRAME_PEN<span class="w"> </span>thinner
+<span class="k">for</span><span class="w"> </span>iy<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
 <span class="k">do</span>
-	<span class="k">for</span> ix in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span>
-	<span class="k">do</span>
-		<span class="nb">let</span> <span class="nv">p</span><span class="o">=</span>iy*6+ix
-		gmt plot -R0/<span class="nv">$xwidth</span>/0/<span class="nv">$ywidth</span> -Jx1i -Gp<span class="nv">$p</span>+r300 tt.App_E.d -X<span class="si">${</span><span class="nv">x</span><span class="si">}</span>i -Y<span class="si">${</span><span class="nv">y</span><span class="si">}</span>i -B0
-		gmt plot -GP<span class="nv">$p</span>+r300 tt.App_E.d -X<span class="si">${</span><span class="nv">xwidth</span><span class="si">}</span>i -B0
-		<span class="nb">echo</span> <span class="s2">&quot;0 0.225&quot;</span> <span class="p">|</span> gmt plot -R0/<span class="nv">$w</span>/0/<span class="nv">$ywidth</span> -N -Sc0.17i -Wthinnest -Gwhite
-		<span class="nb">echo</span> <span class="s2">&quot;0 0.225 </span><span class="nv">$p</span><span class="s2">&quot;</span> <span class="p">|</span> gmt text -R0/<span class="nv">$w</span>/0/<span class="nv">$ywidth</span> -N -F+f9p,Helvetica-Bold
-		<span class="nv">y</span><span class="o">=</span><span class="m">0</span>.0
-		<span class="nv">x</span><span class="o">=</span><span class="nv">$dx</span>
-	<span class="k">done</span>
-	<span class="nv">y</span><span class="o">=</span><span class="nv">$dy</span>
-	<span class="nv">x</span><span class="o">=</span><span class="nv">$back</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span>ix<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span>
+<span class="w">	</span><span class="k">do</span>
+<span class="w">		</span><span class="nb">let</span><span class="w"> </span><span class="nv">p</span><span class="o">=</span>iy*6+ix
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>-R0/<span class="nv">$xwidth</span>/0/<span class="nv">$ywidth</span><span class="w"> </span>-Jx1i<span class="w"> </span>-Gp<span class="nv">$p</span>+r300<span class="w"> </span>tt.App_E.d<span class="w"> </span>-X<span class="si">${</span><span class="nv">x</span><span class="si">}</span>i<span class="w"> </span>-Y<span class="si">${</span><span class="nv">y</span><span class="si">}</span>i<span class="w"> </span>-B0
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>-GP<span class="nv">$p</span>+r300<span class="w"> </span>tt.App_E.d<span class="w"> </span>-X<span class="si">${</span><span class="nv">xwidth</span><span class="si">}</span>i<span class="w"> </span>-B0
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 0.225&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-R0/<span class="nv">$w</span>/0/<span class="nv">$ywidth</span><span class="w"> </span>-N<span class="w"> </span>-Sc0.17i<span class="w"> </span>-Wthinnest<span class="w"> </span>-Gwhite
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;0 0.225 </span><span class="nv">$p</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-R0/<span class="nv">$w</span>/0/<span class="nv">$ywidth</span><span class="w"> </span>-N<span class="w"> </span>-F+f9p,Helvetica-Bold
+<span class="w">		</span><span class="nv">y</span><span class="o">=</span><span class="m">0</span>.0
+<span class="w">		</span><span class="nv">x</span><span class="o">=</span><span class="nv">$dx</span>
+<span class="w">	</span><span class="k">done</span>
+<span class="w">	</span><span class="nv">y</span><span class="o">=</span><span class="nv">$dy</span>
+<span class="w">	</span><span class="nv">x</span><span class="o">=</span><span class="nv">$back</span>
 <span class="k">done</span>
-gmt end show
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </div>
@@ -234,8 +231,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

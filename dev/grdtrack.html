@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdtrack &mdash; GMT 6.4.0 documentation</title>
+  <title>grdtrack &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -149,7 +146,7 @@
              
   <span class="target" id="index-0"></span><section id="grdtrack">
 <h1>grdtrack<a class="headerlink" href="#grdtrack" title="Permalink to this heading">¶</a></h1>
-<p>Sample grids at specified (x,y) locations</p>
+<p>Sample one or more grids at specified locations</p>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
 <p><strong>gmt grdtrack</strong> [ <em>table</em> ] <a class="reference internal" href="#g"><span><strong>-G</strong></span></a></strong><em>grd1</em> <a class="reference internal" href="#g"><span><strong>-G</strong></span></a></strong><em>grd2</em> …
@@ -203,7 +200,9 @@ edge is zero) unless the grid is automatically recognized as periodic.)</p>
 <dl class="simple">
 <dt><em>table</em></dt><dd><p>This is an ASCII (or binary, see <strong>-bi</strong>) file where the first 2 columns
 hold the (x,y) positions where the user wants to sample the 2-D data set.
-If no tables are given then we read from standard input, unless <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong> is set.</p>
+If no tables are given then we read from standard input. If <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong> is set
+then no input table is read since we will create one from the given
+<a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong> parameters.</p>
 </dd>
 </dl>
 <dl class="simple" id="g">
@@ -246,7 +245,7 @@ given spacing to fit the track length exactly. Finally, append
 <dl class="simple" id="c">
 <dt><strong>-C</strong><em>length</em>/<em>ds</em>[<em>/spacing</em>][<strong>+a</strong>|<strong>v</strong>][<strong>d</strong>|<strong>f</strong><em>value</em>][<strong>l</strong>|<strong>r</strong>]</dt><dd><p>Use input line segments to create an equidistant and (optionally)
 equally-spaced set of crossing profiles along which we sample the
-grid(s) [Default simply samples the grid(s) at the input locations].
+grid(s).
 Specify two length scales that control how the sampling is done:
 <em>length</em> sets the full length of each cross-profile, while <em>ds</em> is
 the sampling spacing along each cross-profile. Optionally, append
@@ -255,7 +254,7 @@ the sampling spacing along each cross-profile. Optionally, append
 for how resampling the input track is controlled. By
 default, all cross-profiles have the same direction (left to right
 as we look in the direction of the input line segment). Append <strong>+a</strong>
-to alternate the direction of cross-profiles, or <strong>v</strong> to enforce
+to alternate the direction of cross-profiles, or <strong>+v</strong> to enforce
 either a “west-to-east” or “south-to-north” view. By default the entire
 profiles are output.  Choose to only output the left or right halves
 of the profiles by appending <strong>+l</strong> or <strong>+r</strong>, respectively.  Append suitable units
@@ -301,12 +300,12 @@ on the origin; both require <strong>+l</strong>. For circular sampling specify
 this option requires either <strong>+n</strong> or <strong>+i</strong>.  The <strong>+n</strong><em>np</em> modifier sets
 the desired number of points, while <strong>+l</strong><em>length</em> gives the
 total length of the profile. Append <strong>+d</strong> to output the along-track
-distances after the coordinates.  <strong>Note</strong>: No track file will be read.
+distances after the coordinates.  <strong>Notes</strong>: (1) No track file will be read.
 Also note that only one distance unit can be chosen.  Giving different units
 will result in an error.  If no units are specified we default to
 great circle distances in km (if geographic).  If working with geographic
 data you can use <strong>-j</strong> to control distance calculation mode [Great Circle].
-<strong>Note</strong>: If <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> is set and <em>spacing</em> is given the that sampling scheme
+(2) If <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> is set and <em>spacing</em> is given the that sampling scheme
 overrules any modifier set in <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong>.</p>
 </dd>
 </dl>
@@ -321,7 +320,7 @@ along the original input <em>trackfile</em> and the other 12 output columns are 
 of that distance.  When searching for the center peak and the extreme first and last
 values that exceed the threshold we assume the profile is positive up.  If we instead
 are looking for a trough then you must use <strong>+n</strong> to temporarily flip the profile to
-positive. The threshold <em>z0</em> value is always given as &gt;= 0; use <strong>+z</strong> to change it [0].
+positive (internally). The threshold <em>z0</em> value is always given as &gt;= 0; use <strong>+z</strong> to change it [0].
 Alternatively, use <strong>+b</strong> to determine the balance point and standard deviation of the
 profile; this is the weighted mean and weighted standard deviation of the distances,
 with <em>z</em> acting as the weight. Finally, use <strong>+r</strong> to obtain the weighted rms about the
@@ -341,7 +340,7 @@ distance nodes along the cross-profiles.  We write 13 output columns per track:
 </dl>
 <dl class="simple" id="s">
 <dt><strong>-S</strong><em>method</em>/<em>modifiers</em></dt><dd><p>In conjunction with <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong>, compute a single stacked profile from
-all profiles across each segment. Append how stacking should be
+all profiles across each segment. Append a method for how stacking should be
 computed: <strong>a</strong> = mean (average), <strong>m</strong> = median, <strong>p</strong> = mode
 (maximum likelihood), <strong>l</strong> = lower, <strong>L</strong> = lower but only consider
 positive values, <strong>u</strong> = upper, <strong>U</strong> = upper but only consider
@@ -351,20 +350,23 @@ values to all cross-profiles. <strong>+d</strong> : Append stack deviations to
 all cross-profiles. <strong>+r</strong> : Append data residuals (data - stack) to
 all cross-profiles. <strong>+s</strong>[<em>file</em>] : Save stacked profile to
 <em>file</em> [grdtrack_stacked_profile.txt]. <strong>+c</strong><em>fact</em> : Compute
-envelope on stacked profile as ±<em>fact</em> *<em>deviation</em> [2].
-Notes: (1) Deviations depend on <em>method</em> and are st.dev (<strong>a</strong>), L1
-scale, i.e., 1.4826 * median absolute deviation (MAD) (for <strong>m</strong> and <strong>p</strong>), or half-range (upper-lower)/2. (2) The
+uncertainty envelope on stacked profile as ±<em>fact</em> *<em>deviation</em> [2].
+<strong>Notes</strong>: (1) Deviations depend on <em>method</em> and are standard deviation (<strong>a</strong>), L1
+scale, i.e., 1.4826 * median absolute deviation (MAD) (for <strong>m</strong> and <strong>p</strong>),
+or half-range (upper-lower)/2 (for <strong>l</strong>, <strong>L</strong>, <strong>u</strong> and <strong>U</strong>). (2) The
 stacked profile file contains a leading column plus groups of 4-6 columns, with one
 group for each sampled grid. The leading column holds cross distance,
 while the first four columns in a group hold stacked value, deviation, min
 value, and max value, respectively. If <em>method</em> is one of
-<strong>a</strong>|<strong>m</strong>|<strong>p</strong> then we also write the lower and upper
+<strong>a</strong>|<strong>m</strong>|<strong>p</strong> then we also write two additional columns: the lower and upper
 confidence bounds (see <strong>+c</strong>). When one or more of <strong>+a</strong>, <strong>+d</strong>,
 and <strong>+r</strong> are used then we also append the stacking results to the end of each
 row, for all cross-profiles. The order is always stacked value
-(<strong>+a</strong>), followed by deviations (<strong>+d</strong>) and finally residuals (<strong>+r</strong>).
+(<strong>+a</strong>), followed by deviations (<strong>+d</strong>) and finally residuals (<strong>+r</strong>);
+actual output depends on which of these modifiers were actually used.
 When more than one grid is sampled this sequence of 1-3 columns is
-repeated for each grid.</p>
+repeated for each grid. (3) See Illustration Gallery 33 for an example
+of grid profile stacking.</p>
 </dd>
 </dl>
 <dl class="simple" id="t">
@@ -522,20 +524,20 @@ Other commands requiring input files are just dummy examples of the types
 of uses that are common but cannot be run verbatim as written.</p>
 <p>To extract a profile along a great circle between (0,0) to (20,20) from the remote grid earth_relief_05m,
 and only write out (dist, topo) records, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdtrack -G@earth_relief_05m -R0/20/0/20 -EBL/TR+d -o3,2 &gt; profile.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdtrack<span class="w"> </span>-G@earth_relief_05m<span class="w"> </span>-R0/20/0/20<span class="w"> </span>-EBL/TR+d<span class="w"> </span>-o3,2<span class="w"> </span>&gt;<span class="w"> </span>profile.txt
 </pre></div>
 </div>
 <p>To sample the file hawaii_topo.nc along the SEASAT track track_4.xyg
 (An ASCII table containing longitude, latitude, and SEASAT-derived
 gravity, preceded by one header record):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdtrack track_4.xyg -Ghawaii_topo.nc -h &gt; track_4.xygt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdtrack<span class="w"> </span>track_4.xyg<span class="w"> </span>-Ghawaii_topo.nc<span class="w"> </span>-h<span class="w"> </span>&gt;<span class="w"> </span>track_4.xygt
 </pre></div>
 </div>
 <p>To sample the Sandwell/Smith IMG format file topo.8.2.img (2 minute
 predicted bathymetry on a Mercator grid) and the Muller et al age grid
 age.3.2.nc along the lon,lat coordinates given in the file
 cruise_track.xy, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdtrack cruise_track.xy -Gtopo.8.2.img,1,1 -Gage.3.2.nc &gt; depths-age.d
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdtrack<span class="w"> </span>cruise_track.xy<span class="w"> </span>-Gtopo.8.2.img,1,1<span class="w"> </span>-Gage.3.2.nc<span class="w"> </span>&gt;<span class="w"> </span>depths-age.d
 </pre></div>
 </div>
 <p>To sample the Sandwell/Smith IMG format file grav.18.1.img (1 minute
@@ -543,19 +545,19 @@ free-air anomalies on a Mercator grid) along 100-km-long cross-profiles
 that are orthogonal to the line segment given in the file track.xy,
 erecting cross-profiles every 25 km and sampling the grid every 3 km, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdtrack track.xy -Ggrav.18.1.img,0.1,1 -C100k/3/25 -Ar &gt; xprofiles.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdtrack<span class="w"> </span>track.xy<span class="w"> </span>-Ggrav.18.1.img,0.1,1<span class="w"> </span>-C100k/3/25<span class="w"> </span>-Ar<span class="w"> </span>&gt;<span class="w"> </span>xprofiles.txt
 </pre></div>
 </div>
 </div></blockquote>
 <p>The same thing, but now determining the central anomaly location along track,
 with a threshold of 25 mGal, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdtrack track.xy -Ggrav.18.1.img,0.1,1 -C100k/3/25 -F+z25 &gt; locations.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdtrack<span class="w"> </span>track.xy<span class="w"> </span>-Ggrav.18.1.img,0.1,1<span class="w"> </span>-C100k/3/25<span class="w"> </span>-F+z25<span class="w"> </span>&gt;<span class="w"> </span>locations.txt
 </pre></div>
 </div>
 <p>To sample the grid data.nc along a line from the lower left to the upper
 right corner, using a grid spacing of 1 km on the geodesic, and output distances as well,
 try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdtrack -ELB/RT+i1k+d -Gdata.nc -je &gt; profiles.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdtrack<span class="w"> </span>-ELB/RT+i1k+d<span class="w"> </span>-Gdata.nc<span class="w"> </span>-je<span class="w"> </span>&gt;<span class="w"> </span>profiles.txt
 </pre></div>
 </div>
 </section>
@@ -580,8 +582,8 @@ try:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

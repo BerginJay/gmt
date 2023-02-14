@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Session Four &mdash; GMT 6.4.0 documentation</title>
+  <title>Session Four &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -111,7 +108,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -216,8 +213,8 @@ shown if you run the module with no arguments) and the equidistant
 <p>To make discrete and continuous color CPTs for data that ranges
 from -20 to 60, with color changes at every 10, try these two variants:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow, <span class="nv">range</span><span class="o">=(</span>-20,60,10<span class="o">)</span>, <span class="nv">write</span><span class="o">=</span><span class="s2">&quot;disc.cpt&quot;</span><span class="o">)</span>
-makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow, <span class="nv">range</span><span class="o">=(</span>-20,60,10<span class="o">)</span>, <span class="nv">continuous</span><span class="o">=</span>true, <span class="nv">write</span><span class="o">=</span><span class="s2">&quot;cont.cpt&quot;</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow,<span class="w"> </span><span class="nv">range</span><span class="o">=(</span>-20,60,10<span class="o">)</span>,<span class="w"> </span><span class="nv">write</span><span class="o">=</span><span class="s2">&quot;disc.cpt&quot;</span><span class="o">)</span>
+makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow,<span class="w"> </span><span class="nv">range</span><span class="o">=(</span>-20,60,10<span class="o">)</span>,<span class="w"> </span><span class="nv">continuous</span><span class="o">=</span>true,<span class="w"> </span><span class="nv">write</span><span class="o">=</span><span class="s2">&quot;cont.cpt&quot;</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -250,13 +247,13 @@ allow output to standard output.</p>
 </table>
 <p>Here is an example of four different ways of presenting the color bar:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">C1</span> <span class="o">=</span> makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow, <span class="nv">range</span><span class="o">=(</span>-20,60,10<span class="o">))</span><span class="p">;</span>
-<span class="nv">C2</span> <span class="o">=</span> makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow, <span class="nv">range</span><span class="o">=(</span>-20,60,10<span class="o">)</span>, <span class="nv">continuous</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span>
-basemap<span class="o">(</span><span class="nv">region</span><span class="o">=(</span><span class="m">0</span>,15,0,22<span class="o">)</span>, <span class="nv">scale</span><span class="o">=</span><span class="m">1</span>, <span class="nv">frame</span><span class="o">=</span>:noannot, <span class="nv">x_offset</span><span class="o">=</span>:c<span class="o">)</span>
-colorbar!<span class="o">(</span>C1, <span class="nv">pos</span><span class="o">=(</span><span class="nv">paper</span><span class="o">=(</span><span class="m">2</span>.5,2.5<span class="o">)</span>,  <span class="nv">size</span><span class="o">=(</span><span class="m">10</span>,1.25<span class="o">)</span>, <span class="nv">horizontal</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>, <span class="nv">frame</span><span class="o">=</span>:auto, <span class="nv">title</span><span class="o">=</span>:discrete<span class="o">)</span>
-colorbar!<span class="o">(</span>C2, <span class="nv">pos</span><span class="o">=(</span><span class="nv">paper</span><span class="o">=(</span><span class="m">2</span>.5,7.5<span class="o">)</span>,  <span class="nv">size</span><span class="o">=(</span><span class="m">10</span>,1.25<span class="o">)</span>, <span class="nv">horizontal</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>, <span class="nv">frame</span><span class="o">=</span>:auto, <span class="nv">title</span><span class="o">=</span>:continuous<span class="o">)</span>
-colorbar!<span class="o">(</span>C1, <span class="nv">pos</span><span class="o">=(</span><span class="nv">paper</span><span class="o">=(</span><span class="m">2</span>.5,12.5<span class="o">)</span>, <span class="nv">size</span><span class="o">=(</span><span class="m">10</span>,1.25<span class="o">)</span>, <span class="nv">horizontal</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>, <span class="nv">frame</span><span class="o">=</span>:auto, <span class="nv">title</span><span class="o">=</span>:discrete, <span class="nv">shade</span><span class="o">=</span><span class="m">0</span>.5<span class="o">)</span>
-colorbar!<span class="o">(</span>C2, <span class="nv">pos</span><span class="o">=(</span><span class="nv">paper</span><span class="o">=(</span><span class="m">2</span>.5,17.5<span class="o">)</span>, <span class="nv">size</span><span class="o">=(</span><span class="m">10</span>,1.25<span class="o">)</span>, <span class="nv">horizontal</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>, <span class="nv">frame</span><span class="o">=</span>:auto, <span class="nv">title</span><span class="o">=</span>:continuous, <span class="nv">shade</span><span class="o">=</span><span class="m">0</span>.5<span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">C1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow,<span class="w"> </span><span class="nv">range</span><span class="o">=(</span>-20,60,10<span class="o">))</span><span class="p">;</span>
+<span class="nv">C2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow,<span class="w"> </span><span class="nv">range</span><span class="o">=(</span>-20,60,10<span class="o">)</span>,<span class="w"> </span><span class="nv">continuous</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span>
+basemap<span class="o">(</span><span class="nv">region</span><span class="o">=(</span><span class="m">0</span>,15,0,22<span class="o">)</span>,<span class="w"> </span><span class="nv">scale</span><span class="o">=</span><span class="m">1</span>,<span class="w"> </span><span class="nv">frame</span><span class="o">=</span>:noannot,<span class="w"> </span><span class="nv">x_offset</span><span class="o">=</span>:c<span class="o">)</span>
+colorbar!<span class="o">(</span>C1,<span class="w"> </span><span class="nv">pos</span><span class="o">=(</span><span class="nv">paper</span><span class="o">=(</span><span class="m">2</span>.5,2.5<span class="o">)</span>,<span class="w">  </span><span class="nv">size</span><span class="o">=(</span><span class="m">10</span>,1.25<span class="o">)</span>,<span class="w"> </span><span class="nv">horizontal</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>,<span class="w"> </span><span class="nv">frame</span><span class="o">=</span>:auto,<span class="w"> </span><span class="nv">title</span><span class="o">=</span>:discrete<span class="o">)</span>
+colorbar!<span class="o">(</span>C2,<span class="w"> </span><span class="nv">pos</span><span class="o">=(</span><span class="nv">paper</span><span class="o">=(</span><span class="m">2</span>.5,7.5<span class="o">)</span>,<span class="w">  </span><span class="nv">size</span><span class="o">=(</span><span class="m">10</span>,1.25<span class="o">)</span>,<span class="w"> </span><span class="nv">horizontal</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>,<span class="w"> </span><span class="nv">frame</span><span class="o">=</span>:auto,<span class="w"> </span><span class="nv">title</span><span class="o">=</span>:continuous<span class="o">)</span>
+colorbar!<span class="o">(</span>C1,<span class="w"> </span><span class="nv">pos</span><span class="o">=(</span><span class="nv">paper</span><span class="o">=(</span><span class="m">2</span>.5,12.5<span class="o">)</span>,<span class="w"> </span><span class="nv">size</span><span class="o">=(</span><span class="m">10</span>,1.25<span class="o">)</span>,<span class="w"> </span><span class="nv">horizontal</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>,<span class="w"> </span><span class="nv">frame</span><span class="o">=</span>:auto,<span class="w"> </span><span class="nv">title</span><span class="o">=</span>:discrete,<span class="w"> </span><span class="nv">shade</span><span class="o">=</span><span class="m">0</span>.5<span class="o">)</span>
+colorbar!<span class="o">(</span>C2,<span class="w"> </span><span class="nv">pos</span><span class="o">=(</span><span class="nv">paper</span><span class="o">=(</span><span class="m">2</span>.5,17.5<span class="o">)</span>,<span class="w"> </span><span class="nv">size</span><span class="o">=(</span><span class="m">10</span>,1.25<span class="o">)</span>,<span class="w"> </span><span class="nv">horizontal</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>,<span class="w"> </span><span class="nv">frame</span><span class="o">=</span>:auto,<span class="w"> </span><span class="nv">title</span><span class="o">=</span>:continuous,<span class="w"> </span><span class="nv">shade</span><span class="o">=</span><span class="m">0</span>.5<span class="o">)</span>
 showfig<span class="o">()</span>
 </pre></div>
 </div>
@@ -309,7 +306,7 @@ operations involve translating from RGB to HSV, do the illumination effect, and 
 <p>Once a CPT has been made it is relatively straightforward to generate a color image of a gridded data.
 Here, we will extract a subset of the global 30” DEM called SRTM30+:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">G</span> <span class="o">=</span> grdcut<span class="o">(</span><span class="s2">&quot;@earth_relief_30s&quot;</span>, <span class="nv">region</span><span class="o">=(</span>-108,-103,35,40<span class="o">))</span><span class="p">;</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>grdcut<span class="o">(</span><span class="s2">&quot;@earth_relief_30s&quot;</span>,<span class="w"> </span><span class="nv">region</span><span class="o">=(</span>-108,-103,35,40<span class="o">))</span><span class="p">;</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -338,9 +335,9 @@ the main other options are:</p>
 </table>
 <p>We want to make a plain color map with a color bar superimposed above the plot. We try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span> <span class="o">=</span> makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow, <span class="nv">range</span><span class="o">=(</span><span class="m">1000</span>,5000<span class="o">))</span><span class="p">;</span>
-grdimage<span class="o">(</span><span class="s2">&quot;@earth_relief_30s&quot;</span>, <span class="nv">region</span><span class="o">=(</span>-108,-103,35,40<span class="o">)</span>, <span class="nv">proj</span><span class="o">=</span>:merc, <span class="nv">frame</span><span class="o">=(</span><span class="nv">axes</span><span class="o">=</span>:WSnE,<span class="o">))</span>
-colorbar!<span class="o">(</span><span class="nv">pos</span><span class="o">=(</span><span class="nv">outside</span><span class="o">=</span>:TC,<span class="o">)</span>, <span class="nv">shade</span><span class="o">=</span><span class="m">0</span>.4, <span class="nv">xaxis</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span>:auto,<span class="o">)</span>, <span class="nv">ylabel</span><span class="o">=</span>:m, <span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow,<span class="w"> </span><span class="nv">range</span><span class="o">=(</span><span class="m">1000</span>,5000<span class="o">))</span><span class="p">;</span>
+grdimage<span class="o">(</span><span class="s2">&quot;@earth_relief_30s&quot;</span>,<span class="w"> </span><span class="nv">region</span><span class="o">=(</span>-108,-103,35,40<span class="o">)</span>,<span class="w"> </span><span class="nv">proj</span><span class="o">=</span>:merc,<span class="w"> </span><span class="nv">frame</span><span class="o">=(</span><span class="nv">axes</span><span class="o">=</span>:WSnE,<span class="o">))</span>
+colorbar!<span class="o">(</span><span class="nv">pos</span><span class="o">=(</span><span class="nv">outside</span><span class="o">=</span>:TC,<span class="o">)</span>,<span class="w"> </span><span class="nv">shade</span><span class="o">=</span><span class="m">0</span>.4,<span class="w"> </span><span class="nv">xaxis</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span>:auto,<span class="o">)</span>,<span class="w"> </span><span class="nv">ylabel</span><span class="o">=</span>:m,<span class="w"> </span><span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -397,17 +394,17 @@ the data range. The transformed slopes are more normally distributed (right).</s
 <strong>laplace</strong>=true option; the value of <em>norm</em> is subjective and you may experiment somewhat in the 0.5-5 range.
 For our case we choose</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">Ggrad</span> <span class="o">=</span> grdgradient<span class="o">(</span>G, <span class="nv">norm</span><span class="o">=(</span><span class="nv">laplace</span><span class="o">=</span><span class="m">0</span>.8,<span class="o">))</span>, <span class="nv">azim</span><span class="o">=</span><span class="m">100</span>, <span class="nv">colinfo</span><span class="o">=</span>:g<span class="o">)</span><span class="p">;</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">Ggrad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>grdgradient<span class="o">(</span>G,<span class="w"> </span><span class="nv">norm</span><span class="o">=(</span><span class="nv">laplace</span><span class="o">=</span><span class="m">0</span>.8,<span class="o">))</span>,<span class="w"> </span><span class="nv">azim</span><span class="o">=</span><span class="m">100</span>,<span class="w"> </span><span class="nv">colinfo</span><span class="o">=</span>:g<span class="o">)</span><span class="p">;</span>
 </pre></div>
 </div>
 </div></blockquote>
 <p>Given the CPT and the two gridded data sets we can create the shaded relief image:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span> <span class="o">=</span> makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow, <span class="nv">range</span><span class="o">=(</span><span class="m">1000</span>,5000<span class="o">))</span><span class="p">;</span>
-<span class="nv">G</span> <span class="o">=</span> grdcut<span class="o">(</span><span class="s2">&quot;@earth_relief_30s&quot;</span>, <span class="nv">region</span><span class="o">=(</span>-108,-103,35,40<span class="o">))</span><span class="p">;</span>
-<span class="nv">Ggrad</span> <span class="o">=</span> grdgradient<span class="o">(</span>G, <span class="nv">norm</span><span class="o">=(</span><span class="nv">laplace</span><span class="o">=</span><span class="m">0</span>.8,<span class="o">)</span>, <span class="nv">azim</span><span class="o">=</span><span class="m">100</span>, <span class="nv">colinfo</span><span class="o">=</span>:g<span class="o">)</span><span class="p">;</span>
-grdimage<span class="o">(</span>G, <span class="nv">shade</span><span class="o">=</span>Ggrad, <span class="nv">proj</span><span class="o">=</span>:merc, <span class="nv">frame</span><span class="o">=(</span><span class="nv">axes</span><span class="o">=</span>:WSnE,<span class="o">))</span>
-colorbar!<span class="o">(</span><span class="nv">pos</span><span class="o">=(</span><span class="nv">outside</span><span class="o">=</span>:TC,<span class="o">)</span>, <span class="nv">shade</span><span class="o">=</span><span class="m">0</span>.4, <span class="nv">xaxis</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span>:auto,<span class="o">)</span>, <span class="nv">ylabel</span><span class="o">=</span>:m, <span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:rainbow,<span class="w"> </span><span class="nv">range</span><span class="o">=(</span><span class="m">1000</span>,5000<span class="o">))</span><span class="p">;</span>
+<span class="nv">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>grdcut<span class="o">(</span><span class="s2">&quot;@earth_relief_30s&quot;</span>,<span class="w"> </span><span class="nv">region</span><span class="o">=(</span>-108,-103,35,40<span class="o">))</span><span class="p">;</span>
+<span class="nv">Ggrad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>grdgradient<span class="o">(</span>G,<span class="w"> </span><span class="nv">norm</span><span class="o">=(</span><span class="nv">laplace</span><span class="o">=</span><span class="m">0</span>.8,<span class="o">)</span>,<span class="w"> </span><span class="nv">azim</span><span class="o">=</span><span class="m">100</span>,<span class="w"> </span><span class="nv">colinfo</span><span class="o">=</span>:g<span class="o">)</span><span class="p">;</span>
+grdimage<span class="o">(</span>G,<span class="w"> </span><span class="nv">shade</span><span class="o">=</span>Ggrad,<span class="w"> </span><span class="nv">proj</span><span class="o">=</span>:merc,<span class="w"> </span><span class="nv">frame</span><span class="o">=(</span><span class="nv">axes</span><span class="o">=</span>:WSnE,<span class="o">))</span>
+colorbar!<span class="o">(</span><span class="nv">pos</span><span class="o">=(</span><span class="nv">outside</span><span class="o">=</span>:TC,<span class="o">)</span>,<span class="w"> </span><span class="nv">shade</span><span class="o">=</span><span class="m">0</span>.4,<span class="w"> </span><span class="nv">xaxis</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span>:auto,<span class="o">)</span>,<span class="w"> </span><span class="nv">ylabel</span><span class="o">=</span>:m,<span class="w"> </span><span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -437,7 +434,7 @@ otemp.anal1deg.nc (<a class="reference external" href="ftp://ftp.cdc.noaa.gov/Da
 notice that the variable that we want to plot (otemp) is a four-dimensional variable of time,
 level (i.e., depth), latitude and longitude.</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ncdump -h otemp.anal1deg.nc
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ncdump<span class="w"> </span>-h<span class="w"> </span>otemp.anal1deg.nc
 </pre></div>
 </div>
 </div></blockquote>
@@ -447,9 +444,9 @@ Let us focus on the temperatures in Summer (that is the third season, July throu
 September) at sea level (that is the first level). To plot these in a Mollweide projection we
 use:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span> <span class="o">=</span> makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:no_green, <span class="nv">range</span><span class="o">=(</span>-2,30,2<span class="o">))</span><span class="p">;</span>
-grdimage<span class="o">(</span><span class="s2">&quot;@otemp.anal1deg.nc?otemp[2,0]&quot;</span>, <span class="nv">region</span><span class="o">=</span>:global360, <span class="nv">proj</span><span class="o">=(</span><span class="nv">name</span><span class="o">=</span>:Mollweide, <span class="nv">center</span><span class="o">=</span><span class="m">180</span><span class="o">)</span>,
-         <span class="nv">frame</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span>:auto, <span class="nv">grid</span><span class="o">=</span>:auto<span class="o">)</span>, <span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:no_green,<span class="w"> </span><span class="nv">range</span><span class="o">=(</span>-2,30,2<span class="o">))</span><span class="p">;</span>
+grdimage<span class="o">(</span><span class="s2">&quot;@otemp.anal1deg.nc?otemp[2,0]&quot;</span>,<span class="w"> </span><span class="nv">region</span><span class="o">=</span>:global360,<span class="w"> </span><span class="nv">proj</span><span class="o">=(</span><span class="nv">name</span><span class="o">=</span>:Mollweide,<span class="w"> </span><span class="nv">center</span><span class="o">=</span><span class="m">180</span><span class="o">)</span>,
+<span class="w">         </span><span class="nv">frame</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span>:auto,<span class="w"> </span><span class="nv">grid</span><span class="o">=</span>:auto<span class="o">)</span>,<span class="w"> </span><span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -525,7 +522,7 @@ It can make two kinds of plots:</p>
 will use the ocean CPT. A simple mesh plot can therefore be obtained with</p>
 <p>Your plot should look like <a class="reference internal" href="#gmt-tut-18-jl"><span class="std std-ref">our example 18 below</span></a></p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grdview<span class="o">(</span><span class="s2">&quot;@earth_relief_05m&quot;</span>, <span class="nv">region</span><span class="o">=(</span>-66,-60,30,35<span class="o">)</span>, <span class="nv">proj</span><span class="o">=</span>:merc, <span class="nv">zsize</span><span class="o">=</span><span class="m">5</span>, <span class="nv">figsize</span><span class="o">=</span><span class="m">13</span>, <span class="nv">view</span><span class="o">=(</span><span class="m">135</span>,30<span class="o">)</span>, <span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grdview<span class="o">(</span><span class="s2">&quot;@earth_relief_05m&quot;</span>,<span class="w"> </span><span class="nv">region</span><span class="o">=(</span>-66,-60,30,35<span class="o">)</span>,<span class="w"> </span><span class="nv">proj</span><span class="o">=</span>:merc,<span class="w"> </span><span class="nv">zsize</span><span class="o">=</span><span class="m">5</span>,<span class="w"> </span><span class="nv">figsize</span><span class="o">=</span><span class="m">13</span>,<span class="w"> </span><span class="nv">view</span><span class="o">=(</span><span class="m">135</span>,30<span class="o">)</span>,<span class="w"> </span><span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -544,10 +541,10 @@ will use the ocean CPT. A simple mesh plot can therefore be obtained with</p>
 <h3>Color-coded view<a class="headerlink" href="#color-coded-view" title="Permalink to this heading">¶</a></h3>
 <p>We will make a perspective, color-coded view of the US Rockies from the southeast. This is done using</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span> <span class="o">=</span> makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:dem2, <span class="nv">range</span><span class="o">=(</span><span class="m">1000</span>,5000<span class="o">))</span><span class="p">;</span>
-<span class="nv">G</span> <span class="o">=</span> grdcut<span class="o">(</span><span class="s2">&quot;@earth_relief_30s&quot;</span>, <span class="nv">region</span><span class="o">=(</span>-108,-103,35,40<span class="o">))</span><span class="p">;</span>
-<span class="nv">Ggrad</span> <span class="o">=</span> grdgradient<span class="o">(</span>G, <span class="nv">norm</span><span class="o">=(</span><span class="nv">laplace</span><span class="o">=</span><span class="m">0</span>.8,<span class="o">)</span>, <span class="nv">azim</span><span class="o">=</span><span class="m">100</span>, <span class="nv">colinfo</span><span class="o">=</span>:g<span class="o">)</span><span class="p">;</span>
-grdview<span class="o">(</span>G, <span class="nv">proj</span><span class="o">=</span>:merc, <span class="nv">figsize</span><span class="o">=</span><span class="m">10</span>, <span class="nv">view</span><span class="o">=(</span><span class="m">135</span>,35<span class="o">)</span>, <span class="nv">surftype</span><span class="o">=(</span><span class="nv">image</span><span class="o">=</span><span class="m">50</span>,<span class="o">)</span>, <span class="nv">shade</span><span class="o">=</span>Ggrad, <span class="nv">zsize</span><span class="o">=</span><span class="m">1</span>.25, <span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>makecpt<span class="o">(</span><span class="nv">cmap</span><span class="o">=</span>:dem2,<span class="w"> </span><span class="nv">range</span><span class="o">=(</span><span class="m">1000</span>,5000<span class="o">))</span><span class="p">;</span>
+<span class="nv">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>grdcut<span class="o">(</span><span class="s2">&quot;@earth_relief_30s&quot;</span>,<span class="w"> </span><span class="nv">region</span><span class="o">=(</span>-108,-103,35,40<span class="o">))</span><span class="p">;</span>
+<span class="nv">Ggrad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>grdgradient<span class="o">(</span>G,<span class="w"> </span><span class="nv">norm</span><span class="o">=(</span><span class="nv">laplace</span><span class="o">=</span><span class="m">0</span>.8,<span class="o">)</span>,<span class="w"> </span><span class="nv">azim</span><span class="o">=</span><span class="m">100</span>,<span class="w"> </span><span class="nv">colinfo</span><span class="o">=</span>:g<span class="o">)</span><span class="p">;</span>
+grdview<span class="o">(</span>G,<span class="w"> </span><span class="nv">proj</span><span class="o">=</span>:merc,<span class="w"> </span><span class="nv">figsize</span><span class="o">=</span><span class="m">10</span>,<span class="w"> </span><span class="nv">view</span><span class="o">=(</span><span class="m">135</span>,35<span class="o">)</span>,<span class="w"> </span><span class="nv">surftype</span><span class="o">=(</span><span class="nv">image</span><span class="o">=</span><span class="m">50</span>,<span class="o">)</span>,<span class="w"> </span><span class="nv">shade</span><span class="o">=</span>Ggrad,<span class="w"> </span><span class="nv">zsize</span><span class="o">=</span><span class="m">1</span>.25,<span class="w"> </span><span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -583,8 +580,8 @@ direction and plot again.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

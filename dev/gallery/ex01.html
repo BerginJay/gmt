@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(1) Contour maps &mdash; GMT 6.4.0 documentation</title>
+  <title>(1) Contour maps &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -163,17 +160,17 @@ the continents in light brown in the background. This is how it is done:</p>
 <span class="c1"># Purpose:	Make two contour maps based on the data in the file osu91a1f_16.nc</span>
 <span class="c1"># GMT modules:	subplot, grdcontour, coast</span>
 <span class="c1">#</span>
-gmt begin ex01
-	gmt subplot begin 2x1 -A -M0.5c -Blrtb -Bafg -T<span class="s2">&quot;Low Order Geoid&quot;</span> -Fs16c/0 -Rg -JH16c
-		gmt coast -JH? -Glightbrown -Slightblue -c0,0
-		gmt grdcontour @osu91a1f_16.nc -C10 -A50+f7p -Gd10c -Ln -Wcthinnest,- -Wathin,- -T+d8p/2p+l
-		gmt grdcontour @osu91a1f_16.nc -C10 -A50+f7p -Gd10c -LP -T+d8p/2p+l
+gmt<span class="w"> </span>begin<span class="w"> </span>ex01
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>begin<span class="w"> </span>2x1<span class="w"> </span>-A<span class="w"> </span>-M0.5c<span class="w"> </span>-Blrtb<span class="w"> </span>-Bafg<span class="w"> </span>-T<span class="s2">&quot;Low Order Geoid&quot;</span><span class="w"> </span>-Fs16c/0<span class="w"> </span>-Rg<span class="w"> </span>-JH16c
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-JH?<span class="w"> </span>-Glightbrown<span class="w"> </span>-Slightblue<span class="w"> </span>-c0,0
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@osu91a1f_16.nc<span class="w"> </span>-C10<span class="w"> </span>-A50+f7p<span class="w"> </span>-Gd10c<span class="w"> </span>-Ln<span class="w"> </span>-Wcthinnest,-<span class="w"> </span>-Wathin,-<span class="w"> </span>-T+d8p/2p+l
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@osu91a1f_16.nc<span class="w"> </span>-C10<span class="w"> </span>-A50+f7p<span class="w"> </span>-Gd10c<span class="w"> </span>-LP<span class="w"> </span>-T+d8p/2p+l
 
-		gmt coast -JH0/? -Glightbrown -Slightblue -c1,0
-		gmt grdcontour @osu91a1f_16.nc -C10 -A50+f7p -Gd10c -Ln -Wcthinnest,- -Wathin,- -T+d8p/2p
-		gmt grdcontour @osu91a1f_16.nc -C10 -A50+f7p -Gd10c -LP -T+d8p/2p
-	gmt subplot end
-gmt end show
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-JH0/?<span class="w"> </span>-Glightbrown<span class="w"> </span>-Slightblue<span class="w"> </span>-c1,0
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@osu91a1f_16.nc<span class="w"> </span>-C10<span class="w"> </span>-A50+f7p<span class="w"> </span>-Gd10c<span class="w"> </span>-Ln<span class="w"> </span>-Wcthinnest,-<span class="w"> </span>-Wathin,-<span class="w"> </span>-T+d8p/2p
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>@osu91a1f_16.nc<span class="w"> </span>-C10<span class="w"> </span>-A50+f7p<span class="w"> </span>-Gd10c<span class="w"> </span>-LP<span class="w"> </span>-T+d8p/2p
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>end
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>The first command sets up a 2 by 1 <a class="reference internal" href="../subplot.html"><span class="doc">subplot</span></a> layout. The subplot determines
@@ -208,8 +205,8 @@ and b) is automatically done by <a class="reference internal" href="../subplot.h
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

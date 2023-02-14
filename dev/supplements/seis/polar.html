@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>polar &mdash; GMT 6.4.0 documentation</title>
+  <title>polar &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -251,7 +248,7 @@ countries given by the codes. Simply append one or more comma-separated countrie
 <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
 country name (e.g., Norway). To select a state within a country (if available), append .state (e.g, US.TX),
 or the full state name (e.g., Texas). To specify a whole continent, spell out the full continent name (e.g., -RAfrica).
-Finally, append any <a class="reference internal" href="../../coast.html#id1"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
+Finally, append any <a class="reference internal" href="../../coast.html#dcw-collections"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
 the collection or named region. All names are case-insensitive. The following modifiers can be appended:</p>
 <blockquote>
 <div><ul class="simple">
@@ -355,7 +352,7 @@ append <strong>+o</strong> to offset the text string by <em>dx</em>/<em>dy</em>.
 </dd>
 </dl>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="../../gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="../../cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="../../gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="../../cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -363,7 +360,7 @@ append <strong>+o</strong> to offset the text string by <em>dx</em>/<em>dy</em>.
 </dd>
 </dl>
 <dl class="simple" id="w">
-<dt><strong>-W</strong>[<strong>-</strong>|<strong>+</strong>][<em>pen</em>][<em>attr</em>] <a class="reference internal" href="../../cookbook/features.html#wpen-attrib"><span class="std std-ref">(more …)</span></a></dt><dd><p>Set current pen attributes [Default pen is default,black,solid].</p>
+<dt><strong>-W</strong>[<strong>-</strong>|<strong>+</strong>][<em>pen</em>][<em>attr</em>] <a class="reference internal" href="../../cookbook/features.html#wpen-attrib"><span class="std std-ref">(more …)</span></a></dt><dd><p>Set current pen attributes [Default pen is 0.25p,black,solid].</p>
 </dd>
 </dl>
 <dl class="simple" id="x">
@@ -430,7 +427,7 @@ end point (<strong>e</strong>) of a line segment:</p>
 <blockquote>
 <div><p><strong>+a</strong><em>angle</em> sets the angle <span class="math notranslate nohighlight">\(\theta\)</span> of the vector head apex [30].</p>
 <p><strong>+b</strong> places a vector head at the <strong>b</strong>eginning of the vector path [none].
-Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle,
+Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle, <strong>s</strong> for a square,
 <strong>a</strong> for arrow [Default], <strong>i</strong> for tail, <strong>A</strong> for plain open arrow,
 and <strong>I</strong> for plain open tail. <strong>Note</strong>: For geovectors only <strong>a</strong> and <strong>A</strong> are available.
 Further append <strong>l</strong>|<strong>r</strong> to only draw the left or right
@@ -439,7 +436,7 @@ half-sides of this head [both sides].</p>
 requires a separate data column following the 2 or 3 coordinates]. Requires that data
 quantity scaling (with unit <strong>q</strong> via <strong>+v</strong> or <strong>+z</strong>) and a CPT have been selected.</p>
 <p><strong>+e</strong> places a vector head at the <strong>e</strong>nd of the vector path [none].
-Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle,
+Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle, <strong>s</strong> for a square,
 <strong>a</strong> for arrow [Default], <strong>i</strong> for tail, <strong>A</strong> for plain open arrow,
 and <strong>I</strong> for plain open tail. <strong>Note</strong>: For geovectors only <strong>a</strong> and <strong>A</strong> are available.
 Further append <strong>l</strong>|<strong>r</strong> to only draw the left or right
@@ -539,7 +536,7 @@ blue lines indicate these three parameters).</span><a class="headerlink" href="#
 <p><strong>Note</strong>: Since many GMT plot examples are very short (i.e., one module call between the
 <strong>gmt begin</strong> and <strong>gmt end</strong> commands), we will often present them using the quick
 modern mode <a class="reference internal" href="../../cookbook/one-liner.html"><span class="doc">GMT Modern Mode One-line Commands</span></a> syntax, which simplifies such short scripts.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt polar -R239/240/34/35.2 -JM8c -N -Sc0.4 -D239.5/34.5 -M5 -pdf <span class="nb">test</span> <span class="s">&lt;&lt; END</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>polar<span class="w"> </span>-R239/240/34/35.2<span class="w"> </span>-JM8c<span class="w"> </span>-N<span class="w"> </span>-Sc0.4<span class="w"> </span>-D239.5/34.5<span class="w"> </span>-M5<span class="w"> </span>-pdf<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="s">&lt;&lt; END</span>
 <span class="s">#stat azim ih pol</span>
 <span class="s">0481 11 147 c</span>
 <span class="s">6185 247 120 d</span>
@@ -550,7 +547,7 @@ modern mode <a class="reference internal" href="../../cookbook/one-liner.html"><
 </pre></div>
 </div>
 <p>Use special format derived from HYPO71 output:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt polar -R239/240/34/35.2 -JM8c -N -Sc0.4 -D239:30E/34:30N -M5 -Qh -pdf <span class="nb">test</span> <span class="s">&lt;&lt;END</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>polar<span class="w"> </span>-R239/240/34/35.2<span class="w"> </span>-JM8c<span class="w"> </span>-N<span class="w"> </span>-Sc0.4<span class="w"> </span>-D239:30E/34:30N<span class="w"> </span>-M5<span class="w"> </span>-Qh<span class="w"> </span>-pdf<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="s">&lt;&lt;END</span>
 <span class="s">#Date Or. time stat azim ih</span>
 <span class="s">910223 1 22 0481 11 147 ipu0</span>
 <span class="s">910223 1 22 6185 247 120 ipd0</span>
@@ -594,8 +591,8 @@ Institut de Physique du Globe de Paris, Departement de Sismologie, Paris, France
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

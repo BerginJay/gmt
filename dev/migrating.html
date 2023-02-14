@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Migrating from an Earlier Version &mdash; GMT 6.4.0 documentation</title>
+  <title>Migrating from an Earlier Version &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -170,7 +167,7 @@ program for each module command.</p></li>
 your GMT installation was installed outside your user directory you will need
 to run the script as root.  It will create all the module links to allow users
 to run modules directly.  You can run the link-building script this way:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">$(</span>gmt --show-sharedir<span class="k">)</span>/tools/gmt_links.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">$(</span>gmt<span class="w"> </span>--show-sharedir<span class="k">)</span>/tools/gmt_links.sh
 </pre></div>
 </div>
 <p>which will report the status of any existing links.  Add the argument <em>create</em>
@@ -178,7 +175,7 @@ or <em>delete</em> to make actual changes.</p>
 </li>
 <li><p>If your default shell is bash or similar then you can call another <strong>share/tools</strong>
 script called <strong>gmt_functions.sh</strong> this way:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> <span class="k">$(</span>gmt --show-sharedir<span class="k">)</span>/tools/gmt_functions.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span><span class="k">$(</span>gmt<span class="w"> </span>--show-sharedir<span class="k">)</span>/tools/gmt_functions.sh
 </pre></div>
 </div>
 <p>It will instead create bash functions with the
@@ -187,7 +184,7 @@ gmt invocation.</p>
 </li>
 <li><p>If your default shell is csh or similar then you must instead call <strong>gmt_aliases.csh</strong>
 which works similarly to the <strong>gmt_functions.sh</strong> but for csh:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> <span class="sb">`</span>gmt --show-sharedir<span class="sb">`</span>/tools/gmt_aliases.csh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span><span class="sb">`</span>gmt<span class="w"> </span>--show-sharedir<span class="sb">`</span>/tools/gmt_aliases.csh
 </pre></div>
 </div>
 <p>Both of these two solutions can be implemented via your login setup so they are
@@ -220,8 +217,8 @@ may wish to take the opportunity and update the syntax when these issues are rep
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(51) OpenStreetMap coastlines in GMT &mdash; GMT 6.4.0 documentation</title>
+  <title>(51) OpenStreetMap coastlines in GMT &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -195,7 +192,7 @@ with <a class="reference internal" href="../gmtselect.html"><span class="doc">gm
 <span class="c1"># output is named land_polygons_osm_planet.gmt. The resulting file is very</span>
 <span class="c1"># large (&gt;1 GB) but already usable. But wait, there is more ...</span>
 
-ogr2ogr -f OGR_GMT land_polygons_osm_planet.gmt land_polygons.shp
+ogr2ogr<span class="w"> </span>-f<span class="w"> </span>OGR_GMT<span class="w"> </span>land_polygons_osm_planet.gmt<span class="w"> </span>land_polygons.shp
 
 <span class="c1"># Resorting to GMT&#39;s convert program we take our very large ASCII file and</span>
 <span class="c1"># reduce it to about a third of its original size by converting it to a binary</span>
@@ -204,7 +201,7 @@ ogr2ogr -f OGR_GMT land_polygons_osm_planet.gmt land_polygons.shp
 <span class="c1"># 2 makes it two data columns</span>
 <span class="c1"># f indicates 4-byte single-precision for the data</span>
 
-gmt convert land_polygons_osm_planet.gmt -bo2f &gt; land_polygons_osm_planet.bf2
+gmt<span class="w"> </span>convert<span class="w"> </span>land_polygons_osm_planet.gmt<span class="w"> </span>-bo2f<span class="w"> </span>&gt;<span class="w"> </span>land_polygons_osm_planet.bf2
 
 <span class="c1"># Now the heavylifting is done and we have a reusable global coastline file</span>
 <span class="c1"># with higher precision than the GSHHG coastlines.</span>
@@ -214,39 +211,39 @@ gmt convert land_polygons_osm_planet.gmt -bo2f &gt; land_polygons_osm_planet.bf2
 <span class="c1"># looks very similar: the -bi is indicating native binary input. -R...+r gives</span>
 <span class="c1"># the area which we are interested in.</span>
 
-gmt <span class="k">select</span> land_polygons_osm_planet.bf2 -bi2f -bo2f -R-25.14/16.75/-24.8/16.95+r &gt; land_polygons_osm_caboverde.bf2
+gmt<span class="w"> </span><span class="k">select</span><span class="w"> </span>land_polygons_osm_planet.bf2<span class="w"> </span>-bi2f<span class="w"> </span>-bo2f<span class="w"> </span>-R-25.14/16.75/-24.8/16.95+r<span class="w"> </span>&gt;<span class="w"> </span>land_polygons_osm_caboverde.bf2
 
 <span class="c1"># Finally it is time to do the thing we are here for: Plot some OSM coastlines</span>
 <span class="c1"># and compare them to the GSHHG coastlines.</span>
 
-gmt begin ex51
-  
-  <span class="c1"># To make the lines a bit nicer we set the line endcaps and the way lines are</span>
-  <span class="c1"># joined to round</span>
-  
-  gmt <span class="nb">set</span> PS_LINE_CAP round
-  gmt <span class="nb">set</span> PS_LINE_JOIN round
-  
-  <span class="c1"># To get an idea where the GSHHG coastlines are we lay them down first with a</span>
-  <span class="c1"># thin red pen. -JL defines a Lambert conic conformal projection and -R...+r</span>
-  <span class="c1"># is the area of the plot. -W defines the pen and -B the style of the plot</span>
-  <span class="c1"># borders, gridlines and annotations. </span>
-  
-  gmt coast -JL-24.9/16.55/16.3/16.7/15c -R-25.14/16.75/-24.8/16.95+r -Wred -Ba10mg10m
-  
-  <span class="c1"># Time to use the OSM coastlines we prepared earlier. Straightforward we</span>
-  <span class="c1"># supply the extracted area, tell plot about the binary format (-bi), define</span>
-  <span class="c1"># pen (-W) and fill (-G)</span>
-  
-  gmt plot land_polygons_osm_caboverde.bf2 -bi2f -Wthinnest,black -Ggrey
-  
-  <span class="c1"># Here we plot the GSHHG coastlines a second time but now with a dashed pen</span>
-  <span class="c1"># to highlight the areas where they would otherwise be hidden behind the grey</span>
-  <span class="c1"># OSM landmass. </span>
-  
-  gmt coast -Wred,dashed
-  
-gmt end show
+gmt<span class="w"> </span>begin<span class="w"> </span>ex51
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># To make the lines a bit nicer we set the line endcaps and the way lines are</span>
+<span class="w">  </span><span class="c1"># joined to round</span>
+<span class="w">  </span>
+<span class="w">  </span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>PS_LINE_CAP<span class="w"> </span>round
+<span class="w">  </span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>PS_LINE_JOIN<span class="w"> </span>round
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># To get an idea where the GSHHG coastlines are we lay them down first with a</span>
+<span class="w">  </span><span class="c1"># thin red pen. -JL defines a Lambert conic conformal projection and -R...+r</span>
+<span class="w">  </span><span class="c1"># is the area of the plot. -W defines the pen and -B the style of the plot</span>
+<span class="w">  </span><span class="c1"># borders, gridlines and annotations. </span>
+<span class="w">  </span>
+<span class="w">  </span>gmt<span class="w"> </span>coast<span class="w"> </span>-JL-24.9/16.55/16.3/16.7/15c<span class="w"> </span>-R-25.14/16.75/-24.8/16.95+r<span class="w"> </span>-Wred<span class="w"> </span>-Ba10mg10m
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Time to use the OSM coastlines we prepared earlier. Straightforward we</span>
+<span class="w">  </span><span class="c1"># supply the extracted area, tell plot about the binary format (-bi), define</span>
+<span class="w">  </span><span class="c1"># pen (-W) and fill (-G)</span>
+<span class="w">  </span>
+<span class="w">  </span>gmt<span class="w"> </span>plot<span class="w"> </span>land_polygons_osm_caboverde.bf2<span class="w"> </span>-bi2f<span class="w"> </span>-Wthinnest,black<span class="w"> </span>-Ggrey
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Here we plot the GSHHG coastlines a second time but now with a dashed pen</span>
+<span class="w">  </span><span class="c1"># to highlight the areas where they would otherwise be hidden behind the grey</span>
+<span class="w">  </span><span class="c1"># OSM landmass. </span>
+<span class="w">  </span>
+<span class="w">  </span>gmt<span class="w"> </span>coast<span class="w"> </span>-Wred,dashed
+<span class="w">  </span>
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -268,8 +265,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

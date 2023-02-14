@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gmtspatial &mdash; GMT 6.4.0 documentation</title>
+  <title>gmtspatial &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -335,7 +332,7 @@ countries given by the codes. Simply append one or more comma-separated countrie
 <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
 country name (e.g., Norway). To select a state within a country (if available), append .state (e.g, US.TX),
 or the full state name (e.g., Texas). To specify a whole continent, spell out the full continent name (e.g., -RAfrica).
-Finally, append any <a class="reference internal" href="coast.html#id1"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
+Finally, append any <a class="reference internal" href="coast.html#dcw-collections"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
 the collection or named region. All names are case-insensitive. The following modifiers can be appended:</p>
 <blockquote>
 <div><ul class="simple">
@@ -398,11 +395,11 @@ polygons of length 4 or 5 that exactly match the <a class="reference internal" h
 <dt><strong>-V</strong>[<em>level</em>]</dt><dd><p>Select verbosity level [<strong>w</strong>]. <a class="reference internal" href="gmt.html#v-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#verbose-feedback-the-v-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
-<dl class="simple">
+<dl class="simple" id="w">
 <dt><strong>-W</strong><em>dist</em>[<em>unit</em>][<strong>+f</strong>|<strong>l</strong>]</dt><dd><p>Extend all segments with a new first and last point such that these points are <em>dist</em> away
 from their neighbor point in the direction implied by the two points at each end of the
 segment.  For geographic data you may append a <em>unit</em> (see <a class="reference internal" href="#units">Units</a>). To give separate
-distances for the two ends, give distf*[<em>unit</em>]/distl*[<em>unit</em>] instead.  Optionally,
+distances for the two ends, give <em>distf</em>[<em>unit</em>]/<em>distl</em>[<em>unit</em>] instead.  Optionally,
 append either <strong>+f</strong> or <strong>+l</strong> to only extend the first or last point this way [both].
 The mode of geographical calculations depends on <strong>-j</strong>.</p>
 </dd>
@@ -515,42 +512,42 @@ specify more decimals using the <a class="reference internal" href="gmt.conf.htm
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <p>To determine the centroid of the remote GSHHH high-resolution polygon for Australia,
 as well as the land area in km squared, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt spatial @GSHHS_h_Australia.txt -fg -Qk
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>spatial<span class="w"> </span>@GSHHS_h_Australia.txt<span class="w"> </span>-fg<span class="w"> </span>-Qk
 </pre></div>
 </div>
 <p>To turn all lines in the multisegment file lines.txt into closed polygons,
 run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt spatial lines.txt -F &gt; polygons.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>spatial<span class="w"> </span>lines.txt<span class="w"> </span>-F<span class="w"> </span>&gt;<span class="w"> </span>polygons.txt
 </pre></div>
 </div>
 <p>To compute the area of all geographic polygons in the multisegment file
 polygons.txt, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt spatial polygons.txt -Q &gt; areas.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>spatial<span class="w"> </span>polygons.txt<span class="w"> </span>-Q<span class="w"> </span>&gt;<span class="w"> </span>areas.txt
 </pre></div>
 </div>
 <p>Same data, but now orient all polygons to go counter-clockwise and write
 their areas to the segment headers, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt spatial polygons.txt -Q+h -E+p &gt; areas.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>spatial<span class="w"> </span>polygons.txt<span class="w"> </span>-Q+h<span class="w"> </span>-E+p<span class="w"> </span>&gt;<span class="w"> </span>areas.txt
 </pre></div>
 </div>
 <p>To determine the areas of all the polygon segments in the file janmayen_land_full.txt,
 add this information to the segment headers, sort the segments from largest
 to smallest in area but only keep polygons with area larger than 1000 sq. meters, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt spatial -Qe+h+p+c1000+sd -V janmayen_land_full.txt &gt; largest_pols.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>spatial<span class="w"> </span>-Qe+h+p+c1000+sd<span class="w"> </span>-V<span class="w"> </span>janmayen_land_full.txt<span class="w"> </span>&gt;<span class="w"> </span>largest_pols.txt
 </pre></div>
 </div>
 <p>To determine the intersections between the polygons A.txt and B.txt, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt spatial A.txt B.txt -Ie &gt; crossovers.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>spatial<span class="w"> </span>A.txt<span class="w"> </span>B.txt<span class="w"> </span>-Ie<span class="w"> </span>&gt;<span class="w"> </span>crossovers.txt
 </pre></div>
 </div>
 <p>To truncate polygons A.txt against polygon B.txt, resulting in an open line segment, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt spatial A.txt -TB.txt &gt; line.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>spatial<span class="w"> </span>A.txt<span class="w"> </span>-TB.txt<span class="w"> </span>&gt;<span class="w"> </span>line.txt
 </pre></div>
 </div>
 <p>If you want to plot a polygon with holes (donut polygon) from a multiple segment file
 which contains both perimeters and holes, it could be necessary first to reorganize the file
 so it can plotted with plot. To do this, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt spatial file.txt -Sh &gt; organized_file.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>spatial<span class="w"> </span>file.txt<span class="w"> </span>-Sh<span class="w"> </span>&gt;<span class="w"> </span>organized_file.txt
 </pre></div>
 </div>
 </section>
@@ -581,8 +578,8 @@ two OGR/GMT files.  The solution is to convert them to regular datasets via
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

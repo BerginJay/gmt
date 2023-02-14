@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>psrose &mdash; GMT 6.4.0 documentation</title>
+  <title>psrose &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -325,7 +322,7 @@ as <em>azimuth + 180</em>.  Ignored if range is given as -90/90 or 0/180.</p>
 </dd>
 </dl>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -432,7 +429,7 @@ end point (<strong>e</strong>) of a line segment:</p>
 <blockquote>
 <div><p><strong>+a</strong><em>angle</em> sets the angle <span class="math notranslate nohighlight">\(\theta\)</span> of the vector head apex [30].</p>
 <p><strong>+b</strong> places a vector head at the <strong>b</strong>eginning of the vector path [none].
-Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle,
+Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle, <strong>s</strong> for a square,
 <strong>a</strong> for arrow [Default], <strong>i</strong> for tail, <strong>A</strong> for plain open arrow,
 and <strong>I</strong> for plain open tail. <strong>Note</strong>: For geovectors only <strong>a</strong> and <strong>A</strong> are available.
 Further append <strong>l</strong>|<strong>r</strong> to only draw the left or right
@@ -441,7 +438,7 @@ half-sides of this head [both sides].</p>
 requires a separate data column following the 2 or 3 coordinates]. Requires that data
 quantity scaling (with unit <strong>q</strong> via <strong>+v</strong> or <strong>+z</strong>) and a CPT have been selected.</p>
 <p><strong>+e</strong> places a vector head at the <strong>e</strong>nd of the vector path [none].
-Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle,
+Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle, <strong>s</strong> for a square,
 <strong>a</strong> for arrow [Default], <strong>i</strong> for tail, <strong>A</strong> for plain open arrow,
 and <strong>I</strong> for plain open tail. <strong>Note</strong>: For geovectors only <strong>a</strong> and <strong>A</strong> are available.
 Further append <strong>l</strong>|<strong>r</strong> to only draw the left or right
@@ -568,26 +565,26 @@ interval, radial direction annotated every 50 km, using a light blue
 shading outlined by a solid red pen (width = 0.75 points), draw the mean
 azimuth, and shown in Portrait orientation, use:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psrose fault_segments.az_r -R0/150/-90/90 -Bx50g25+l<span class="s2">&quot;Fault length&quot;</span>
-           -Byg30 -B+t<span class="s2">&quot;Rose diagram&quot;</span> -JX6i -A10+r -Glightblue
-           -W0.75p,red -Z0.001 -Cm -P -T -: &gt; half_rose.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psrose<span class="w"> </span>fault_segments.az_r<span class="w"> </span>-R0/150/-90/90<span class="w"> </span>-Bx50g25+l<span class="s2">&quot;Fault length&quot;</span>
+<span class="w">           </span>-Byg30<span class="w"> </span>-B+t<span class="s2">&quot;Rose diagram&quot;</span><span class="w"> </span>-JX6i<span class="w"> </span>-A10+r<span class="w"> </span>-Glightblue
+<span class="w">           </span>-W0.75p,red<span class="w"> </span>-Z0.001<span class="w"> </span>-Cm<span class="w"> </span>-P<span class="w"> </span>-T<span class="w"> </span>-:<span class="w"> </span>&gt;<span class="w"> </span>half_rose.ps
 </pre></div>
 </div>
 </div></blockquote>
 <p>To plot a full circle wind rose diagram of the data in the file
 lines.r_az, on a circle of diameter = 10 cm, grid going out to radius =
 500 units in steps of 100 with a 45 degree sector interval, using a
-solid pen (width = 0.5 point, and shown in landscape [Default]
+solid pen (width = 0.5 point), and shown in landscape [Default]
 orientation with UNIX timestamp and command line plotted, use:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psrose lines.az_r -R0/500/0/360 -JX10c -Bxg100 -Byg45 -B+t<span class="s2">&quot;Windrose diagram&quot;</span> -W0.5p -U+c <span class="p">|</span> lpr
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psrose<span class="w"> </span>lines.az_r<span class="w"> </span>-R0/500/0/360<span class="w"> </span>-JX10c<span class="w"> </span>-Bxg100<span class="w"> </span>-Byg45<span class="w"> </span>-B+t<span class="s2">&quot;Windrose diagram&quot;</span><span class="w"> </span>-W0.5p<span class="w"> </span>-U+c<span class="w"> </span><span class="p">|</span><span class="w"> </span>lpr
 </pre></div>
 </div>
 </div></blockquote>
 <p>Redo the same plot but this time add orange vector heads to each direction (with nominal head size
 0.5 cm but this will be reduced linearly for lengths less than 1 cm) and save the plot, use:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psrose lines.az_r -R0/500/0/360 -JX10c -Bxg100 -Byg45 -B+t<span class="s2">&quot;Windrose diagram&quot;</span> -M0.5c+e+gorange+n1c -W0.5p -U+c &gt; rose.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psrose<span class="w"> </span>lines.az_r<span class="w"> </span>-R0/500/0/360<span class="w"> </span>-JX10c<span class="w"> </span>-Bxg100<span class="w"> </span>-Byg45<span class="w"> </span>-B+t<span class="s2">&quot;Windrose diagram&quot;</span><span class="w"> </span>-M0.5c+e+gorange+n1c<span class="w"> </span>-W0.5p<span class="w"> </span>-U+c<span class="w"> </span>&gt;<span class="w"> </span>rose.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -619,8 +616,8 @@ must run the module with <a class="reference internal" href="#i"><span><strong>-
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

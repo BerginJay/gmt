@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>makecpt &mdash; GMT 6.4.0 documentation</title>
+  <title>makecpt &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -157,7 +154,7 @@
 [ <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong><em>cpt</em> ]
 [ <a class="reference internal" href="#d"><span><strong>-D</strong></span></a></strong>[<strong>i</strong>|<strong>o</strong>] ]
 [ <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong>[<em>nlevels</em>] ]
-[ <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong>[<strong>R</strong>|<strong>r</strong>|<strong>h</strong>|<strong>c</strong>][<strong>+c</strong>[<em>label</em>]][<strong>+k</strong><em>keys</em>] ]
+[ <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong>[<strong>R</strong>|<strong>r</strong>|<strong>h</strong>|<strong>c</strong>|<strong>x</strong>][<strong>+c</strong>[<em>label</em>]][<strong>+k</strong><em>keys</em>] ]
 [ <a class="reference internal" href="#g"><span><strong>-G</strong></span></a></strong><em>zlo</em>/<em>zhi</em> ]
 [ <a class="reference internal" href="#h"><span><strong>-H</strong></span></a></strong> ]
 [ <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong>[<strong>c</strong>][<strong>z</strong>] ]
@@ -251,9 +248,10 @@ the number of levels in the chosen CPT.</p>
 </dd>
 </dl>
 <dl class="simple" id="f">
-<dt><strong>-F</strong>[<strong>R</strong>|<strong>r</strong>|<strong>h</strong>|<strong>c</strong>][<strong>+c</strong>[<em>label</em>]][<strong>+k</strong><em>keys</em>]</dt><dd><p>Force output CPT to be written with r/g/b codes, gray-scale values
+<dt><strong>-F</strong>[<strong>R</strong>|<strong>r</strong>|<strong>h</strong>|<strong>c</strong>|<strong>x</strong>][<strong>+c</strong>[<em>label</em>]][<strong>+k</strong><em>keys</em>]</dt><dd><p>Force output CPT to be written with r/g/b codes, gray-scale values
 or color name (<strong>R</strong>, default) or r/g/b codes only (<strong>r</strong>), or h-s-v
-codes (<strong>h</strong>), or c/m/y/k codes (<strong>c</strong>).  Optionally or alternatively,
+codes (<strong>h</strong>), or c/m/y/k codes (<strong>c</strong>), or #rrggbb hex codes (<strong>x</strong>).
+Optionally or alternatively,
 append <strong>+c</strong> to write discrete palettes in categorical format.
 If <em>label</em> is appended then we create labels for each category to be used
 when the CPT is plotted. The <em>label</em> may be a comma-separated list of
@@ -332,9 +330,9 @@ use <strong>i</strong> if you need to adjust the column orders.</p>
 <dt><strong>-T</strong>[<em>min</em>/<em>max</em>/<em>inc</em>[<strong>+b</strong>|<strong>i</strong>|<strong>l</strong>|<strong>n</strong>]|<em>file</em>|<em>list</em>]</dt><dd><p>Defines the range of the new CPT by giving the lowest and
 highest z-value (and optionally an interval).  If <a class="reference internal" href="#t"><span><strong>-T</strong></span></a></strong> is
 not given, the existing range in the master CPT will be used intact.
-The values produces defines the color slice boundaries.  If <strong>+n</strong> is
+The values produced defines the color slice boundaries. If <strong>+n</strong> is
 used it refers to the number of such boundaries and not the number of slices.
-For details on array creation, see <a class="reference internal" href="#generate-1d-array">Generate 1D Array</a>.  <strong>Note</strong>: To set
+For details on array creation, see <a class="reference internal" href="#generate-1-d-array">Generate 1-D Array</a>. <strong>Note</strong>: To set
 up categorical CPTs with string keys you can also give a comma-separated
 list of your keys.</p>
 </dd>
@@ -397,11 +395,11 @@ those in CPTs of given via command-line options) only apply to vector graphic it
 such as PostScript images).  This limitation rules out any
 mechanism of controlling transparency in such images on a pixel level.</p>
 </section>
-<section id="generate-1d-array">
-<h2>Generate 1D Array<a class="headerlink" href="#generate-1d-array" title="Permalink to this heading">¶</a></h2>
+<section id="generate-1-d-array">
+<h2>Generate 1-D Array<a class="headerlink" href="#generate-1-d-array" title="Permalink to this heading">¶</a></h2>
 <p>We will demonstrate the use of options for creating 1-D arrays via <a class="reference internal" href="gmtmath.html"><span class="doc">gmtmath</span></a>.
 Make an evenly spaced coordinate array from <em>min</em> to <em>max</em> in steps of <em>inc</em>, e.g.,:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T3.1/4.2/0.1 <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T3.1/4.2/0.1<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">3</span>.1
 <span class="m">3</span>.2
 <span class="m">3</span>.3
@@ -414,7 +412,7 @@ Make an evenly spaced coordinate array from <em>min</em> to <em>max</em> in step
 <p>Append <strong>+b</strong> if we should take log2 of <em>min</em> and <em>max</em>, get their nearest integers,
 build an equidistant log2-array using <em>inc</em> integer increments in log2, then undo
 the log2 conversion. E.g., <strong>-T</strong>3/20/1<strong>+b</strong> will produce this sequence:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T3/20/1+b <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T3/20/1+b<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">4</span>
 <span class="m">8</span>
 <span class="m">16</span>
@@ -423,7 +421,7 @@ the log2 conversion. E.g., <strong>-T</strong>3/20/1<strong>+b</strong> will pro
 <p>Append <strong>+l</strong> if we should take log10 of <em>min</em> and <em>max</em> and build an
 array where <em>inc</em> can be 1 (every magnitude), 2, (1, 2, 5 times magnitude) or 3
 (1-9 times magnitude).  E.g., <strong>-T</strong>7/135/2<strong>+l</strong> will produce this sequence:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T7/135/2+l <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T7/135/2+l<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">10</span>
 <span class="m">20</span>
 <span class="m">50</span>
@@ -431,7 +429,7 @@ array where <em>inc</em> can be 1 (every magnitude), 2, (1, 2, 5 times magnitude
 </pre></div>
 </div>
 <p>For output values less frequently than every magnitude, use a negative integer <em>inc</em>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T1e-4/1e4/-2+l <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T1e-4/1e4/-2+l<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">0</span>.0001
 <span class="m">0</span>.01
 <span class="m">1</span>
@@ -441,7 +439,7 @@ array where <em>inc</em> can be 1 (every magnitude), 2, (1, 2, 5 times magnitude
 </div>
 <p>Append <strong>+i</strong> if <em>inc</em> is a fractional number and it is cleaner to give its reciprocal
 value instead.  To set up times for a 24-frames per second animation lasting 1 minute, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T0/60/24+i <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T0/60/24+i<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">0</span>
 <span class="m">0</span>.0416666666667
 <span class="m">0</span>.0833333333333
@@ -452,7 +450,7 @@ value instead.  To set up times for a 24-frames per second animation lasting 1 m
 </div>
 <p>Append <strong>+n</strong> if <em>inc</em> is meant to indicate the <em>number</em> of equidistant coordinates
 instead.  To have exactly 5 equidistant values from 3.44 and 7.82, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T3.44/7.82/5+n <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T3.44/7.82/5+n<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">3</span>.44
 <span class="m">4</span>.535
 <span class="m">5</span>.63
@@ -463,7 +461,7 @@ instead.  To have exactly 5 equidistant values from 3.44 and 7.82, run:</p>
 <p>Alternatively, let <em>inc</em> be a <em>file</em> with output coordinates in the first column,
 or provide a comma-separated <em>list</em> of specific coordinates, such as the first 6
 Fibonacci numbers:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T0,1,1,2,3,5 <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T0,1,1,2,3,5<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">0</span>
 <span class="m">1</span>
 <span class="m">1</span>
@@ -480,7 +478,7 @@ then you must append a comma to distinguish the list from the setting of an incr
 <strong>y</strong>ear, m<strong>o</strong>nth, <strong>d</strong>ay, <strong>h</strong>our, <strong>m</strong>inute, and <strong>s</strong>econd
 to the given increment; add <strong>+t</strong> to ensure time column (or use <strong>-f</strong>). <strong>Note</strong>: The internal time
 unit is still controlled independently by <a class="reference internal" href="gmt.conf.html#term-TIME_UNIT"><span class="xref std std-term">TIME_UNIT</span></a>.  The first 7 days of March 2020:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt math -o0 -T2020-03-01T/2020-03-07T/1d <span class="nv">T</span> <span class="o">=</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>math<span class="w"> </span>-o0<span class="w"> </span>-T2020-03-01T/2020-03-07T/1d<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span>
 <span class="m">2020</span>-03-01T00:00:00
 <span class="m">2020</span>-03-02T00:00:00
 <span class="m">2020</span>-03-03T00:00:00
@@ -531,35 +529,31 @@ of uses that are common but cannot be run verbatim as written.</p>
 <p>To make a CPT with z-values from -200 to 200, with discrete color
 changes every 25, and using a polar blue-white-red colortable:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -Cpolar -T-200/200/25 &gt; colors.cpt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cpolar<span class="w"> </span>-T-200/200/25<span class="w"> </span>&gt;<span class="w"> </span>colors.cpt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To make an equidistant CPT from z = -2 to 6 using the
 continuous default turbo rainbow of colors:</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -T-2/6 &gt; colors.cpt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-T-2/6<span class="w"> </span>&gt;<span class="w"> </span>colors.cpt
 </pre></div>
 </div>
-</div></blockquote>
-<p>To use the GEBCO look-alike CPT with its default range for bathymetry, run</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -Cgebco &gt; my_gebco.cpt
+<p>To use the GEBCO look-alike CPT with its default range for bathymetry, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cgebco<span class="w"> </span>&gt;<span class="w"> </span>my_gebco.cpt
 </pre></div>
 </div>
-</div></blockquote>
 <p>or simply use -Cgebco directly in the application that needs the color table.
 To create a 24-level color table suitable for plotting the depths in
-the remote ata table v3206_06.txt (with lon, lat, depths), run</p>
+the remote data table v3206_06.txt (with lon, lat, depths), run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -Cgebco @v3206_06.txt -E24 &gt; my_depths.cpt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cgebco<span class="w"> </span>@v3206_06.txt<span class="w"> </span>-E24<span class="w"> </span>&gt;<span class="w"> </span>my_depths.cpt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To use the gebco color table but reverse the z-values so it can be used for
 positive depth values, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -Cgebco -Iz &gt; my_positive_gebco.cpt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cgebco<span class="w"> </span>-Iz<span class="w"> </span>&gt;<span class="w"> </span>my_positive_gebco.cpt
 </pre></div>
 </div>
 </div></blockquote>
@@ -567,14 +561,14 @@ positive depth values, try</p>
 hypocenters between 0 and 100 km, green for 100-300 km, and blue for deep (300-1000 km)
 earthquakes, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -Cred,green,blue -T0,80,300,1000 -N &gt; seis.cpt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cred,green,blue<span class="w"> </span>-T0,80,300,1000<span class="w"> </span>-N<span class="w"> </span>&gt;<span class="w"> </span>seis.cpt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To make a continuous CPT from white to blue as z goes from
 3 to 10, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -Cwhite,blue -T3/10 &gt; cold.cpt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cwhite,blue<span class="w"> </span>-T3/10<span class="w"> </span>&gt;<span class="w"> </span>cold.cpt
 </pre></div>
 </div>
 </div></blockquote>
@@ -582,23 +576,29 @@ earthquakes, use</p>
 0 to 500, i.e., the color will be wrapped every 500 z-units so that
 we always get a color regardless of the <em>z</em> value, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -Cjet -T0/500 -Ww &gt; wrapped.cpt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cjet<span class="w"> </span>-T0/500<span class="w"> </span>-Ww<span class="w"> </span>&gt;<span class="w"> </span>wrapped.cpt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To build a categorical table with 3 categories and add specific category
-names to them, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -Ccubhelix -T0/3/1 -F+cClouds,Trees,Water &gt; cat.cpt
+names to them, try</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Ccubhelix<span class="w"> </span>-T0/2/1<span class="w"> </span>-F+cClouds,Trees,Water<span class="w"> </span>&gt;<span class="w"> </span>cat.cpt
 </pre></div>
 </div>
-<p>To instead add unique category labels A, B, C, … to a 10-item categorical CPT, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -Cjet -T0/10/1 -F+cA
+</div></blockquote>
+<p>To instead add unique category labels A, B, C, … to a 10-item categorical CPT, try</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cjet<span class="w"> </span>-T0/10/1<span class="w"> </span>-F+cA
 </pre></div>
 </div>
-<p>To make a categorical CPT with string keys instead of numerical lookup values, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -Ccategorical -Twood,water,gold
+</div></blockquote>
+<p>To make a categorical CPT with string keys instead of numerical lookup values, try</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Ccategorical<span class="w"> </span>-Twood,water,gold
 </pre></div>
 </div>
+</div></blockquote>
 </section>
 <section id="note-on-cpts-in-modern-mode">
 <h2>Note on CPTs in Modern Mode<a class="headerlink" href="#note-on-cpts-in-modern-mode" title="Permalink to this heading">¶</a></h2>
@@ -650,8 +650,8 @@ CPTs.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(3) Spectral estimation and xy-plots &mdash; GMT 6.4.0 documentation</title>
+  <title>(3) Spectral estimation and xy-plots &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -191,42 +188,42 @@ page, with an auto-generated legend. Thus, the complete automated script reads:<
 <span class="c1"># and we use various GMT tools to facilitate their comparison.</span>
 <span class="c1">#</span>
 
-gmt begin ex03
-	gmt <span class="nb">set</span> GMT_FFT kiss
-	<span class="c1"># First, we use &quot;gmt fitcircle&quot; to find the parameters of a great circle</span>
-	<span class="c1"># most closely fitting the x,y points in &quot;sat_03.txt&quot;:</span>
-	<span class="nv">cpos</span><span class="o">=</span><span class="k">$(</span>gmt fitcircle @sat_03.txt -L2 -Fm --IO_COL_SEPARATOR<span class="o">=</span>/<span class="k">)</span>
-	<span class="nv">ppos</span><span class="o">=</span><span class="k">$(</span>gmt fitcircle @sat_03.txt -L2 -Fn --IO_COL_SEPARATOR<span class="o">=</span>/<span class="k">)</span>
-	<span class="c1"># Now we use &quot;gmt project&quot; to project the data in both sat_03.txt and ship_03.txt</span>
-	<span class="c1"># into data.pg, where g is the same and p is the oblique longitude around</span>
-	<span class="c1"># the great circle.  We use -Q to get the p distance in kilometers, and -S</span>
-	<span class="c1"># to sort the output into increasing p values.</span>
-	gmt project  @sat_03.txt -C<span class="nv">$cpos</span> -T<span class="nv">$ppos</span> -S -Fpz -Q &gt; sat.pg
-	gmt project @ship_03.txt -C<span class="nv">$cpos</span> -T<span class="nv">$ppos</span> -S -Fpz -Q &gt; ship.pg
-	<span class="nv">bounds</span><span class="o">=</span><span class="k">$(</span>gmt info ship.pg sat.pg -I1 -Af -L -C -i0  --IO_COL_SEPARATOR<span class="o">=</span>/<span class="k">)</span>
-	<span class="c1"># Now we can use $bounds in gmt math to make a sampling points file for gmt sample1d:</span>
-	gmt math -T<span class="nv">$bounds</span>/1 -N1/0 <span class="nv">T</span> <span class="o">=</span> samp.x
-	<span class="c1"># Now we can resample the gmt projected satellite data:</span>
-	gmt sample1d sat.pg -Tsamp.x &gt; samp_sat.pg
-	<span class="c1"># For reasons above, we use gmt filter1d to pre-treat the ship data.  We also need to sample</span>
-	<span class="c1"># it because of the gaps &gt; 1 km we found.  So we use gmt filter1d | gmt sample1d.  We also</span>
-	<span class="c1"># use the -E on gmt filter1d to use the data all the way out to bounds :</span>
-	gmt filter1d ship.pg -Fm1 -T<span class="nv">$bounds</span>/1 -E <span class="p">|</span> gmt sample1d -Tsamp.x &gt; samp_ship.pg
-	<span class="c1"># Now to do the cross-spectra, assuming that the ship is the input and the sat is the output</span>
-	<span class="c1"># data, we do this:</span>
-	gmt convert -A samp_ship.pg samp_sat.pg -o1,3 <span class="p">|</span> gmt spectrum1d -S256 -D1 -W -C -T
-	<span class="c1"># Time to plot spectra, use -l to build a legend</span>
-	gmt <span class="nb">set</span> FONT_TAG 18p,Helvetica-Bold
-	gmt subplot begin 2x1 -M0.3c -Scb+l<span class="s2">&quot;Wavelength (km)&quot;</span> -T<span class="s2">&quot;Ship and Satellite Gravity&quot;</span> -Fs10c -A+jTR+o8p -BWeSn+g240/255/240
-		gmt subplot <span class="nb">set</span> <span class="m">0</span>,0 -A<span class="s2">&quot;Input Power&quot;</span>
-		gmt plot spectrum.xpower -JX-?l/?l -Bxa1f3p -Bya1f3p+l<span class="s2">&quot;Power (mGal@+2@+km)&quot;</span> -Gred -ST5p -R1/1000/0.1/10000 -Ey+p0.5p -lShip
-		gmt plot spectrum.ypower -Gblue -Sc5p -Ey+p0.5p -lSatellite
-		gmt legend -DjBL+o0.5c -F+gwhite+pthicker --FONT_ANNOT_PRIMARY<span class="o">=</span>14p,Helvetica-Bold
-		gmt subplot <span class="nb">set</span> <span class="m">1</span>,0 -A<span class="s2">&quot;Coherency@+2@+&quot;</span>
-		gmt plot spectrum.coh -JX-?l/? -Bxa1f3p -Bya0.25f0.05+l<span class="s2">&quot;Coherency@+2@+&quot;</span> -R1/1000/0/1 -Sc5p -Gpurple -Ey+p0.5p
-	gmt subplot end
-gmt end show
-rm -f samp* *.pg spectrum.*
+gmt<span class="w"> </span>begin<span class="w"> </span>ex03
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_FFT<span class="w"> </span>kiss
+<span class="w">	</span><span class="c1"># First, we use &quot;gmt fitcircle&quot; to find the parameters of a great circle</span>
+<span class="w">	</span><span class="c1"># most closely fitting the x,y points in &quot;sat_03.txt&quot;:</span>
+<span class="w">	</span><span class="nv">cpos</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>fitcircle<span class="w"> </span>@sat_03.txt<span class="w"> </span>-L2<span class="w"> </span>-Fm<span class="w"> </span>--IO_COL_SEPARATOR<span class="o">=</span>/<span class="k">)</span>
+<span class="w">	</span><span class="nv">ppos</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>fitcircle<span class="w"> </span>@sat_03.txt<span class="w"> </span>-L2<span class="w"> </span>-Fn<span class="w"> </span>--IO_COL_SEPARATOR<span class="o">=</span>/<span class="k">)</span>
+<span class="w">	</span><span class="c1"># Now we use &quot;gmt project&quot; to project the data in both sat_03.txt and ship_03.txt</span>
+<span class="w">	</span><span class="c1"># into data.pg, where g is the same and p is the oblique longitude around</span>
+<span class="w">	</span><span class="c1"># the great circle.  We use -Q to get the p distance in kilometers, and -S</span>
+<span class="w">	</span><span class="c1"># to sort the output into increasing p values.</span>
+<span class="w">	</span>gmt<span class="w"> </span>project<span class="w">  </span>@sat_03.txt<span class="w"> </span>-C<span class="nv">$cpos</span><span class="w"> </span>-T<span class="nv">$ppos</span><span class="w"> </span>-S<span class="w"> </span>-Fpz<span class="w"> </span>-Q<span class="w"> </span>&gt;<span class="w"> </span>sat.pg
+<span class="w">	</span>gmt<span class="w"> </span>project<span class="w"> </span>@ship_03.txt<span class="w"> </span>-C<span class="nv">$cpos</span><span class="w"> </span>-T<span class="nv">$ppos</span><span class="w"> </span>-S<span class="w"> </span>-Fpz<span class="w"> </span>-Q<span class="w"> </span>&gt;<span class="w"> </span>ship.pg
+<span class="w">	</span><span class="nv">bounds</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>info<span class="w"> </span>ship.pg<span class="w"> </span>sat.pg<span class="w"> </span>-I1<span class="w"> </span>-Af<span class="w"> </span>-L<span class="w"> </span>-C<span class="w"> </span>-i0<span class="w">  </span>--IO_COL_SEPARATOR<span class="o">=</span>/<span class="k">)</span>
+<span class="w">	</span><span class="c1"># Now we can use $bounds in gmt math to make a sampling points file for gmt sample1d:</span>
+<span class="w">	</span>gmt<span class="w"> </span>math<span class="w"> </span>-T<span class="nv">$bounds</span>/1<span class="w"> </span>-N1/0<span class="w"> </span><span class="nv">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>samp.x
+<span class="w">	</span><span class="c1"># Now we can resample the gmt projected satellite data:</span>
+<span class="w">	</span>gmt<span class="w"> </span>sample1d<span class="w"> </span>sat.pg<span class="w"> </span>-Tsamp.x<span class="w"> </span>&gt;<span class="w"> </span>samp_sat.pg
+<span class="w">	</span><span class="c1"># For reasons above, we use gmt filter1d to pre-treat the ship data.  We also need to sample</span>
+<span class="w">	</span><span class="c1"># it because of the gaps &gt; 1 km we found.  So we use gmt filter1d | gmt sample1d.  We also</span>
+<span class="w">	</span><span class="c1"># use the -E on gmt filter1d to use the data all the way out to bounds :</span>
+<span class="w">	</span>gmt<span class="w"> </span>filter1d<span class="w"> </span>ship.pg<span class="w"> </span>-Fm1<span class="w"> </span>-T<span class="nv">$bounds</span>/1<span class="w"> </span>-E<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>sample1d<span class="w"> </span>-Tsamp.x<span class="w"> </span>&gt;<span class="w"> </span>samp_ship.pg
+<span class="w">	</span><span class="c1"># Now to do the cross-spectra, assuming that the ship is the input and the sat is the output</span>
+<span class="w">	</span><span class="c1"># data, we do this:</span>
+<span class="w">	</span>gmt<span class="w"> </span>convert<span class="w"> </span>-A<span class="w"> </span>samp_ship.pg<span class="w"> </span>samp_sat.pg<span class="w"> </span>-o1,3<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>spectrum1d<span class="w"> </span>-S256<span class="w"> </span>-D1<span class="w"> </span>-W<span class="w"> </span>-C<span class="w"> </span>-T
+<span class="w">	</span><span class="c1"># Time to plot spectra, use -l to build a legend</span>
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FONT_TAG<span class="w"> </span>18p,Helvetica-Bold
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>begin<span class="w"> </span>2x1<span class="w"> </span>-M0.3c<span class="w"> </span>-Scb+l<span class="s2">&quot;Wavelength (km)&quot;</span><span class="w"> </span>-T<span class="s2">&quot;Ship and Satellite Gravity&quot;</span><span class="w"> </span>-Fs10c<span class="w"> </span>-A+jTR+o8p<span class="w"> </span>-BWeSn+g240/255/240
+<span class="w">		</span>gmt<span class="w"> </span>subplot<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span>,0<span class="w"> </span>-A<span class="s2">&quot;Input Power&quot;</span>
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>spectrum.xpower<span class="w"> </span>-JX-?l/?l<span class="w"> </span>-Bxa1f3p<span class="w"> </span>-Bya1f3p+l<span class="s2">&quot;Power (mGal@+2@+km)&quot;</span><span class="w"> </span>-Gred<span class="w"> </span>-ST5p<span class="w"> </span>-R1/1000/0.1/10000<span class="w"> </span>-Ey+p0.5p<span class="w"> </span>-lShip
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>spectrum.ypower<span class="w"> </span>-Gblue<span class="w"> </span>-Sc5p<span class="w"> </span>-Ey+p0.5p<span class="w"> </span>-lSatellite
+<span class="w">		</span>gmt<span class="w"> </span>legend<span class="w"> </span>-DjBL+o0.5c<span class="w"> </span>-F+gwhite+pthicker<span class="w"> </span>--FONT_ANNOT_PRIMARY<span class="o">=</span>14p,Helvetica-Bold
+<span class="w">		</span>gmt<span class="w"> </span>subplot<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">1</span>,0<span class="w"> </span>-A<span class="s2">&quot;Coherency@+2@+&quot;</span>
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>spectrum.coh<span class="w"> </span>-JX-?l/?<span class="w"> </span>-Bxa1f3p<span class="w"> </span>-Bya0.25f0.05+l<span class="s2">&quot;Coherency@+2@+&quot;</span><span class="w"> </span>-R1/1000/0/1<span class="w"> </span>-Sc5p<span class="w"> </span>-Gpurple<span class="w"> </span>-Ey+p0.5p
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>end
+gmt<span class="w"> </span>end<span class="w"> </span>show
+rm<span class="w"> </span>-f<span class="w"> </span>samp*<span class="w"> </span>*.pg<span class="w"> </span>spectrum.*
 </pre></div>
 </div>
 <p>The final illustration shows that the
@@ -252,8 +249,8 @@ improves dramatically for wavelengths &gt; 20 km.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

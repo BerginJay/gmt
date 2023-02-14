@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>meca &mdash; GMT 6.4.0 documentation</title>
+  <title>meca &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -225,7 +222,7 @@ countries given by the codes. Simply append one or more comma-separated countrie
 <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
 country name (e.g., Norway). To select a state within a country (if available), append .state (e.g, US.TX),
 or the full state name (e.g., Texas). To specify a whole continent, spell out the full continent name (e.g., -RAfrica).
-Finally, append any <a class="reference internal" href="../../coast.html#id1"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
+Finally, append any <a class="reference internal" href="../../coast.html#dcw-collections"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
 the collection or named region. All names are case-insensitive. The following modifiers can be appended:</p>
 <blockquote>
 <div><ul class="simple">
@@ -473,7 +470,7 @@ the default pen set by <a class="reference internal" href="#w"><span><strong>-W<
 </dd>
 </dl>
 <dl class="simple" id="n">
-<dt><strong>-N</strong></dt><dd><p>Does <strong>NOT</strong> skip symbols that fall outside frame boundary specified
+<dt><strong>-N</strong></dt><dd><p>Does <strong>not</strong> skip symbols that fall outside frame boundary specified
 by <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> [Default plots symbols inside frame only].</p>
 </dd>
 </dl>
@@ -491,7 +488,7 @@ For non-double couple mechanisms, <strong>-T</strong><em>0</em> option overlays 
 </dd>
 </dl>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="../../gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="../../cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="../../gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="../../cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -500,7 +497,7 @@ For non-double couple mechanisms, <strong>-T</strong><em>0</em> option overlays 
 </dl>
 <dl class="simple" id="w">
 <dt><strong>-W</strong><em>pen</em></dt><dd><p>Set pen attributes for all lines and the outline of symbols
-[Defaults: default,black,solid]. This
+[Defaults: 0.25p,black,solid]. This
 setting applies to <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong>, <a class="reference internal" href="#l"><span><strong>-L</strong></span></a></strong>, <a class="reference internal" href="#t"><span><strong>-T</strong></span></a></strong>, <strong>-Fp</strong>, <strong>-Ft</strong>, and
 <strong>-Fz</strong>, unless overruled by options to those arguments.</p>
 </dd>
@@ -574,7 +571,7 @@ from file.  In addition, your use of options <strong>-H</strong>, <strong>-I</st
 require extra columns.  The order of the data record is fixed regardless of
 option order, even if not all items may be activated. We expect data columns
 to come in the following order:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lon lat depth symbol-columns <span class="o">[</span>size<span class="o">]</span> <span class="o">[</span>scale<span class="o">]</span> <span class="o">[</span>intens<span class="o">]</span> <span class="o">[</span>transp <span class="o">[</span>transp2<span class="o">]]</span> <span class="o">[</span>trailing-text<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lon<span class="w"> </span>lat<span class="w"> </span>depth<span class="w"> </span>symbol-columns<span class="w"> </span><span class="o">[</span>size<span class="o">]</span><span class="w"> </span><span class="o">[</span>scale<span class="o">]</span><span class="w"> </span><span class="o">[</span>intens<span class="o">]</span><span class="w"> </span><span class="o">[</span>transp<span class="w"> </span><span class="o">[</span>transp2<span class="o">]]</span><span class="w"> </span><span class="o">[</span>trailing-text<span class="o">]</span>
 </pre></div>
 </div>
 <p>where items given in brackets are optional and under the control of the stated
@@ -591,7 +588,7 @@ rearrange your data record to match the expected format.</p>
 <strong>gmt begin</strong> and <strong>gmt end</strong> commands), we will often present them using the quick
 modern mode <a class="reference internal" href="../../cookbook/one-liner.html"><span class="doc">GMT Modern Mode One-line Commands</span></a> syntax, which simplifies such short scripts.</p>
 <p>The following file should give a normal-faulting CMT mechanism:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt meca -R239/240/34/35.2 -Jm4c -Sc2c -pdf <span class="nb">test</span> <span class="s">&lt;&lt; END</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>meca<span class="w"> </span>-R239/240/34/35.2<span class="w"> </span>-Jm4c<span class="w"> </span>-Sc2c<span class="w"> </span>-pdf<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="s">&lt;&lt; END</span>
 <span class="s"># lon lat depth str dip slip st dip slip mant exp plon plat</span>
 <span class="s">239.384 34.556 12. 180 18 -88 0 72 -90 5.5 0 0 0</span>
 <span class="s">END</span>
@@ -631,8 +628,8 @@ Institut de Physique du Globe de Paris, Departement de Sismologie, Paris, France
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

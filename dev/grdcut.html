@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdcut &mdash; GMT 6.4.0 documentation</title>
+  <title>grdcut &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -220,7 +217,7 @@ automatic scaling to preserve precision for integer grids [Default
 is 1].</p></li>
 </ul>
 </div></blockquote>
-<p>Note: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
+<p><strong>Note</strong>: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
 (unless overridden). To write specific formats via GDAL, use =<em>gd</em>
 and supply <em>driver</em> (and optionally <em>dataType</em>) and/or one or more
 concatenated GDAL <strong>-co</strong> options using <strong>+c</strong>. See
@@ -340,40 +337,40 @@ more data that is actually used. This is necessary because the output of
 oblique map in general does not. Hence, to get all the data from the
 ETOPO2 data needed to make a contour map for the region defined by its
 lower left and upper right corners and the desired projection, use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcut @earth_relief_02m -R160/20/220/30+r -Joc190/25.5/292/69/1 -Gdata.nc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcut<span class="w"> </span>@earth_relief_02m<span class="w"> </span>-R160/20/220/30+r<span class="w"> </span>-Joc190/25.5/292/69/1<span class="w"> </span>-Gdata.nc
 </pre></div>
 </div>
 <p>Suppose you have used <a class="reference internal" href="surface.html"><span class="doc">surface</span></a> to grid ship gravity in the region
 between 148E - 162E and 8N - 32N, and you do not trust the gridding near
 the edges, so you want to keep only the area between 150E - 160E and 10N - 30N, then:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcut grav_148_162_8_32.nc -Ggrav_150_160_10_30.nc -R150/160/10/30 -V
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcut<span class="w"> </span>grav_148_162_8_32.nc<span class="w"> </span>-Ggrav_150_160_10_30.nc<span class="w"> </span>-R150/160/10/30<span class="w"> </span>-V
 </pre></div>
 </div>
 <p>To return the subregion of a grid such that any boundary strips where
 all values are entirely above 0 are excluded, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcut bathy.nc -Gtrimmed_bathy.nc -Z-/0 -V
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcut<span class="w"> </span>bathy.nc<span class="w"> </span>-Gtrimmed_bathy.nc<span class="w"> </span>-Z-/0<span class="w"> </span>-V
 </pre></div>
 </div>
 <p>To return the subregion of a grid such that any boundary rows or columns
 that are all NaNs, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcut bathy.nc -Gtrimmed_bathy.nc -Z+N -V
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcut<span class="w"> </span>bathy.nc<span class="w"> </span>-Gtrimmed_bathy.nc<span class="w"> </span>-Z+N<span class="w"> </span>-V
 </pre></div>
 </div>
 <p>To return the subregion of a grid that contains all nodes within a
 distance of 500 km from the point 45,30 try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcut bathy.nc -Gsubset_bathy.nc -S45/30/500k -V
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcut<span class="w"> </span>bathy.nc<span class="w"> </span>-Gsubset_bathy.nc<span class="w"> </span>-S45/30/500k<span class="w"> </span>-V
 </pre></div>
 </div>
 <p>To create a topography grid with data only inside France and set it
 to NaN outside France, based on the 10x10 minute DEM, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -EFR -M &gt; FR.txt
-gmt grdcut @earth_relief_10m -FFR.txt+c -GFR_only.grd
-gmt grdimage FR_only.grd -B -pdf map
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-EFR<span class="w"> </span>-M<span class="w"> </span>&gt;<span class="w"> </span>FR.txt
+gmt<span class="w"> </span>grdcut<span class="w"> </span>@earth_relief_10m<span class="w"> </span>-FFR.txt+c<span class="w"> </span>-GFR_only.grd
+gmt<span class="w"> </span>grdimage<span class="w"> </span>FR_only.grd<span class="w"> </span>-B<span class="w"> </span>-pdf<span class="w"> </span>map
 </pre></div>
 </div>
 <p>To determine what grid region and resolution (in text format) most suitable for a 24 cm wide map
 that is using an oblique projection to display the remote Earth Relief data grid, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcut @earth_relief -R270/20/305/25+r -JOc280/25.5/22/69/24c -D+t -V
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcut<span class="w"> </span>@earth_relief<span class="w"> </span>-R270/20/305/25+r<span class="w"> </span>-JOc280/25.5/22/69/24c<span class="w"> </span>-D+t<span class="w"> </span>-V
 </pre></div>
 </div>
 </section>
@@ -412,8 +409,8 @@ All geotiff output operations are done via GDAL’s <em>gdal_translate</em>.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

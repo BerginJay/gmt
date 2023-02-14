@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Debugging for Developers &mdash; GMT 6.4.0 documentation</title>
+  <title>Debugging for Developers &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="team.html">Team Gallery</a></li>
@@ -184,7 +181,7 @@ Also uncomment the two “add_definitions” lines that contain the word “DEBU
 call mine <em>xbuild</em>, and while at it I use <em>rbuild</em> for “Release Builds” and <em>dbuild</em> for regular
 debug command line builds, and <em>build</em> for the final build for the releases).  If you are in
 the <em>xbuild</em> directory, these two commands will do the build:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake -DCMAKE_INSTALL_PREFIX<span class="o">=</span>gmt6 -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug -G Xcode ..
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>gmt6<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>-G<span class="w"> </span>Xcode<span class="w"> </span>..
 xcodebuild
 </pre></div>
 </div>
@@ -215,10 +212,10 @@ earlier in the program.</p>
 </li>
 <li><p>Now we need to specify the particular command we wish to debug.  Let’s pretend that <a class="reference internal" href="../pstext.html"><span class="doc">pstext</span></a>
 crashes when we run the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pstext my_text.txt -R0/30/-10/20 -JM15c -Baf -F+f16p &gt; text.ps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>pstext<span class="w"> </span>my_text.txt<span class="w"> </span>-R0/30/-10/20<span class="w"> </span>-JM15c<span class="w"> </span>-Baf<span class="w"> </span>-F+f16p<span class="w"> </span>&gt;<span class="w"> </span>text.ps
 </pre></div>
 </div>
-<p>Copy that command minus the initial “gmt ” part.  Now pull down the menu item “Product-&gt;Scheme-&gt;Edit Scheme”,
+<p>Copy that command minus the initial “gmt “ part.  Now pull down the menu item “Product-&gt;Scheme-&gt;Edit Scheme”,
 then make sure “Arguments” tab is highlighted in blue in the top table, then click the “+” symbol beneath the
 section that says “Arguments Passed on Launch” and paste in our command; it should result in this display:</p>
 <figure class="align-center">
@@ -283,18 +280,18 @@ advance to the next stop point, examine variables, and so on.</p>
 If you already have the dev version then you may just need to run <cite>conda activate pygmt</cite> and <cite>cd</cite> into your pygmt dir and call git pull:</p>
 <ol class="arabic">
 <li><p>Add conda-forge channel and activate virtual environment (optional):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda config --prepend channels conda-forge
-**Note**: The next step is different from the PyGMT official instructions, because we want to use the GMT dev version
-conda create --name pygmt <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8 pip numpy pandas xarray netcdf4 packaging
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>config<span class="w"> </span>--prepend<span class="w"> </span>channels<span class="w"> </span>conda-forge
+**Note**:<span class="w"> </span>The<span class="w"> </span>next<span class="w"> </span>step<span class="w"> </span>is<span class="w"> </span>different<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>PyGMT<span class="w"> </span>official<span class="w"> </span>instructions,<span class="w"> </span>because<span class="w"> </span>we<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>GMT<span class="w"> </span>dev<span class="w"> </span>version
+conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>pygmt<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8<span class="w"> </span>pip<span class="w"> </span>numpy<span class="w"> </span>pandas<span class="w"> </span>xarray<span class="w"> </span>netcdf4<span class="w"> </span>packaging
 
 <span class="c1"># Activate the PyGMT environment</span>
-conda activate pygmt
+conda<span class="w"> </span>activate<span class="w"> </span>pygmt
 </pre></div>
 </div>
 </li>
 <li><p>Install PyGMT in editable/development mode:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> pygmt
-pip install --editable .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>pygmt
+pip<span class="w"> </span>install<span class="w"> </span>--editable<span class="w"> </span>.
 </pre></div>
 </div>
 </li>
@@ -318,7 +315,7 @@ done you can proceed to installing the master GMT.jl:</p>
 directory created by xcodebuild so that GMT.jl can find the GMT library.</p></li>
 <li><p>Type julia in a terminal to get a Julia console, and in that console, update to latest GMT.jl master version by typing:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">]</span>
-add GMT#master
+add<span class="w"> </span>GMT#master
 </pre></div>
 </div>
 </li>
@@ -354,7 +351,7 @@ extensions that you may find helpful are <code class="docutils literal notransla
 <li><p>Navigate to the top of your cloned GMT repository. If you are using the <a class="reference internal" href="contributing.html#using-build-and-test-aliases"><span class="std std-ref">developer aliases</span></a>,
 you can enter <code class="docutils literal notranslate"><span class="pre">gtop</span></code> in the terminal.</p></li>
 <li><p>Open the workspace in VSCode:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>code .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>code<span class="w"> </span>.
 </pre></div>
 </div>
 </li>
@@ -385,28 +382,28 @@ Add these contents to <code class="docutils literal notranslate"><span class="pr
 <li><p>Create a new <code class="docutils literal notranslate"><span class="pre">.vscode/tasks.json</span></code> file. Add these contents to <code class="docutils literal notranslate"><span class="pre">.vscode/tasks.json</span></code>
 and modify to fit your set-up (e.g., update the <code class="docutils literal notranslate"><span class="pre">CMAKE_OSX_DEPLOYMENT_TARGET</span></code> flag for your OS):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
-    <span class="s2">&quot;version&quot;</span>: <span class="s2">&quot;2.0.0&quot;</span>,
-    <span class="s2">&quot;tasks&quot;</span>: <span class="o">[</span>
-        <span class="o">{</span>
-            <span class="s2">&quot;label&quot;</span>: <span class="s2">&quot;ninja build&quot;</span>,
-            <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;shell&quot;</span>,
-            <span class="s2">&quot;options&quot;</span>: <span class="o">{</span>
-                <span class="s2">&quot;cwd&quot;</span>: <span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceRoot</span><span class="si">}</span><span class="s2">&quot;</span>,
-                <span class="s2">&quot;env&quot;</span>: <span class="o">{</span>
-                    <span class="s2">&quot;ADD_FLAGS&quot;</span>: <span class="s2">&quot;-DCMAKE_OSX_DEPLOYMENT_TARGET=12.1&quot;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>,
-            <span class="s2">&quot;command&quot;</span>: <span class="s2">&quot;rm -rf vbuild; mkdir vbuild; cd vbuild; cmake -DCMAKE_INSTALL_PREFIX=\&quot;</span><span class="si">${</span><span class="nv">workspaceRoot</span><span class="si">}</span><span class="s2">/vbuild/gmt6\&quot; -DCMAKE_BUILD_TYPE=Debug </span><span class="si">${</span><span class="nv">ADD_FLAGS</span><span class="si">}</span><span class="s2"> -G \&quot;Ninja\&quot; ..; ninja; ninja install; mkdir debug; cp </span><span class="si">${</span><span class="nv">workspaceRoot</span><span class="si">}</span><span class="s2">/.vscode/project.env debug/project.env&quot;</span>
-        <span class="o">}</span>,
-        <span class="o">{</span>
-            <span class="s2">&quot;label&quot;</span>: <span class="s2">&quot;ninja rebuild&quot;</span>,
-            <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;shell&quot;</span>,
-            <span class="s2">&quot;options&quot;</span>: <span class="o">{</span>
-                <span class="s2">&quot;cwd&quot;</span>: <span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceRoot</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="o">}</span>,
-            <span class="s2">&quot;command&quot;</span>: <span class="s2">&quot;cd vbuild; ninja; ninja install; mkdir debug; cp </span><span class="si">${</span><span class="nv">workspaceRoot</span><span class="si">}</span><span class="s2">/.vscode/project.env debug/project.env&quot;</span>
-        <span class="o">}</span>
-    <span class="o">]</span>
+<span class="w">    </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;tasks&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">        </span><span class="o">{</span>
+<span class="w">            </span><span class="s2">&quot;label&quot;</span>:<span class="w"> </span><span class="s2">&quot;ninja build&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;shell&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;options&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">                </span><span class="s2">&quot;cwd&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceRoot</span><span class="si">}</span><span class="s2">&quot;</span>,
+<span class="w">                </span><span class="s2">&quot;env&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">                    </span><span class="s2">&quot;ADD_FLAGS&quot;</span>:<span class="w"> </span><span class="s2">&quot;-DCMAKE_OSX_DEPLOYMENT_TARGET=12.1&quot;</span>
+<span class="w">                </span><span class="o">}</span>
+<span class="w">            </span><span class="o">}</span>,
+<span class="w">            </span><span class="s2">&quot;command&quot;</span>:<span class="w"> </span><span class="s2">&quot;rm -rf vbuild; mkdir vbuild; cd vbuild; cmake -DCMAKE_INSTALL_PREFIX=\&quot;</span><span class="si">${</span><span class="nv">workspaceRoot</span><span class="si">}</span><span class="s2">/vbuild/gmt6\&quot; -DCMAKE_BUILD_TYPE=Debug </span><span class="si">${</span><span class="nv">ADD_FLAGS</span><span class="si">}</span><span class="s2"> -G \&quot;Ninja\&quot; ..; ninja; ninja install; mkdir debug; cp </span><span class="si">${</span><span class="nv">workspaceRoot</span><span class="si">}</span><span class="s2">/.vscode/project.env debug/project.env&quot;</span>
+<span class="w">        </span><span class="o">}</span>,
+<span class="w">        </span><span class="o">{</span>
+<span class="w">            </span><span class="s2">&quot;label&quot;</span>:<span class="w"> </span><span class="s2">&quot;ninja rebuild&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;shell&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;options&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">                </span><span class="s2">&quot;cwd&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceRoot</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="o">}</span>,
+<span class="w">            </span><span class="s2">&quot;command&quot;</span>:<span class="w"> </span><span class="s2">&quot;cd vbuild; ninja; ninja install; mkdir debug; cp </span><span class="si">${</span><span class="nv">workspaceRoot</span><span class="si">}</span><span class="s2">/.vscode/project.env debug/project.env&quot;</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">    </span><span class="o">]</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -422,54 +419,54 @@ command+shift+p, selecting <code class="docutils literal notranslate"><span clas
 <ol class="arabic">
 <li><p>Create a new <code class="docutils literal notranslate"><span class="pre">.vscode/launch.json</span></code> file. Add these contents and modify to fit your needs:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
-    <span class="s2">&quot;version&quot;</span>: <span class="s2">&quot;2.0.0&quot;</span>,
-    <span class="s2">&quot;configurations&quot;</span>: <span class="o">[</span>
-        <span class="o">{</span>
-            <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;begin&quot;</span>,
-            <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;cppdbg&quot;</span>,
-            <span class="s2">&quot;request&quot;</span>: <span class="s2">&quot;launch&quot;</span>,
-            <span class="s2">&quot;program&quot;</span>: <span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/src/gmt&quot;</span>,
-            <span class="s2">&quot;args&quot;</span>: <span class="o">[</span><span class="s2">&quot;begin&quot;</span>,<span class="s2">&quot;test&quot;</span>,<span class="s2">&quot;png&quot;</span><span class="o">]</span>,
-            <span class="s2">&quot;stopAtEntry&quot;</span>: false,
-            <span class="s2">&quot;cwd&quot;</span>: <span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/&quot;</span>,
-            <span class="s2">&quot;environment&quot;</span>: <span class="o">[]</span>,
-            <span class="s2">&quot;envFile&quot;</span>: <span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/project.env&quot;</span>,
-            <span class="s2">&quot;externalConsole&quot;</span>: false,
-            <span class="s2">&quot;MIMode&quot;</span>: <span class="s2">&quot;lldb&quot;</span>
-        <span class="o">}</span>,
-        <span class="o">{</span>
-            <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;basemap&quot;</span>,
-            <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;cppdbg&quot;</span>,
-            <span class="s2">&quot;request&quot;</span>: <span class="s2">&quot;launch&quot;</span>,
-            <span class="s2">&quot;program&quot;</span>: <span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/src/gmt&quot;</span>,
-            <span class="s2">&quot;args&quot;</span>: <span class="o">[</span><span class="s2">&quot;basemap&quot;</span>,<span class="s2">&quot;-R0/120/-90/-45&quot;</span>,<span class="s2">&quot;-Bfg&quot;</span>,<span class="s2">&quot;-JS0/-90/10c&quot;</span><span class="o">]</span>,
-            <span class="s2">&quot;stopAtEntry&quot;</span>: true,
-            <span class="s2">&quot;cwd&quot;</span>: <span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/&quot;</span>,
-            <span class="s2">&quot;environment&quot;</span>: <span class="o">[]</span>,
-            <span class="s2">&quot;envFile&quot;</span>: <span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/project.env&quot;</span>,
-            <span class="s2">&quot;externalConsole&quot;</span>: false,
-            <span class="s2">&quot;MIMode&quot;</span>: <span class="s2">&quot;lldb&quot;</span>
-        <span class="o">}</span>,
-        <span class="o">{</span>
-            <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;end&quot;</span>,
-            <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;cppdbg&quot;</span>,
-            <span class="s2">&quot;request&quot;</span>: <span class="s2">&quot;launch&quot;</span>,
-            <span class="s2">&quot;program&quot;</span>: <span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/src/gmt&quot;</span>,
-            <span class="s2">&quot;args&quot;</span>: <span class="o">[</span><span class="s2">&quot;end&quot;</span>,<span class="s2">&quot;show&quot;</span><span class="o">]</span>,
-            <span class="s2">&quot;stopAtEntry&quot;</span>: false,
-            <span class="s2">&quot;cwd&quot;</span>: <span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/&quot;</span>,
-            <span class="s2">&quot;environment&quot;</span>: <span class="o">[]</span>,
-            <span class="s2">&quot;envFile&quot;</span>: <span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/project.env&quot;</span>,
-            <span class="s2">&quot;externalConsole&quot;</span>: false,
-            <span class="s2">&quot;MIMode&quot;</span>: <span class="s2">&quot;lldb&quot;</span>
-        <span class="o">}</span>
-    <span class="o">]</span>
+<span class="w">    </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;configurations&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">        </span><span class="o">{</span>
+<span class="w">            </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;begin&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;request&quot;</span>:<span class="w"> </span><span class="s2">&quot;launch&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;program&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/src/gmt&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;args&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;begin&quot;</span>,<span class="s2">&quot;test&quot;</span>,<span class="s2">&quot;png&quot;</span><span class="o">]</span>,
+<span class="w">            </span><span class="s2">&quot;stopAtEntry&quot;</span>:<span class="w"> </span>false,
+<span class="w">            </span><span class="s2">&quot;cwd&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;environment&quot;</span>:<span class="w"> </span><span class="o">[]</span>,
+<span class="w">            </span><span class="s2">&quot;envFile&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/project.env&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;externalConsole&quot;</span>:<span class="w"> </span>false,
+<span class="w">            </span><span class="s2">&quot;MIMode&quot;</span>:<span class="w"> </span><span class="s2">&quot;lldb&quot;</span>
+<span class="w">        </span><span class="o">}</span>,
+<span class="w">        </span><span class="o">{</span>
+<span class="w">            </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;basemap&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;request&quot;</span>:<span class="w"> </span><span class="s2">&quot;launch&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;program&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/src/gmt&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;args&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;basemap&quot;</span>,<span class="s2">&quot;-R0/120/-90/-45&quot;</span>,<span class="s2">&quot;-Bfg&quot;</span>,<span class="s2">&quot;-JS0/-90/10c&quot;</span><span class="o">]</span>,
+<span class="w">            </span><span class="s2">&quot;stopAtEntry&quot;</span>:<span class="w"> </span>true,
+<span class="w">            </span><span class="s2">&quot;cwd&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;environment&quot;</span>:<span class="w"> </span><span class="o">[]</span>,
+<span class="w">            </span><span class="s2">&quot;envFile&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/project.env&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;externalConsole&quot;</span>:<span class="w"> </span>false,
+<span class="w">            </span><span class="s2">&quot;MIMode&quot;</span>:<span class="w"> </span><span class="s2">&quot;lldb&quot;</span>
+<span class="w">        </span><span class="o">}</span>,
+<span class="w">        </span><span class="o">{</span>
+<span class="w">            </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;end&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;request&quot;</span>:<span class="w"> </span><span class="s2">&quot;launch&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;program&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/src/gmt&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;args&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;end&quot;</span>,<span class="s2">&quot;show&quot;</span><span class="o">]</span>,
+<span class="w">            </span><span class="s2">&quot;stopAtEntry&quot;</span>:<span class="w"> </span>false,
+<span class="w">            </span><span class="s2">&quot;cwd&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;environment&quot;</span>:<span class="w"> </span><span class="o">[]</span>,
+<span class="w">            </span><span class="s2">&quot;envFile&quot;</span>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/vbuild/debug/project.env&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;externalConsole&quot;</span>:<span class="w"> </span>false,
+<span class="w">            </span><span class="s2">&quot;MIMode&quot;</span>:<span class="w"> </span><span class="s2">&quot;lldb&quot;</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">    </span><span class="o">]</span>
 <span class="o">}</span>
 </pre></div>
 </div>
 </li>
 <li><p>Open <code class="docutils literal notranslate"><span class="pre">src/gmt.c</span></code> and add a breakpoint at this line (usually ~L112) by clicking just left of the line number:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">status</span> <span class="o">=</span> GMT_Call_Module <span class="o">(</span>api_ctrl, module, argc-1-modulename_arg_n, argv+1+modulename_arg_n<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>GMT_Call_Module<span class="w"> </span><span class="o">(</span>api_ctrl,<span class="w"> </span>module,<span class="w"> </span>argc-1-modulename_arg_n,<span class="w"> </span>argv+1+modulename_arg_n<span class="o">)</span>
 </pre></div>
 </div>
 </li>
@@ -504,8 +501,8 @@ debugging with CLI commands.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

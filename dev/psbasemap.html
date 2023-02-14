@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>psbasemap &mdash; GMT 6.4.0 documentation</title>
+  <title>psbasemap &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -218,7 +215,7 @@ be appended to <a class="reference internal" href="#f"><span><strong>-F</strong>
 <a class="reference internal" href="cookbook/features.html#the-background-panel"><span class="std std-ref">The background panel</span></a> cookbook section:</p>
 <ul class="simple">
 <li><p><strong>+c</strong><em>clearance</em> where <em>clearance</em> is either <em>gap</em>, <em>xgap</em>/<em>ygap</em>, or <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> and <em>gap</em> gives a uniform <a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearance</span></a>, <em>xgap</em>/<em>ygap</em> gives separate
-<a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> in the x- and y- directions, and <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> gives
+<a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> in the <em>x</em>- and <em>y</em>- directions, and <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> gives
 individual <a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> between the map embellishment and the border for each side.</p></li>
 <li><p><strong>+g</strong><em>fill</em> to fill the box with a color specified by <a class="reference internal" href="gmtcolors.html"><span class="doc">fill</span></a> [default is no fill].</p></li>
 <li><p><strong>+i</strong>[[<em>gap</em>/]<em>pen</em>] to draw a secondary, inner border as well. Optionally, specify the
@@ -359,7 +356,7 @@ or append unit % for a size in percentage of map width [15%].</p></li>
 <p>For further information, see the Map Embellishment section on <a class="reference internal" href="cookbook/features.html#placing-mag-map-roses"><span class="std std-ref">Magnetic Roses</span></a>.</p>
 </div></blockquote>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -455,7 +452,7 @@ of upper case letters to specify map width instead of map scale.</p>
 axes annotated, using xscale = yscale = 1 cm per unit, ticking every 1 unit and
 annotating every 2, and using xlabel = “Distance” and ylabel = “No of samples”, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R0/9/0/5 -Jx1c -Bf1a2 -Bx+lDistance -By+l<span class="s2">&quot;No of samples&quot;</span> -BWeSn -P &gt; linear.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R0/9/0/5<span class="w"> </span>-Jx1c<span class="w"> </span>-Bf1a2<span class="w"> </span>-Bx+lDistance<span class="w"> </span>-By+l<span class="s2">&quot;No of samples&quot;</span><span class="w"> </span>-BWeSn<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>linear.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -466,7 +463,7 @@ annotating every 2, and using xlabel = “Distance” and ylabel = “No of samp
 x-axis is 25 cm and annotated every 1-2-5 and the y-axis is 15 cm and
 annotated every power of 10 but has tick-marks every 0.1, run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R1/10000/1e20/1e25 -JX25cl/15cl -Bx2+lWavelength -Bya1pf3+lPower -BWS -P &gt; loglog.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R1/10000/1e20/1e25<span class="w"> </span>-JX25cl/15cl<span class="w"> </span>-Bx2+lWavelength<span class="w"> </span>-Bya1pf3+lPower<span class="w"> </span>-BWS<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>loglog.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -477,7 +474,7 @@ annotated every power of 10 but has tick-marks every 0.1, run</p>
 depth positive down, ticked and annotated every 500m, and ages (in millions of years) annotated
 at 1 My, 4 My, 9 My etc., use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R0/100/0/5000 -Jx1cp0.5/-0.001c -Bx1p+l<span class="s2">&quot;Crustal age&quot;</span> -By500+lDepth -P &gt; power.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R0/100/0/5000<span class="w"> </span>-Jx1cp0.5/-0.001c<span class="w"> </span>-Bx1p+l<span class="s2">&quot;Crustal age&quot;</span><span class="w"> </span>-By500+lDepth<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>power.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -488,7 +485,7 @@ at 1 My, 4 My, 9 My etc., use</p>
 to 1000 should correspond to 3 inch and with gridlines and ticks intervals
 automatically determined, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R0/360/0/1000 -JP6i -Bafg -P &gt; polar.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R0/360/0/1000<span class="w"> </span>-JP6i<span class="w"> </span>-Bafg<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>polar.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -500,7 +497,7 @@ automatically determined, use</p>
 <h3>Cassini<a class="headerlink" href="#cassini" title="Permalink to this heading">¶</a></h3>
 <p>A 10-cm-wide basemap using the Cassini projection may be obtained by</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R20/50/20/35 -JC35/28/10c -P -Bafg -B+tCassini &gt; cassini.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R20/50/20/35<span class="w"> </span>-JC35/28/10c<span class="w"> </span>-P<span class="w"> </span>-Bafg<span class="w"> </span>-B+tCassini<span class="w"> </span>&gt;<span class="w"> </span>cassini.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -511,7 +508,7 @@ automatically determined, use</p>
 the length of 5000 km along the equator (centered on 1/1 inch), may be
 plotted as</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R90/180/-50/50 -Jm0.025i -Bafg -B+tMercator -Lx1i/1i+c0+w5000k -P &gt; mercator.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R90/180/-50/50<span class="w"> </span>-Jm0.025i<span class="w"> </span>-Bafg<span class="w"> </span>-B+tMercator<span class="w"> </span>-Lx1i/1i+c0+w5000k<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>mercator.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -520,7 +517,7 @@ plotted as</p>
 <h3>Miller<a class="headerlink" href="#miller" title="Permalink to this heading">¶</a></h3>
 <p>A global Miller cylindrical map with scale 1:200,000,000 may be plotted as</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rg -Jj180/1:200000000 -Bafg -B+tMiller -P &gt; miller.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rg<span class="w"> </span>-Jj180/1:200000000<span class="w"> </span>-Bafg<span class="w"> </span>-B+tMiller<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>miller.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -530,7 +527,7 @@ plotted as</p>
 <p>To create a page-size global oblique Mercator basemap for a pole at
 (90,30) with gridlines every 30 degrees, run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R0/360/-70/70 -Joc0/0/90/30/0.064cd -B30g30 -B+t<span class="s2">&quot;Oblique Mercator&quot;</span> -P &gt; oblmerc.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R0/360/-70/70<span class="w"> </span>-Joc0/0/90/30/0.064cd<span class="w"> </span>-B30g30<span class="w"> </span>-B+t<span class="s2">&quot;Oblique Mercator&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>oblmerc.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -539,7 +536,7 @@ plotted as</p>
 <h3>Transverse Mercator [conformal]<a class="headerlink" href="#transverse-mercator-conformal" title="Permalink to this heading">¶</a></h3>
 <p>A regular Transverse Mercator basemap for some region may look like</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R69:30/71:45/-17/-15:15 -Jt70/1:1000000 -Bafg -B+t<span class="s2">&quot;Survey area&quot;</span> -P &gt; transmerc.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R69:30/71:45/-17/-15:15<span class="w"> </span>-Jt70/1:1000000<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;Survey area&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>transmerc.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -549,7 +546,7 @@ plotted as</p>
 <p>This projection only needs the central meridian and scale. A 25 cm wide
 global basemap centered on the 130E meridian is made by</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R-50/310/-90/90 -JQ130/25c -Bafg -B+t<span class="s2">&quot;Equidistant Cylindrical&quot;</span> -P &gt; cyl_eqdist.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R-50/310/-90/90<span class="w"> </span>-JQ130/25c<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;Equidistant Cylindrical&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>cyl_eqdist.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -559,7 +556,7 @@ global basemap centered on the 130E meridian is made by</p>
 <p>To use this projection you must know the UTM zone number, which defines
 the central meridian. A UTM basemap for Indo-China can be plotted as</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R95/5/108/20+r -Ju46/1:10000000 -Bafg -B+tUTM -P &gt; utm.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R95/5/108/20+r<span class="w"> </span>-Ju46/1:10000000<span class="w"> </span>-Bafg<span class="w"> </span>-B+tUTM<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>utm.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -571,7 +568,7 @@ deciding on the standard parallel. Here we will use 45 degrees which
 gives the Gall projection. A 9 inch wide global basemap centered
 on the Pacific is made by</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rg -JY180/45/9i -Bafg -B+tGall -P &gt; gall.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rg<span class="w"> </span>-JY180/45/9i<span class="w"> </span>-Bafg<span class="w"> </span>-B+tGall<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>gall.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -583,7 +580,7 @@ on the Pacific is made by</p>
 <h3>Albers [equal-area]<a class="headerlink" href="#albers-equal-area" title="Permalink to this heading">¶</a></h3>
 <p>A basemap for middle Europe may be created by</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R0/90/25/55 -Jb45/20/32/45/0.25c -Bafg -B+t<span class="s2">&quot;Albers Equal-area&quot;</span> -P &gt; albers.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R0/90/25/55<span class="w"> </span>-Jb45/20/32/45/0.25c<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;Albers Equal-area&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>albers.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -592,7 +589,7 @@ on the Pacific is made by</p>
 <h3>Lambert [conformal]<a class="headerlink" href="#lambert-conformal" title="Permalink to this heading">¶</a></h3>
 <p>Another basemap for middle Europe may be created by</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R0/90/25/55 -Jl45/20/32/45/0.1i -Bafg -B+t<span class="s2">&quot;Lambert Conformal Conic&quot;</span> -P &gt; lambertc.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R0/90/25/55<span class="w"> </span>-Jl45/20/32/45/0.1i<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;Lambert Conformal Conic&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>lambertc.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -601,7 +598,7 @@ on the Pacific is made by</p>
 <h3>Conic Equidistant<a class="headerlink" href="#conic-equidistant" title="Permalink to this heading">¶</a></h3>
 <p>Yet another basemap of width 6 inch for middle Europe may be created by</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R0/90/25/55 -JD45/20/32/45/6i -Bafg -B+t<span class="s2">&quot;Equidistant conic&quot;</span> -P &gt; econic.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R0/90/25/55<span class="w"> </span>-JD45/20/32/45/6i<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;Equidistant conic&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>econic.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -610,7 +607,7 @@ on the Pacific is made by</p>
 <h3>Polyconic<a class="headerlink" href="#polyconic" title="Permalink to this heading">¶</a></h3>
 <p>A basemap for north America may be created by</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R-180/-20/0/90 -JPoly/4i -Bafg -B+tPolyconic -P &gt; polyconic.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R-180/-20/0/90<span class="w"> </span>-JPoly/4i<span class="w"> </span>-Bafg<span class="w"> </span>-B+tPolyconic<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>polyconic.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -623,7 +620,7 @@ on the Pacific is made by</p>
 <p>A 15-cm-wide global view of the world from the vantage point -80/-30
 will give the following basemap:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rg -JA-80/-30/15c -Bafg -B+t<span class="s2">&quot;Lambert Azimuthal&quot;</span> -P &gt; lamberta.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rg<span class="w"> </span>-JA-80/-30/15c<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;Lambert Azimuthal&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>lamberta.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -636,7 +633,7 @@ substitute <strong>-Ja</strong> for <strong>-Js</strong>.</p>
 <p>A 15-cm-wide global map in which distances from the center (here 125/10)
 to any point is true can be obtained by:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rg -JE125/10/15c -Bafg -B+tEquidistant -P &gt; equi.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rg<span class="w"> </span>-JE125/10/15c<span class="w"> </span>-Bafg<span class="w"> </span>-B+tEquidistant<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>equi.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -646,7 +643,7 @@ to any point is true can be obtained by:</p>
 <p>A view of the world from the vantage point -100/40 out to a horizon of
 60 degrees from the center can be made using the Gnomonic projection:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rg -JF-100/40/60/6i -Bafg -B+tGnomonic -P &gt; gnomonic.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rg<span class="w"> </span>-JF-100/40/60/6i<span class="w"> </span>-Bafg<span class="w"> </span>-B+tGnomonic<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>gnomonic.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -656,7 +653,7 @@ to any point is true can be obtained by:</p>
 <p>A global perspective (from infinite distance) view of the world from the
 vantage point 125/10 will give the following 6-inch-wide basemap:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rg -JG125/10/6i -Bafg -B+tOrthographic -P &gt; ortho.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rg<span class="w"> </span>-JG125/10/6i<span class="w"> </span>-Bafg<span class="w"> </span>-B+tOrthographic<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>ortho.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -669,7 +666,7 @@ twist and tilt. A view from 160 km above -74/41.5 with a tilt of 55 and
 azimuth of 210 degrees, and limiting the viewpoint to 30 degrees width
 and height will product a 6-inch-wide basemap:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rg -JG-74/41.5/6i+z160+a210+t55+v30 -Bafg -B+t<span class="s2">&quot;General Perspective&quot;</span> -P &gt; genper.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rg<span class="w"> </span>-JG-74/41.5/6i+z160+a210+t55+v30<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;General Perspective&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>genper.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -680,7 +677,7 @@ and height will product a 6-inch-wide basemap:</p>
 -60 degree latitude, with plot title “Salinity measurements”, using 5
 degrees annotation/tick interval and 1 degree gridlines, run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R-45/45/-90/-60 -Js0/-90/12c/-60 -B5g1 -B+t<span class="s2">&quot;Salinity measurements&quot;</span> &gt; stereo1.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R-45/45/-90/-60<span class="w"> </span>-Js0/-90/12c/-60<span class="w"> </span>-B5g1<span class="w"> </span>-B+t<span class="s2">&quot;Salinity measurements&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>stereo1.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -691,7 +688,7 @@ indicate the lower left and upper right corners (in lon/lat) that will
 define our rectangle. We choose a pole at 130/-30 and use 100/-45 and
 160/-5 as our corners. The command becomes</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R100/-45/160/-5+r -JS130/-30/12c -Bafg -B+t<span class="s2">&quot;General Stereographic View&quot;</span> -P &gt; stereo2.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R100/-45/160/-5+r<span class="w"> </span>-JS130/-30/12c<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;General Stereographic View&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>stereo2.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -705,7 +702,7 @@ define our rectangle. We choose a pole at 130/-30 and use 100/-45 and
 spherical form is used. To get a world map centered on Greenwich at a
 scale of 1:200000000, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rd -Jh0/1:200000000 -Bafg -B+tHammer -P &gt; hammer.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rd<span class="w"> </span>-Jh0/1:200000000<span class="w"> </span>-Bafg<span class="w"> </span>-B+tHammer<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>hammer.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -715,7 +712,7 @@ scale of 1:200000000, use</p>
 <p>To make a sinusoidal world map centered on Greenwich, with a scale along
 the equator of 0.02 inch/degree, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rd -Ji0/0.02i -Bafg -B+tSinusoidal -P &gt; sinus1.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rd<span class="w"> </span>-Ji0/0.02i<span class="w"> </span>-Bafg<span class="w"> </span>-B+tSinusoidal<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>sinus1.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -723,9 +720,9 @@ the equator of 0.02 inch/degree, use</p>
 and 60E, with a scale along the equator of 0.02 inch/degree, run the
 following sequence of commands:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R-160/-20/-90/90 -Ji-90/0.02i -Bx30g30 -By15g15 -BWesn -K -P &gt; sinus_i.ps
-gmt psbasemap -R-20/60/-90/90 -Ji20/0.02i -Bx30g30 -By15g15 -Bwesn -O -K -X2.8i &gt;&gt; sinus_i.ps
-gmt psbasemap -R60/200/-90/90 -Ji130/0.02i -Bx30g30 -By15g15 -BwEsn -O -X1.6i &gt;&gt; sinus_i.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R-160/-20/-90/90<span class="w"> </span>-Ji-90/0.02i<span class="w"> </span>-Bx30g30<span class="w"> </span>-By15g15<span class="w"> </span>-BWesn<span class="w"> </span>-K<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>sinus_i.ps
+gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R-20/60/-90/90<span class="w"> </span>-Ji20/0.02i<span class="w"> </span>-Bx30g30<span class="w"> </span>-By15g15<span class="w"> </span>-Bwesn<span class="w"> </span>-O<span class="w"> </span>-K<span class="w"> </span>-X2.8i<span class="w"> </span>&gt;&gt;<span class="w"> </span>sinus_i.ps
+gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R60/200/-90/90<span class="w"> </span>-Ji130/0.02i<span class="w"> </span>-Bx30g30<span class="w"> </span>-By15g15<span class="w"> </span>-BwEsn<span class="w"> </span>-O<span class="w"> </span>-X1.6i<span class="w"> </span>&gt;&gt;<span class="w"> </span>sinus_i.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -735,7 +732,7 @@ gmt psbasemap -R60/200/-90/90 -Ji130/0.02i -Bx30g30 -By15g15 -BwEsn -O -X1.6i &g
 <p>Pseudo-cylindrical projection typically used for global maps only. Set
 the central longitude and scale, e.g.,</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rg -Jkf180/0.064c -Bafg -B+t<span class="s2">&quot;Eckert IV&quot;</span> -P &gt; eckert4.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rg<span class="w"> </span>-Jkf180/0.064c<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;Eckert IV&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>eckert4.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -745,7 +742,7 @@ the central longitude and scale, e.g.,</p>
 <p>Another pseudo-cylindrical projection typically used for global maps
 only. Set the central longitude and scale, e.g.,</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rg -Jks180/0.064c -Bafg -B+t<span class="s2">&quot;Eckert VI&quot;</span> -P &gt; eckert6.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rg<span class="w"> </span>-Jks180/0.064c<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;Eckert VI&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>eckert6.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -755,7 +752,7 @@ only. Set the central longitude and scale, e.g.,</p>
 <p>Projection designed to make global maps “look right”. Set the central
 longitude and width, e.g.,</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rd -JN0/8i -Bafg -B+tRobinson -P &gt; robinson.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rd<span class="w"> </span>-JN0/8i<span class="w"> </span>-Bafg<span class="w"> </span>-B+tRobinson<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>robinson.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -765,7 +762,7 @@ longitude and width, e.g.,</p>
 <p>Yet another projection typically used for global maps only. You can set
 the central longitude, e.g.,</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R90/450/-90/90 -JR270/25c -Bafg -B+t<span class="s2">&quot;Winkel Tripel&quot;</span> -P &gt; winkel.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R90/450/-90/90<span class="w"> </span>-JR270/25c<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;Winkel Tripel&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>winkel.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -776,7 +773,7 @@ the central longitude, e.g.,</p>
 the spherical form is used. To get a 25-cm-wide world map centered on
 the Dateline:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>psbasemap -Rg -JW180/25c -Bafg -B+tMollweide -P &gt; mollweide.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>psbasemap<span class="w"> </span>-Rg<span class="w"> </span>-JW180/25c<span class="w"> </span>-Bafg<span class="w"> </span>-B+tMollweide<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>mollweide.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -786,7 +783,7 @@ the Dateline:</p>
 <p>The Van der Grinten projection is also mostly used for global maps and
 thus the spherical form is used. To get a 18-cm-wide world map centered on the Dateline:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -Rg -JV180/18c -Bafg -B+t<span class="s2">&quot;Van der Grinten&quot;</span> -P &gt; grinten.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-Rg<span class="w"> </span>-JV180/18c<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;Van der Grinten&quot;</span><span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>grinten.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -797,7 +794,7 @@ thus the spherical form is used. To get a 18-cm-wide world map centered on the D
 use the <strong>-p</strong> option.  For instance, the rotate the basemap below 90
 degrees about an axis centered on the map, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psbasemap -R10/40/10/40 -JM10c -P -Bafg -B+t<span class="s2">&quot;I am rotated&quot;</span> -p90+w25/25 -Xc -P &gt; rotated.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psbasemap<span class="w"> </span>-R10/40/10/40<span class="w"> </span>-JM10c<span class="w"> </span>-P<span class="w"> </span>-Bafg<span class="w"> </span>-B+t<span class="s2">&quot;I am rotated&quot;</span><span class="w"> </span>-p90+w25/25<span class="w"> </span>-Xc<span class="w"> </span>-P<span class="w"> </span>&gt;<span class="w"> </span>rotated.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -847,8 +844,8 @@ However, it is fairly simple for most applications (see examples).</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

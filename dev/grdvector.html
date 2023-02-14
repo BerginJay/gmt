@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdvector &mdash; GMT 6.4.0 documentation</title>
+  <title>grdvector &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -153,7 +150,7 @@
 <p>Plot vector field from two component grids</p>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<p><strong>gmt grdvector</strong> <em>compx.nc</em> <em>compy.nc</em> <a class="reference internal" href="#j"><span><strong>-J</strong></span></a></strong><em>parameters</em>
+<p><strong>gmt grdvector</strong> <em>grid1</em> <em>grid2</em> <a class="reference internal" href="#j"><span><strong>-J</strong></span></a></strong><em>parameters</em>
 [ <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong> ]
 [ <a class="reference internal" href="#b"><span><strong>-B</strong></span></a></strong>[<strong>p</strong>|<strong>s</strong>]<em>parameters</em> ]
 [ <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong><em>cpt</em> ]
@@ -165,7 +162,7 @@
 [ <a class="reference internal" href="#t"><span><strong>-T</strong></span></a></strong> ]
 [ <a class="reference internal" href="#u"><span><strong>-U</strong></span></a></strong>[<em>stamp</em>] ]
 [ <a class="reference internal" href="#v"><span><strong>-V</strong></span></a></strong>[<em>level</em>] ]
-[ <a class="reference internal" href="#w"><span><strong>-W</strong></span></a></strong><em>pen</em> ]
+[ <a class="reference internal" href="#w"><span><strong>-W</strong></span></a></strong><em>pen</em>[<strong>+c</strong>] ]
 [ <a class="reference internal" href="#x"><span><strong>-X</strong></span></a></strong>[<strong>a</strong>|<strong>c</strong>|<strong>f</strong>|<strong>r</strong>][<em>xshift</em>] ]
 [ <a class="reference internal" href="#y"><span><strong>-Y</strong></span></a></strong>[<strong>a</strong>|<strong>c</strong>|<strong>f</strong>|<strong>r</strong>][<em>yshift</em>] ]
 [ <a class="reference internal" href="#z"><span><strong>-Z</strong></span></a></strong> ]
@@ -178,19 +175,23 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p><strong>grdvector</strong> reads two 2-D grid files which represents the <em>x</em>- and
-<em>y</em>-components of a vector field and produces a vector field plot by
+<em>y</em>-components, <span class="math notranslate nohighlight">\((x,y)\)</span>, of a vector field and produces a vector field plot by
 drawing vectors with orientation and length according to the information
-in the files. Alternatively, polar coordinate <em>r</em>, <em>theta</em> grids may be given
-instead.</p>
+in the files. Alternatively, polar coordinate grids, <span class="math notranslate nohighlight">\((r,\theta)\)</span>, may be given
+instead (see <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong> and <a class="reference internal" href="#z"><span><strong>-Z</strong></span></a></strong>).</p>
 </section>
 <section id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this heading">¶</a></h2>
 <dl class="simple">
-<dt><em>compx.nc</em></dt><dd><p>Contains the x-components of the vector field. (See <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">Grid File Formats</span></a>).</p>
+<dt><em>grid1</em></dt><dd><p>Contains the <em>x</em>-components of the vector field. (See <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">Grid File Formats</span></a>).</p>
 </dd>
-<dt><em>compy.nc</em></dt><dd><p>Contains the y-components of the vector field. (See <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">Grid File Formats</span></a>).</p>
+<dt><em>grid2</em></dt><dd><p>Contains the <em>y</em>-components of the vector field. (See <a class="reference internal" href="gmt.html#grd-inout-full"><span class="std std-ref">Grid File Formats</span></a>).</p>
 </dd>
 </dl>
+<p>Order is important.
+For <span class="math notranslate nohighlight">\((x,y)\)</span>, <em>grid1</em> is expected to be the <em>x</em>-component, and <em>grid2</em> to be the <em>y</em>-component.
+For <span class="math notranslate nohighlight">\((r,\theta)\)</span>, <em>grid1</em> is expected to be the magnitude (<span class="math notranslate nohighlight">\(r\)</span>),
+and <em>grid2</em> (<span class="math notranslate nohighlight">\(\theta\)</span>), to be the azimuth (<a class="reference internal" href="#z"><span><strong>-Z</strong></span></a></strong>) or direction (<a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong>).</p>
 <dl class="simple" id="j">
 <dt><strong>-J</strong><em>parameters</em></dt><dd><p>Specify the projection. <a class="reference internal" href="gmt.html#j-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#coordinate-transformations-and-map-projections-the-j-option"><span class="std std-ref">(See cookbook summary)</span></a>
 <a class="reference internal" href="cookbook/options.html#proj-codes"><span class="std std-ref">(See projections table)</span></a>.</p>
@@ -200,8 +201,9 @@ instead.</p>
 <section id="optional-arguments">
 <h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this heading">¶</a></h2>
 <dl class="simple" id="a">
-<dt><strong>-A</strong></dt><dd><p>The grid files contain polar (r, theta) components instead of
-Cartesian (x, y) [Default is Cartesian components].</p>
+<dt><strong>-A</strong></dt><dd><p>The grid files contain polar <span class="math notranslate nohighlight">\((r,\theta)\)</span> components (magnitude and direction)
+instead of Cartesian <span class="math notranslate nohighlight">\((x,y)\)</span> [Default is Cartesian components].
+If <span class="math notranslate nohighlight">\(\theta\)</span> contains azimuth, see <a class="reference internal" href="#z"><span><strong>-Z</strong></span></a></strong>.</p>
 </dd>
 </dl>
 <dl class="simple" id="b">
@@ -238,7 +240,7 @@ multiples <em>multx</em>[/<em>multy</em>] directly [Default plots every node].</
 </dd>
 </dl>
 <dl class="simple" id="n">
-<dt><strong>-N</strong></dt><dd><p>Do NOT clip vectors at map boundaries [Default will clip].</p>
+<dt><strong>-N</strong></dt><dd><p>Do <strong>not</strong> clip vectors at map boundaries [Default will clip].</p>
 </dd>
 </dl>
 <dl class="simple" id="q">
@@ -267,7 +269,7 @@ lengths may be affected by the map projection and their coordinates.  Finally, u
 per data unit.  Alternatively, use <strong>-Sl</strong><em>length</em> to set a fixed plot length for all
 vectors. To report the minimum, maximum, and mean data and plot vector lengths
 of all vectors plotted, use <a class="reference internal" href="#v"><span><strong>-V</strong></span></a></strong>. If an automatic legend entry is desired via <strong>-l</strong>,
-or or two modifiers will be required:</p>
+one or two modifiers will be required:</p>
 <ul class="simple">
 <li><p><strong>+c</strong>[[<em>slon</em>/]<em>slat</em>] controls where on a geographic map a geovector’s <em>refsize</em>
 length applies. The modifier is neither needed nor available when plotting Cartesian vectors.
@@ -289,7 +291,7 @@ one of both directions (e.g., positive down).</p>
 </dd>
 </dl>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -297,8 +299,10 @@ one of both directions (e.g., positive down).</p>
 </dd>
 </dl>
 <dl class="simple" id="w">
-<dt><strong>-W</strong><em>pen</em></dt><dd><p>Change the pen attributes used for vector outlines [Default: width =
-default, color = black, style = solid].</p>
+<dt><strong>-W</strong><em>pen</em>[<strong>+c</strong>]</dt><dd><p>Change the pen attributes used for vector outlines [Default: width =
+default, color = black, style = solid].
+If the modifier <strong>+c</strong> is appended then the color of the vector head
+and stem are taken from the CPT (see <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong>).</p>
 </dd>
 </dl>
 <dl class="simple" id="x">
@@ -310,7 +314,9 @@ default, color = black, style = solid].</p>
 </dd>
 </dl>
 <dl class="simple" id="z">
-<dt><strong>-Z</strong></dt><dd><p>The theta grid provided contains azimuths rather than directions (implies <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong>).</p>
+<dt><strong>-Z</strong></dt><dd><p>The <span class="math notranslate nohighlight">\(\theta\)</span> grid provided contains azimuth (in degrees east of north)
+rather than direction (in degrees counter-clockwise from horizontal).
+Implies <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong>.</p>
 </dd>
 </dl>
 <dl class="simple">
@@ -373,7 +379,7 @@ end point (<strong>e</strong>) of a line segment:</p>
 <blockquote>
 <div><p><strong>+a</strong><em>angle</em> sets the angle <span class="math notranslate nohighlight">\(\theta\)</span> of the vector head apex [30].</p>
 <p><strong>+b</strong> places a vector head at the <strong>b</strong>eginning of the vector path [none].
-Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle,
+Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle, <strong>s</strong> for a square,
 <strong>a</strong> for arrow [Default], <strong>i</strong> for tail, <strong>A</strong> for plain open arrow,
 and <strong>I</strong> for plain open tail. <strong>Note</strong>: For geovectors only <strong>a</strong> and <strong>A</strong> are available.
 Further append <strong>l</strong>|<strong>r</strong> to only draw the left or right
@@ -382,7 +388,7 @@ half-sides of this head [both sides].</p>
 requires a separate data column following the 2 or 3 coordinates]. Requires that data
 quantity scaling (with unit <strong>q</strong> via <strong>+v</strong> or <strong>+z</strong>) and a CPT have been selected.</p>
 <p><strong>+e</strong> places a vector head at the <strong>e</strong>nd of the vector path [none].
-Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle,
+Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle, <strong>s</strong> for a square,
 <strong>a</strong> for arrow [Default], <strong>i</strong> for tail, <strong>A</strong> for plain open arrow,
 and <strong>I</strong> for plain open tail. <strong>Note</strong>: For geovectors only <strong>a</strong> and <strong>A</strong> are available.
 Further append <strong>l</strong>|<strong>r</strong> to only draw the left or right
@@ -492,14 +498,14 @@ linear plot with scale 5 cm per data unit, using vector rather than
 stick plot, scale vector magnitudes so that 10 units equal 1 inch, and
 center vectors on the node locations, run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdvector r.nc theta.nc -Jx5c -A -Q0.1i+e+jc -S10i -pdf gradient
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdvector<span class="w"> </span>r.nc<span class="w"> </span>theta.nc<span class="w"> </span>-Jx5c<span class="w"> </span>-A<span class="w"> </span>-Q0.1i+e+jc<span class="w"> </span>-S10i<span class="w"> </span>-pdf<span class="w"> </span>gradient
 </pre></div>
 </div>
 </div></blockquote>
 <p>To plot a geographic data sets given the files comp_x.nc and comp_y.nc,
 using a length scale of 200 km per data unit and only plot every 3rd node in either direction, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdvector comp_x.nc comp_y.nc -Ix3 -JH0/20c -Q0.1i+e+jc -S200k -pdf globe
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdvector<span class="w"> </span>comp_x.nc<span class="w"> </span>comp_y.nc<span class="w"> </span>-Ix3<span class="w"> </span>-JH0/20c<span class="w"> </span>-Q0.1i+e+jc<span class="w"> </span>-S200k<span class="w"> </span>-pdf<span class="w"> </span>globe
 </pre></div>
 </div>
 </div></blockquote>
@@ -510,7 +516,7 @@ using a length scale of 200 km per data unit and only plot every 3rd node in eit
 it is specified in data-units per plot or distance unit. The plot or distance unit
 chosen will affect the type of vector you select. In all cases, we first compute
 the magnitude <em>r</em> of the user’s data vectors at each selected node from the <em>x</em> and <em>y</em>
-components (unless you are passing <em>r</em>, <em>theta</em> grids directly with <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong>).  These
+components (unless you are passing <span class="math notranslate nohighlight">\((r,\theta)\)</span> grids directly with <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong> or <a class="reference internal" href="#z"><span><strong>-Z</strong></span></a></strong>).  These
 magnitudes are given in whatever data units they come with.  Let us pretend our data
 grids record secular changes in the Earth’s magnetic horizontal vector field in units
 of nTesla/year, and that at a particular node the magnitude is 28 nTesla/year (in some
@@ -570,8 +576,8 @@ larger grid increment and use these grids instead of the originals.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

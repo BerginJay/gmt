@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(21) Time-series of RedHat stock price &mdash; GMT 6.4.0 documentation</title>
+  <title>(21) Time-series of RedHat stock price &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -178,70 +175,70 @@ Here is how it all comes out:</p>
 <span class="c1"># GMT modules:	set, convert, info, basemap, plot</span>
 <span class="c1"># Unix progs:	echo, rm</span>
 <span class="c1">#</span>
-gmt begin ex21
-	<span class="c1"># File has time stored as dd-Mon-yy so set input format to match it</span>
-	gmt <span class="nb">set</span> FORMAT_DATE_IN dd-o-yy FORMAT_DATE_MAP o FONT_ANNOT_PRIMARY +10p
-	gmt <span class="nb">set</span> FORMAT_TIME_PRIMARY_MAP abbreviated PS_CHAR_ENCODING ISOLatin1+
+gmt<span class="w"> </span>begin<span class="w"> </span>ex21
+<span class="w">	</span><span class="c1"># File has time stored as dd-Mon-yy so set input format to match it</span>
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FORMAT_DATE_IN<span class="w"> </span>dd-o-yy<span class="w"> </span>FORMAT_DATE_MAP<span class="w"> </span>o<span class="w"> </span>FONT_ANNOT_PRIMARY<span class="w"> </span>+10p
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FORMAT_TIME_PRIMARY_MAP<span class="w"> </span>abbreviated<span class="w"> </span>PS_CHAR_ENCODING<span class="w"> </span>ISOLatin1+
 
-	<span class="c1"># Pull out a suitable region string in yyy-mm-dd format</span>
-	<span class="nv">wesn</span><span class="o">=(</span><span class="k">$(</span>gmt info -fT -I50 -C @RHAT_price.csv --FORMAT_DATE_IN<span class="o">=</span>dd-o-yy<span class="k">)</span><span class="o">)</span>
-	<span class="nv">R</span><span class="o">=</span><span class="s2">&quot;-R</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[0]</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[1]</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[2]</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[3]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">	</span><span class="c1"># Pull out a suitable region string in yyy-mm-dd format</span>
+<span class="w">	</span><span class="nv">wesn</span><span class="o">=(</span><span class="k">$(</span>gmt<span class="w"> </span>info<span class="w"> </span>-fT<span class="w"> </span>-I50<span class="w"> </span>-C<span class="w"> </span>@RHAT_price.csv<span class="w"> </span>--FORMAT_DATE_IN<span class="o">=</span>dd-o-yy<span class="k">)</span><span class="o">)</span>
+<span class="w">	</span><span class="nv">R</span><span class="o">=</span><span class="s2">&quot;-R</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[0]</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[1]</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[2]</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[3]</span><span class="si">}</span><span class="s2">&quot;</span>
 
-	<span class="c1"># Lay down the basemap:</span>
-	gmt basemap <span class="nv">$R</span> -JX22c/15c -Bsx1Y -Bpxa3Of1o -Bpy50+p<span class="s2">&quot;</span>$<span class="s2"> &quot;</span> <span class="se">\</span>
-		-BWSen+t<span class="s2">&quot;RedHat (RHT) Stock Price Trend since IPO&quot;</span>+glightgreen
+<span class="w">	</span><span class="c1"># Lay down the basemap:</span>
+<span class="w">	</span>gmt<span class="w"> </span>basemap<span class="w"> </span><span class="nv">$R</span><span class="w"> </span>-JX22c/15c<span class="w"> </span>-Bsx1Y<span class="w"> </span>-Bpxa3Of1o<span class="w"> </span>-Bpy50+p<span class="s2">&quot;</span>$<span class="s2"> &quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">		</span>-BWSen+t<span class="s2">&quot;RedHat (RHT) Stock Price Trend since IPO&quot;</span>+glightgreen
 
-	<span class="c1"># Plot main window with open price as red line over yellow envelope of low/highs</span>
-	gmt <span class="nb">set</span> FORMAT_DATE_OUT dd-o-yy
-	gmt convert -o0,2 -f0T @RHAT_price.csv &gt; RHAT.env
-	gmt convert -o0,3 -f0T -I -T @RHAT_price.csv &gt;&gt; RHAT.env
-	gmt plot -Gyellow RHAT.env
-	gmt plot @RHAT_price.csv -Wthin,red
+<span class="w">	</span><span class="c1"># Plot main window with open price as red line over yellow envelope of low/highs</span>
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FORMAT_DATE_OUT<span class="w"> </span>dd-o-yy
+<span class="w">	</span>gmt<span class="w"> </span>convert<span class="w"> </span>-o0,2<span class="w"> </span>-f0T<span class="w"> </span>@RHAT_price.csv<span class="w"> </span>&gt;<span class="w"> </span>RHAT.env
+<span class="w">	</span>gmt<span class="w"> </span>convert<span class="w"> </span>-o0,3<span class="w"> </span>-f0T<span class="w"> </span>-I<span class="w"> </span>-T<span class="w"> </span>@RHAT_price.csv<span class="w"> </span>&gt;&gt;<span class="w"> </span>RHAT.env
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Gyellow<span class="w"> </span>RHAT.env
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>@RHAT_price.csv<span class="w"> </span>-Wthin,red
 
-	<span class="c1"># Draw P Wessel&#39;s purchase price as line and label it.  Note we temporary switch</span>
-	<span class="c1"># back to default yyyy-mm-dd format since that is what gmt info gave us.</span>
-	<span class="nb">echo</span> <span class="s2">&quot;05-May-00	0&quot;</span> &gt; RHAT.pw
-	<span class="nb">echo</span> <span class="s2">&quot;05-May-00	300&quot;</span> &gt;&gt; RHAT.pw
-	gmt plot RHAT.pw -Wthinner,-
-	<span class="nb">echo</span> <span class="s2">&quot;01-Jan-99	25&quot;</span> &gt; RHAT.pw
-	<span class="nb">echo</span> <span class="s2">&quot;01-Jan-02	25&quot;</span> &gt;&gt; RHAT.pw
-	gmt plot RHAT.pw -Wthick,-
-	gmt <span class="nb">set</span> FORMAT_DATE_IN yyyy-mm-dd
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[0]</span><span class="si">}</span><span class="s2"> 25 PW buy&quot;</span> <span class="p">|</span> gmt text -D4c/0.1c -N -F+f12p,Bookman-Demi+jLB
-	gmt <span class="nb">set</span> FORMAT_DATE_IN dd-o-yy
+<span class="w">	</span><span class="c1"># Draw P Wessel&#39;s purchase price as line and label it.  Note we temporary switch</span>
+<span class="w">	</span><span class="c1"># back to default yyyy-mm-dd format since that is what gmt info gave us.</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;05-May-00	0&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>RHAT.pw
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;05-May-00	300&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>RHAT.pw
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>RHAT.pw<span class="w"> </span>-Wthinner,-
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;01-Jan-99	25&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>RHAT.pw
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;01-Jan-02	25&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>RHAT.pw
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>RHAT.pw<span class="w"> </span>-Wthick,-
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FORMAT_DATE_IN<span class="w"> </span>yyyy-mm-dd
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[0]</span><span class="si">}</span><span class="s2"> 25 PW buy&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-D4c/0.1c<span class="w"> </span>-N<span class="w"> </span>-F+f12p,Bookman-Demi+jLB
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FORMAT_DATE_IN<span class="w"> </span>dd-o-yy
 
-	<span class="c1"># Draw P Wessel&#39;s sales price as line and label it.</span>
-	<span class="nb">echo</span> <span class="s2">&quot;25-Jun-07	0&quot;</span> &gt; RHAT.pw
-	<span class="nb">echo</span> <span class="s2">&quot;25-Jun-07	300&quot;</span> &gt;&gt; RHAT.pw
-	gmt plot RHAT.pw -Wthinner,-
-	<span class="nb">echo</span> <span class="s2">&quot;01-Aug-06	23.8852&quot;</span> &gt; RHAT.pw
-	<span class="nb">echo</span> <span class="s2">&quot;01-Jan-08	23.8852&quot;</span> &gt;&gt; RHAT.pw
-	gmt plot RHAT.pw -Wthick,-
-	gmt <span class="nb">set</span> FORMAT_DATE_IN yyyy-mm-dd
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[1]</span><span class="si">}</span><span class="s2"> 23.8852 PW sell&quot;</span> <span class="p">|</span> gmt text -Dj1.6c/0.1c -N -F+f12p,Bookman-Demi+jRB
-	gmt <span class="nb">set</span> FORMAT_DATE_IN dd-o-yy
+<span class="w">	</span><span class="c1"># Draw P Wessel&#39;s sales price as line and label it.</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;25-Jun-07	0&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>RHAT.pw
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;25-Jun-07	300&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>RHAT.pw
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>RHAT.pw<span class="w"> </span>-Wthinner,-
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;01-Aug-06	23.8852&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>RHAT.pw
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;01-Jan-08	23.8852&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>RHAT.pw
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>RHAT.pw<span class="w"> </span>-Wthick,-
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FORMAT_DATE_IN<span class="w"> </span>yyyy-mm-dd
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[1]</span><span class="si">}</span><span class="s2"> 23.8852 PW sell&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-Dj1.6c/0.1c<span class="w"> </span>-N<span class="w"> </span>-F+f12p,Bookman-Demi+jRB
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FORMAT_DATE_IN<span class="w"> </span>dd-o-yy
 
-	<span class="c1"># Get smaller region for inset for trend since 2004</span>
-	<span class="nv">R</span><span class="o">=</span><span class="s2">&quot;-R2004T/</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[1]</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[2]</span><span class="si">}</span><span class="s2">/40&quot;</span>
+<span class="w">	</span><span class="c1"># Get smaller region for inset for trend since 2004</span>
+<span class="w">	</span><span class="nv">R</span><span class="o">=</span><span class="s2">&quot;-R2004T/</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[1]</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">wesn</span><span class="p">[2]</span><span class="si">}</span><span class="s2">/40&quot;</span>
 
-	<span class="c1"># Lay down the basemap, using Finnish annotations and place the inset in the upper right</span>
-	gmt basemap --GMT_LANGUAGE<span class="o">=</span><span class="k">fi</span> <span class="nv">$R</span> -JX15c/7c -Bpxa3Of3o -Bpy10+p<span class="s2">&quot;</span>$<span class="s2"> &quot;</span> -BESw+glightblue -Bsx1Y -X7c -Y8c
+<span class="w">	</span><span class="c1"># Lay down the basemap, using Finnish annotations and place the inset in the upper right</span>
+<span class="w">	</span>gmt<span class="w"> </span>basemap<span class="w"> </span>--GMT_LANGUAGE<span class="o">=</span><span class="k">fi</span><span class="w"> </span><span class="nv">$R</span><span class="w"> </span>-JX15c/7c<span class="w"> </span>-Bpxa3Of3o<span class="w"> </span>-Bpy10+p<span class="s2">&quot;</span>$<span class="s2"> &quot;</span><span class="w"> </span>-BESw+glightblue<span class="w"> </span>-Bsx1Y<span class="w"> </span>-X7c<span class="w"> </span>-Y8c
 
-	<span class="c1"># Again, plot close price as red line over yellow envelope of low/highs</span>
-	gmt plot -Gyellow RHAT.env
-	gmt plot @RHAT_price.csv -Wthin,red
+<span class="w">	</span><span class="c1"># Again, plot close price as red line over yellow envelope of low/highs</span>
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Gyellow<span class="w"> </span>RHAT.env
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>@RHAT_price.csv<span class="w"> </span>-Wthin,red
 
-	<span class="c1"># Draw P Wessel&#39;s sales price as dashed line</span>
-	gmt plot RHAT.pw -Wthick,-
+<span class="w">	</span><span class="c1"># Draw P Wessel&#39;s sales price as dashed line</span>
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>RHAT.pw<span class="w"> </span>-Wthick,-
 
-	<span class="c1"># Mark sales date</span>
-	<span class="nb">echo</span> <span class="s2">&quot;25-Jun-07	0&quot;</span> &gt; RHAT.pw
-	<span class="nb">echo</span> <span class="s2">&quot;25-Jun-07	300&quot;</span> &gt;&gt; RHAT.pw
-	gmt plot RHAT.pw -Wthinner,-
+<span class="w">	</span><span class="c1"># Mark sales date</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;25-Jun-07	0&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>RHAT.pw
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;25-Jun-07	300&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>RHAT.pw
+<span class="w">	</span>gmt<span class="w"> </span>plot<span class="w"> </span>RHAT.pw<span class="w"> </span>-Wthinner,-
 
-	<span class="c1"># Clean up after ourselves:</span>
-	rm -f RHAT.*
-gmt end show
+<span class="w">	</span><span class="c1"># Clean up after ourselves:</span>
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>RHAT.*
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>which produces the plot in Figure, suggesting
@@ -266,8 +263,8 @@ Internet bubble…</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

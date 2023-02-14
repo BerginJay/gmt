@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(17) Images clipped by coastlines &mdash; GMT 6.4.0 documentation</title>
+  <title>(17) Images clipped by coastlines &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -179,36 +176,36 @@ CPTs and ways to draw color legends.</p>
 <span class="c1"># GMT modules:	grd2cpt, grdimage, coast, text, makecpt</span>
 <span class="c1"># Unix progs:	rm</span>
 <span class="c1">#</span>
-gmt begin ex17
+gmt<span class="w"> </span>begin<span class="w"> </span>ex17
 
-	<span class="c1"># First generate geoid image w/ shading</span>
-	gmt grd2cpt @india_geoid.nc -Crainbow -H &gt; geoid.cpt
-	gmt grdimage @india_geoid.nc -I+d -JM16c -Cgeoid.cpt
+<span class="w">	</span><span class="c1"># First generate geoid image w/ shading</span>
+<span class="w">	</span>gmt<span class="w"> </span>grd2cpt<span class="w"> </span>@india_geoid.nc<span class="w"> </span>-Crainbow<span class="w"> </span>-H<span class="w"> </span>&gt;<span class="w"> </span>geoid.cpt
+<span class="w">	</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>@india_geoid.nc<span class="w"> </span>-I+d<span class="w"> </span>-JM16c<span class="w"> </span>-Cgeoid.cpt
 
-	<span class="c1"># Then use gmt coast to initiate clip path for land</span>
-	gmt coast -R@india_geoid.nc -Dl -G
+<span class="w">	</span><span class="c1"># Then use gmt coast to initiate clip path for land</span>
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R@india_geoid.nc<span class="w"> </span>-Dl<span class="w"> </span>-G
 
-	<span class="c1"># Now generate topography image w/shading</span>
-	gmt makecpt -C150 -T-10000,10000 -N
-	gmt grdimage @india_topo.nc -I+d
+<span class="w">	</span><span class="c1"># Now generate topography image w/shading</span>
+<span class="w">	</span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-C150<span class="w"> </span>-T-10000,10000<span class="w"> </span>-N
+<span class="w">	</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>@india_topo.nc<span class="w"> </span>-I+d
 
-	<span class="c1"># Finally undo clipping and overlay basemap</span>
-	gmt coast -Q -B+t<span class="s2">&quot;Clipping of Images&quot;</span> -B
+<span class="w">	</span><span class="c1"># Finally undo clipping and overlay basemap</span>
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Q<span class="w"> </span>-B+t<span class="s2">&quot;Clipping of Images&quot;</span><span class="w"> </span>-B
 
-	<span class="c1"># Put a colorbar on top of the land mask</span>
-	gmt colorbar -DjTR+o0.8c/0.2c+w10c/0.5c+h -Cgeoid.cpt -Bx5f1 -By+lm -I
+<span class="w">	</span><span class="c1"># Put a colorbar on top of the land mask</span>
+<span class="w">	</span>gmt<span class="w"> </span>colorbar<span class="w"> </span>-DjTR+o0.8c/0.2c+w10c/0.5c+h<span class="w"> </span>-Cgeoid.cpt<span class="w"> </span>-Bx5f1<span class="w"> </span>-By+lm<span class="w"> </span>-I
 
-	<span class="c1"># Add a text paragraph</span>
-	gmt text -M -Gwhite -Wthinner -C+tO -Dj8p -F+f12,Times-Roman+jRB <span class="s">&lt;&lt;- END</span>
+<span class="w">	</span><span class="c1"># Add a text paragraph</span>
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>-M<span class="w"> </span>-Gwhite<span class="w"> </span>-Wthinner<span class="w"> </span>-C+tO<span class="w"> </span>-Dj8p<span class="w"> </span>-F+f12,Times-Roman+jRB<span class="w"> </span><span class="s">&lt;&lt;- END</span>
 <span class="s">	&gt; 90 -10 12p 8c j</span>
 <span class="s">	@_@%5%Example 17.@%%@_  We first plot the color geoid image</span>
 <span class="s">	for the entire region, followed by a gray-shaded @#etopo5@#</span>
 <span class="s">	image that is clipped so it is only visible inside the coastlines.</span>
 <span class="s">	END</span>
 
-	<span class="c1"># Clean up</span>
-	rm -f geoid.cpt
-gmt end show
+<span class="w">	</span><span class="c1"># Clean up</span>
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>geoid.cpt
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -230,8 +227,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

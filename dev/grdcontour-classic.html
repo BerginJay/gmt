@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdcontour &mdash; GMT 6.4.0 documentation</title>
+  <title>grdcontour &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -335,7 +332,8 @@ intervals from the data range, yielding approximately 10-20 contours.</p>
 </dl>
 <dl class="simple" id="d">
 <dt><strong>-D</strong><em>template</em></dt><dd><p>Dump contours as data line segments; no plotting takes place.
-Append filename template which may contain C-format specifiers.
+Append filename template which may contain C language
+<a class="reference external" href="https://en.wikipedia.org/wiki/Printf_format_string">printf</a> format specifiers.
 If no filename template is given we write all lines to standard output.
 If filename has no specifiers then we write all lines to a single file.
 If a float format (e.g., %6.2f) is found we substitute the contour z-value.
@@ -458,7 +456,7 @@ is used to position the label.</p>
 </dd>
 </dl>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -595,13 +593,13 @@ of uses that are common but cannot be run verbatim as written.</p>
 0.5 inch/degree, annotate every 50 mGal (using fontsize = 10p), using 1
 degree tickmarks, and draw 30 minute gridlines:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcontour hawaii_grav.nc -Jm0.5i -C25 -A50+f10p -B1g30m &gt; hawaii_grav.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>hawaii_grav.nc<span class="w"> </span>-Jm0.5i<span class="w"> </span>-C25<span class="w"> </span>-A50+f10p<span class="w"> </span>-B1g30m<span class="w"> </span>&gt;<span class="w"> </span>hawaii_grav.ps
 </pre></div>
 </div>
 </div></blockquote>
 <p>To do the same map but only draw the 50 and 150 and annotate the 100 contour:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcontour hawaii_grav.nc -Jm0.5i -C50.150 -A100,+f10p -B1g30m &gt; hawaii_grav.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>hawaii_grav.nc<span class="w"> </span>-Jm0.5i<span class="w"> </span>-C50.150<span class="w"> </span>-A100,+f10p<span class="w"> </span>-B1g30m<span class="w"> </span>&gt;<span class="w"> </span>hawaii_grav.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -611,8 +609,8 @@ linear projection at 0.1 cm/x-unit and 50 cm/y-unit, using 20 (x) and
 plot-title, use a thick red pen for annotated contours, and a thin,
 dashed, blue pen for the rest, and send the output to the default printer:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcontour image.nc -Jx0.1c/50.0c -Ccont.txt -S4 -Bx20 -By0.1 <span class="se">\</span>
-           -B+t<span class="s2">&quot;RMS Misfit&quot;</span> -Wathick,red -Wcthinnest,blue,- <span class="p">|</span> lp
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>image.nc<span class="w"> </span>-Jx0.1c/50.0c<span class="w"> </span>-Ccont.txt<span class="w"> </span>-S4<span class="w"> </span>-Bx20<span class="w"> </span>-By0.1<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>-B+t<span class="s2">&quot;RMS Misfit&quot;</span><span class="w"> </span>-Wathick,red<span class="w"> </span>-Wcthinnest,blue,-<span class="w"> </span><span class="p">|</span><span class="w"> </span>lp
 </pre></div>
 </div>
 </div></blockquote>
@@ -623,7 +621,7 @@ position the label.</p>
 into two multisegment files: contours_C.txt for closed and
 contours_O.txt for open contours, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcontour topo.nc -C100 -S4 -Dcontours_%c.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>topo.nc<span class="w"> </span>-C100<span class="w"> </span>-S4<span class="w"> </span>-Dcontours_%c.txt
 </pre></div>
 </div>
 </div></blockquote>
@@ -649,8 +647,8 @@ contours_O.txt for open contours, try</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gmtpmodeler &mdash; GMT 6.4.0 documentation</title>
+  <title>gmtpmodeler &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -329,38 +326,38 @@ model (Pac_APM.txt), and a polygon that contains the outline of the
 present Pacific plate (pac_clip_path.txt). To evaluate the plate motion
 azimuths at the present time for the Pacific, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pmodeler pac_age.txt -EPac_APM.txt -V -Fpac_clip_path.txt <span class="se">\</span>
-                 -Sa -T0 &gt; pac_dir_0.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>pmodeler<span class="w"> </span>pac_age.txt<span class="w"> </span>-EPac_APM.txt<span class="w"> </span>-V<span class="w"> </span>-Fpac_clip_path.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>-Sa<span class="w"> </span>-T0<span class="w"> </span>&gt;<span class="w"> </span>pac_dir_0.txt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To determine the changes in latitude since crust formation for the
 entire Pacific, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pmodeler pac_age.txt -EPac_APM.txt -V -Fpac_clip_path.txt <span class="se">\</span>
-                -Sy &gt; pac_dlat.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>pmodeler<span class="w"> </span>pac_age.txt<span class="w"> </span>-EPac_APM.txt<span class="w"> </span>-V<span class="w"> </span>-Fpac_clip_path.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">                </span>-Sy<span class="w"> </span>&gt;<span class="w"> </span>pac_dlat.txt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To determine the plate motion velocities in effect when the Pacific crust was
 formed, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pmodeler pac_age.txt -EPac_APM.txt -V -Fpac_clip_path.txt <span class="se">\</span>
-                -Sv &gt; pac_vel.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>pmodeler<span class="w"> </span>pac_age.txt<span class="w"> </span>-EPac_APM.txt<span class="w"> </span>-V<span class="w"> </span>-Fpac_clip_path.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">                </span>-Sv<span class="w"> </span>&gt;<span class="w"> </span>pac_vel.txt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To determine how far the crust has moved since formation, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pmodeler pac_age.txt -EPac_APM.txt -V -Fpac_clip_path.txt <span class="se">\</span>
-                -Sd &gt; pac_dist.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>pmodeler<span class="w"> </span>pac_age.txt<span class="w"> </span>-EPac_APM.txt<span class="w"> </span>-V<span class="w"> </span>-Fpac_clip_path.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">                </span>-Sd<span class="w"> </span>&gt;<span class="w"> </span>pac_dist.txt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To save the coordinates of the crust’s formation, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt pmodeler pac_age.txt -EPac_APM.txt -V -Fpac_clip_path.txt <span class="se">\</span>
-                -SXY &gt; ac_origin_xy.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>pmodeler<span class="w"> </span>pac_age.txt<span class="w"> </span>-EPac_APM.txt<span class="w"> </span>-V<span class="w"> </span>-Fpac_clip_path.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">                </span>-SXY<span class="w"> </span>&gt;<span class="w"> </span>ac_origin_xy.txt
 </pre></div>
 </div>
 </div></blockquote>
@@ -394,8 +391,8 @@ To use an alternate rotation file, create an environmental parameters named
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

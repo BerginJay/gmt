@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gmt2kml &mdash; GMT 6.4.0 documentation</title>
+  <title>gmt2kml &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -297,7 +294,7 @@ in the KML file as Extended Data sets, whose attributes will be
 available in a Google Earth balloon when the item is selected.
 The data file must have enough data columns and trailing text to
 accommodate the number of columns requested.  If the number of extended
-data is one larger than the number of available numerical columns then
+data columns is one larger than the number of available numerical columns then
 the entire trailing text is set as the last extended data column.
 Otherwise, the trailing text is split into individual words and
 set as separate extended columns.</p>
@@ -366,7 +363,7 @@ Line, Polygon or Wiggle].</p>
 </dl>
 <dl class="simple" id="w">
 <dt><strong>-W</strong>[<em>pen</em>][<em>attr</em>] <a class="reference internal" href="cookbook/features.html#wpen-attrib"><span class="std std-ref">(more …)</span></a></dt><dd><p>Set pen attributes for lines, wiggles or polygon outlines. Append pen
-attributes to use [Defaults: width = default, color = black, style =
+attributes to use [Defaults: width = 0.25p, color = black, style =
 solid]. If the modifier <strong>+cl</strong> is appended then the color of the line
 are taken from the CPT (see <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong>). If instead modifier <strong>+cf</strong> is
 appended then the color from the cpt file is applied to symbol fill.
@@ -446,14 +443,14 @@ Other commands requiring input files are just dummy examples of the types
 of uses that are common but cannot be run verbatim as written.</p>
 <p>To plot colored symbols based on a CPT of the remote file &#64;kml_pointsets.txt,
 first make the CPT and then create the KML file thus:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt makecpt -Ccategorical &gt; categories.cpt
-gmt 2kml @kml_pointsets.txt -Ccategories.cpt &gt; points.kml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Ccategorical<span class="w"> </span>&gt;<span class="w"> </span>categories.cpt
+gmt<span class="w"> </span>2kml<span class="w"> </span>@kml_pointsets.txt<span class="w"> </span>-Ccategories.cpt<span class="w"> </span>&gt;<span class="w"> </span>points.kml
 </pre></div>
 </div>
 <p>To convert a file with point locations (lon, lat) into a KML file with
 red circle symbols, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt 2kml mypoints.txt -Gred+f -Fs &gt; mypoints.kml
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>2kml<span class="w"> </span>mypoints.txt<span class="w"> </span>-Gred+f<span class="w"> </span>-Fs<span class="w"> </span>&gt;<span class="w"> </span>mypoints.kml
 </pre></div>
 </div>
 </div></blockquote>
@@ -461,7 +458,7 @@ red circle symbols, try</p>
 segment headers that contain a <strong>-L</strong>labelstring with the feature
 name, selecting a thick white pen, and title the document, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt 2kml mylines.txt -Wthick,white -Fl -T<span class="s2">&quot;Lines from here to there&quot;</span> &gt; mylines.kml
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>2kml<span class="w"> </span>mylines.txt<span class="w"> </span>-Wthick,white<span class="w"> </span>-Fl<span class="w"> </span>-T<span class="s2">&quot;Lines from here to there&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>mylines.kml
 </pre></div>
 </div>
 </div></blockquote>
@@ -471,7 +468,7 @@ name, selecting a thick black pen and semi-transparent yellow fill,
 giving a title to the document, and prescribing a particular region
 limit, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt 2kml mypolygons.txt -Gyellow@50+f -Fp -T<span class="s2">&quot;My polygons&quot;</span> -R30/90/-20/40 &gt; mypolygons.kml
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>2kml<span class="w"> </span>mypolygons.txt<span class="w"> </span>-Gyellow@50+f<span class="w"> </span>-Fp<span class="w"> </span>-T<span class="s2">&quot;My polygons&quot;</span><span class="w"> </span>-R30/90/-20/40<span class="w"> </span>&gt;<span class="w"> </span>mypolygons.kml
 </pre></div>
 </div>
 </div></blockquote>
@@ -479,7 +476,7 @@ limit, try</p>
 with green circle symbols that will go active at the specified time and
 stay active going forward, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk <span class="s1">&#39;{print $1, $2, $3, &quot;NaN&quot;}&#39;</span> mypoints.txt <span class="p">|</span> gmt 2kml -Ggreen+f -Ft &gt; mytimepoints.kml
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;{print $1, $2, $3, &quot;NaN&quot;}&#39;</span><span class="w"> </span>mypoints.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>2kml<span class="w"> </span>-Ggreen+f<span class="w"> </span>-Ft<span class="w"> </span>&gt;<span class="w"> </span>mytimepoints.kml
 </pre></div>
 </div>
 </div></blockquote>
@@ -487,16 +484,16 @@ stay active going forward, try</p>
 plot them in KML, using red lines at 75% transparency and red labels (no
 transparency), try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcontour temp.nc -Jx1id -A10+tlabel.txt -C10 -Dcontours.txt
-gmt 2kml    contours.txt -Fl -W1p,red@75 -K &gt; contours.kml
-gmt 2kml    -O -Nt -Fs -Sn2 -Gred@0+n label.txt -I- &gt;&gt; contours.kml
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>temp.nc<span class="w"> </span>-Jx1id<span class="w"> </span>-A10+tlabel.txt<span class="w"> </span>-C10<span class="w"> </span>-Dcontours.txt
+gmt<span class="w"> </span>2kml<span class="w">    </span>contours.txt<span class="w"> </span>-Fl<span class="w"> </span>-W1p,red@75<span class="w"> </span>-K<span class="w"> </span>&gt;<span class="w"> </span>contours.kml
+gmt<span class="w"> </span>2kml<span class="w">    </span>-O<span class="w"> </span>-Nt<span class="w"> </span>-Fs<span class="w"> </span>-Sn2<span class="w"> </span>-Gred@0+n<span class="w"> </span>label.txt<span class="w"> </span>-I-<span class="w"> </span>&gt;&gt;<span class="w"> </span>contours.kml
 </pre></div>
 </div>
 </div></blockquote>
 <p>To instead plot the contours as lines with colors taken from the cpt
 file contours.cpt, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt 2kml contours.txt -Fl -Ccontours.cpt &gt; contours.kml
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>2kml<span class="w"> </span>contours.txt<span class="w"> </span>-Fl<span class="w"> </span>-Ccontours.cpt<span class="w"> </span>&gt;<span class="w"> </span>contours.kml
 </pre></div>
 </div>
 </div></blockquote>
@@ -506,7 +503,7 @@ of width 2p, scaling the magnetic anomalies (in nTesla) so that
 50 nT equals 1 nm on the map, and place the wiggles 50m above the
 sea surface, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt 2kml magnetics_lon_lat_mag.txt -Fw -Gorange+f -W2p -Ag50 -Qs50n &gt; wiggles.kml
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>2kml<span class="w"> </span>magnetics_lon_lat_mag.txt<span class="w"> </span>-Fw<span class="w"> </span>-Gorange+f<span class="w"> </span>-W2p<span class="w"> </span>-Ag50<span class="w"> </span>-Qs50n<span class="w"> </span>&gt;<span class="w"> </span>wiggles.kml
 </pre></div>
 </div>
 </div></blockquote>
@@ -577,7 +574,7 @@ a crude example:</p>
 <section id="segment-information">
 <h2>Segment Information<a class="headerlink" href="#segment-information" title="Permalink to this heading">¶</a></h2>
 <p><strong>2kml</strong> will scan the segment headers for substrings of the form
-<strong>-L</strong>”<em>some label</em>” [also see <a class="reference internal" href="#n"><span><strong>-N</strong></span></a></strong> discussion] and <strong>-T</strong>”<em>some
+<strong>-L</strong>”<em>some label</em>“ [also see <a class="reference internal" href="#n"><span><strong>-N</strong></span></a></strong> discussion] and <strong>-T</strong>”<em>some
 text description</em>“. If present, these are parsed to supply name and
 description tags, respectively, for the current feature.</p>
 </section>
@@ -604,8 +601,8 @@ description tags, respectively, for the current feature.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

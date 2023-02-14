@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(16) Gridding of data, continued &mdash; GMT 6.4.0 documentation</title>
+  <title>(16) Gridding of data, continued &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -205,23 +202,23 @@ and place the four panels, and place the colorbar beneath the subplot.</p>
 <span class="c1"># GMT modules:	gmtset, grdview, grdfilter, contour, colorbar, surface, triangulate</span>
 <span class="c1"># Unix progs:	rm</span>
 <span class="c1">#</span>
-gmt begin ex16
-	gmt subplot begin 2x2 -M0.1c -Fs8c/0 -R-0.2/6.6/-0.2/6.6 -Jx1c -Scb -Srl+t -Bwesn -T<span class="s2">&quot;Gridding of Data&quot;</span>
-		gmt surface @Table_5_11.txt -I0.2 -Graws0.nc
-		gmt contour @Table_5_11.txt -C@ex_16.cpt -I -B+t<span class="s2">&quot;contour (triangulate)&quot;</span> -c0,0
-		<span class="c1">#</span>
-		gmt grdview raws0.nc -C@ex_16.cpt -Qs -B+t<span class="s2">&quot;surface (tension = 0)&quot;</span> -c0,1
-		<span class="c1">#</span>
-		gmt surface @Table_5_11.txt -Graws5.nc -T0.5
-		gmt grdview raws5.nc -C@ex_16.cpt -Qs -B+t<span class="s2">&quot;surface (tension = 0.5)&quot;</span> -c1,0
-		<span class="c1">#</span>
-		gmt triangulate @Table_5_11.txt -Grawt.nc
-		gmt grdfilter rawt.nc -Gfiltered.nc -D0 -Fc1
-		gmt grdview filtered.nc -C@ex_16.cpt -Qs -B+t<span class="s2">&quot;triangulate @~\256@~ grdfilter&quot;</span> -c1,1
-	gmt subplot end
-	gmt colorbar -DJBC -C@ex_16.cpt
-gmt end show
-rm -f raws0.nc raws5.nc rawt.nc filtered.nc
+gmt<span class="w"> </span>begin<span class="w"> </span>ex16
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>begin<span class="w"> </span>2x2<span class="w"> </span>-M0.1c<span class="w"> </span>-Fs8c/0<span class="w"> </span>-R-0.2/6.6/-0.2/6.6<span class="w"> </span>-Jx1c<span class="w"> </span>-Scb<span class="w"> </span>-Srl+t<span class="w"> </span>-Bwesn<span class="w"> </span>-T<span class="s2">&quot;Gridding of Data&quot;</span>
+<span class="w">		</span>gmt<span class="w"> </span>surface<span class="w"> </span>@Table_5_11.txt<span class="w"> </span>-I0.2<span class="w"> </span>-Graws0.nc
+<span class="w">		</span>gmt<span class="w"> </span>contour<span class="w"> </span>@Table_5_11.txt<span class="w"> </span>-C@ex_16.cpt<span class="w"> </span>-I<span class="w"> </span>-B+t<span class="s2">&quot;contour (triangulate)&quot;</span><span class="w"> </span>-c0,0
+<span class="w">		</span><span class="c1">#</span>
+<span class="w">		</span>gmt<span class="w"> </span>grdview<span class="w"> </span>raws0.nc<span class="w"> </span>-C@ex_16.cpt<span class="w"> </span>-Qs<span class="w"> </span>-B+t<span class="s2">&quot;surface (tension = 0)&quot;</span><span class="w"> </span>-c0,1
+<span class="w">		</span><span class="c1">#</span>
+<span class="w">		</span>gmt<span class="w"> </span>surface<span class="w"> </span>@Table_5_11.txt<span class="w"> </span>-Graws5.nc<span class="w"> </span>-T0.5
+<span class="w">		</span>gmt<span class="w"> </span>grdview<span class="w"> </span>raws5.nc<span class="w"> </span>-C@ex_16.cpt<span class="w"> </span>-Qs<span class="w"> </span>-B+t<span class="s2">&quot;surface (tension = 0.5)&quot;</span><span class="w"> </span>-c1,0
+<span class="w">		</span><span class="c1">#</span>
+<span class="w">		</span>gmt<span class="w"> </span>triangulate<span class="w"> </span>@Table_5_11.txt<span class="w"> </span>-Grawt.nc
+<span class="w">		</span>gmt<span class="w"> </span>grdfilter<span class="w"> </span>rawt.nc<span class="w"> </span>-Gfiltered.nc<span class="w"> </span>-D0<span class="w"> </span>-Fc1
+<span class="w">		</span>gmt<span class="w"> </span>grdview<span class="w"> </span>filtered.nc<span class="w"> </span>-C@ex_16.cpt<span class="w"> </span>-Qs<span class="w"> </span>-B+t<span class="s2">&quot;triangulate @~\256@~ grdfilter&quot;</span><span class="w"> </span>-c1,1
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>end
+<span class="w">	</span>gmt<span class="w"> </span>colorbar<span class="w"> </span>-DJBC<span class="w"> </span>-C@ex_16.cpt
+gmt<span class="w"> </span>end<span class="w"> </span>show
+rm<span class="w"> </span>-f<span class="w"> </span>raws0.nc<span class="w"> </span>raws5.nc<span class="w"> </span>rawt.nc<span class="w"> </span>filtered.nc
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -243,8 +240,8 @@ rm -f raws0.nc raws5.nc rawt.nc filtered.nc
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

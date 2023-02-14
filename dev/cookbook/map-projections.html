@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>6. GMT Map Projections &mdash; GMT 6.4.0 documentation</title>
+  <title>6. GMT Map Projections &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -158,7 +155,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -254,10 +251,10 @@ invented some of our own as well. For a full list of both the old 1- and 2-lette
 meaning.</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 40%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 40%" />
+<col style="width: 40.0%" />
+<col style="width: 10.0%" />
+<col style="width: 10.0%" />
+<col style="width: 40.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Projection</p></th>
@@ -459,11 +456,11 @@ too large. The opposite is true for the scale along meridians.</p>
 <p>As an example we will make a map of the region near Taiwan. We choose the center of the projection to be at 125°E/20°N
 and 25°N and 45°N as our two standard parallels. We desire a map that is 12 cm wide. The complete command needed to
 generate the map below is therefore given by:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_albers
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt <span class="nb">set</span> MAP_GRID_CROSS_SIZE_PRIMARY <span class="m">0</span>
-	gmt coast -R110/140/20/35 -JB125/20/25/45/12c -Bag -Dl -Ggreen -Wthinnest -A250
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_albers
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAP_GRID_CROSS_SIZE_PRIMARY<span class="w"> </span><span class="m">0</span>
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R110/140/20/35<span class="w"> </span>-JB125/20/25/45/12c<span class="w"> </span>-Bag<span class="w"> </span>-Dl<span class="w"> </span>-Ggreen<span class="w"> </span>-Wthinnest<span class="w"> </span>-A250
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id7">
@@ -493,11 +490,11 @@ parallels.</p>
 <p><strong>Example</strong></p>
 <p>The equidistant conic projection is often used for atlases with maps of small countries. As an example, we generate a
 map of Cuba:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_equidistant_conic
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt <span class="nb">set</span> FORMAT_GEO_MAP ddd:mm:ssF MAP_GRID_CROSS_SIZE_PRIMARY <span class="m">0</span>.15c
-	gmt coast -R-88/-70/18/24 -JD-79/21/19/23/12c -Bag -Di -N1/thick,red -Glightgreen -Wthinnest
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_equidistant_conic
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FORMAT_GEO_MAP<span class="w"> </span>ddd:mm:ssF<span class="w"> </span>MAP_GRID_CROSS_SIZE_PRIMARY<span class="w"> </span><span class="m">0</span>.15c
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-88/-70/18/24<span class="w"> </span>-JD-79/21/19/23/12c<span class="w"> </span>-Bag<span class="w"> </span>-Di<span class="w"> </span>-N1/thick,red<span class="w"> </span>-Glightgreen<span class="w"> </span>-Wthinnest
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id8">
@@ -532,11 +529,11 @@ parallels 33°N and 45°N. We will generate a map of the continental USA using t
 projections you have the option of selecting a rectangular border rather than one defined by meridians and parallels.
 Here, we choose the regular WESN region, a “fancy” basemap frame, and use degrees west for longitudes. The generating
 commands used were:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_lambert_conic
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt <span class="nb">set</span> MAP_FRAME_TYPE FANCY FORMAT_GEO_MAP ddd:mm:ssF MAP_GRID_CROSS_SIZE_PRIMARY <span class="m">0</span>.15c
-	gmt coast -R-130/-70/24/52 -Jl-100/35/33/45/1:50000000 -Bag -Dl -N1/thick,red -N2/thinner -A500 -Gtan -Wthinnest,white -Sblue
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_lambert_conic
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAP_FRAME_TYPE<span class="w"> </span>FANCY<span class="w"> </span>FORMAT_GEO_MAP<span class="w"> </span>ddd:mm:ssF<span class="w"> </span>MAP_GRID_CROSS_SIZE_PRIMARY<span class="w"> </span><span class="m">0</span>.15c
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-130/-70/24/52<span class="w"> </span>-Jl-100/35/33/45/1:50000000<span class="w"> </span>-Bag<span class="w"> </span>-Dl<span class="w"> </span>-N1/thick,red<span class="w"> </span>-N2/thinner<span class="w"> </span>-A500<span class="w"> </span>-Gtan<span class="w"> </span>-Wthinnest,white<span class="w"> </span>-Sblue
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id9">
@@ -575,7 +572,7 @@ meridian. As a consequence, no parallel is standard because conformity is lost w
 <p><strong>Example</strong></p>
 <p>Below we reproduce the illustration by <em>Snyder</em> [1987], with a gridline every 10 and annotations only every 30° in
 longitude:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -R-180/-20/0/90 -JPoly/10c -Bx30g10 -By10g10 -Dc -A1000 -Glightgray -Wthinnest --GMT_THEME<span class="o">=</span>cookbook -view GMT_polyconic
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-180/-20/0/90<span class="w"> </span>-JPoly/10c<span class="w"> </span>-Bx30g10<span class="w"> </span>-By10g10<span class="w"> </span>-Dc<span class="w"> </span>-A1000<span class="w"> </span>-Glightgray<span class="w"> </span>-Wthinnest<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_polyconic
 </pre></div>
 </div>
 <figure class="align-center" id="id10">
@@ -619,11 +616,11 @@ longitude and latitude are not straight lines and are thus poor choices
 for map boundaries. Instead we require that the map boundaries be
 rectangular by defining the corners of a rectangular map boundary. Using
 0°E/40°S (lower left) and 60°E/10°S (upper right) as our corners we try</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_lambert_az_rect
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt <span class="nb">set</span> FORMAT_GEO_MAP ddd:mm:ssF MAP_GRID_CROSS_SIZE_PRIMARY <span class="m">0</span>
-	gmt coast -R0/-40/60/-10+r -JA30/-30/12c -Bag -Dl -A500 -Gp10+r300 -Wthinnest
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_lambert_az_rect
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FORMAT_GEO_MAP<span class="w"> </span>ddd:mm:ssF<span class="w"> </span>MAP_GRID_CROSS_SIZE_PRIMARY<span class="w"> </span><span class="m">0</span>
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R0/-40/60/-10+r<span class="w"> </span>-JA30/-30/12c<span class="w"> </span>-Bag<span class="w"> </span>-Dl<span class="w"> </span>-A500<span class="w"> </span>-Gp10+r300<span class="w"> </span>-Wthinnest
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id11">
@@ -641,7 +638,7 @@ an error since <em>‘east’</em> &lt; <em>‘west’</em>.</p>
 <h4><span class="section-number">6.2.1.2. </span>Hemisphere map<a class="headerlink" href="#hemisphere-map" title="Permalink to this heading">¶</a></h4>
 <p>Here, you must specify the world as your region (<strong>-Rg</strong> or <strong>-Rd</strong>). E.g., to obtain a hemisphere view that shows the
 Americas, try</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rg -JA280/30/12c -Bg -Dc -A1000 -Gnavy --GMT_THEME<span class="o">=</span>cookbook -view GMT_lambert_az_hemi
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JA280/30/12c<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A1000<span class="w"> </span>-Gnavy<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_lambert_az_hemi
 </pre></div>
 </div>
 <figure class="align-center" id="id12">
@@ -663,13 +660,13 @@ stereonet can be obtained by using the stereographic projection
 </figure>
 <div class="toggle docutils container">
 <p>Here is the source script for the figure above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_stereonets
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt basemap -R0/360/-90/90 -JA0/0/1.75i -Bg15
-	<span class="nb">echo</span> <span class="s2">&quot;180 -90 SCHMIDT&quot;</span> <span class="p">|</span> gmt text -N -D0/-0.2c -F+f12p,Helvetica-Bold+jTC
-	gmt basemap -JS0/0/1.75i -Bg15 -X2.75i
-	<span class="nb">echo</span> <span class="s2">&quot;180 -90 WULFF&quot;</span> <span class="p">|</span> gmt text -N -D0/-0.2c -F+f12p,Helvetica-Bold+jTC
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_stereonets
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>basemap<span class="w"> </span>-R0/360/-90/90<span class="w"> </span>-JA0/0/1.75i<span class="w"> </span>-Bg15
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;180 -90 SCHMIDT&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-N<span class="w"> </span>-D0/-0.2c<span class="w"> </span>-F+f12p,Helvetica-Bold+jTC
+<span class="w">	</span>gmt<span class="w"> </span>basemap<span class="w"> </span>-JS0/0/1.75i<span class="w"> </span>-Bg15<span class="w"> </span>-X2.75i
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;180 -90 WULFF&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-N<span class="w"> </span>-D0/-0.2c<span class="w"> </span>-F+f12p,Helvetica-Bold+jTC
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </div>
@@ -706,7 +703,7 @@ examples in the next three subsections.</p>
 pole. This means we have a polar stereographic projection and the map
 boundaries will coincide with lines of constant longitude and latitude.
 An example is given by:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -R-30/30/60/72 -Js0/90/12c/60 -B10g -Dl -A250 -Groyalblue -Sseashell --GMT_THEME<span class="o">=</span>cookbook -view GMT_stereographic_polar
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-30/30/60/72<span class="w"> </span>-Js0/90/12c/60<span class="w"> </span>-B10g<span class="w"> </span>-Dl<span class="w"> </span>-A250<span class="w"> </span>-Groyalblue<span class="w"> </span>-Sseashell<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_stereographic_polar
 </pre></div>
 </div>
 <figure class="align-center" id="id14">
@@ -724,11 +721,11 @@ associated with polar projections. This choice is defined by selecting
 two points as corners in the rectangle and appending <strong>+r</strong> to the
 <strong>-R</strong> option. This command produces a map as presented in
 Figure <a class="reference internal" href="#gmt-stereographic-rect"><span class="std std-ref">Polar stereographic</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_stereographic_rect
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt <span class="nb">set</span> MAP_ANNOT_OBLIQUE lon_horizontal,lat_horizontal,tick_extend,tick_normal
-	gmt coast -R-25/59/70/72+r -JS10/90/11c -B20g -Dl -A250 -Gdarkbrown -Wthinnest -Slightgray
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_stereographic_rect
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAP_ANNOT_OBLIQUE<span class="w"> </span>lon_horizontal,lat_horizontal,tick_extend,tick_normal
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-25/59/70/72+r<span class="w"> </span>-JS10/90/11c<span class="w"> </span>-B20g<span class="w"> </span>-Dl<span class="w"> </span>-A250<span class="w"> </span>-Gdarkbrown<span class="w"> </span>-Wthinnest<span class="w"> </span>-Slightgray
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id15">
@@ -744,11 +741,11 @@ gmt end show
 equal-area projection. Thus, one can make both rectangular and
 hemispheric maps. Our example shows Australia using a projection pole at
 130°E/30°S. The command used was</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_stereographic_general
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt <span class="nb">set</span> MAP_ANNOT_OBLIQUE separate
-	gmt coast -R100/-42/160/-8+r -JS130/-30/12c -Bag -Dl -A500 -Ggreen -Slightblue -Wthinnest
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_stereographic_general
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAP_ANNOT_OBLIQUE<span class="w"> </span>separate
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R100/-42/160/-8+r<span class="w"> </span>-JS130/-30/12c<span class="w"> </span>-Bag<span class="w"> </span>-Dl<span class="w"> </span>-A500<span class="w"> </span>-Ggreen<span class="w"> </span>-Slightblue<span class="w"> </span>-Wthinnest
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id16">
@@ -794,7 +791,7 @@ in GMT is very flexible, and thus requires many input variables.</p>
 <p>The imagined view of northwest Europe from a Space Shuttle at 230 km looking due east is thus accomplished by the
 following <a class="reference internal" href="../coast.html"><span class="doc">coast</span></a> command (<em>lon0</em>=4; <em>lat0</em>=52; <em>altitude</em>=230 km; <em>azimuth</em>= 90°; <em>tilt</em>= 60°;
 <em>twist</em>= 180°; <em>vwidth</em>= <em>vheight</em>= 60°; and <em>width</em> = 12 cm):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rg -JG4/52/12c+z230+a90+t60+w180+v60 -Bx2g2 -By1g1 -Ia -Di -Glightbrown -Wthinnest -Slightblue --GMT_THEME<span class="o">=</span>cookbook --MAP_ANNOT_MIN_SPACING<span class="o">=</span><span class="m">0</span>.6c -view GMT_perspective
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JG4/52/12c+z230+a90+t60+w180+v60<span class="w"> </span>-Bx2g2<span class="w"> </span>-By1g1<span class="w"> </span>-Ia<span class="w"> </span>-Di<span class="w"> </span>-Glightbrown<span class="w"> </span>-Wthinnest<span class="w"> </span>-Slightblue<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>--MAP_ANNOT_MIN_SPACING<span class="o">=</span><span class="m">0</span>.6c<span class="w"> </span>-view<span class="w"> </span>GMT_perspective
 </pre></div>
 </div>
 <figure class="align-center" id="id17">
@@ -828,7 +825,7 @@ scale, only the spherical form is necessary.</p>
 <p><strong>Example</strong></p>
 <p>Our example of a perspective view centered on 75°W/40°N can therefore be generated by the following <a class="reference internal" href="../coast.html"><span class="doc">coast</span></a>
 command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rg -JG-75/41/12c -Bg -Dc -A5000 -Gpink -Sthistle --GMT_THEME<span class="o">=</span>cookbook -view GMT_orthographic
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JG-75/41/12c<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A5000<span class="w"> </span>-Gpink<span class="w"> </span>-Sthistle<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_orthographic
 </pre></div>
 </div>
 <figure class="align-center" id="id18">
@@ -862,7 +859,7 @@ point (the map center).</p>
 <p>Our example of a global view centered on 100°W/40°N can therefore be generated by the following <a class="reference internal" href="../coast.html"><span class="doc">coast</span></a> command.
 Note that the antipodal point is 180° away from the center, but in this projection this point plots as the entire map
 perimeter:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rg -JE-100/40/12c -Bg -Dc -A10000 -Glightgray -Wthinnest --GMT_THEME<span class="o">=</span>cookbook -view GMT_az_equidistant
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JE-100/40/12c<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Glightgray<span class="w"> </span>-Wthinnest<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_az_equidistant
 </pre></div>
 </div>
 <figure class="align-center" id="id19">
@@ -895,7 +892,7 @@ lines. Because it is mainly used for pictorial views at a small scale, only the 
 <p><strong>Example</strong></p>
 <p>Using a <em>horizon</em> of 60, our example of this projection centered on 120°W/35°N can therefore be generated by the
 following <a class="reference internal" href="../coast.html"><span class="doc">coast</span></a> command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rg -JF-120/35/60/12c -B30g15 -Dc -A10000 -Gtan -Scyan -Wthinnest --GMT_THEME<span class="o">=</span>cookbook -view GMT_gnomonic
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JF-120/35/60/12c<span class="w"> </span>-B30g15<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Gtan<span class="w"> </span>-Scyan<span class="w"> </span>-Wthinnest<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_gnomonic
 </pre></div>
 </div>
 <figure class="align-center" id="id20">
@@ -944,11 +941,11 @@ and oblique give rise to the <a class="reference internal" href="#jt"><span clas
 respectively. We will discuss these generalizations following the regular Mercator projection.</p>
 <p><strong>Example</strong></p>
 <p>A world map at a scale of 0.03 cm per degree, which will give a map 10.8-cm wide, can be obtained as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_mercator
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt <span class="nb">set</span> MAP_FRAME_TYPE fancy-rounded
-	gmt coast -R0/360/-70/70 -Jm0.03c -Bxa60f15 -Bya30f15 -Dc -A5000 -Gred
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_mercator
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAP_FRAME_TYPE<span class="w"> </span>fancy-rounded
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R0/360/-70/70<span class="w"> </span>-Jm0.03c<span class="w"> </span>-Bxa60f15<span class="w"> </span>-Bya30f15<span class="w"> </span>-Dc<span class="w"> </span>-A5000<span class="w"> </span>-Gred
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id21">
@@ -982,7 +979,7 @@ lines; other parallels and meridians are complex curves.</p>
 <p><strong>Example</strong></p>
 <p>A transverse Mercator map of south-east Europe and the Middle East with 35°E as the central meridian can be obtained as
 follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -R20/30/50/45+r -Jt35/0.5c -Bag -Dl -A250 -Glightbrown -Wthinnest -Sseashell --GMT_THEME<span class="o">=</span>cookbook -view GMT_transverse_merc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-R20/30/50/45+r<span class="w"> </span>-Jt35/0.5c<span class="w"> </span>-Bag<span class="w"> </span>-Dl<span class="w"> </span>-A250<span class="w"> </span>-Glightbrown<span class="w"> </span>-Wthinnest<span class="w"> </span>-Sseashell<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_transverse_merc
 </pre></div>
 </div>
 <figure class="align-center" id="id22">
@@ -992,7 +989,7 @@ follows:</p>
 </figcaption>
 </figure>
 <p>A global transverse Mercator map - the equivalent of the 360° Mercator map - can also be obtained as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -R0/360/-80/80 -JT330/-45/10c -Ba30g -BWSne -Dc -A2000 -Slightblue -G0 --MAP_ANNOT_OBLIQUE<span class="o">=</span>lon_horizontal --GMT_THEME<span class="o">=</span>cookbook -view GMT_TM
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-R0/360/-80/80<span class="w"> </span>-JT330/-45/10c<span class="w"> </span>-Ba30g<span class="w"> </span>-BWSne<span class="w"> </span>-Dc<span class="w"> </span>-A2000<span class="w"> </span>-Slightblue<span class="w"> </span>-G0<span class="w"> </span>--MAP_ANNOT_OBLIQUE<span class="o">=</span>lon_horizontal<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_TM
 </pre></div>
 </div>
 <figure class="align-center" id="id23">
@@ -1004,7 +1001,7 @@ follows:</p>
 <p>Note that when a world map is given (indicated by <strong>-R</strong><em>0/360/s/n</em>), the arguments are interpreted to mean oblique
 degrees, i.e., the 360° range is understood to mean the extent of the plot along the central meridian, while the “south”
 and “north” values represent how far from the central longitude we want the plot to extend. These values correspond to
-latitudes in the regular Mercator projection and must therefore be less than 90.</p>
+latitudes in the regular Mercator projection and must therefore be less than 90°.</p>
 </section>
 <section id="universal-transverse-mercator-utm-projection-ju-ju">
 <span id="ju"></span><h3><span class="section-number">6.3.3. </span>Universal Transverse Mercator (UTM) projection (<strong>-Ju</strong> <strong>-JU</strong>)<a class="headerlink" href="#universal-transverse-mercator-utm-projection-ju-ju" title="Permalink to this heading">¶</a></h3>
@@ -1033,10 +1030,10 @@ latitude bands but these are not needed to specify the projection for most cases
 </figure>
 <div class="toggle docutils container">
 <p>Here is the source script for the figure above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_utm_zones
-gmt <span class="nb">set</span> GMT_THEME cookbook
-gmt coast -Rd -JQ9i -Groyalblue -Sazure -Dl -A2000 -Bx60f6 -By0 -BwsNe --MAP_ANNOT_OFFSET_PRIMARY<span class="o">=</span><span class="m">0</span>.15i
-cat <span class="s">&lt;&lt; EOF &gt; tt.z.d</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_utm_zones
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+gmt<span class="w"> </span>coast<span class="w"> </span>-Rd<span class="w"> </span>-JQ9i<span class="w"> </span>-Groyalblue<span class="w"> </span>-Sazure<span class="w"> </span>-Dl<span class="w"> </span>-A2000<span class="w"> </span>-Bx60f6<span class="w"> </span>-By0<span class="w"> </span>-BwsNe<span class="w"> </span>--MAP_ANNOT_OFFSET_PRIMARY<span class="o">=</span><span class="m">0</span>.15i
+cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; tt.z.d</span>
 <span class="s">&gt;  Do S pole zone</span>
 <span class="s">-180	-80</span>
 <span class="s">   0	-80</span>
@@ -1052,33 +1049,33 @@ cat <span class="s">&lt;&lt; EOF &gt; tt.z.d</span>
 <span class="s">0	90</span>
 <span class="s">0	84</span>
 <span class="s">EOF</span>
-gmt math -T-174/174/6 T <span class="m">0</span> <span class="nv">MUL</span> <span class="o">=</span> tt.x.d
-<span class="nb">echo</span> <span class="s1">&#39;-90&#39;</span> &gt; tt.L.d
-<span class="nb">let</span> <span class="nv">s</span><span class="o">=</span>-80
-rm -f tt.y.d
-<span class="k">while</span> <span class="o">[</span> <span class="nv">$s</span> -lt <span class="m">72</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
-	<span class="nb">echo</span> <span class="nv">$s</span> &gt;&gt; tt.L.d
-	<span class="nv">n</span><span class="o">=</span><span class="k">$((</span><span class="nv">$s</span><span class="o">+</span><span class="m">8</span><span class="k">))</span>
-	cat <span class="s">&lt;&lt;- EOF &gt;&gt; tt.z.d</span>
+gmt<span class="w"> </span>math<span class="w"> </span>-T-174/174/6<span class="w"> </span>T<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="nv">MUL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tt.x.d
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;-90&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>tt.L.d
+<span class="nb">let</span><span class="w"> </span><span class="nv">s</span><span class="o">=</span>-80
+rm<span class="w"> </span>-f<span class="w"> </span>tt.y.d
+<span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$s</span><span class="w"> </span>-lt<span class="w"> </span><span class="m">72</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$s</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.L.d
+<span class="w">	</span><span class="nv">n</span><span class="o">=</span><span class="k">$((</span><span class="nv">$s</span><span class="o">+</span><span class="m">8</span><span class="k">))</span>
+<span class="w">	</span>cat<span class="w"> </span><span class="s">&lt;&lt;- EOF &gt;&gt; tt.z.d</span>
 <span class="s">	&gt; Lat = $s</span>
 <span class="s">	-180	$s</span>
 <span class="s">	   0	$s</span>
 <span class="s">	+180	$s</span>
 <span class="s">	EOF</span>
-	<span class="k">if</span> <span class="o">[</span> <span class="nv">$s</span> -eq <span class="m">56</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-		<span class="nv">$AWK</span> <span class="s1">&#39;{if ($1 == 6) {print 3} else {print $0}}&#39;</span> tt.x.d &gt; tt.sp.d
-	<span class="k">else</span>
-		cat tt.x.d &gt; tt.sp.d
-	<span class="k">fi</span>
-	<span class="nv">$AWK</span> <span class="s1">&#39;{printf &quot;&gt; \n%s\t%s\n%s\t%s\n&quot;, $1, &quot;&#39;</span><span class="nv">$s</span><span class="s1">&#39;&quot;, $1, &quot;&#39;</span><span class="nv">$n</span><span class="s1">&#39;&quot;}&#39;</span> tt.sp.d &gt;&gt; tt.z.d
-	gmt math -Q <span class="nv">$s</span> <span class="nv">$n</span> ADD <span class="m">2</span> <span class="nv">DIV</span> <span class="o">=</span> &gt;&gt; tt.y.d
-	<span class="nv">s</span><span class="o">=</span><span class="nv">$n</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$s</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">56</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">		</span><span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{if ($1 == 6) {print 3} else {print $0}}&#39;</span><span class="w"> </span>tt.x.d<span class="w"> </span>&gt;<span class="w"> </span>tt.sp.d
+<span class="w">	</span><span class="k">else</span>
+<span class="w">		</span>cat<span class="w"> </span>tt.x.d<span class="w"> </span>&gt;<span class="w"> </span>tt.sp.d
+<span class="w">	</span><span class="k">fi</span>
+<span class="w">	</span><span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{printf &quot;&gt; \n%s\t%s\n%s\t%s\n&quot;, $1, &quot;&#39;</span><span class="nv">$s</span><span class="s1">&#39;&quot;, $1, &quot;&#39;</span><span class="nv">$n</span><span class="s1">&#39;&quot;}&#39;</span><span class="w"> </span>tt.sp.d<span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.z.d
+<span class="w">	</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="nv">$s</span><span class="w"> </span><span class="nv">$n</span><span class="w"> </span>ADD<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">DIV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.y.d
+<span class="w">	</span><span class="nv">s</span><span class="o">=</span><span class="nv">$n</span>
 <span class="k">done</span>
-<span class="nb">echo</span> <span class="nv">$n</span> &gt;&gt; tt.L.d
-<span class="nb">echo</span> <span class="s1">&#39;84&#39;</span> &gt;&gt; tt.L.d
-<span class="nb">echo</span> <span class="s1">&#39;90&#39;</span> &gt;&gt; tt.L.d
-<span class="nb">echo</span> <span class="m">78</span> &gt;&gt; tt.y.d
-cat <span class="s">&lt;&lt; EOF &gt; tt.n.d</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$n</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.L.d
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;84&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.L.d
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;90&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.L.d
+<span class="nb">echo</span><span class="w"> </span><span class="m">78</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.y.d
+cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; tt.n.d</span>
 <span class="s">C</span>
 <span class="s">D</span>
 <span class="s">E</span>
@@ -1101,39 +1098,39 @@ cat <span class="s">&lt;&lt; EOF &gt; tt.n.d</span>
 <span class="s">X</span>
 <span class="s">EOF</span>
 <span class="nv">n</span><span class="o">=</span><span class="m">84</span>
-cat <span class="s">&lt;&lt; EOF &gt;&gt; tt.z.d</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt;&gt; tt.z.d</span>
 <span class="s">&gt; Lat = $s</span>
 <span class="s">-180	$s</span>
 <span class="s">   0	$s</span>
 <span class="s">+180	$s</span>
 <span class="s">EOF</span>
-<span class="nv">$AWK</span> <span class="s1">&#39;{if ($1 &lt;=0 || $1 &gt;=42) print $0}&#39;</span> tt.x.d &gt; tt.sp.d
-cat <span class="s">&lt;&lt; EOF &gt;&gt; tt.sp.d</span>
+<span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{if ($1 &lt;=0 || $1 &gt;=42) print $0}&#39;</span><span class="w"> </span>tt.x.d<span class="w"> </span>&gt;<span class="w"> </span>tt.sp.d
+cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt;&gt; tt.sp.d</span>
 <span class="s">9</span>
 <span class="s">21</span>
 <span class="s">33</span>
 <span class="s">EOF</span>
-<span class="nv">$AWK</span> <span class="s1">&#39;{printf &quot;&gt; \n%s\t%s\n%s\t%s\n&quot;, $1, &quot;&#39;</span><span class="nv">$s</span><span class="s1">&#39;&quot;, $1, &quot;&#39;</span><span class="nv">$n</span><span class="s1">&#39;&quot;}&#39;</span> tt.sp.d &gt;&gt; tt.z.d
-gmt plot -W0.5p -Ap tt.z.d
-paste tt.y.d tt.n.d <span class="p">|</span> <span class="nv">$AWK</span> <span class="s1">&#39;{printf &quot;180 %s %s\n&quot;, $1, $2}&#39;</span> <span class="p">|</span> gmt text -N -D0.1i/0 -F+f10p,Helvetica-Bold
-gmt text -N -F+f10p,Helvetica-Bold <span class="s">&lt;&lt; EOF</span>
+<span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{printf &quot;&gt; \n%s\t%s\n%s\t%s\n&quot;, $1, &quot;&#39;</span><span class="nv">$s</span><span class="s1">&#39;&quot;, $1, &quot;&#39;</span><span class="nv">$n</span><span class="s1">&#39;&quot;}&#39;</span><span class="w"> </span>tt.sp.d<span class="w"> </span>&gt;&gt;<span class="w"> </span>tt.z.d
+gmt<span class="w"> </span>plot<span class="w"> </span>-W0.5p<span class="w"> </span>-Ap<span class="w"> </span>tt.z.d
+paste<span class="w"> </span>tt.y.d<span class="w"> </span>tt.n.d<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{printf &quot;180 %s %s\n&quot;, $1, $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-N<span class="w"> </span>-D0.1i/0<span class="w"> </span>-F+f10p,Helvetica-Bold
+gmt<span class="w"> </span>text<span class="w"> </span>-N<span class="w"> </span>-F+f10p,Helvetica-Bold<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">-90	-85	A</span>
 <span class="s">+90	-85	B</span>
 <span class="s">-90	87	Y</span>
 <span class="s">+90	87	Z</span>
 <span class="s">EOF</span>
-gmt math -T-180/174/6 T <span class="m">3</span> <span class="nv">ADD</span> <span class="o">=</span> <span class="p">|</span> <span class="nv">$AWK</span> <span class="s1">&#39;{printf &quot;%s -90 %d\n&quot;, $2, NR}&#39;</span> <span class="p">|</span> gmt text -N -D0/-0.07i -F+f8p,Times-Italic+jCT
-gmt math -T-180/174/6 T <span class="m">3</span> <span class="nv">ADD</span> <span class="o">=</span> <span class="p">|</span> <span class="nv">$AWK</span> <span class="s1">&#39;{printf &quot;%s 90 %d\n&quot;, $2, NR}&#39;</span> <span class="p">|</span> gmt text -N -D0/0.07i -F+f8p,Times-Italic+jCB
-gmt text -D0/0.025i -F+f8p,Times-Italic+jCB <span class="s">&lt;&lt; EOF</span>
+gmt<span class="w"> </span>math<span class="w"> </span>-T-180/174/6<span class="w"> </span>T<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="nv">ADD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{printf &quot;%s -90 %d\n&quot;, $2, NR}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-N<span class="w"> </span>-D0/-0.07i<span class="w"> </span>-F+f8p,Times-Italic+jCT
+gmt<span class="w"> </span>math<span class="w"> </span>-T-180/174/6<span class="w"> </span>T<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="nv">ADD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{printf &quot;%s 90 %d\n&quot;, $2, NR}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-N<span class="w"> </span>-D0/0.07i<span class="w"> </span>-F+f8p,Times-Italic+jCB
+gmt<span class="w"> </span>text<span class="w"> </span>-D0/0.025i<span class="w"> </span>-F+f8p,Times-Italic+jCB<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">4.5	72	31X</span>
 <span class="s">15	72	33X</span>
 <span class="s">27	72	35X</span>
 <span class="s">37.5	72	37X</span>
 <span class="s">EOF</span>
-<span class="nv">$AWK</span> <span class="s1">&#39;{if ($1 &lt; 0) printf &quot;-180 %s %s@.S\n&quot;, $1, -$1}&#39;</span> tt.L.d <span class="p">|</span> gmt text -N -D-0.05i/0 -F+f10p+jRM
-<span class="nv">$AWK</span> <span class="s1">&#39;{if ($1 &gt; 0) printf &quot;-180 %s %s@.N\n&quot;, $1,  $1}&#39;</span> tt.L.d <span class="p">|</span> gmt text -N -D-0.05i/0 -F+f10p+jRM
-<span class="nb">echo</span> <span class="s2">&quot;-180 0 0@.&quot;</span> <span class="p">|</span> gmt text -N -D-0.05i/0 -F+f10p+jRM
-gmt end show
+<span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{if ($1 &lt; 0) printf &quot;-180 %s %s@.S\n&quot;, $1, -$1}&#39;</span><span class="w"> </span>tt.L.d<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-N<span class="w"> </span>-D-0.05i/0<span class="w"> </span>-F+f10p+jRM
+<span class="nv">$AWK</span><span class="w"> </span><span class="s1">&#39;{if ($1 &gt; 0) printf &quot;-180 %s %s@.N\n&quot;, $1,  $1}&#39;</span><span class="w"> </span>tt.L.d<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-N<span class="w"> </span>-D-0.05i/0<span class="w"> </span>-F+f10p+jRM
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;-180 0 0@.&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-N<span class="w"> </span>-D-0.05i/0<span class="w"> </span>-F+f10p+jRM
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </div>
@@ -1141,7 +1138,7 @@ gmt end show
 (although a standard, you can change this with <a class="reference internal" href="../gmt.conf.html#term-PROJ_SCALE_FACTOR"><span class="xref std std-term">PROJ_SCALE_FACTOR</span></a>). This makes the UTM projection a <em>secant</em>
 projection and not a <em>tangent</em> projection like the <a class="reference internal" href="#jt"><span class="std std-ref">transverse Mercator</span></a> above. The scale only varies by 1
 part in 1,000 from true scale at equator. The ellipsoidal projection expressions are accurate for map areas that extend
-less than 10 away from the central meridian. For larger regions we use the conformal latitude in the general spherical
+less than 10° away from the central meridian. For larger regions we use the conformal latitude in the general spherical
 formulae instead.</p>
 </section>
 <section id="oblique-mercator-projection-jo-jo">
@@ -1199,10 +1196,10 @@ mapping regions of large lateral extent in an oblique direction. Both parallels 
 projection was developed in the early 1900s by several workers.</p>
 <p><strong>Example</strong></p>
 <p>An oblique view of some Caribbean islands using Option 3 can be obtained as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_obl_merc
-    gmt <span class="nb">set</span> GMT_THEME cookbook
-    gmt coast -R270/20/305/25+r -JOc280/25.5/22/69/12c -Bag -Di -A250 -Gburlywood -Wthinnest -TdjTR+f2+l -Sazure
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_obl_merc
+<span class="w">    </span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">    </span>gmt<span class="w"> </span>coast<span class="w"> </span>-R270/20/305/25+r<span class="w"> </span>-JOc280/25.5/22/69/12c<span class="w"> </span>-Bag<span class="w"> </span>-Di<span class="w"> </span>-A250<span class="w"> </span>-Gburlywood<span class="w"> </span>-Wthinnest<span class="w"> </span>-TdjTR+f2+l<span class="w"> </span>-Sazure
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id25">
@@ -1236,8 +1233,8 @@ point now has projected coordinates (<em>x</em> = -426.2, <em>y</em> = 399.7).</
 </figure>
 <div class="toggle docutils container">
 <p>Here is the source script for the figure above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_obl_nz
-gmt <span class="nb">set</span> GMT_THEME cookbook
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_obl_nz
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
 <span class="nv">lon</span><span class="o">=</span><span class="m">173</span>:17:02E
 <span class="nv">lat</span><span class="o">=</span><span class="m">41</span>:16:15S
 <span class="nv">az</span><span class="o">=</span><span class="m">35</span>
@@ -1245,12 +1242,12 @@ gmt <span class="nb">set</span> GMT_THEME cookbook
 <span class="nv">h</span><span class="o">=</span><span class="m">1000</span>
 <span class="nv">plon</span><span class="o">=</span><span class="m">180</span>
 <span class="nv">plat</span><span class="o">=</span>40S
-<span class="nv">w2</span><span class="o">=</span><span class="k">$(</span>gmt math -Q <span class="nv">$w</span> <span class="m">2</span> <span class="nv">DIV</span> <span class="o">=</span><span class="k">)</span>
-<span class="nv">h2</span><span class="o">=</span><span class="k">$(</span>gmt math -Q <span class="nv">$h</span> <span class="m">2</span> <span class="nv">DIV</span> <span class="o">=</span><span class="k">)</span>
+<span class="nv">w2</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="nv">$w</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">DIV</span><span class="w"> </span><span class="o">=</span><span class="k">)</span>
+<span class="nv">h2</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="nv">$h</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">DIV</span><span class="w"> </span><span class="o">=</span><span class="k">)</span>
 <span class="nv">R</span><span class="o">=</span>-R-<span class="si">${</span><span class="nv">w2</span><span class="si">}</span>/<span class="nv">$w2</span>/-<span class="si">${</span><span class="nv">h2</span><span class="si">}</span>/<span class="si">${</span><span class="nv">h2</span><span class="si">}</span>+uk
-gmt coast <span class="nv">$R</span> -JOA<span class="nv">$lon</span>/<span class="nv">$lat</span>/<span class="nv">$az</span>/3i -Ba5f5g5 -Gred -Dh -TdjBR+w0.5i+l --MAP_ANNOT_OBLIQUE<span class="o">=</span>separate,lon_horizontal,lat_parallel --FORMAT_GEO_MAP<span class="o">=</span>dddF
-<span class="nb">echo</span> <span class="nv">$plon</span> <span class="nv">$plat</span> <span class="p">|</span> gmt plot -Sc0.2c -Gblue -W0.25p
-gmt plot -R0/3/0/1.5 -Jx1i -W0.25p,- <span class="s">&lt;&lt; EOF</span>
+gmt<span class="w"> </span>coast<span class="w"> </span><span class="nv">$R</span><span class="w"> </span>-JOA<span class="nv">$lon</span>/<span class="nv">$lat</span>/<span class="nv">$az</span>/3i<span class="w"> </span>-Ba5f5g5<span class="w"> </span>-Gred<span class="w"> </span>-Dh<span class="w"> </span>-TdjBR+w0.5i+l<span class="w"> </span>--MAP_ANNOT_OBLIQUE<span class="o">=</span>separate,lon_horizontal,lat_parallel<span class="w"> </span>--FORMAT_GEO_MAP<span class="o">=</span>dddF
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$plon</span><span class="w"> </span><span class="nv">$plat</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-Sc0.2c<span class="w"> </span>-Gblue<span class="w"> </span>-W0.25p
+gmt<span class="w"> </span>plot<span class="w"> </span>-R0/3/0/1.5<span class="w"> </span>-Jx1i<span class="w"> </span>-W0.25p,-<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">&gt;</span>
 <span class="s">0	0.75</span>
 <span class="s">3	0.75</span>
@@ -1258,19 +1255,19 @@ gmt plot -R0/3/0/1.5 -Jx1i -W0.25p,- <span class="s">&lt;&lt; EOF</span>
 <span class="s">1.5	0</span>
 <span class="s">1.5	1.5</span>
 <span class="s">EOF</span>
-gmt plot -Sv0.2i+e+h0.5 -Gblack -W2p -N <span class="s">&lt;&lt; EOF</span>
+gmt<span class="w"> </span>plot<span class="w"> </span>-Sv0.2i+e+h0.5<span class="w"> </span>-Gblack<span class="w"> </span>-W2p<span class="w"> </span>-N<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">1.5	0.75	0	1.5i</span>
 <span class="s">1.5	0.75	90	0.75i</span>
 <span class="s">EOF</span>
-<span class="nb">echo</span> <span class="m">1</span>.5 <span class="m">0</span>.75 <span class="p">|</span> gmt plot -Sc0.1c -Wfaint -Gwhite
-gmt text -F+f12p,Times-Italic+j -Dj0.1i -Gwhite <span class="s">&lt;&lt; EOF</span>
+<span class="nb">echo</span><span class="w"> </span><span class="m">1</span>.5<span class="w"> </span><span class="m">0</span>.75<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-Sc0.1c<span class="w"> </span>-Wfaint<span class="w"> </span>-Gwhite
+gmt<span class="w"> </span>text<span class="w"> </span>-F+f12p,Times-Italic+j<span class="w"> </span>-Dj0.1i<span class="w"> </span>-Gwhite<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">3	0.75	TR	x</span>
 <span class="s">1.5	1.5	TR	y</span>
 <span class="s">EOF</span>
 <span class="nv">az</span><span class="o">=</span><span class="m">215</span>
-gmt coast <span class="nv">$R</span> -JOA<span class="nv">$lon</span>/<span class="nv">$lat</span>/<span class="nv">$az</span>/3i -Ba5f5g5 -Gred -Dh -X3.4i -TdjTL+w0.5i+l --MAP_ANNOT_OBLIQUE<span class="o">=</span>separate,lon_horizontal,lat_parallel --FORMAT_GEO_MAP<span class="o">=</span>dddF
-<span class="nb">echo</span> <span class="nv">$plon</span> <span class="nv">$plat</span> <span class="p">|</span> gmt plot -Sc0.2c -Gblue -W0.25p
-gmt plot -R0/3/0/1.5 -Jx1i -W0.25p,- <span class="s">&lt;&lt; EOF</span>
+gmt<span class="w"> </span>coast<span class="w"> </span><span class="nv">$R</span><span class="w"> </span>-JOA<span class="nv">$lon</span>/<span class="nv">$lat</span>/<span class="nv">$az</span>/3i<span class="w"> </span>-Ba5f5g5<span class="w"> </span>-Gred<span class="w"> </span>-Dh<span class="w"> </span>-X3.4i<span class="w"> </span>-TdjTL+w0.5i+l<span class="w"> </span>--MAP_ANNOT_OBLIQUE<span class="o">=</span>separate,lon_horizontal,lat_parallel<span class="w"> </span>--FORMAT_GEO_MAP<span class="o">=</span>dddF
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$plon</span><span class="w"> </span><span class="nv">$plat</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-Sc0.2c<span class="w"> </span>-Gblue<span class="w"> </span>-W0.25p
+gmt<span class="w"> </span>plot<span class="w"> </span>-R0/3/0/1.5<span class="w"> </span>-Jx1i<span class="w"> </span>-W0.25p,-<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">&gt;</span>
 <span class="s">0	0.75</span>
 <span class="s">3	0.75</span>
@@ -1278,16 +1275,16 @@ gmt plot -R0/3/0/1.5 -Jx1i -W0.25p,- <span class="s">&lt;&lt; EOF</span>
 <span class="s">1.5	0</span>
 <span class="s">1.5	1.5</span>
 <span class="s">EOF</span>
-gmt plot -Sv0.2i+e+h0.5 -Gblack -W2p -N <span class="s">&lt;&lt; EOF</span>
+gmt<span class="w"> </span>plot<span class="w"> </span>-Sv0.2i+e+h0.5<span class="w"> </span>-Gblack<span class="w"> </span>-W2p<span class="w"> </span>-N<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">1.5	0.75	0	1.5i</span>
 <span class="s">1.5	0.75	90	0.75i</span>
 <span class="s">EOF</span>
-<span class="nb">echo</span> <span class="m">1</span>.5 <span class="m">0</span>.75 <span class="p">|</span> gmt plot -Sc0.1c -Wfaint -Gwhite
-gmt text -F+f12p,Times-Italic+j -Dj0.1i -Gwhite <span class="s">&lt;&lt; EOF</span>
+<span class="nb">echo</span><span class="w"> </span><span class="m">1</span>.5<span class="w"> </span><span class="m">0</span>.75<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-Sc0.1c<span class="w"> </span>-Wfaint<span class="w"> </span>-Gwhite
+gmt<span class="w"> </span>text<span class="w"> </span>-F+f12p,Times-Italic+j<span class="w"> </span>-Dj0.1i<span class="w"> </span>-Gwhite<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">3	0.75	TR	x</span>
 <span class="s">1.5	1.5	TR	y</span>
 <span class="s">EOF</span>
-gmt end show
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </div>
@@ -1304,11 +1301,11 @@ resulted from the argument <strong>-JOa</strong>120W/25N/-30/6c<strong>+v</stron
 </figure>
 <div class="toggle docutils container">
 <p>Here is the source script for the figure above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_obl_baja
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt <span class="nb">set</span> MAP_ANNOT_OBLIQUE lon_horizontal,lat_horizontal,tick_extend
-	gmt coast -R122W/35N/107W/22N+r -JOa120W/25N/-30/6c+v -Gsienna -Ba5g5 -B+f -N1/1p -EUS+gburlywood -Smintcream -TdjBL+l
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_obl_baja
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAP_ANNOT_OBLIQUE<span class="w"> </span>lon_horizontal,lat_horizontal,tick_extend
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R122W/35N/107W/22N+r<span class="w"> </span>-JOa120W/25N/-30/6c+v<span class="w"> </span>-Gsienna<span class="w"> </span>-Ba5g5<span class="w"> </span>-B+f<span class="w"> </span>-N1/1p<span class="w"> </span>-EUS+gburlywood<span class="w"> </span>-Smintcream<span class="w"> </span>-TdjBL+l
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </div>
@@ -1337,7 +1334,7 @@ and parallels are complex curves.</p>
 <p><strong>Example</strong></p>
 <p>A detailed map of the island of Sardinia centered on the 8°45’E meridian using the Cassini projection can be obtained by
 as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -R7:30/38:30/10:30/41:30+r -JC8.75/40/6c -Bafg -LjBR+c40+w100+f+o0.4c/0.5c -Dh -Gspringgreen -Sazure -Wthinnest -Ia/thinner --GMT_THEME<span class="o">=</span>cookbook --FONT_LABEL<span class="o">=</span>10p -view GMT_cassini
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-R7:30/38:30/10:30/41:30+r<span class="w"> </span>-JC8.75/40/6c<span class="w"> </span>-Bafg<span class="w"> </span>-LjBR+c40+w100+f+o0.4c/0.5c<span class="w"> </span>-Dh<span class="w"> </span>-Gspringgreen<span class="w"> </span>-Sazure<span class="w"> </span>-Wthinnest<span class="w"> </span>-Ia/thinner<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>--FONT_LABEL<span class="o">=</span>10p<span class="w"> </span>-view<span class="w"> </span>GMT_cassini
 </pre></div>
 </div>
 <figure class="align-center" id="id28">
@@ -1357,7 +1354,7 @@ as follows:</p>
 </div></blockquote>
 <p><strong>Parameters</strong></p>
 <ul class="simple">
-<li><p>Optionally, the central meridian (<em>lon0</em>) [default is the middle of the map map].</p></li>
+<li><p>Optionally, the central meridian (<em>lon0</em>) [default is the middle of the map].</p></li>
 <li><p>Optionally, the standard parallel (<em>lat0</em>)  [default is the equator]. When supplied, the central meridian (<em>lon0</em>)
 must be supplied as well.</p></li>
 <li><p>The <em>scale</em>  in <a class="reference internal" href="features.html#plt-units"><span class="std std-ref">plot-units</span></a>/degree or as 1:xxxxx (with <strong>-Jq</strong>) or map <em>width</em> in
@@ -1398,7 +1395,7 @@ the equator. Some selections for standard parallels have practical properties as
 </table>
 <p><strong>Example</strong></p>
 <p>A world map centered on the dateline using this projection can be obtained as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rg -JQ12c -B60f30g30 -Dc -A5000 -Gtan4 -Slightcyan --GMT_THEME<span class="o">=</span>cookbook -view GMT_equi_cyl
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JQ12c<span class="w"> </span>-B60f30g30<span class="w"> </span>-Dc<span class="w"> </span>-A5000<span class="w"> </span>-Gtan4<span class="w"> </span>-Slightcyan<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_equi_cyl
 </pre></div>
 </div>
 <figure class="align-center" id="id29">
@@ -1460,7 +1457,7 @@ choices of standard parallels that result in known (or named) projections. These
 <p><strong>Example</strong></p>
 <p>A world map centered on the 35°E meridian using the Behrman projection (Figure
 <a class="reference internal" href="#gmt-general-cyl"><span class="std std-ref">Behrman cylindrical projection</span></a>) can be obtained as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -R-145/215/-90/90 -JY35/30/12c -B45g45 -Dc -A10000 -Sdodgerblue -Wthinnest --GMT_THEME<span class="o">=</span>cookbook --MAP_FRAME_TYPE<span class="o">=</span>fancy-rounded -view GMT_general_cyl
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-145/215/-90/90<span class="w"> </span>-JY35/30/12c<span class="w"> </span>-B45g45<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Sdodgerblue<span class="w"> </span>-Wthinnest<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>--MAP_FRAME_TYPE<span class="o">=</span>fancy-rounded<span class="w"> </span>-view<span class="w"> </span>GMT_general_cyl
 </pre></div>
 </div>
 <figure class="align-center" id="id30">
@@ -1492,7 +1489,7 @@ is only a spherical form for this projection.</p>
 <p><strong>Example</strong></p>
 <p>A world map centered on the 90°E meridian at a map scale of 1:400,000,000 (Figure <a class="reference internal" href="#gmt-miller"><span class="std std-ref">Miller projection</span></a>)
 can be obtained as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -R-90/270/-80/90 -Jj1:400000000 -Bx45g45 -By30g30 -Dc -A10000 -Gkhaki -Wthinnest -Sazure --GMT_THEME<span class="o">=</span>cookbook -view GMT_miller
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-90/270/-80/90<span class="w"> </span>-Jj1:400000000<span class="w"> </span>-Bx45g45<span class="w"> </span>-By30g30<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Gkhaki<span class="w"> </span>-Wthinnest<span class="w"> </span>-Sazure<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_miller
 </pre></div>
 </div>
 <figure class="align-center" id="id31">
@@ -1551,11 +1548,11 @@ projection (Table <a class="reference internal" href="#tbl-jcylstere"><span clas
 <p><strong>Example</strong></p>
 <p>A map of the world, centered on the Greenwich meridian, using the Gall’s stereographic projection (standard parallel is
 45°, Figure <a class="reference internal" href="#gmt-gall-stereo"><span class="std std-ref">Gall’s stereographic projection</span></a>), can be obtained as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_gall_stereo
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt <span class="nb">set</span> FORMAT_GEO_MAP dddA
-	gmt coast -R-180/180/-60/80 -JCyl_stere/0/45/12c -Bxa60f30g30 -Bya30g30 -Dc -A5000 -Wblack -Gseashell4 -Santiquewhite1
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_gall_stereo
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FORMAT_GEO_MAP<span class="w"> </span>dddA
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-180/180/-60/80<span class="w"> </span>-JCyl_stere/0/45/12c<span class="w"> </span>-Bxa60f30g30<span class="w"> </span>-Bya30g30<span class="w"> </span>-Dc<span class="w"> </span>-A5000<span class="w"> </span>-Wblack<span class="w"> </span>-Gseashell4<span class="w"> </span>-Santiquewhite1
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id32">
@@ -1592,7 +1589,7 @@ Hammer-Aitoff (the Aitoff projection looks similar, but is not equal-area). The 
 central meridian are straight lines, while other parallels and meridians are complex curves.</p>
 <p><strong>Example</strong></p>
 <p>A view of the Pacific ocean using the Dateline as central meridian can be generated thus:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rg -JH12c -Bg -Dc -A10000 -Gblack -Scornsilk --GMT_THEME<span class="o">=</span>cookbook -view GMT_hammer
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JH12c<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Gblack<span class="w"> </span>-Scornsilk<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_hammer
 </pre></div>
 </div>
 <figure class="align-center" id="id33">
@@ -1621,7 +1618,7 @@ arcs. The scale is only true along latitudes 40°44’ north and south. The proj
 showing data distributions. It is occasionally referenced under the name <em>homalographic</em> projection.</p>
 <p><strong>Example</strong></p>
 <p>An example centered on Greenwich can be generated thus:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rd -JW12c -Bg -Dc -A10000 -Gtomato1 -Sskyblue --GMT_THEME<span class="o">=</span>cookbook -view GMT_mollweide
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rd<span class="w"> </span>-JW12c<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Gtomato1<span class="w"> </span>-Sskyblue<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_mollweide
 </pre></div>
 </div>
 <figure class="align-center" id="id34">
@@ -1655,7 +1652,7 @@ Cylindrical and Aitoff (not Hammer-Aitoff) projections. The poles map into strai
 equator.</p>
 <p><strong>Example</strong></p>
 <p>Centered on Greenwich, the example in Figure <a class="reference internal" href="#gmt-winkel"><span class="std std-ref">Winkel Tripel projection</span></a> was created by this command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rd -JR12c -Bg -Dc -A10000 -Gburlywood4 -Swheat1 --GMT_THEME<span class="o">=</span>cookbook -view GMT_winkel
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rd<span class="w"> </span>-JR12c<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Gburlywood4<span class="w"> </span>-Swheat1<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_winkel
 </pre></div>
 </div>
 <figure class="align-center" id="id35">
@@ -1685,7 +1682,7 @@ right<a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noter
 is currently used by the National Geographic Society.</p>
 <p><strong>Example</strong></p>
 <p>Again centered on Greenwich, the example below was created by this command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rd -JN12c -Bg -Dc -A10000 -Ggoldenrod -Ssnow2 --GMT_THEME<span class="o">=</span>cookbook -view GMT_robinson
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rd<span class="w"> </span>-JN12c<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Ggoldenrod<span class="w"> </span>-Ssnow2<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_robinson
 </pre></div>
 </div>
 <figure class="align-center" id="id36">
@@ -1716,7 +1713,7 @@ Their main use is in thematic world maps. To select Eckert IV you must use <stro
 is selected with <strong>-JKs</strong> (<strong>s</strong> for “six”). If no modifier is given it defaults to Eckert VI.</p>
 <p><strong>Examples</strong></p>
 <p>Centered on the Dateline, the Eckert IV example below was created by this command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rg -JKf12c -Bg -Dc -A10000 -Wthinnest -Givory -Sbisque3 --GMT_THEME<span class="o">=</span>cookbook -view GMT_eckert4
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JKf12c<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Wthinnest<span class="w"> </span>-Givory<span class="w"> </span>-Sbisque3<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_eckert4
 </pre></div>
 </div>
 <figure class="align-center" id="id37">
@@ -1734,10 +1731,10 @@ is selected with <strong>-JKs</strong> (<strong>s</strong> for “six”). If no
 </figure>
 <div class="toggle docutils container">
 <p>Here is the source script for the figure above:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_eckert6
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -Rg -JKs4.5i -Bg -Dc -A10000 -Wthinnest -Givory -Sbisque3
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_eckert6
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JKs4.5i<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Wthinnest<span class="w"> </span>-Givory<span class="w"> </span>-Sbisque3
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </div>
@@ -1761,7 +1758,7 @@ other meridians are sinusoidal curves. Parallels are all equally spaced straight
 parallels (and central meridian).</p>
 <p><strong>Examples</strong></p>
 <p>A simple world map using the sinusoidal projection is therefore obtained by</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rd -JI12c -Bg -Dc -A10000 -Gcoral4 -Sazure3 --GMT_THEME<span class="o">=</span>cookbook -view GMT_sinusoidal
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rd<span class="w"> </span>-JI12c<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Gcoral4<span class="w"> </span>-Sazure3<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_sinusoidal
 </pre></div>
 </div>
 <figure class="align-center" id="id39">
@@ -1775,12 +1772,12 @@ segments are used to cover the entire world. Traditionally, the interruptions ar
 interrupted map we must call <a class="reference internal" href="../coast.html"><span class="doc">coast</span></a> for each segment and superpose the results. To produce an interrupted world
 map (with the traditional boundaries just mentioned) that is 14.4 cm wide we use the scale 14.4/360 = 0.04 and offset
 the subsequent plots horizontally by their widths (140<span class="math notranslate nohighlight">\(\cdot\)</span>0.04 and 80<span class="math notranslate nohighlight">\(\cdot\)</span>0.04):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin GMT_sinus_int
-	gmt <span class="nb">set</span> GMT_THEME cookbook
-	gmt coast -R200/340/-90/90 -Ji0.04c -Bg -A10000 -Dc -Gdarkred -Sazure
-	gmt coast -R-20/60/-90/90 -Bg -Dc -A10000 -Gdarkgreen -Sazure -X5.6c
-	gmt coast -R60/200/-90/90 -Bg -Dc -A10000 -Gdarkblue -Sazure -X3.2c
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>GMT_sinus_int
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R200/340/-90/90<span class="w"> </span>-Ji0.04c<span class="w"> </span>-Bg<span class="w"> </span>-A10000<span class="w"> </span>-Dc<span class="w"> </span>-Gdarkred<span class="w"> </span>-Sazure
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-20/60/-90/90<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Gdarkgreen<span class="w"> </span>-Sazure<span class="w"> </span>-X5.6c
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span>-R60/200/-90/90<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-A10000<span class="w"> </span>-Gdarkblue<span class="w"> </span>-Sazure<span class="w"> </span>-X3.2c
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id40">
@@ -1810,7 +1807,7 @@ Central meridian and Equator are straight lines; other meridians are arcs of cir
 Equator only. Its main use is to show the entire world enclosed in a circle.</p>
 <p><strong>Example</strong></p>
 <p>Centered on the Dateline, the example below was created by this command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -Rg -JV10c -Bg -Dc -Glightgray -Scornsilk -A10000 -Wthinnest --GMT_THEME<span class="o">=</span>cookbook -view GMT_grinten
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-Rg<span class="w"> </span>-JV10c<span class="w"> </span>-Bg<span class="w"> </span>-Dc<span class="w"> </span>-Glightgray<span class="w"> </span>-Scornsilk<span class="w"> </span>-A10000<span class="w"> </span>-Wthinnest<span class="w"> </span>--GMT_THEME<span class="o">=</span>cookbook<span class="w"> </span>-view<span class="w"> </span>GMT_grinten
 </pre></div>
 </div>
 <figure class="align-center" id="id41">
@@ -1823,6 +1820,7 @@ Equator only. Its main use is to show the entire world enclosed in a circle.</p>
 </section>
 <section id="footnotes">
 <h2><span class="section-number">6.5. </span>Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this heading">¶</a></h2>
+<aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id4" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">20</a><span class="fn-bracket">]</span></span>
 <p>Snyder, J. P., 1987, Map Projections A Working Manual, U.S.
@@ -1842,6 +1840,7 @@ different maps. GMT uses the
 interpolant selected by the parameter <a class="reference internal" href="../gmt.conf.html#term-GMT_INTERPOLANT"><span class="xref std std-term">GMT_INTERPOLANT</span></a> in the
 file.</p>
 </aside>
+</aside>
 </section>
 </section>
 
@@ -1856,8 +1855,8 @@ file.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

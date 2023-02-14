@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>12. PostScript Fonts Used by GMT &mdash; GMT 6.4.0 documentation</title>
+  <title>12. PostScript Fonts Used by GMT &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -123,7 +120,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -194,11 +191,11 @@ usually Courier). The following is a list of the GMT fonts:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">dy</span><span class="o">=</span>-0.2222
 <span class="nv">y0</span><span class="o">=</span><span class="m">4</span>.3
 <span class="nv">yy</span><span class="o">=</span><span class="m">4</span>.0778
-tr <span class="s1">&#39;&quot;,&#39;</span> <span class="s1">&#39;  &#39;</span> &lt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">GMT_SOURCE_DIR</span><span class="si">}</span><span class="s2">&quot;</span>/src/standard_adobe_fonts.h <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span> &gt; tt.d
-gmt begin GMT_App_G
-gmt <span class="nb">set</span> GMT_THEME cookbook
-gmt <span class="nb">set</span> MAP_FRAME_PEN thinner
-gmt plot -R0/5.4/0/<span class="nv">$y0</span> -Jx1i -B0 <span class="s">&lt;&lt;EOF</span>
+tr<span class="w"> </span><span class="s1">&#39;&quot;,&#39;</span><span class="w"> </span><span class="s1">&#39;  &#39;</span><span class="w"> </span>&lt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">GMT_SOURCE_DIR</span><span class="si">}</span><span class="s2">&quot;</span>/src/standard_adobe_fonts.h<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>tt.d
+gmt<span class="w"> </span>begin<span class="w"> </span>GMT_App_G
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>GMT_THEME<span class="w"> </span>cookbook
+gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAP_FRAME_PEN<span class="w"> </span>thinner
+gmt<span class="w"> </span>plot<span class="w"> </span>-R0/5.4/0/<span class="nv">$y0</span><span class="w"> </span>-Jx1i<span class="w"> </span>-B0<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s">&gt;</span>
 <span class="s">0.3	0</span>
 <span class="s">0.3	$y0</span>
@@ -209,47 +206,47 @@ gmt plot -R0/5.4/0/<span class="nv">$y0</span> -Jx1i -B0 <span class="s">&lt;&lt
 <span class="s">3	0</span>
 <span class="s">3	$y0</span>
 <span class="s">EOF</span>
-gmt text -Y<span class="si">${</span><span class="nv">yy</span><span class="si">}</span>i -F+f10p+jBC <span class="s">&lt;&lt;EOF</span>
+gmt<span class="w"> </span>text<span class="w"> </span>-Y<span class="si">${</span><span class="nv">yy</span><span class="si">}</span>i<span class="w"> </span>-F+f10p+jBC<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s">0.15	0.05	\\043</span>
 <span class="s">1.55	0.05	Font Name</span>
 <span class="s">2.85	0.05	\\043</span>
 <span class="s">4.15	0.05	Font Name</span>
 <span class="s">EOF</span>
-gmt plot <span class="s">&lt;&lt;EOF</span>
+gmt<span class="w"> </span>plot<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s">0	0</span>
 <span class="s">5.4	0</span>
 <span class="s">EOF</span>
 
-<span class="nb">let</span> <span class="nv">i</span><span class="o">=</span><span class="m">1</span>
-<span class="k">while</span> <span class="o">[</span> <span class="nv">$i</span> -le <span class="m">17</span> <span class="o">]</span>
+<span class="nb">let</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">1</span>
+<span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$i</span><span class="w"> </span>-le<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="o">]</span>
 <span class="k">do</span>
-	<span class="nv">i1</span><span class="o">=</span><span class="k">$((</span> i-1 <span class="k">))</span>
-	<span class="nv">i2</span><span class="o">=</span><span class="k">$((</span> i1+17 <span class="k">))</span>
-	<span class="nv">k1</span><span class="o">=</span><span class="nv">$i</span>
-	<span class="nv">k2</span><span class="o">=</span><span class="k">$((</span> i+17 <span class="k">))</span>
+<span class="w">	</span><span class="nv">i1</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span>i-1<span class="w"> </span><span class="k">))</span>
+<span class="w">	</span><span class="nv">i2</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span>i1+17<span class="w"> </span><span class="k">))</span>
+<span class="w">	</span><span class="nv">k1</span><span class="o">=</span><span class="nv">$i</span>
+<span class="w">	</span><span class="nv">k2</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span>i+17<span class="w"> </span><span class="k">))</span>
 
-	<span class="nv">f1</span><span class="o">=</span><span class="k">$(</span>sed -n <span class="si">${</span><span class="nv">k1</span><span class="si">}</span>p tt.d<span class="k">)</span>
-	<span class="nv">f2</span><span class="o">=</span><span class="k">$(</span>sed -n <span class="si">${</span><span class="nv">k2</span><span class="si">}</span>p tt.d<span class="k">)</span>
+<span class="w">	</span><span class="nv">f1</span><span class="o">=</span><span class="k">$(</span>sed<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">k1</span><span class="si">}</span>p<span class="w"> </span>tt.d<span class="k">)</span>
+<span class="w">	</span><span class="nv">f2</span><span class="o">=</span><span class="k">$(</span>sed<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">k2</span><span class="si">}</span>p<span class="w"> </span>tt.d<span class="k">)</span>
 
-	<span class="k">if</span> <span class="o">[</span> <span class="nv">$i1</span> -eq <span class="s2">&quot;12&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-		<span class="nv">f1</span><span class="o">=</span><span class="s2">&quot;Symbol @%0%(Symbol)@%%&quot;</span>
-	<span class="k">fi</span>
-	<span class="nv">fn2</span><span class="o">=</span><span class="nv">$i2</span>
-	gmt text -Y<span class="si">${</span><span class="nv">dy</span><span class="si">}</span>i -F+f+j <span class="s">&lt;&lt;EOF</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$i1</span><span class="w"> </span>-eq<span class="w"> </span><span class="s2">&quot;12&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">		</span><span class="nv">f1</span><span class="o">=</span><span class="s2">&quot;Symbol @%0%(Symbol)@%%&quot;</span>
+<span class="w">	</span><span class="k">fi</span>
+<span class="w">	</span><span class="nv">fn2</span><span class="o">=</span><span class="nv">$i2</span>
+<span class="w">	</span>gmt<span class="w"> </span>text<span class="w"> </span>-Y<span class="si">${</span><span class="nv">dy</span><span class="si">}</span>i<span class="w"> </span>-F+f+j<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s">0.15	0.03	10p,$i1		BC	$i1</span>
 <span class="s">0.4	0.03	10p,$i1		BL	$f1</span>
 <span class="s">2.85	0.03	10p,$fn2	BC	$i2</span>
 <span class="s">3.1	0.03	10p,$i2		BL	$f2</span>
 <span class="s">EOF</span>
-	<span class="nb">let</span> <span class="nv">i</span><span class="o">=</span>i+1
+<span class="w">	</span><span class="nb">let</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span>i+1
 <span class="k">done</span>
 
-gmt text -Y<span class="si">${</span><span class="nv">dy</span><span class="si">}</span>i -F+f+j <span class="s">&lt;&lt;EOF</span>
+gmt<span class="w"> </span>text<span class="w"> </span>-Y<span class="si">${</span><span class="nv">dy</span><span class="si">}</span>i<span class="w"> </span>-F+f+j<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s">2.85	0.03	10p,Helvetica		BC	34</span>
 <span class="s">3.1	0.03	10p,ZapfDingbats	BL	ZapfDingbats @%0%(ZapfDingbats)@%%</span>
 <span class="s">EOF</span>
 
-gmt end show
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 </div>
@@ -270,8 +267,8 @@ GMT you need to specify the PostScript name of the relevant fonts in
 the file <code class="docutils literal notranslate"><span class="pre">PSL_custom_fonts.txt</span></code>. We recommend you place this file in
 your GMT user directory (~/.gmt) as GMT will look there as well as in your
 home directory.  Below is an example of a typical entry for two separate fonts:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>LinBiolinumO      <span class="m">0</span>.700    <span class="m">0</span>
-LinLibertineOB    <span class="m">0</span>.700    <span class="m">0</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>LinBiolinumO<span class="w">      </span><span class="m">0</span>.700<span class="w">    </span><span class="m">0</span>
+LinLibertineOB<span class="w">    </span><span class="m">0</span>.700<span class="w">    </span><span class="m">0</span>
 </pre></div>
 </div>
 <p>The format is a space delimited list of the PostScript font name, the
@@ -283,10 +280,10 @@ might be from the font size ratio so that the vertical position of
 labels and titles can be adjusted to a more uniform typesetting. This
 ratio can be estimated from the height of the letter <strong>A</strong> for a unit font size.
 Now, you can set the GMT font parameters to your non-standard fonts:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt <span class="nb">set</span> FONT              LinBiolinumO <span class="se">\</span>
-        FONT_TITLE        28p,LinLibertineOB <span class="se">\</span>
-        PS_CHAR_ENCODING  ISO-8859-1 <span class="se">\</span>
-        MAP_DEGREE_SYMBOL degree
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FONT<span class="w">              </span>LinBiolinumO<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>FONT_TITLE<span class="w">        </span>28p,LinLibertineOB<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>PS_CHAR_ENCODING<span class="w">  </span>ISO-8859-1<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>MAP_DEGREE_SYMBOL<span class="w"> </span>degree
 </pre></div>
 </div>
 <p>After setting the encoding and the degree symbol, the configuration part
@@ -319,9 +316,9 @@ to edit Ghostscript’s Fontmap.</p>
 <p>If you do not want or cannot embed the fonts you can convert them to
 outlines (shapes with fills) with Ghostscript in the following
 way:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gs -q -dNOCACHE -dNOSAFER -dNOPAUSE -dBATCH -dNOPLATFONTS <span class="se">\</span>
-   -sDEVICE<span class="o">=</span>ps2write -sFONTPATH<span class="o">=</span><span class="s2">&quot;/path/to/fontdir&quot;</span> <span class="se">\</span>
-   -sOutputFile<span class="o">=</span>mapWithOutlinedFonts.ps map.ps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gs<span class="w"> </span>-q<span class="w"> </span>-dNOCACHE<span class="w"> </span>-dNOSAFER<span class="w"> </span>-dNOPAUSE<span class="w"> </span>-dBATCH<span class="w"> </span>-dNOPLATFONTS<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-sDEVICE<span class="o">=</span>ps2write<span class="w"> </span>-sFONTPATH<span class="o">=</span><span class="s2">&quot;/path/to/fontdir&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-sOutputFile<span class="o">=</span>mapWithOutlinedFonts.ps<span class="w"> </span>map.ps
 </pre></div>
 </div>
 <p>Note, that this only works with the <em>ps2write</em> device. If you need
@@ -357,8 +354,8 @@ only a small range of glyphs and you may have to switch the
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

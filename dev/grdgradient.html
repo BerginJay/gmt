@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdgradient &mdash; GMT 6.4.0 documentation</title>
+  <title>grdgradient &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -209,7 +206,7 @@ automatic scaling to preserve precision for integer grids [Default
 is 1].</p></li>
 </ul>
 </div></blockquote>
-<p>Note: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
+<p><strong>Note</strong>: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
 (unless overridden). To write specific formats via GDAL, use =<em>gd</em>
 and supply <em>driver</em> (and optionally <em>dataType</em>) and/or one or more
 concatenated GDAL <strong>-co</strong> options using <strong>+c</strong>. See
@@ -404,25 +401,25 @@ of uses that are common but cannot be run verbatim as written.</p>
 <p>To make a file for illuminating a portion of the data in the remote file &#64;earth_relief_05 using
 exponentially  normalized gradients in the range [-0.6,0.6] imitating light sources in
 the north and west directions:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdgradient @earth_relief_05m -R0/20/0/20 -A0/270 -Ggradients.nc -Ne0.6 -V
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdgradient<span class="w"> </span>@earth_relief_05m<span class="w"> </span>-R0/20/0/20<span class="w"> </span>-A0/270<span class="w"> </span>-Ggradients.nc<span class="w"> </span>-Ne0.6<span class="w"> </span>-V
 </pre></div>
 </div>
 <p>To find the azimuth orientations of seafloor fabric in the file topo.nc:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdgradient topo.nc -Dno -Gazimuths.nc -V
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdgradient<span class="w"> </span>topo.nc<span class="w"> </span>-Dno<span class="w"> </span>-Gazimuths.nc<span class="w"> </span>-V
 </pre></div>
 </div>
 </div></blockquote>
 <p>To determine the offset and sigma suitable for normalizing the intensities from topo.nc, do</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdgradient topo.nc -A30 -Nt0.6 -Qc -V
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdgradient<span class="w"> </span>topo.nc<span class="w"> </span>-A30<span class="w"> </span>-Nt0.6<span class="w"> </span>-Qc<span class="w"> </span>-V
 </pre></div>
 </div>
 </div></blockquote>
 <p>Without <a class="reference internal" href="#g"><span><strong>-G</strong></span></a></strong>, only the hidden statistics file is created and no output grid is written.</p>
 <p>To use the previously determined offset and sigma to normalize the intensities in tile_3.nc, do</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdgradient tile_3.nc -A30 -Nt0.6+o+s -Qr -V -Gtile_3_int.nc
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdgradient<span class="w"> </span>tile_3.nc<span class="w"> </span>-A30<span class="w"> </span>-Nt0.6+o+s<span class="w"> </span>-Qr<span class="w"> </span>-V<span class="w"> </span>-Gtile_3_int.nc
 </pre></div>
 </div>
 </div></blockquote>
@@ -455,8 +452,8 @@ IEEE, Vol. 69, No. 1, January 1981, pp. 14-47.
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

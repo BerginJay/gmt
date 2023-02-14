@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grdseamount &mdash; GMT 6.4.0 documentation</title>
+  <title>grdseamount &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -235,7 +232,7 @@ automatic scaling to preserve precision for integer grids [Default
 is 1].</p></li>
 </ul>
 </div></blockquote>
-<p>Note: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
+<p><strong>Note</strong>: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
 (unless overridden). To write specific formats via GDAL, use =<em>gd</em>
 and supply <em>driver</em> (and optionally <em>dataType</em>) and/or one or more
 concatenated GDAL <strong>-co</strong> options using <strong>+c</strong>. See
@@ -624,27 +621,27 @@ step at the base of the seamount.</p>
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <p>To compute the shape of a circular Gaussian seamount located at 1W, 2S on a 1 arc minute grid for a basal radius
 of 30 km and a height of 4500 meters, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> 1W 2S <span class="m">30</span> <span class="m">4500</span> <span class="p">|</span> gmt grdseamount -R1:30W/0:30W/2:30S/1:30S -I1m -Ggeo_circ_smt.nc
-gmt grdimage geo_circ_smt.nc -B -png circ
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span>1W<span class="w"> </span>2S<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="m">4500</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>grdseamount<span class="w"> </span>-R1:30W/0:30W/2:30S/1:30S<span class="w"> </span>-I1m<span class="w"> </span>-Ggeo_circ_smt.nc
+gmt<span class="w"> </span>grdimage<span class="w"> </span>geo_circ_smt.nc<span class="w"> </span>-B<span class="w"> </span>-png<span class="w"> </span>circ
 </pre></div>
 </div>
 <p>To compute the shape of an elliptical conic seamount located at 200,400 on a 1x1 Cartesian grid for basal
 semi-major axis of 35 and semi-minor axis of 20, with an azimuth of 29 for the major axis,  a height of
 3700 meters, and some flattening (0.15), try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="m">200</span> <span class="m">400</span> <span class="m">29</span> <span class="m">35</span> <span class="m">20</span> <span class="m">3700</span> <span class="p">|</span> gmt grdseamount -R150/250/350/450 -I1 -E -F0.15 -Gcat_ell_smt.nc
-gmt grdview cat_ell_smt.nc -B -Qi -I+d -JZ2c -p195/20 -png ell
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="m">400</span><span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">35</span><span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">3700</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>grdseamount<span class="w"> </span>-R150/250/350/450<span class="w"> </span>-I1<span class="w"> </span>-E<span class="w"> </span>-F0.15<span class="w"> </span>-Gcat_ell_smt.nc
+gmt<span class="w"> </span>grdview<span class="w"> </span>cat_ell_smt.nc<span class="w"> </span>-B<span class="w"> </span>-Qi<span class="w"> </span>-I+d<span class="w"> </span>-JZ2c<span class="w"> </span>-p195/20<span class="w"> </span>-png<span class="w"> </span>ell
 </pre></div>
 </div>
 <p>To compute the incremental loads from two elliptical, truncated Gaussian seamounts being constructed
 from 3 Ma to 2 Ma and 2.8 M to 1.9 Ma using a constant volumetric production rate,
 and output an incremental grid every 0.1 Myr from 3 Ma to 1.9 Ma, and internally use meters for
 horizontal distances, we can try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt; EOF &gt; t.txt</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; t.txt</span>
 <span class="s">#lon lat azimuth, semi-major, semi-minor, height tstart tend</span>
 <span class="s">0   0       -20     120     60      5000    3.0M    2M</span>
 <span class="s">50  80      -40     110     50      4000    2.8M    21.9M</span>
 <span class="s">EOF</span>
-gmt grdseamount -R-1024/1022/-1122/924+uk -I2000 -Gsmt_%3.1f_%s.nc t.txt -T3M/1.9M/0.1M -Qi/c -Dk -E -F0.2 -Cg -Mfiles.txt
+gmt<span class="w"> </span>grdseamount<span class="w"> </span>-R-1024/1022/-1122/924+uk<span class="w"> </span>-I2000<span class="w"> </span>-Gsmt_%3.1f_%s.nc<span class="w"> </span>t.txt<span class="w"> </span>-T3M/1.9M/0.1M<span class="w"> </span>-Qi/c<span class="w"> </span>-Dk<span class="w"> </span>-E<span class="w"> </span>-F0.2<span class="w"> </span>-Cg<span class="w"> </span>-Mfiles.txt
 </pre></div>
 </div>
 <p>The file files.txt will contain records with numerical time, gridfile, and formatted-time.</p>
@@ -677,8 +674,8 @@ Pure Appl. Geophys., 157, 1097-1114,
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

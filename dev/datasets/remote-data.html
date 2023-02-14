@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Remote Data Sets &mdash; GMT 6.4.0 documentation</title>
+  <title>Remote Data Sets &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -108,7 +105,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -250,11 +247,11 @@ can choose which data to download and limit it to node spacings larger or equal 
 can minimize space on your computer by requesting that any JPEG2000 tiles <em>not</em> be converted until GMT
 is accessing them.  Here are some examples of usage.  Download the entire cache directory used
 in examples and tests:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt get -Dcache
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>get<span class="w"> </span>-Dcache
 </pre></div>
 </div>
 <p>Get all the data for Earth but only for 1 arc minute and coarser, and leave tiles in JPEG2000 format:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt get -Ddata<span class="o">=</span>earth -I1m -N
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>get<span class="w"> </span>-Ddata<span class="o">=</span>earth<span class="w"> </span>-I1m<span class="w"> </span>-N
 </pre></div>
 </div>
 <p>As shown in the tables below, the largest datasets may take some time to download the data from GMT
@@ -300,16 +297,16 @@ If any of these files is precious to you we suggest you make a copy somewhere.</
 <p>Should you need a single grid from any of our tiled dataset, e.g., to feed into other programs that do
 not depend on GMT, you can create that via <a class="reference internal" href="../grdcut.html"><span class="doc">grdcut</span></a>.  For instance, to make a global grid from the
 eight tiles that make up the 2m x 2m gridline-registered data, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcut @earth_relief_02m_g -Gearth_at_2m.grd -Rg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcut<span class="w"> </span>@earth_relief_02m_g<span class="w"> </span>-Gearth_at_2m.grd<span class="w"> </span>-Rg
 </pre></div>
 </div>
 <p>Finally, if you wish to determine the most suitable grid resolution that is adequate for making a map
 given a region and projection, you can inquire about this information by passing -D, e.g.:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcut @earth_relief -R270/20/305/25+r -JOc280/25.5/22/69/24c -D -V &gt; info.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcut<span class="w"> </span>@earth_relief<span class="w"> </span>-R270/20/305/25+r<span class="w"> </span>-JOc280/25.5/22/69/24c<span class="w"> </span>-D<span class="w"> </span>-V<span class="w"> </span>&gt;<span class="w"> </span>info.txt
 </pre></div>
 </div>
 <p>or obtain the required subset grid directly via:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdcut @earth_relief -R270/20/305/25+r -JOc280/25.5/22/69/24c -Gsubset.grd -V
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdcut<span class="w"> </span>@earth_relief<span class="w"> </span>-R270/20/305/25+r<span class="w"> </span>-JOc280/25.5/22/69/24c<span class="w"> </span>-Gsubset.grd<span class="w"> </span>-V
 </pre></div>
 </div>
 </section>
@@ -326,8 +323,8 @@ given a region and projection, you can inquire about this information by passing
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

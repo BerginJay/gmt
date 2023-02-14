@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>psconvert &mdash; GMT 6.4.0 documentation</title>
+  <title>psconvert &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -395,13 +392,13 @@ files, or even non-GMT ps files, can provide the information
 <strong>psconvert</strong> requires by manually editing a line into the
 PostScript file, prefixed with %%PROJ.</p>
 <p>For example the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -JM0/12c -R-10/-4/37/43 -W1 -Di -Bg30m --MAP_FRAME_TYPE<span class="o">=</span>inside -ps cara
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-JM0/12c<span class="w"> </span>-R-10/-4/37/43<span class="w"> </span>-W1<span class="w"> </span>-Di<span class="w"> </span>-Bg30m<span class="w"> </span>--MAP_FRAME_TYPE<span class="o">=</span>inside<span class="w"> </span>-ps<span class="w"> </span>cara
 </pre></div>
 </div>
 <p>adds this comment line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%PROJ: merc -10.0 -4.0 <span class="m">37</span>.0 <span class="m">43</span>.0 -1113194.908 -445277.963
-<span class="m">4413389</span>.889 <span class="m">5282821</span>.824 +proj<span class="o">=</span>merc +lon_0<span class="o">=</span><span class="m">0</span> +k<span class="o">=</span>-1 +x_0<span class="o">=</span><span class="m">0</span> +y_0<span class="o">=</span><span class="m">0</span>
-+a<span class="o">=</span><span class="m">6378137</span>.0 +b<span class="o">=</span><span class="m">6356752</span>.314245 +ellps<span class="o">=</span>WGS84 +datum<span class="o">=</span>WGS84 +units<span class="o">=</span>m +no_defs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%PROJ:<span class="w"> </span>merc<span class="w"> </span>-10.0<span class="w"> </span>-4.0<span class="w"> </span><span class="m">37</span>.0<span class="w"> </span><span class="m">43</span>.0<span class="w"> </span>-1113194.908<span class="w"> </span>-445277.963
+<span class="m">4413389</span>.889<span class="w"> </span><span class="m">5282821</span>.824<span class="w"> </span>+proj<span class="o">=</span>merc<span class="w"> </span>+lon_0<span class="o">=</span><span class="m">0</span><span class="w"> </span>+k<span class="o">=</span>-1<span class="w"> </span>+x_0<span class="o">=</span><span class="m">0</span><span class="w"> </span>+y_0<span class="o">=</span><span class="m">0</span>
++a<span class="o">=</span><span class="m">6378137</span>.0<span class="w"> </span>+b<span class="o">=</span><span class="m">6356752</span>.314245<span class="w"> </span>+ellps<span class="o">=</span>WGS84<span class="w"> </span>+datum<span class="o">=</span>WGS84<span class="w"> </span>+units<span class="o">=</span>m<span class="w"> </span>+no_defs
 </pre></div>
 </div>
 <p>where ‘merc’ is the keyword for the coordinate conversion; the 2 to
@@ -482,42 +479,42 @@ can be cut and pasted into your terminal for testing.
 Other commands requiring input files are just dummy examples of the types
 of uses that are common but cannot be run verbatim as written.</p>
 <p>To convert the file psfile.ps to PNG using a tight BoundingBox:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psconvert psfile.ps -A -Tg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psconvert<span class="w"> </span>psfile.ps<span class="w"> </span>-A<span class="w"> </span>-Tg
 </pre></div>
 </div>
 <p>To convert the file map.ps to PDF, crop, then extend the BoundingBox by 0.2 cm,
 fill it with lightblue paint and draw outline with a thick pen:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psconvert map.ps -A -I+m0.2c -N+glightblue+pthick -Tf
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psconvert<span class="w"> </span>map.ps<span class="w"> </span>-A<span class="w"> </span>-I+m0.2c<span class="w"> </span>-N+glightblue+pthick<span class="w"> </span>-Tf
 </pre></div>
 </div>
 <p>To create a 5 cm PNG version at 300 dpi of our cropped example_01.ps file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psconvert example_01.ps -A -I+s5c -Tg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psconvert<span class="w"> </span>example_01.ps<span class="w"> </span>-A<span class="w"> </span>-I+s5c<span class="w"> </span>-Tg
 </pre></div>
 </div>
 <p>To create a 3 pages PDF file from 3 individual PS files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psconvert -TF -Fabc a.ps b.ps c.ps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psconvert<span class="w"> </span>-TF<span class="w"> </span>-Fabc<span class="w"> </span>a.ps<span class="w"> </span>b.ps<span class="w"> </span>c.ps
 </pre></div>
 </div>
 <p>To create a simple linear map with <a class="reference internal" href="coast.html"><span class="doc">coast</span></a> and convert it to tif with a
 .tfw the tight BoundingBox computation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -JX12cd -R-10/-4/37/43 -W1 -Di -Bg30m -G200 --MAP_FRAME_TYPE<span class="o">=</span>inside -ps cara
-gmt psconvert cara.ps -Tt -W
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-JX12cd<span class="w"> </span>-R-10/-4/37/43<span class="w"> </span>-W1<span class="w"> </span>-Di<span class="w"> </span>-Bg30m<span class="w"> </span>-G200<span class="w"> </span>--MAP_FRAME_TYPE<span class="o">=</span>inside<span class="w"> </span>-ps<span class="w"> </span>cara
+gmt<span class="w"> </span>psconvert<span class="w"> </span>cara.ps<span class="w"> </span>-Tt<span class="w"> </span>-W
 </pre></div>
 </div>
 <p>To create a Mercator version of the above example and use GDAL to
 produce a true geotiff file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -JM0/12c -R-10/-4/37/43 -W1 -Di -Bg30m -G200 --MAP_FRAME_TYPE<span class="o">=</span>inside -ps cara
-gdalwarp -s_srs +proj<span class="o">=</span>merc cara.tif carageo.tiff
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-JM0/12c<span class="w"> </span>-R-10/-4/37/43<span class="w"> </span>-W1<span class="w"> </span>-Di<span class="w"> </span>-Bg30m<span class="w"> </span>-G200<span class="w"> </span>--MAP_FRAME_TYPE<span class="o">=</span>inside<span class="w"> </span>-ps<span class="w"> </span>cara
+gdalwarp<span class="w"> </span>-s_srs<span class="w"> </span>+proj<span class="o">=</span>merc<span class="w"> </span>cara.tif<span class="w"> </span>carageo.tiff
 </pre></div>
 </div>
 <p>To create a Polar Stereographic geotiff file of Patagonia:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -JS-55/-60/15c -R-77/-55/-57.5/-48+r -Di -Gred -Bg2 --MAP_FRAME_TYPE<span class="o">=</span>inside -ps patagonia
-gmt psconvert patagonia.ps -Tt -W+g -V
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-JS-55/-60/15c<span class="w"> </span>-R-77/-55/-57.5/-48+r<span class="w"> </span>-Di<span class="w"> </span>-Gred<span class="w"> </span>-Bg2<span class="w"> </span>--MAP_FRAME_TYPE<span class="o">=</span>inside<span class="w"> </span>-ps<span class="w"> </span>patagonia
+gmt<span class="w"> </span>psconvert<span class="w"> </span>patagonia.ps<span class="w"> </span>-Tt<span class="w"> </span>-W+g<span class="w"> </span>-V
 </pre></div>
 </div>
 <p>To create a simple KML file for use in Google Earth, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdimage lonlatgrid.nc -Jx1 -Ccolors.cpt -B0g2 --MAP_FRAME_TYPE<span class="o">=</span>inside -ps tile
-gmt psconvert tile.ps -Tg -W+k+t<span class="s2">&quot;my title&quot;</span>+l256/-1 -V
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdimage<span class="w"> </span>lonlatgrid.nc<span class="w"> </span>-Jx1<span class="w"> </span>-Ccolors.cpt<span class="w"> </span>-B0g2<span class="w"> </span>--MAP_FRAME_TYPE<span class="o">=</span>inside<span class="w"> </span>-ps<span class="w"> </span>tile
+gmt<span class="w"> </span>psconvert<span class="w"> </span>tile.ps<span class="w"> </span>-Tg<span class="w"> </span>-W+k+t<span class="s2">&quot;my title&quot;</span>+l256/-1<span class="w"> </span>-V
 </pre></div>
 </div>
 <p>(These commands assume that Ghostscript can be found in your system’s path.)</p>
@@ -526,7 +523,7 @@ gmt psconvert tile.ps -Tg -W+k+t<span class="s2">&quot;my title&quot;</span>+l25
 <h2>Ghostscript Options<a class="headerlink" href="#ghostscript-options" title="Permalink to this heading">¶</a></h2>
 <p>Most of the conversions done in <strong>psconvert</strong> are handled by
 Ghostscript. On most Unixes this program is available as <strong>gs</strong>; for
-Windows there is a version called <strong>gswin32c</strong>. Ghostscript accepts a
+Windows there is a version called <strong>gswin64c</strong>. Ghostscript accepts a
 rich selection of command-line options that modify its behavior. Many of
 these are set indirectly by the options available above. However,
 hard-core usage may require some users to add additional options to
@@ -570,8 +567,8 @@ use it.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

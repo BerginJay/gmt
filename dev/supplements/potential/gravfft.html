@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gravfft &mdash; GMT 6.4.0 documentation</title>
+  <title>gravfft &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -157,7 +154,7 @@
 [ <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong><em>n/wavelength/mean_depth</em>/<strong>t</strong>|<strong>b</strong>|<strong>w</strong> ]
 [ <a class="reference internal" href="#d"><span><strong>-D</strong></span></a></strong><em>density</em>|<em>rhogrid</em> ]
 [ <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong><em>n_terms</em> ]
-[ <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong>[<strong>f</strong>[<strong>+s</strong>]|<strong>b</strong>|<strong>g</strong>|<strong>v</strong>|<strong>n</strong>|<strong>e</strong>] ]
+[ <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong>[<strong>f</strong>[<strong>+s</strong>|<strong>z</strong>]|<strong>b</strong>|<strong>g</strong>|<strong>v</strong>|<strong>n</strong>|<strong>e</strong>] ]
 [ <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong><strong>w</strong>|<strong>b</strong>|<strong>c</strong>|<strong>t</strong>|<strong>k</strong> ]
 [ <a class="reference internal" href="#n"><span><strong>-N</strong></span></a></strong><em>params</em> ]
 [ <a class="reference internal" href="#q"><span><strong>-Q</strong></span></a></strong> ]
@@ -231,7 +228,7 @@ automatic scaling to preserve precision for integer grids [Default
 is 1].</p></li>
 </ul>
 </div></blockquote>
-<p>Note: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
+<p><strong>Note</strong>: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
 (unless overridden). To write specific formats via GDAL, use =<em>gd</em>
 and supply <em>driver</em> (and optionally <em>dataType</em>) and/or one or more
 concatenated GDAL <strong>-co</strong> options using <strong>+c</strong>. See
@@ -262,15 +259,17 @@ grid will be replaced with the minimum density found.</p>
 </dl>
 <dl class="simple" id="e">
 <dt><strong>-E</strong><em>n_terms</em></dt><dd><p>Number of terms used in Parker expansion (limit is 10, otherwise
-terms depending on n will blow out the program) [Default = 3]</p>
+terms depending on n will blow out the program) [Default = 3].</p>
 </dd>
 </dl>
 <dl id="f">
-<dt><strong>-F</strong>[<strong>f</strong>[<strong>+s</strong>]|<strong>b</strong>|<strong>g</strong>|<strong>v</strong>|<strong>n</strong>|<strong>e</strong>]</dt><dd><p>Specify desired geopotential field: compute geoid rather than gravity</p>
+<dt><strong>-F</strong>[<strong>f</strong>[<strong>+s</strong>|<strong>z</strong>]|<strong>b</strong>|<strong>g</strong>|<strong>v</strong>|<strong>n</strong>|<strong>e</strong>]</dt><dd><p>Specify desired geopotential field: compute geoid rather than gravity</p>
 <blockquote>
 <div><p><strong>f</strong> = Free-air anomalies (mGal) [Default].  Append <strong>+s</strong> to add
 in the slab implied when removing the mean value from the topography.
-This requires zero topography to mean no mass anomaly.</p>
+This requires zero topography to mean no mass anomaly. Alternatively,
+to force the far-field to be exactly zero (i.e., the corner nodes of
+the grid), select <strong>+z</strong> instead.</p>
 <p><strong>b</strong> = Bouguer gravity anomalies (mGal).</p>
 <p><strong>g</strong> = Geoid anomalies (m).</p>
 <p><strong>v</strong> = Vertical Gravity Gradient (VGG; 1 Eotvos = 0.1 mGal/km).</p>
@@ -294,7 +293,7 @@ theoretical admittance, and <strong>t</strong> writes a fourth column with “el
 plate” theoretical admittance.</p>
 </dd>
 </dl>
-<dl>
+<dl id="n">
 <dt><strong>-N</strong>[<strong>a</strong>|<strong>f</strong>|<strong>m</strong>|<strong>r</strong>|<strong>s</strong>|<em>nx/ny</em>][<strong>+a</strong>|<strong>d</strong>|<strong>h</strong>|<strong>l</strong>][<strong>+e</strong>|<strong>n</strong>|<strong>m</strong>][<strong>+t</strong><em>width</em>][<strong>+v</strong>][<strong>+w</strong>[<em>suffix</em>]][<strong>+z</strong>[<strong>p</strong>]]</dt><dd><p>Choose or inquire about suitable grid dimensions for FFT and set
 optional parameters. Control the FFT dimension:</p>
 <blockquote>
@@ -307,9 +306,9 @@ optional parameters. Control the FFT dimension:</p>
 dimensions &gt;= data which optimize speed and accuracy of FFT. If FFT
 dimensions &gt; grid file dimensions, data are extended and tapered to zero.</p>
 </div></blockquote>
-<p>Control detrending of data: Append modifiers for removing a linear trend:</p>
+<p>Control detrending of data: Append modifiers for removing a linear trend. Consult module documentation for the default action:</p>
 <blockquote>
-<div><p><strong>+d</strong>: Detrend data, i.e. remove best-fitting linear trend [Default].</p>
+<div><p><strong>+d</strong>: Detrend data, i.e. remove best-fitting linear trend.</p>
 <p><strong>+a</strong>: Only remove mean value.</p>
 <p><strong>+h</strong>: Only remove mid value, i.e. 0.5 * (max + min).</p>
 <p><strong>+l</strong>: Leave data alone.</p>
@@ -317,8 +316,8 @@ dimensions &gt; grid file dimensions, data are extended and tapered to zero.</p>
 <p>Control extension and tapering of data:
 Use modifiers to control how the extension and tapering are to be performed:</p>
 <blockquote>
-<div><p><strong>+e</strong> extends the grid by imposing edge-point symmetry [Default],</p>
-<p><strong>+m</strong> extends the grid by imposing edge mirror symmetry</p>
+<div><p><strong>+e</strong> extends the grid by imposing edge-point symmetry [Default].</p>
+<p><strong>+m</strong> extends the grid by imposing edge mirror symmetry.</p>
 <p><strong>+n</strong> turns off data extension.</p>
 <p>Tapering is performed from the data edge to the FFT grid edge [100%].
 Change this percentage via <strong>+t</strong><em>width</em>. When <strong>+n</strong> is in effect,
@@ -344,7 +343,7 @@ default we write the real and imaginary components to
 <dt><strong>-Q</strong></dt><dd><p>Writes out a grid with the flexural topography (with z positive up)
 whose average depth was set by <strong>-Z</strong><em>zm</em> and model parameters by <a class="reference internal" href="#t"><span><strong>-T</strong></span></a></strong>
 (and output by <a class="reference internal" href="#g"><span><strong>-G</strong></span></a></strong>). That is the “gravimetric Moho”. <a class="reference internal" href="#q"><span><strong>-Q</strong></span></a></strong>
-implicitly sets <strong>-N+h</strong></p>
+implicitly sets <strong>-N+h</strong>.</p>
 </dd>
 </dl>
 <dl class="simple" id="s">
@@ -363,7 +362,7 @@ Give average mantle depth via <a class="reference internal" href="#z"><span><str
 is &gt; 1e10 it will be interpreted as the flexural rigidity (by default it is
 computed from <em>te</em> and Young modulus). Optionally, append <em>+m</em> to write a grid
 with the Moho’s geopotential effect (see <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong>) from model selected by <a class="reference internal" href="#t"><span><strong>-T</strong></span></a></strong>.
-If <em>te</em> = 0 then the Airy response is returned. <strong>-T+m</strong> implicitly sets <strong>-N+h</strong></p>
+If <em>te</em> = 0 then the Airy response is returned. <strong>-T+m</strong> implicitly sets <strong>-N+h</strong>.</p>
 </dd>
 </dl>
 <dl class="simple" id="w">
@@ -410,6 +409,17 @@ meters, select <strong>-f</strong><a class="reference internal" href="../../gmt.
 consider projecting the grid file onto a rectangular coordinate system
 using <a class="reference internal" href="../../grdproject.html"><span class="doc">grdproject</span></a>.</p>
 </section>
+<section id="handling-of-grids-with-nans">
+<h2>Handling of Grids with NaNs<a class="headerlink" href="#handling-of-grids-with-nans" title="Permalink to this heading">¶</a></h2>
+<p>Since we cannot take FFTs of 2-D grids that contain NaNs, we perform simple substitutions.
+If any of the input grids contain NaNs they will be replaced with zeros. In contrast, if <strong>-D</strong>
+passes a grid with density contrasts then we replace any NaNs with the minimum density in the grid.</p>
+</section>
+<section id="data-detrending">
+<h2>Data Detrending<a class="headerlink" href="#data-detrending" title="Permalink to this heading">¶</a></h2>
+<p>The default detrending mode follows Parker [1972] and removes the mid-value (<strong>+h</strong>).
+Consult and use <a class="reference internal" href="#n"><span><strong>-N</strong></span></a></strong> to select other modes.</p>
+</section>
 <section id="plate-flexure">
 <h2>Plate Flexure<a class="headerlink" href="#plate-flexure" title="Permalink to this heading">¶</a></h2>
 <p>The FFT solution to elastic plate flexure requires the infill density to equal
@@ -430,7 +440,7 @@ using 2700 and 1035 for the densities of crust and water and writing the
 result on water_g.grd (computing up to the fourth power of bathymetry
 in Parker expansion):</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt gravfft bat.grd -D1665 -Gwater_g.grd -E4
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>gravfft<span class="w"> </span>bat.grd<span class="w"> </span>-D1665<span class="w"> </span>-Gwater_g.grd<span class="w"> </span>-E4
 </pre></div>
 </div>
 </div></blockquote>
@@ -442,7 +452,7 @@ dense than the rocks below. The answer relies on the way gravity
 effects are computed by the Parker’s method and practical aspects of
 using the FFT.</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdmath faa.grd water_g.grd <span class="nv">SUB</span> <span class="o">=</span> bouguer.grd
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdmath<span class="w"> </span>faa.grd<span class="w"> </span>water_g.grd<span class="w"> </span><span class="nv">SUB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>bouguer.grd
 </pre></div>
 </div>
 </div></blockquote>
@@ -456,13 +466,13 @@ comes in hand. Notice that we didn’t need to do that before because mean water
 depth was computed directly from data (notice also the negative sign of the
 offset due to the fact that <em>z</em> is positive up):</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt gravfft bat.grd<span class="o">=</span>+o-6000 -D600 -Gmoho_g.grd
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>gravfft<span class="w"> </span>bat.grd<span class="o">=</span>+o-6000<span class="w"> </span>-D600<span class="w"> </span>-Gmoho_g.grd
 </pre></div>
 </div>
 </div></blockquote>
 <p>Now, subtract it from the Bouguer to obtain the MBA anomaly. That is:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grdmath bouguer.grd moho_g.grd <span class="nv">SUB</span> <span class="o">=</span> mba.grd
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grdmath<span class="w"> </span>bouguer.grd<span class="w"> </span>moho_g.grd<span class="w"> </span><span class="nv">SUB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mba.grd
 </pre></div>
 </div>
 </div></blockquote>
@@ -470,7 +480,7 @@ offset due to the fact that <em>z</em> is positive up):</p>
 7 km, density of 2700, over a mantle of density 3300, at an average depth
 of 9 km</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt gravfft bat.grd -Gelastic.grd -T7000/2700/3300/1035+m -Z9000
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>gravfft<span class="w"> </span>bat.grd<span class="w"> </span>-Gelastic.grd<span class="w"> </span>-T7000/2700/3300/1035+m<span class="w"> </span>-Z9000
 </pre></div>
 </div>
 </div></blockquote>
@@ -478,9 +488,9 @@ of 9 km</p>
 gravity response of your isostatic model. We will use here only the
 first term in Parker expansion.</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt gravfft bat.grd -D1665 -Gwater_g.grd -E1
-gmt gravfft bat.grd -Gelastic.grd -T7000/2700/3300/1035+m -Z9000 -E1
-gmt grdmath water_g.grd elastic.grd <span class="nv">ADD</span> <span class="o">=</span> model.grd
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>gravfft<span class="w"> </span>bat.grd<span class="w"> </span>-D1665<span class="w"> </span>-Gwater_g.grd<span class="w"> </span>-E1
+gmt<span class="w"> </span>gravfft<span class="w"> </span>bat.grd<span class="w"> </span>-Gelastic.grd<span class="w"> </span>-T7000/2700/3300/1035+m<span class="w"> </span>-Z9000<span class="w"> </span>-E1
+gmt<span class="w"> </span>grdmath<span class="w"> </span>water_g.grd<span class="w"> </span>elastic.grd<span class="w"> </span><span class="nv">ADD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>model.grd
 </pre></div>
 </div>
 </div></blockquote>
@@ -491,7 +501,7 @@ the previous commands only give the same result if <strong>-E</strong>1 is used.
 For higher powers of bathymetry in Parker expansion,
 only the above example seams to give the correct result.</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt gravfft bat.grd -Gmodel.grd -T7000/2700/3300/1035 -Z9000 -E1
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>gravfft<span class="w"> </span>bat.grd<span class="w"> </span>-Gmodel.grd<span class="w"> </span>-T7000/2700/3300/1035<span class="w"> </span>-Z9000<span class="w"> </span>-E1
 </pre></div>
 </div>
 </div></blockquote>
@@ -499,7 +509,7 @@ only the above example seams to give the correct result.</p>
 below a region whose bathymetry is given by bat.grd, a Moho at 9 km
 depth and the same densities as before?</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt gravfft topo.grd -Gswell_geoid.grd -T7000/2700/3300/1035 -Fg -Z9000/50000 -S -E1
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>gravfft<span class="w"> </span>topo.grd<span class="w"> </span>-Gswell_geoid.grd<span class="w"> </span>-T7000/2700/3300/1035<span class="w"> </span>-Fg<span class="w"> </span>-Z9000/50000<span class="w"> </span>-S<span class="w"> </span>-E1
 </pre></div>
 </div>
 </div></blockquote>
@@ -508,7 +518,7 @@ free-air anomaly grid using the elastic plate model of a crust of 6 km
 mean thickness with 10 km effective elastic thickness in a region of 3 km
 mean water depth:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt gravfft topo.grd faa.grd -It -T10000/2700/3300/1035 -Z9000
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>gravfft<span class="w"> </span>topo.grd<span class="w"> </span>faa.grd<span class="w"> </span>-It<span class="w"> </span>-T10000/2700/3300/1035<span class="w"> </span>-Z9000
 </pre></div>
 </div>
 </div></blockquote>
@@ -517,14 +527,14 @@ geoid grid with the “loading from below” (LFB) model with the same as
 above and sub-surface load at 40 km, but assuming now the grids are in
 geographic and we want wavelengths instead of frequency:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt gravfft topo.grd geoid.grd -Ibw -T10000/2700/3300/1035 -Z9000/40000 -fg
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>gravfft<span class="w"> </span>topo.grd<span class="w"> </span>geoid.grd<span class="w"> </span>-Ibw<span class="w"> </span>-T10000/2700/3300/1035<span class="w"> </span>-Z9000/40000<span class="w"> </span>-fg
 </pre></div>
 </div>
 </div></blockquote>
 <p>To compute the gravity theoretical admittance of a LFB along a 2000 km
 long profile using the same parameters as above</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt gravfft -C400/5000/3000/b -T10000/2700/3300/1035 -Z9000/40000
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>gravfft<span class="w"> </span>-C400/5000/3000/b<span class="w"> </span>-T10000/2700/3300/1035<span class="w"> </span>-Z9000/40000
 </pre></div>
 </div>
 </div></blockquote>
@@ -558,8 +568,8 @@ J. Geophys. Res., 106(B9), 19,431–19,441,
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

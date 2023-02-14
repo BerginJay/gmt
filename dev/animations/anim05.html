@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(5) Control spline gridding via eigenvalues &mdash; GMT 6.4.0 documentation</title>
+  <title>(5) Control spline gridding via eigenvalues &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -180,7 +177,7 @@ the RMS misfit between the model and the data as the solution builds incremental
 <span class="c1"># The script took ~70 minutes to render on a 24-core MacPro 2013, with most of the</span>
 <span class="c1"># time being used to solve for the cumulative and incremental grid components.</span>
 
-cat <span class="s">&lt;&lt; &#39;EOF&#39; &gt; pre.sh</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; pre.sh</span>
 <span class="s">gmt begin</span>
 <span class="s">	# Convert depth positive down to bathymetry positive up and decimate to a 1m lattice</span>
 <span class="s">	gmt convert -Em10 @geologists.txt -i0,1,2+s-1 -s | gmt blockmedian -R158:00W/156:58W/18:00N/19:40N -I1m &gt; geo.txt</span>
@@ -195,7 +192,7 @@ cat <span class="s">&lt;&lt; &#39;EOF&#39; &gt; pre.sh</span>
 <span class="s">	gmt colorbar -Cz.cpt -DjTL+w4c+h+o11p/8p -Bxaf -By+l&quot;km&quot; -F+gwhite+p0.5p -W0.001</span>
 <span class="s">gmt end</span>
 <span class="s">EOF</span>
-cat <span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
 <span class="s">gmt begin</span>
 <span class="s">	# Plot current solution with contors in the right panel</span>
 <span class="s">	gmt grdimage -JM8c -X8c -Y0 geo_cum_${MOVIE_ITEM}.grd -Cz.cpt -B0 -Ei -I+d</span>
@@ -207,11 +204,11 @@ cat <span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
 <span class="s">gmt end</span>
 <span class="s">EOF</span>
 <span class="c1"># Run the movie and add two updating labels</span>
-gmt movie main.sh -Sbpre.sh -CHD -Nanim05 -Tmisfit.txt -Fmp4 -H8 -Lf+jBR+f12p,Helvetica,white<span class="o">=</span>~2p+t<span class="s2">&quot;Eigenvalue %4.4d&quot;</span> -Lc3+jTL+o8.15c/0.15c+gwhite+f12p+p0.25p+t<span class="s2">&quot;rms = %6.2lf m&quot;</span> -V -W -Zs
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-Sbpre.sh<span class="w"> </span>-CHD<span class="w"> </span>-Nanim05<span class="w"> </span>-Tmisfit.txt<span class="w"> </span>-Fmp4<span class="w"> </span>-H8<span class="w"> </span>-Lf+jBR+f12p,Helvetica,white<span class="o">=</span>~2p+t<span class="s2">&quot;Eigenvalue %4.4d&quot;</span><span class="w"> </span>-Lc3+jTL+o8.15c/0.15c+gwhite+f12p+p0.25p+t<span class="s2">&quot;rms = %6.2lf m&quot;</span><span class="w"> </span>-V<span class="w"> </span>-W<span class="w"> </span>-Zs
 </pre></div>
 </div>
-<div class="youtube_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
-<iframe allowfullscreen="true" src="https://www.youtube.com/embed/7NQa4TORA3E?autoplay=1" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+<div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/7NQa4TORA3E" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
 </iframe></div></section>
 
 
@@ -225,8 +222,8 @@ gmt movie main.sh -Sbpre.sh -CHD -Nanim05 -Tmisfit.txt -Fmp4 -H8 -Lf+jBR+f12p,He
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

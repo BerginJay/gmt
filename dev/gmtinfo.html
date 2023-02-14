@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gmtinfo &mdash; GMT 6.4.0 documentation</title>
+  <title>gmtinfo &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -189,11 +186,11 @@ vary from record to record. The pairs can be split into two separate columns
 by using the <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> option.  As another option, <strong>info</strong> can find the extent
 of data in the first two columns rounded up and down to the nearest multiple of the
 supplied increments given by <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong>. Such output will be in the text form
-<strong>-R</strong><em>w/e/s/n</em>, which can be used directly on the command line for other
+<a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong><em>w/e/s/n</em>, which can be used directly on the command line for other
 modules (hence only <em>dx</em> and <em>dy</em> are needed).  If <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> is combined with
-<strong>-I</strong> then the output will be in column form and rounded up/down for as many
+<a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong> then the output will be in column form and rounded up/down for as many
 columns as there are increments provided in <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong>. A similar option (<a class="reference internal" href="#t"><span><strong>-T</strong></span></a></strong>)
-will provide a <strong>-T</strong><em>zmin/zmax/dz</em> string for makecpt.</p>
+will provide a <a class="reference internal" href="#t"><span><strong>-T</strong></span></a></strong><em>zmin/zmax/dz</em> string for makecpt.</p>
 </section>
 <section id="required-arguments">
 <h2>Required Arguments<a class="headerlink" href="#required-arguments" title="Permalink to this heading">¶</a></h2>
@@ -207,10 +204,10 @@ then we read from standard input.  </p>
 <section id="optional-arguments">
 <h2>Optional Arguments<a class="headerlink" href="#optional-arguments" title="Permalink to this heading">¶</a></h2>
 <dl class="simple" id="a">
-<dt><strong>-A</strong><strong>a</strong>|<strong>t</strong>|<strong>s</strong></dt><dd><p>Specify how the range should be reported. Choose <strong>-Aa</strong> for the
-range of all tables combined, <strong>-At</strong> to report the range for each
-table separately, and <strong>-As</strong> to report the range for each segment
-(in multisegment tables) separately. [Default is <strong>-Aa</strong>].</p>
+<dt><strong>-A</strong><strong>a</strong>|<strong>t</strong>|<strong>s</strong></dt><dd><p>Specify how the range should be reported. Choose <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong><strong>a</strong> for the
+range of all tables combined, <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong><strong>t</strong> to report the range for each
+table separately, and <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong><strong>s</strong> to report the range for each segment
+(in multisegment tables) separately. [Default is <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong><strong>a</strong>].</p>
 </dd>
 </dl>
 <dl class="simple" id="c">
@@ -246,23 +243,23 @@ start of each new table [Default is <strong>i</strong>].</p>
 <dl class="simple" id="i">
 <dt><strong>-I</strong>[<strong>b</strong>|<strong>e</strong>|<strong>f</strong>|<strong>p</strong>|<strong>s</strong>]<em>dx</em>[/<em>dy</em>[/<em>dz</em>…][<strong>+e</strong>|<strong>r</strong>|<strong>R</strong>]</dt><dd><p>Compute the <em>min</em>/<em>max</em> values of the first <em>n</em> columns to the nearest multiple
 of the provided increments (separate the <em>n</em> increments by slashes) [default is 2 columns].
-By default, output results in the form <strong>-R</strong><em>w/e/s/n</em>, unless <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> is
+By default, output results in the form <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong><em>w/e/s/n</em>, unless <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> is
 set in which case we output each <em>min</em> and <em>max</em> value in separate output columns.
 If only one increment is given we also use it for the second
 column (for backwards compatibility). To override this behavior, use
-<strong>-Ip</strong><em>dx</em>. If the input <em>x</em>- and <em>y</em>-coordinates all have the
+<a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong><strong>p</strong><em>dx</em>. If the input <em>x</em>- and <em>y</em>-coordinates all have the
 same phase shift relative to the <em>dx</em> and <em>dy</em> increments then we
 use those phase shifts in determining the region, and you may use
 <strong>-r</strong><a class="reference internal" href="gmt.html#nodereg-full"><span class="std std-ref">reg</span></a> to switch from gridline-registration to pixel-registration.
 For irregular data both phase shifts are set to 0 and the <strong>-r</strong><a class="reference internal" href="gmt.html#nodereg-full"><span class="std std-ref">reg</span></a> is ignored.
-Use <strong>-If</strong><em>dx</em>[/<em>dy</em>] to report an extended region optimized
+Use <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong><strong>f</strong><em>dx</em>[/<em>dy</em>] to report an extended region optimized
 to give grid dimensions for fastest results in programs using FFTs.
-Use <strong>-Is</strong><em>dx</em>[/<em>dy</em>] to report an extended region optimized to
+Use <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong><strong>s</strong><em>dx</em>[/<em>dy</em>] to report an extended region optimized to
 give grid dimensions for fastest results in programs like surface.
-Use <strong>-Ib</strong> to write the bounding box of the data table or segments (see <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong>)
+Use <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong><strong>b</strong> to write the bounding box of the data table or segments (see <a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong>)
 as a closed polygon segment. <strong>Note</strong>: For oblique projections you should
 use the <strong>-Ap</strong> option in <a class="reference internal" href="plot.html"><span class="doc">plot</span></a> to draw the box properly.
-If <strong>-Ie</strong> is given then the exact min/max of the input is given in the <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> string.
+If <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong><strong>e</strong> is given then the exact min/max of the input is given in the <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> string.
 If you only want either the x-* or <em>y-</em> range to be exact and the other range rounded, give one of the increments as zero.
 Append <strong>+r</strong> to modify the min/max of the first <em>n</em> columns further:
 Append <em>inc</em>, <em>xinc</em>/<em>yinc</em>, or <em>winc</em>/<em>einc</em>/<em>sinc</em>/<em>ninc</em> to adjust the
@@ -272,24 +269,24 @@ it ensures that the bounding box extends by at least 0.25 times the increment [n
 </dd>
 </dl>
 <dl class="simple" id="l">
-<dt><strong>-L</strong></dt><dd><p>Determines common limits across tables (<strong>-At</strong>) or segments (<strong>-As</strong>).
+<dt><strong>-L</strong></dt><dd><p>Determines common limits across tables (<a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong><strong>t</strong>) or segments (<a class="reference internal" href="#a"><span><strong>-A</strong></span></a></strong><strong>s</strong>).
 If used with <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong> it will round inwards so that the resulting bounds
 lie within the actual data domain.</p>
 </dd>
 </dl>
 <dl class="simple" id="s">
 <dt><strong>-S</strong>[<strong>x</strong>][<strong>y</strong>]</dt><dd><p>Add extra space for error bars. Useful together with <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong> option
-and when later plotting with <a class="reference internal" href="plot.html"><span class="doc">plot</span></a> <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong>. <strong>-Sx</strong> leaves space
+and when later plotting with <a class="reference internal" href="plot.html"><span class="doc">plot</span></a> <strong>-E</strong>. <a class="reference internal" href="#s"><span><strong>-S</strong></span></a></strong><strong>x</strong> leaves space
 for horizontal error bars using the values in third
-(2) column. <strong>-Sy</strong> leaves space for vertical error
+(2) column. <a class="reference internal" href="#s"><span><strong>-S</strong></span></a></strong><strong>y</strong> leaves space for vertical error
 bars using the values in fourth (3) column. <a class="reference internal" href="#s"><span><strong>-S</strong></span></a></strong>
-or <strong>-Sxy</strong> leaves space for both error bars using the values in
+or <a class="reference internal" href="#s"><span><strong>-S</strong></span></a></strong><strong>xy</strong> leaves space for both error bars using the values in
 third and fourth (2 and 3) columns.</p>
 </dd>
 </dl>
 <dl class="simple" id="t">
 <dt><strong>-T</strong><em>dz</em>[<strong>w</strong>|<strong>d</strong>|<strong>h</strong>|<strong>m</strong>|<strong>s</strong>][<strong>+c</strong><em>col</em>]</dt><dd><p>Report the min/max of the first (0’th) column to the nearest multiple of <em>dz</em> and output this as the
-string <strong>-T</strong><em>zmin/zmax/dz</em>. To use another column, append <strong>+c</strong><em>col</em>. Cannot be used together with <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong>.
+string <a class="reference internal" href="#t"><span><strong>-T</strong></span></a></strong><em>zmin/zmax/dz</em>. To use another column, append <strong>+c</strong><em>col</em>. Cannot be used together with <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong>.
 <strong>Note</strong>: If your column has absolute time then you may append a valid fixed time unit to <em>dz</em>, or rely
 on the current setting of <a class="reference internal" href="gmt.conf.html#term-TIME_UNIT"><span class="xref std std-term">TIME_UNIT</span></a> [<strong>s</strong>].</p>
 </dd>
@@ -387,18 +384,18 @@ can be cut and pasted into your terminal for testing.
 Other commands requiring input files are just dummy examples of the types
 of uses that are common but cannot be run verbatim as written.</p>
 <p>To find the extreme values in the remote file &#64;ship_15.txt:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt info @ship_15.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>info<span class="w"> </span>@ship_15.txt
 </pre></div>
 </div>
 <p>Output should look like:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ship_15.txt: <span class="nv">N</span> <span class="o">=</span> <span class="m">82651</span>      &lt;<span class="m">245</span>/254.705&gt;   &lt;<span class="m">20</span>/29.99131&gt;   &lt;-4504/-9&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ship_15.txt:<span class="w"> </span><span class="nv">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">82651</span><span class="w">      </span>&lt;<span class="m">245</span>/254.705&gt;<span class="w">   </span>&lt;<span class="m">20</span>/29.99131&gt;<span class="w">   </span>&lt;-4504/-9&gt;
 </pre></div>
 </div>
 <p>To find the extreme values in &#64;ship_15.txt to the nearest 5 units
 but shifted to within 1 unit of the data center, and use this region to
 plot all the points as small black circles using <a class="reference internal" href="plot.html"><span class="doc">plot</span></a>, run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt plot <span class="sb">`</span>gmt info -I5 -D1 @ship_15.txt<span class="sb">`</span> @ship_15.txt -B -Sc2p -pdf map
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>plot<span class="w"> </span><span class="sb">`</span>gmt<span class="w"> </span>info<span class="w"> </span>-I5<span class="w"> </span>-D1<span class="w"> </span>@ship_15.txt<span class="sb">`</span><span class="w"> </span>@ship_15.txt<span class="w"> </span>-B<span class="w"> </span>-Sc2p<span class="w"> </span>-pdf<span class="w"> </span>map
 </pre></div>
 </div>
 </div></blockquote>
@@ -406,7 +403,7 @@ plot all the points as small black circles using <a class="reference internal" h
 rounded to integers, and return the result individually for each data
 file, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt info @ship_15.txt -C -I1/1/1
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>info<span class="w"> </span>@ship_15.txt<span class="w"> </span>-C<span class="w"> </span>-I1/1/1
 </pre></div>
 </div>
 </div></blockquote>
@@ -414,7 +411,7 @@ file, use</p>
 want to find a range of positions, with increment of 5, that are
 common to all the profiles.  We use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt info profile_<span class="o">[</span><span class="m">123567</span><span class="o">]</span>.txt -L -I5
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>info<span class="w"> </span>profile_<span class="o">[</span><span class="m">123567</span><span class="o">]</span>.txt<span class="w"> </span>-L<span class="w"> </span>-I5
 </pre></div>
 </div>
 </div></blockquote>
@@ -422,7 +419,7 @@ common to all the profiles.  We use</p>
 as separate data segments.  We need to know how many segments there
 are and use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt info magprofs.txt -Fi
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>info<span class="w"> </span>magprofs.txt<span class="w"> </span>-Fi
 </pre></div>
 </div>
 </div></blockquote>
@@ -453,8 +450,8 @@ the current setting of <a class="reference internal" href="gmt.conf.html#term-TI
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(29) Gridding spherical surface data using splines &mdash; GMT 6.4.0 documentation</title>
+  <title>(29) Gridding spherical surface data using splines &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -176,41 +173,41 @@ imaged with <a class="reference internal" href="../grdimage.html"><span class="d
 <span class="c1"># GMT modules:  makecpt, grdcontour, grdimage, grdmath greenspline, colorbar, text</span>
 <span class="c1"># Unix progs:   rm</span>
 <span class="c1">#</span>
-gmt begin ex29
-	<span class="c1"># This example uses 370 radio occultation data for Mars to grid the topography.</span>
-	<span class="c1"># Data and information from Smith, D. E., and M. T. Zuber (1996), The shape of</span>
-	<span class="c1"># Mars and the topographic signature of the hemispheric dichotomy, Science, 271, 184-187.</span>
+gmt<span class="w"> </span>begin<span class="w"> </span>ex29
+<span class="w">	</span><span class="c1"># This example uses 370 radio occultation data for Mars to grid the topography.</span>
+<span class="w">	</span><span class="c1"># Data and information from Smith, D. E., and M. T. Zuber (1996), The shape of</span>
+<span class="w">	</span><span class="c1"># Mars and the topographic signature of the hemispheric dichotomy, Science, 271, 184-187.</span>
 
-	<span class="c1"># Make Mars PROJ_ELLIPSOID given their three best-fitting axes:</span>
-	<span class="nv">a</span><span class="o">=</span><span class="m">3399</span>.472
-	<span class="nv">b</span><span class="o">=</span><span class="m">3394</span>.329
-	<span class="nv">c</span><span class="o">=</span><span class="m">3376</span>.502
-	gmt grdmath -Rg -I4 -r X COSD <span class="nv">$a</span> DIV DUP MUL X SIND <span class="nv">$b</span> DIV DUP MUL ADD Y COSD DUP MUL MUL Y <span class="se">\</span>
-			SIND <span class="nv">$c</span> DIV DUP MUL ADD SQRT <span class="nv">INV</span> <span class="o">=</span> PROJ_ELLIPSOID.nc
+<span class="w">	</span><span class="c1"># Make Mars PROJ_ELLIPSOID given their three best-fitting axes:</span>
+<span class="w">	</span><span class="nv">a</span><span class="o">=</span><span class="m">3399</span>.472
+<span class="w">	</span><span class="nv">b</span><span class="o">=</span><span class="m">3394</span>.329
+<span class="w">	</span><span class="nv">c</span><span class="o">=</span><span class="m">3376</span>.502
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span>-Rg<span class="w"> </span>-I4<span class="w"> </span>-r<span class="w"> </span>X<span class="w"> </span>COSD<span class="w"> </span><span class="nv">$a</span><span class="w"> </span>DIV<span class="w"> </span>DUP<span class="w"> </span>MUL<span class="w"> </span>X<span class="w"> </span>SIND<span class="w"> </span><span class="nv">$b</span><span class="w"> </span>DIV<span class="w"> </span>DUP<span class="w"> </span>MUL<span class="w"> </span>ADD<span class="w"> </span>Y<span class="w"> </span>COSD<span class="w"> </span>DUP<span class="w"> </span>MUL<span class="w"> </span>MUL<span class="w"> </span>Y<span class="w"> </span><span class="se">\</span>
+<span class="w">			</span>SIND<span class="w"> </span><span class="nv">$c</span><span class="w"> </span>DIV<span class="w"> </span>DUP<span class="w"> </span>MUL<span class="w"> </span>ADD<span class="w"> </span>SQRT<span class="w"> </span><span class="nv">INV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>PROJ_ELLIPSOID.nc
 
-	<span class="c1">#  Do both Parker and Wessel/Becker solutions (tension = 0.9975)</span>
-	gmt greenspline -RPROJ_ELLIPSOID.nc @mars370.txt -Z4 -Sp -Gmars.nc
-	gmt greenspline -RPROJ_ELLIPSOID.nc @mars370.txt -Z4 -Sq0.9975 -Gmars2.nc
-	<span class="c1"># Scale to km and remove PROJ_ELLIPSOID</span>
-	gmt grdmath mars.nc  <span class="m">1000</span> DIV PROJ_ELLIPSOID.nc <span class="nv">SUB</span> <span class="o">=</span> mars.nc
-	gmt grdmath mars2.nc <span class="m">1000</span> DIV PROJ_ELLIPSOID.nc <span class="nv">SUB</span> <span class="o">=</span> mars2.nc
+<span class="w">	</span><span class="c1">#  Do both Parker and Wessel/Becker solutions (tension = 0.9975)</span>
+<span class="w">	</span>gmt<span class="w"> </span>greenspline<span class="w"> </span>-RPROJ_ELLIPSOID.nc<span class="w"> </span>@mars370.txt<span class="w"> </span>-Z4<span class="w"> </span>-Sp<span class="w"> </span>-Gmars.nc
+<span class="w">	</span>gmt<span class="w"> </span>greenspline<span class="w"> </span>-RPROJ_ELLIPSOID.nc<span class="w"> </span>@mars370.txt<span class="w"> </span>-Z4<span class="w"> </span>-Sq0.9975<span class="w"> </span>-Gmars2.nc
+<span class="w">	</span><span class="c1"># Scale to km and remove PROJ_ELLIPSOID</span>
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span>mars.nc<span class="w">  </span><span class="m">1000</span><span class="w"> </span>DIV<span class="w"> </span>PROJ_ELLIPSOID.nc<span class="w"> </span><span class="nv">SUB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mars.nc
+<span class="w">	</span>gmt<span class="w"> </span>grdmath<span class="w"> </span>mars2.nc<span class="w"> </span><span class="m">1000</span><span class="w"> </span>DIV<span class="w"> </span>PROJ_ELLIPSOID.nc<span class="w"> </span><span class="nv">SUB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mars2.nc
 
-	gmt <span class="nb">set</span> FONT_TAG 14p,Helvetica-Bold
-	gmt subplot begin 2x1 -Fs18c/0 -Rg -JH0/18c -B30g30 -BWsne -A -M0.6c
-		gmt subplot <span class="nb">set</span> <span class="m">0</span>
-		gmt grdimage mars.nc -I+ne0.75+a45 --FONT_ANNOT_PRIMARY<span class="o">=</span>12p
-		gmt grdcontour mars.nc -C1 -A5 -Glz+/z-
-		gmt plot -Sc0.1c -Gblack @mars370.txt
-		gmt colorbar -DJBC+o0/0.4c+w6i/0.25c -I --FONT_ANNOT_PRIMARY<span class="o">=</span>12p -Bx2f1 -By+lkm
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FONT_TAG<span class="w"> </span>14p,Helvetica-Bold
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>begin<span class="w"> </span>2x1<span class="w"> </span>-Fs18c/0<span class="w"> </span>-Rg<span class="w"> </span>-JH0/18c<span class="w"> </span>-B30g30<span class="w"> </span>-BWsne<span class="w"> </span>-A<span class="w"> </span>-M0.6c
+<span class="w">		</span>gmt<span class="w"> </span>subplot<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span>
+<span class="w">		</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>mars.nc<span class="w"> </span>-I+ne0.75+a45<span class="w"> </span>--FONT_ANNOT_PRIMARY<span class="o">=</span>12p
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>mars.nc<span class="w"> </span>-C1<span class="w"> </span>-A5<span class="w"> </span>-Glz+/z-
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Sc0.1c<span class="w"> </span>-Gblack<span class="w"> </span>@mars370.txt
+<span class="w">		</span>gmt<span class="w"> </span>colorbar<span class="w"> </span>-DJBC+o0/0.4c+w6i/0.25c<span class="w"> </span>-I<span class="w"> </span>--FONT_ANNOT_PRIMARY<span class="o">=</span>12p<span class="w"> </span>-Bx2f1<span class="w"> </span>-By+lkm
 
-		gmt subplot <span class="nb">set</span> <span class="m">1</span>
-		gmt makecpt -Crainbow -T-7/15
-		gmt grdimage mars2.nc -I+ne0.75+a45 --FONT_ANNOT_PRIMARY<span class="o">=</span>12p
-		gmt grdcontour mars2.nc -C1 -A5 -Glz+/z-
-		gmt plot -Sc0.1c -Gblack @mars370.txt
-	gmt subplot end
-	rm -f mars.nc mars2.nc PROJ_ELLIPSOID.nc
-gmt end show
+<span class="w">		</span>gmt<span class="w"> </span>subplot<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">1</span>
+<span class="w">		</span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Crainbow<span class="w"> </span>-T-7/15
+<span class="w">		</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>mars2.nc<span class="w"> </span>-I+ne0.75+a45<span class="w"> </span>--FONT_ANNOT_PRIMARY<span class="o">=</span>12p
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>mars2.nc<span class="w"> </span>-C1<span class="w"> </span>-A5<span class="w"> </span>-Glz+/z-
+<span class="w">		</span>gmt<span class="w"> </span>plot<span class="w"> </span>-Sc0.1c<span class="w"> </span>-Gblack<span class="w"> </span>@mars370.txt
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>end
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>mars.nc<span class="w"> </span>mars2.nc<span class="w"> </span>PROJ_ELLIPSOID.nc
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -232,8 +229,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

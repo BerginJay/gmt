@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Session One &mdash; GMT 6.4.0 documentation</title>
+  <title>Session One &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -117,7 +114,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -258,8 +255,8 @@ Please consult their manual pages for reference.</p>
 -3 to 8 in <em>y</em>, with automatic annotation intervals. Finally, we let the canvas be painted light red and have
 dimensions of 10 by 7.5 centimeters. Here’s how we do it:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>basemap<span class="o">(</span><span class="nv">region</span><span class="o">=(</span><span class="m">10</span>,70,-3,8<span class="o">)</span>, <span class="nv">proj</span><span class="o">=</span>:linear, <span class="nv">figsize</span><span class="o">=(</span><span class="m">10</span>,7.5<span class="o">)</span>,
-        <span class="nv">frame</span><span class="o">=(</span><span class="nv">fill</span><span class="o">=</span>:lightred, <span class="nv">title</span><span class="o">=</span><span class="s2">&quot;My first plot&quot;</span><span class="o">)</span>, <span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>basemap<span class="o">(</span><span class="nv">region</span><span class="o">=(</span><span class="m">10</span>,70,-3,8<span class="o">)</span>,<span class="w"> </span><span class="nv">proj</span><span class="o">=</span>:linear,<span class="w"> </span><span class="nv">figsize</span><span class="o">=(</span><span class="m">10</span>,7.5<span class="o">)</span>,
+<span class="w">        </span><span class="nv">frame</span><span class="o">=(</span><span class="nv">fill</span><span class="o">=</span>:lightred,<span class="w"> </span><span class="nv">title</span><span class="o">=</span><span class="s2">&quot;My first plot&quot;</span><span class="o">)</span>,<span class="w"> </span><span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -283,8 +280,8 @@ Examine the <a class="reference internal" href="../basemap.html"><span class="do
 <p>We next will show how to do a basemap for a log–log plot. We have no data set yet but we will imagine that the
 raw <em>x</em> data range from 3 to 9613 and that <em>y</em> ranges from 10^20 to 10^24. One possibility is</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>basemap<span class="o">(</span><span class="nv">region</span><span class="o">=(</span><span class="m">1</span>,10000,1e20,1e25<span class="o">)</span>, <span class="nv">proj</span><span class="o">=</span>:loglog, <span class="nv">figsize</span><span class="o">=(</span><span class="m">12</span>,8<span class="o">)</span>, <span class="nv">xaxis</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span><span class="m">2</span>, <span class="nv">label</span><span class="o">=</span><span class="s2">&quot;Wavelength (m)&quot;</span><span class="o">)</span>,
-        <span class="nv">yaxis</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span><span class="m">1</span>, <span class="nv">ticks</span><span class="o">=</span><span class="m">3</span>, <span class="nv">scale</span><span class="o">=</span>:pow, <span class="nv">label</span><span class="o">=</span><span class="s2">&quot;Power (W)&quot;</span><span class="o">)</span>, <span class="nv">frame</span><span class="o">=(</span><span class="nv">axes</span><span class="o">=</span>:WS,<span class="o">)</span>, <span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>basemap<span class="o">(</span><span class="nv">region</span><span class="o">=(</span><span class="m">1</span>,10000,1e20,1e25<span class="o">)</span>,<span class="w"> </span><span class="nv">proj</span><span class="o">=</span>:loglog,<span class="w"> </span><span class="nv">figsize</span><span class="o">=(</span><span class="m">12</span>,8<span class="o">)</span>,<span class="w"> </span><span class="nv">xaxis</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span><span class="m">2</span>,<span class="w"> </span><span class="nv">label</span><span class="o">=</span><span class="s2">&quot;Wavelength (m)&quot;</span><span class="o">)</span>,
+<span class="w">        </span><span class="nv">yaxis</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span><span class="m">1</span>,<span class="w"> </span><span class="nv">ticks</span><span class="o">=</span><span class="m">3</span>,<span class="w"> </span><span class="nv">scale</span><span class="o">=</span>:pow,<span class="w"> </span><span class="nv">label</span><span class="o">=</span><span class="s2">&quot;Power (W)&quot;</span><span class="o">)</span>,<span class="w"> </span><span class="nv">frame</span><span class="o">=(</span><span class="nv">axes</span><span class="o">=</span>:WS,<span class="o">)</span>,<span class="w"> </span><span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -346,7 +343,7 @@ In addition to the common switches we may need to use some of several coast-spec
 </table>
 <p>One of <strong>shore</strong>, <strong>land</strong>, <strong>ocean</strong> must be selected. Our first coastline example is from Latin America:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coast<span class="o">(</span><span class="nv">region</span><span class="o">=(</span>-90,-70,0,20<span class="o">)</span>, <span class="nv">proj</span><span class="o">=</span>:merc, <span class="nv">land</span><span class="o">=</span>:chocolate, <span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coast<span class="o">(</span><span class="nv">region</span><span class="o">=(</span>-90,-70,0,20<span class="o">)</span>,<span class="w"> </span><span class="nv">proj</span><span class="o">=</span>:merc,<span class="w"> </span><span class="nv">land</span><span class="o">=</span>:chocolate,<span class="w"> </span><span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -381,9 +378,9 @@ The general syntax is</p>
 are the two standard parallels where the cone intersects the Earth’s surface.
 We try the following command:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coast<span class="o">(</span><span class="nv">region</span><span class="o">=(</span>-130,-70,24,52<span class="o">)</span>, <span class="nv">proj</span><span class="o">=(</span><span class="nv">name</span><span class="o">=</span>:albers, <span class="nv">center</span><span class="o">=(</span>-100,35<span class="o">)</span>, <span class="nv">parallels</span><span class="o">=(</span><span class="m">33</span>,45<span class="o">))</span>,
-      <span class="nv">title</span><span class="o">=</span><span class="s2">&quot;Conic Projection&quot;</span>, <span class="nv">borders</span><span class="o">=((</span><span class="nv">type</span><span class="o">=</span><span class="m">1</span>, <span class="nv">pen</span><span class="o">=</span>:thicker<span class="o">)</span>, <span class="o">(</span><span class="nv">type</span><span class="o">=</span><span class="m">2</span>, <span class="nv">pen</span><span class="o">=</span>:thinnest<span class="o">))</span>,
-      <span class="nv">area</span><span class="o">=</span><span class="m">500</span>, <span class="nv">land</span><span class="o">=</span>:gray, <span class="nv">coast</span><span class="o">=</span>:thinnest, <span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coast<span class="o">(</span><span class="nv">region</span><span class="o">=(</span>-130,-70,24,52<span class="o">)</span>,<span class="w"> </span><span class="nv">proj</span><span class="o">=(</span><span class="nv">name</span><span class="o">=</span>:albers,<span class="w"> </span><span class="nv">center</span><span class="o">=(</span>-100,35<span class="o">)</span>,<span class="w"> </span><span class="nv">parallels</span><span class="o">=(</span><span class="m">33</span>,45<span class="o">))</span>,
+<span class="w">      </span><span class="nv">title</span><span class="o">=</span><span class="s2">&quot;Conic Projection&quot;</span>,<span class="w"> </span><span class="nv">borders</span><span class="o">=((</span><span class="nv">type</span><span class="o">=</span><span class="m">1</span>,<span class="w"> </span><span class="nv">pen</span><span class="o">=</span>:thicker<span class="o">)</span>,<span class="w"> </span><span class="o">(</span><span class="nv">type</span><span class="o">=</span><span class="m">2</span>,<span class="w"> </span><span class="nv">pen</span><span class="o">=</span>:thinnest<span class="o">))</span>,
+<span class="w">      </span><span class="nv">area</span><span class="o">=</span><span class="m">500</span>,<span class="w"> </span><span class="nv">land</span><span class="o">=</span>:gray,<span class="w"> </span><span class="nv">coast</span><span class="o">=</span>:thinnest,<span class="w"> </span><span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -410,8 +407,8 @@ conformal nor equal-area. The syntax for this projection is</p>
 </div></blockquote>
 <p>where (<em>lon_0, lat_0</em>) is the center of the map (projection). As an example we will try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coast<span class="o">(</span><span class="nv">region</span><span class="o">=</span>:global360, <span class="nv">proj</span><span class="o">=(</span><span class="nv">name</span><span class="o">=</span>:ortho, <span class="nv">center</span><span class="o">=(</span><span class="m">280</span>,30<span class="o">))</span>, <span class="nv">frame</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span>:a, <span class="nv">grid</span><span class="o">=</span>:a<span class="o">)</span>,
-      <span class="nv">area</span><span class="o">=</span><span class="m">5000</span>, <span class="nv">land</span><span class="o">=</span>:white, <span class="nv">ocean</span><span class="o">=</span>:DarkTurquoise, <span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coast<span class="o">(</span><span class="nv">region</span><span class="o">=</span>:global360,<span class="w"> </span><span class="nv">proj</span><span class="o">=(</span><span class="nv">name</span><span class="o">=</span>:ortho,<span class="w"> </span><span class="nv">center</span><span class="o">=(</span><span class="m">280</span>,30<span class="o">))</span>,<span class="w"> </span><span class="nv">frame</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span>:a,<span class="w"> </span><span class="nv">grid</span><span class="o">=</span>:a<span class="o">)</span>,
+<span class="w">      </span><span class="nv">area</span><span class="o">=</span><span class="m">5000</span>,<span class="w"> </span><span class="nv">land</span><span class="o">=</span>:white,<span class="w"> </span><span class="nv">ocean</span><span class="o">=</span>:DarkTurquoise,<span class="w"> </span><span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -438,8 +435,8 @@ proj=(name=:EckertVI, center=lon_0)</p>
 <p>The <em>lon_0</em> is the central meridian (which takes precedence over the mid-value implied by the <strong>region</strong> setting).
 A simple Eckert VI world map is thus generated by</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coast<span class="o">(</span><span class="nv">region</span><span class="o">=</span>:global360, <span class="nv">proj</span><span class="o">=(</span><span class="nv">name</span><span class="o">=</span>:EckertVI, <span class="nv">center</span><span class="o">=</span><span class="m">180</span><span class="o">)</span>, <span class="nv">frame</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span>:a, <span class="nv">grid</span><span class="o">=</span>:a<span class="o">)</span>, <span class="nv">resolution</span><span class="o">=</span>:crude,
-      <span class="nv">area</span><span class="o">=</span><span class="m">5000</span>, <span class="nv">land</span><span class="o">=</span>:chocolate, <span class="nv">shore</span><span class="o">=</span>:thinnest, <span class="nv">ocean</span><span class="o">=</span>:DarkTurquoise, <span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coast<span class="o">(</span><span class="nv">region</span><span class="o">=</span>:global360,<span class="w"> </span><span class="nv">proj</span><span class="o">=(</span><span class="nv">name</span><span class="o">=</span>:EckertVI,<span class="w"> </span><span class="nv">center</span><span class="o">=</span><span class="m">180</span><span class="o">)</span>,<span class="w"> </span><span class="nv">frame</span><span class="o">=(</span><span class="nv">annot</span><span class="o">=</span>:a,<span class="w"> </span><span class="nv">grid</span><span class="o">=</span>:a<span class="o">)</span>,<span class="w"> </span><span class="nv">resolution</span><span class="o">=</span>:crude,
+<span class="w">      </span><span class="nv">area</span><span class="o">=</span><span class="m">5000</span>,<span class="w"> </span><span class="nv">land</span><span class="o">=</span>:chocolate,<span class="w"> </span><span class="nv">shore</span><span class="o">=</span>:thinnest,<span class="w"> </span><span class="nv">ocean</span><span class="o">=</span>:DarkTurquoise,<span class="w"> </span><span class="nv">show</span><span class="o">=</span><span class="nb">true</span><span class="o">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -470,8 +467,8 @@ A simple Eckert VI world map is thus generated by</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coast &mdash; GMT 6.4.0 documentation</title>
+  <title>coast &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -224,7 +221,7 @@ countries given by the codes. Simply append one or more comma-separated countrie
 <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)">ISO 3166-1 alpha-2 convention</a> (e.g., NO) or the full
 country name (e.g., Norway). To select a state within a country (if available), append .state (e.g, US.TX),
 or the full state name (e.g., Texas). To specify a whole continent, spell out the full continent name (e.g., -RAfrica).
-Finally, append any <a class="reference internal" href="#id1"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
+Finally, append any <a class="reference internal" href="#dcw-collections"><span class="std std-ref">DCW collection</span></a> abbreviations or full names for the extent of
 the collection or named region. All names are case-insensitive. The following modifiers can be appended:</p>
 <blockquote>
 <div><ul class="simple">
@@ -325,10 +322,10 @@ AN (Antarctica), AS (Asia), EU (Europe), OC (Oceania), NA (North America), or SA
 <p>The following modifiers are supported:</p>
 <ul class="simple">
 <li><p><strong>+l</strong> to just list the countries and their codes (no data extraction or plotting takes place).</p></li>
-<li><p><strong>+L</strong> to see states/territories for Argentina, Australia, Brazil, Canada, China, India, Russia and the US.</p></li>
+<li><p><strong>+L</strong> to see states/territories for Argentina, Australia, Brazil, Canada, China, India, Norway, Russia and the US.</p></li>
 <li><p><strong>+l</strong>|<strong>+L</strong> to <strong>-E</strong>=<em>continent</em> or <strong>-E</strong><em>code</em> to only list countries in that continent or country;
 repeat if more than one continent or country is requested.</p></li>
-<li><p><strong>+n</strong> to list the named <a class="reference internal" href="#id1"><span class="std std-ref">DCW collections</span></a> or regions (<strong>-E</strong><em>code</em><strong>+n</strong> will list
+<li><p><strong>+n</strong> to list the named <a class="reference internal" href="#dcw-collections"><span class="std std-ref">DCW collections</span></a> or regions (<strong>-E</strong><em>code</em><strong>+n</strong> will list
 collections that contains the listed codes). All names are case-insensitive.</p></li>
 <li><p><strong>+c</strong> to set up an inside clip path based on your selection.</p></li>
 <li><p><strong>+C</strong> to set up an outside (area between selection and map boundary) clip path based on your selection.</p></li>
@@ -361,7 +358,7 @@ all selected map embellishments]. The following modifiers can be appended to <a 
 examples provided in the <a class="reference internal" href="cookbook/features.html#background-panel"><span class="std std-ref">The background panel</span></a> cookbook section:</p>
 <ul class="simple">
 <li><p><strong>+c</strong><em>clearance</em> where <em>clearance</em> is either <em>gap</em>, <em>xgap</em>/<em>ygap</em>, or <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> and <em>gap</em> gives a uniform <a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearance</span></a>, <em>xgap</em>/<em>ygap</em> gives separate
-<a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> in the x- and y- directions, and <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> gives
+<a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> in the <em>x</em>- and <em>y</em>- directions, and <em>lgap</em>/<em>rgap</em>/<em>bgap</em>/<em>tgap</em> gives
 individual <a class="reference internal" href="cookbook/features.html#plt-units"><span class="std std-ref">clearances</span></a> between the map embellishment and the border for each side.</p></li>
 <li><p><strong>+g</strong><em>fill</em> to fill the box with a color specified by <a class="reference internal" href="gmtcolors.html"><span class="doc">fill</span></a> [default is no fill].</p></li>
 <li><p><strong>+i</strong>[[<em>gap</em>/]<em>pen</em>] to draw a secondary, inner border as well. Optionally, specify the
@@ -382,7 +379,7 @@ or pattern; or give no argument for clipping [Default is no fill].</p>
 </dl>
 <dl id="i">
 <dt><strong>-I</strong><em>river</em>[/<em>pen</em>]</dt><dd><p>Draw rivers. Specify the type of rivers and [optionally] append pen
-attributes [Default pen: width = default, color = black, style =
+attributes [Default pen: width = 0.25p, color = black, style =
 solid].</p>
 <p>Choose from the list of river types below; repeat option <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong> as
 often as necessary.</p>
@@ -468,7 +465,7 @@ and repeat for each level (pen is not used but required to parse the level corre
 </dl>
 <dl id="n">
 <dt><strong>-N</strong><em>border</em>[/<em>pen</em>]</dt><dd><p>Draw political boundaries. Specify the type of boundary and
-[optionally] append pen attributes [Default pen: width = default,
+[optionally] append pen attributes [Default pen: width = 0.25p,
 color = black, style = solid].</p>
 <p>Choose from the list of boundaries below. Repeat option <a class="reference internal" href="#n"><span><strong>-N</strong></span></a></strong> as
 often as necessary.</p>
@@ -571,7 +568,7 @@ or append unit % for a size in percentage of map width [15%].</p></li>
 <p>For further information, see the Map Embellishment section on <a class="reference internal" href="cookbook/features.html#placing-mag-map-roses"><span class="std std-ref">Magnetic Roses</span></a>.</p>
 </div></blockquote>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -580,7 +577,7 @@ or append unit % for a size in percentage of map width [15%].</p></li>
 </dl>
 <dl class="simple" id="w">
 <dt><strong>-W</strong>[[<em>level</em>/]<em>pen</em>] <a class="reference internal" href="gmt.html#set-pens"><span class="std std-ref">(more …)</span></a></dt><dd><p>Draw shorelines [Default is no shorelines]. Append pen attributes
-[Defaults: width = default, color = black, style = solid] which
+[Defaults: width = 0.25p, color = black, style = solid] which
 apply to all four levels. To set the pen for each level differently,
 prepend <em>level</em>/, where <em>level</em> is 1-4 and represent coastline,
 lakeshore, island-in-lake shore, and lake-in-island-in-lake shore.
@@ -625,19 +622,19 @@ any module-specific option (but not the GMT common options), then exit.</p>
 </dl>
 </section>
 <section id="dcw-collections">
-<h2>DCW Collections<a class="headerlink" href="#dcw-collections" title="Permalink to this heading">¶</a></h2>
-<p id="id1">The <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong> and <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> options can be expanded to take the user’s own custom collections
+<span id="id1"></span><h2>DCW Collections<a class="headerlink" href="#dcw-collections" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong> and <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> options can be expanded to take the user’s own custom collections
 and named regions.  Users can create a dcw.conf file and place it in their
 GMT user directory (typically ~/.gmt).  The format of the file is the same
 as the dcw-collections.txt file distributed with DCW 2.1.0 or later:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Arbitrary comments and blank lines anywhere</span>
 
 <span class="c1"># The France-Italian union (2042-45) of gallery example 34.</span>
-tag: FRIT Franco-Italian Union
-list: FR,IT
+tag:<span class="w"> </span>FRIT<span class="w"> </span>Franco-Italian<span class="w"> </span>Union
+list:<span class="w"> </span>FR,IT
 <span class="c1"># Stay away from those dangerous eels!</span>
-tag: SARG Sargasso Sea
-region: 70W/40W/20N/35N
+tag:<span class="w"> </span>SARG<span class="w"> </span>Sargasso<span class="w"> </span>Sea
+region:<span class="w"> </span>70W/40W/20N/35N
 </pre></div>
 </div>
 <p>Each <em>tag:</em> record must be immediately followed by either a <em>list:</em> or <em>region:</em> record.
@@ -655,39 +652,39 @@ modern mode <a class="reference internal" href="cookbook/one-liner.html"><span c
 permanent major rivers in thick blue pen, additional major rivers in
 thin blue pen, and national borders as dashed lines on a Mercator map at
 scale 0.1 inch/degree, use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -R-30/30/-40/40 -Jm0.1i -B5 -I1/1p,blue -N1/0.25p,- <span class="se">\</span>
-            -I2/0.25p,blue -W0.25p,white -Ggreen -Sblue -pdf africa
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-30/30/-40/40<span class="w"> </span>-Jm0.1i<span class="w"> </span>-B5<span class="w"> </span>-I1/1p,blue<span class="w"> </span>-N1/0.25p,-<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>-I2/0.25p,blue<span class="w"> </span>-W0.25p,white<span class="w"> </span>-Ggreen<span class="w"> </span>-Sblue<span class="w"> </span>-pdf<span class="w"> </span>africa
 </pre></div>
 </div>
 <p>To plot Iceland using the lava pattern (# 28) at 100 dots per inch, on a
 Mercator map at scale 1 cm/degree, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -RIS+r1 -Jm1c -B -Wthin -Gp28+r100 -pdf iceland
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-RIS+r1<span class="w"> </span>-Jm1c<span class="w"> </span>-B<span class="w"> </span>-Wthin<span class="w"> </span>-Gp28+r100<span class="w"> </span>-pdf<span class="w"> </span>iceland
 </pre></div>
 </div>
 <p>To initiate a clip path for Africa so that the subsequent colorimage of
 gridded topography is only seen over land, using a Mercator map at scale
 0.1 inch/degree, use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt begin
-  gmt coast -R-30/30/-40/40 -Jm0.1i -B -G
-  gmt grdimage @earth_relief_05m
-  gmt coast -Q
-gmt end show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin
+<span class="w">  </span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-30/30/-40/40<span class="w"> </span>-Jm0.1i<span class="w"> </span>-B<span class="w"> </span>-G
+<span class="w">  </span>gmt<span class="w"> </span>grdimage<span class="w"> </span>@earth_relief_05m
+<span class="w">  </span>gmt<span class="w"> </span>coast<span class="w"> </span>-Q
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <p>To plot Great Britain, Italy, and France in blue with a red outline and
 Spain, Portugal and Greece in yellow (no outline), and pick up the plot
 domain from the extents of these countries, use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -JM6i -Baf -EGB,IT,FR+gblue+p0.25p,red -EES,PT,GR+gyellow -pdf map
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-JM6i<span class="w"> </span>-Baf<span class="w"> </span>-EGB,IT,FR+gblue+p0.25p,red<span class="w"> </span>-EES,PT,GR+gyellow<span class="w"> </span>-pdf<span class="w"> </span>map
 </pre></div>
 </div>
 <p>To extract a high-resolution coastline data table for Iceland to be used
 in your analysis, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -RIS -Dh -W -M &gt; iceland.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-RIS<span class="w"> </span>-Dh<span class="w"> </span>-W<span class="w"> </span>-M<span class="w"> </span>&gt;<span class="w"> </span>iceland.txt
 </pre></div>
 </div>
 <p>To lay down a clip path around France that will clip your later plotting
 until you end the clipping with clip -C, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt coast -R-10/10/40/52 -JM15c -E+c
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>coast<span class="w"> </span>-R-10/10/40/52<span class="w"> </span>-JM15c<span class="w"> </span>-E+c
 </pre></div>
 </div>
 <p><strong>coast</strong> will first look for coastline files in directory
@@ -775,8 +772,8 @@ Institute, Lensfield Road, Cambridge CB2 1ER, United Kingdom.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

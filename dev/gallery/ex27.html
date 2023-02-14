@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(27) Plotting Sandwell/Smith Mercator img grids &mdash; GMT 6.4.0 documentation</title>
+  <title>(27) Plotting Sandwell/Smith Mercator img grids &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -181,24 +178,24 @@ painted black. A color scale bar was then added to complete the illustration.</p
 <span class="c1"># Purpose:	Illustrates how to plot Mercator img grids</span>
 <span class="c1"># GMT modules:	makecpt, grdimage, grdinfo, coast, colorbar</span>
 <span class="c1">#</span>
-gmt begin ex27
-	<span class="c1"># Gravity in tasman_grav.nc is in 0.1 mGal increments and the grid</span>
-	<span class="c1"># is already in projected Mercator x/y units.</span>
+gmt<span class="w"> </span>begin<span class="w"> </span>ex27
+<span class="w">	</span><span class="c1"># Gravity in tasman_grav.nc is in 0.1 mGal increments and the grid</span>
+<span class="w">	</span><span class="c1"># is already in projected Mercator x/y units.</span>
 
-	<span class="c1"># Make a suitable cpt file for mGal</span>
-	gmt makecpt -T-120/120 -Crainbow
+<span class="w">	</span><span class="c1"># Make a suitable cpt file for mGal</span>
+<span class="w">	</span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-T-120/120<span class="w"> </span>-Crainbow
 
-	<span class="c1"># Since this is a Mercator grid we use a linear projection</span>
-	gmt grdimage @tasman_grav.nc<span class="o">=</span>ns+s0.1 -I+d -Jx0.6c
+<span class="w">	</span><span class="c1"># Since this is a Mercator grid we use a linear projection</span>
+<span class="w">	</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>@tasman_grav.nc<span class="o">=</span>ns+s0.1<span class="w"> </span>-I+d<span class="w"> </span>-Jx0.6c
 
-	<span class="c1"># Then use gmt coast to plot land; get original -R from grid img remark</span>
-	<span class="c1"># and use Mercator gmt projection with same scale as above on a spherical Earth</span>
-	<span class="nv">R</span><span class="o">=</span><span class="k">$(</span>gmt grdinfo @tasman_grav.nc -Ii<span class="k">)</span>
-	gmt coast <span class="nv">$R</span> -Jm0.6c -B -BWSne -Gblack --PROJ_ELLIPSOID<span class="o">=</span>Sphere -Cwhite -Dh+ --FORMAT_GEO_MAP<span class="o">=</span>dddF
+<span class="w">	</span><span class="c1"># Then use gmt coast to plot land; get original -R from grid img remark</span>
+<span class="w">	</span><span class="c1"># and use Mercator gmt projection with same scale as above on a spherical Earth</span>
+<span class="w">	</span><span class="nv">R</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>grdinfo<span class="w"> </span>@tasman_grav.nc<span class="w"> </span>-Ii<span class="k">)</span>
+<span class="w">	</span>gmt<span class="w"> </span>coast<span class="w"> </span><span class="nv">$R</span><span class="w"> </span>-Jm0.6c<span class="w"> </span>-B<span class="w"> </span>-BWSne<span class="w"> </span>-Gblack<span class="w"> </span>--PROJ_ELLIPSOID<span class="o">=</span>Sphere<span class="w"> </span>-Cwhite<span class="w"> </span>-Dh+<span class="w"> </span>--FORMAT_GEO_MAP<span class="o">=</span>dddF
 
-	<span class="c1"># Put a color legend in top-left corner of the land mask</span>
-	gmt colorbar -DjTL+o1c+w5c/0.4c -Bx -By+lmGal -I -F+gwhite+p1p
-gmt end show
+<span class="w">	</span><span class="c1"># Put a color legend in top-left corner of the land mask</span>
+<span class="w">	</span>gmt<span class="w"> </span>colorbar<span class="w"> </span>-DjTL+o1c+w5c/0.4c<span class="w"> </span>-Bx<span class="w"> </span>-By+lmGal<span class="w"> </span>-I<span class="w"> </span>-F+gwhite+p1p
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id3">
@@ -209,10 +206,12 @@ gmt end show
 </figure>
 <section id="footnote">
 <h2>Footnote<a class="headerlink" href="#footnote" title="Permalink to this heading">¶</a></h2>
+<aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id2" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>You could also use <a class="reference internal" href="../supplements/img/img2grd.html"><span class="doc">img2grd</span></a>
 directly - your only option under DOS</p>
+</aside>
 </aside>
 </section>
 </section>
@@ -228,8 +227,8 @@ directly - your only option under DOS</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

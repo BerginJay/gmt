@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>backtracker &mdash; GMT 6.4.0 documentation</title>
+  <title>backtracker &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -382,14 +379,14 @@ is changed to Sphere.</p>
 <p>To backtrack the (x,y,t) points in the file seamounts.txt to their origin
 (presumably the hotspot), using the DC85.txt Euler poles, run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt backtracker seamounts.txt -Db -EDC85.txt &gt; newpos.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>backtracker<span class="w"> </span>seamounts.txt<span class="w"> </span>-Db<span class="w"> </span>-EDC85.txt<span class="w"> </span>&gt;<span class="w"> </span>newpos.txt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To project flowlines forward from the (x,y,t) points stored in several
 3-column, binary, double precision files, run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt backtracker points.* -Df -EDC85.txt -Lf25 -bo -bi3 &gt; lines.b
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>backtracker<span class="w"> </span>points.*<span class="w"> </span>-Df<span class="w"> </span>-EDC85.txt<span class="w"> </span>-Lf25<span class="w"> </span>-bo<span class="w"> </span>-bi3<span class="w"> </span>&gt;<span class="w"> </span>lines.b
 </pre></div>
 </div>
 </div></blockquote>
@@ -398,21 +395,21 @@ To compute the predicted Hawaiian hotspot track from 0 to 80 Ma every 1
 Ma, given a history of hotspot motion file (HIdrift.txt) and a set of
 total reconstruction rotations for the plate (PAC_APM.txt), try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="m">204</span> <span class="m">19</span> <span class="m">80</span> <span class="p">|</span> gmt backtracker -Df -EPAC_APM.txt -Lb1 &gt; path.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="m">204</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>backtracker<span class="w"> </span>-Df<span class="w"> </span>-EPAC_APM.txt<span class="w"> </span>-Lb1<span class="w"> </span>&gt;<span class="w"> </span>path.txt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To predict Hawaiian-Emperor seamount trail using the Pacific absolute plate
 and plume motion from Doubrovine et al. (2012), use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -155.2872 <span class="m">19</span>.3972 <span class="m">80</span> <span class="p">|</span> gmt backtracker -Df -Lb1 -ED2012.txt -FD2012_HI_drift.txt &gt; traildrift.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span>-155.2872<span class="w"> </span><span class="m">19</span>.3972<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>backtracker<span class="w"> </span>-Df<span class="w"> </span>-Lb1<span class="w"> </span>-ED2012.txt<span class="w"> </span>-FD2012_HI_drift.txt<span class="w"> </span>&gt;<span class="w"> </span>traildrift.txt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To predict the Hawaiian-Emperor seamount trail that would have resulted if no plume drift had been in effect,
 using the Pacific absolute plate motion model from Doubrovine et al. (2012), use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -155.2872 <span class="m">19</span>.3972 <span class="m">80</span> <span class="p">|</span> gmt backtracker -Df -Lb1 -ED2012.txt &gt; trail.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span>-155.2872<span class="w"> </span><span class="m">19</span>.3972<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>backtracker<span class="w"> </span>-Df<span class="w"> </span>-Lb1<span class="w"> </span>-ED2012.txt<span class="w"> </span>&gt;<span class="w"> </span>trail.txt
 </pre></div>
 </div>
 </div></blockquote>
@@ -455,8 +452,8 @@ p. 319.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

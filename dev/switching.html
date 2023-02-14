@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Switching between Different Versions &mdash; GMT 6.4.0 documentation</title>
+  <title>Switching between Different Versions &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -97,7 +94,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -206,7 +203,7 @@ alternative modes.</p>
 <li><p>Permanent mode</p></li>
 <li><p>Temporary mode</p></li>
 </ol>
-<p>The permanent mode makes use of the free executable program <a class="reference external" href="http://www.softpedia.com/get/Tweak/Registry-Tweak/EditPath.shtml">EditPath</a>
+<p>The permanent mode makes use of the free executable program <a class="reference external" href="https://www.softpedia.com/get/Tweak/Registry-Tweak/EditPath.shtml">EditPath</a>
 to change the user path in the registry. It’s called permanent because the changes
 remains until … next change.
 Off course the editpath.exe binary must be in your system’s path as well.
@@ -225,7 +222,7 @@ that includes multiple tabs and configure the different tabs to start the differ
 All it takes is in the Tab setting to call a batch that modifies the PATH locally. That PATH
 modifying batch will have a single line with something like:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="nv">path</span><span class="o">=</span>C:<span class="se">\p</span>rograms<span class="se">\g</span>mt5<span class="se">\b</span>in<span class="p">;</span>%PATH%
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span><span class="nv">path</span><span class="o">=</span>C:<span class="se">\p</span>rograms<span class="se">\g</span>mt5<span class="se">\b</span>in<span class="p">;</span>%PATH%
 </pre></div>
 </div>
 </div></blockquote>
@@ -239,8 +236,8 @@ when the recommended <code class="docutils literal notranslate"><span class="pre
 old-style GMT commands would have to be converted first. The syntax conversion
 can be accomplished with the <a class="reference internal" href="gmt5syntax.html"><span class="doc">gmt5syntax</span></a> utility. A suitable bash wrapper
 function for GMT 5 would look like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> gmt<span class="o">()</span> <span class="o">{</span> /path/to/gmt5/bin/gmt <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="p">;</span> <span class="o">}</span>
-<span class="nb">export</span> -f gmt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>gmt<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>/path/to/gmt5/bin/gmt<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="nb">export</span><span class="w"> </span>-f<span class="w"> </span>gmt
 </pre></div>
 </div>
 <p>Exporting the function is necessary to make it available to subshells and
@@ -249,29 +246,29 @@ inside a GMT shell script. The latter is useful to switch to a certain GMT
 version on a per-script basis.</p>
 <p>For GMT releases prior to GMT 5 which only provide the module commands,
 we need a slightly modified version of the wrapper script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">function</span> gmt<span class="o">()</span> <span class="o">{</span> <span class="nv">module</span><span class="o">=</span><span class="nv">$1</span><span class="p">;</span> shift<span class="p">;</span> /path/to/gmt4/bin/<span class="si">${</span><span class="nv">module</span><span class="si">}</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="p">;</span> <span class="o">}</span>
-<span class="nb">export</span> -f gmt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>gmt<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nv">module</span><span class="o">=</span><span class="nv">$1</span><span class="p">;</span><span class="w"> </span>shift<span class="p">;</span><span class="w"> </span>/path/to/gmt4/bin/<span class="si">${</span><span class="nv">module</span><span class="si">}</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="nb">export</span><span class="w"> </span>-f<span class="w"> </span>gmt
 </pre></div>
 </div>
 <p>On the command line this might be too much typing to switch between
 versions. So we might as well put everything together in a script file
 <code class="docutils literal notranslate"><span class="pre">gmtfun</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">case</span> <span class="nv">$1</span> in
-  <span class="m">4</span><span class="o">)</span>
-  <span class="k">function</span> gmt<span class="o">()</span> <span class="o">{</span>
-    <span class="nv">module</span><span class="o">=</span><span class="nv">$1</span><span class="p">;</span> shift<span class="p">;</span> /path/to/gmt4/bin/<span class="si">${</span><span class="nv">module</span><span class="si">}</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
-  <span class="o">}</span>
-  <span class="p">;;</span>
-  <span class="m">5</span><span class="o">)</span>
-  <span class="k">function</span> gmt<span class="o">()</span> <span class="o">{</span>
-    /path/to/gmt5/bin/gmt <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
-  <span class="o">}</span>
-  <span class="p">;;</span>
-  *<span class="o">)</span>
-  <span class="k">return</span>
-  <span class="p">;;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">case</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="k">in</span>
+<span class="w">  </span><span class="m">4</span><span class="o">)</span>
+<span class="w">  </span><span class="k">function</span><span class="w"> </span>gmt<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nv">module</span><span class="o">=</span><span class="nv">$1</span><span class="p">;</span><span class="w"> </span>shift<span class="p">;</span><span class="w"> </span>/path/to/gmt4/bin/<span class="si">${</span><span class="nv">module</span><span class="si">}</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="o">}</span>
+<span class="w">  </span><span class="p">;;</span>
+<span class="w">  </span><span class="m">5</span><span class="o">)</span>
+<span class="w">  </span><span class="k">function</span><span class="w"> </span>gmt<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>/path/to/gmt5/bin/gmt<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="o">}</span>
+<span class="w">  </span><span class="p">;;</span>
+<span class="w">  </span>*<span class="o">)</span>
+<span class="w">  </span><span class="k">return</span>
+<span class="w">  </span><span class="p">;;</span>
 <span class="k">esac</span>
-<span class="nb">export</span> -f gmt
+<span class="nb">export</span><span class="w"> </span>-f<span class="w"> </span>gmt
 </pre></div>
 </div>
 <p>Source the file with either <code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">gmtfun</span> <span class="pre">4</span></code> or <code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">gmtfun</span> <span class="pre">5</span></code> to switch
@@ -290,8 +287,8 @@ between versions.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

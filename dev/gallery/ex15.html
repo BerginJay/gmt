@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(15) Gridding, contouring, and masking of unconstrained areas &mdash; GMT 6.4.0 documentation</title>
+  <title>(15) Gridding, contouring, and masking of unconstrained areas &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -179,30 +176,30 @@ panels is simplified via <a class="reference internal" href="../subplot.html"><s
 <span class="c1"># GMT modules:	info, nearneighbor, coast, mask, surface, plot</span>
 <span class="c1"># Unix progs:	rm</span>
 <span class="c1">#</span>
-gmt begin ex15
-	gmt convert @ship_15.txt -bo &gt; ship.b
-	<span class="nv">region</span><span class="o">=</span><span class="k">$(</span>gmt info ship.b -I1 -bi3d<span class="k">)</span>
-	gmt subplot begin 2x2 -M0.3c/0.1c -Fs7.5c/0 <span class="nv">$region</span> -JM7.5c -BWSne -T<span class="s2">&quot;Gridding with missing data&quot;</span>
-		<span class="c1">#   Raw nearest neighbor contouring</span>
-		gmt nearneighbor <span class="nv">$region</span> -I10m -S40k -Gship.nc ship.b -bi
-		gmt grdcontour ship.nc -JM -C250 -A1000 -Gd5c -c1,0
-		<span class="c1">#   Grid via surface but mask out area with no data using coastlines</span>
-		gmt blockmedian ship.b -b3d &gt; ship_10m.b
-		gmt surface ship_10m.b -Gship.nc -bi
-		gmt mask -I10m ship.b -T -Glightgray -bi3d -c1,1
-		gmt grdcontour ship.nc -C250 -L-8000/0 -A1000 -Gd5c
-		<span class="c1">#   Grid via surface but mask out area with no data</span>
-		gmt mask -I10m ship_10m.b -bi3d -c0,0
-		gmt grdcontour ship.nc -C250 -A1000 -L-8000/0 -Gd5c
-		gmt mask -C
-		<span class="c1">#   Clip data above sealevel then overlay land</span>
-		gmt grdclip ship.nc -Sa-1/NaN -Gship_clipped.nc
-		gmt grdcontour ship_clipped.nc -C250 -A1000 -L-8000/0 -Gd5c -c0,1
-		gmt coast -Ggray -Wthinnest
-		gmt grdinfo -Cn -M ship.nc <span class="p">|</span> gmt plot -Sa0.5c -Wthick -i10,11 -Gred
-	gmt subplot end
-gmt end show
-rm -f ship.b ship_10m.b ship.nc ship_clipped.nc
+gmt<span class="w"> </span>begin<span class="w"> </span>ex15
+<span class="w">	</span>gmt<span class="w"> </span>convert<span class="w"> </span>@ship_15.txt<span class="w"> </span>-bo<span class="w"> </span>&gt;<span class="w"> </span>ship.b
+<span class="w">	</span><span class="nv">region</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>info<span class="w"> </span>ship.b<span class="w"> </span>-I1<span class="w"> </span>-bi3d<span class="k">)</span>
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>begin<span class="w"> </span>2x2<span class="w"> </span>-M0.3c/0.1c<span class="w"> </span>-Fs7.5c/0<span class="w"> </span><span class="nv">$region</span><span class="w"> </span>-JM7.5c<span class="w"> </span>-BWSne<span class="w"> </span>-T<span class="s2">&quot;Gridding with missing data&quot;</span>
+<span class="w">		</span><span class="c1">#   Raw nearest neighbor contouring</span>
+<span class="w">		</span>gmt<span class="w"> </span>nearneighbor<span class="w"> </span><span class="nv">$region</span><span class="w"> </span>-I10m<span class="w"> </span>-S40k<span class="w"> </span>-Gship.nc<span class="w"> </span>ship.b<span class="w"> </span>-bi
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>ship.nc<span class="w"> </span>-JM<span class="w"> </span>-C250<span class="w"> </span>-A1000<span class="w"> </span>-Gd5c<span class="w"> </span>-c1,0
+<span class="w">		</span><span class="c1">#   Grid via surface but mask out area with no data using coastlines</span>
+<span class="w">		</span>gmt<span class="w"> </span>blockmedian<span class="w"> </span>ship.b<span class="w"> </span>-b3d<span class="w"> </span>&gt;<span class="w"> </span>ship_10m.b
+<span class="w">		</span>gmt<span class="w"> </span>surface<span class="w"> </span>ship_10m.b<span class="w"> </span>-Gship.nc<span class="w"> </span>-bi
+<span class="w">		</span>gmt<span class="w"> </span>mask<span class="w"> </span>-I10m<span class="w"> </span>ship.b<span class="w"> </span>-T<span class="w"> </span>-Glightgray<span class="w"> </span>-bi3d<span class="w"> </span>-c1,1
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>ship.nc<span class="w"> </span>-C250<span class="w"> </span>-L-8000/0<span class="w"> </span>-A1000<span class="w"> </span>-Gd5c
+<span class="w">		</span><span class="c1">#   Grid via surface but mask out area with no data</span>
+<span class="w">		</span>gmt<span class="w"> </span>mask<span class="w"> </span>-I10m<span class="w"> </span>ship_10m.b<span class="w"> </span>-bi3d<span class="w"> </span>-c0,0
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>ship.nc<span class="w"> </span>-C250<span class="w"> </span>-A1000<span class="w"> </span>-L-8000/0<span class="w"> </span>-Gd5c
+<span class="w">		</span>gmt<span class="w"> </span>mask<span class="w"> </span>-C
+<span class="w">		</span><span class="c1">#   Clip data above sealevel then overlay land</span>
+<span class="w">		</span>gmt<span class="w"> </span>grdclip<span class="w"> </span>ship.nc<span class="w"> </span>-Sa-1/NaN<span class="w"> </span>-Gship_clipped.nc
+<span class="w">		</span>gmt<span class="w"> </span>grdcontour<span class="w"> </span>ship_clipped.nc<span class="w"> </span>-C250<span class="w"> </span>-A1000<span class="w"> </span>-L-8000/0<span class="w"> </span>-Gd5c<span class="w"> </span>-c0,1
+<span class="w">		</span>gmt<span class="w"> </span>coast<span class="w"> </span>-Ggray<span class="w"> </span>-Wthinnest
+<span class="w">		</span>gmt<span class="w"> </span>grdinfo<span class="w"> </span>-Cn<span class="w"> </span>-M<span class="w"> </span>ship.nc<span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-Sa0.5c<span class="w"> </span>-Wthick<span class="w"> </span>-i10,11<span class="w"> </span>-Gred
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>end
+gmt<span class="w"> </span>end<span class="w"> </span>show
+rm<span class="w"> </span>-f<span class="w"> </span>ship.b<span class="w"> </span>ship_10m.b<span class="w"> </span>ship.nc<span class="w"> </span>ship_clipped.nc
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -224,8 +221,8 @@ rm -f ship.b ship_10m.b ship.nc ship_clipped.nc
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

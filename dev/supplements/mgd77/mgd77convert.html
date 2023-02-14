@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mgd77convert &mdash; GMT 6.4.0 documentation</title>
+  <title>mgd77convert &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../devdocs/team.html">Team Gallery</a></li>
@@ -255,37 +252,37 @@ any module-specific option (but not the GMT common options), then exit.</p>
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <p>To convert a large set of a77,h77 pairs to proper mgd77 files, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt mgd77convert -C *.h77
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>mgd77convert<span class="w"> </span>-C<span class="w"> </span>*.h77
 </pre></div>
 </div>
 </div></blockquote>
 <p>To convert 01010047.mgd77 and 01010008.mgd77 to new netCDF .nc files,
 and capture all verification messages, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt mgd77convert <span class="m">01010047</span> <span class="m">01010008</span> -Fa -Tc -V -Lew+l &gt; log.lis
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>mgd77convert<span class="w"> </span><span class="m">01010047</span><span class="w"> </span><span class="m">01010008</span><span class="w"> </span>-Fa<span class="w"> </span>-Tc<span class="w"> </span>-V<span class="w"> </span>-Lew+l<span class="w"> </span>&gt;<span class="w"> </span>log.lis
 </pre></div>
 </div>
 </div></blockquote>
 <p>To convert 01010047.nc back to MGD77 ASCII and make sure it is identical
 to the original file, try (Bourne shell syntax)</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">orig</span><span class="o">=</span><span class="sb">`</span>gmt mgd77path <span class="m">01010047</span> -Ic<span class="sb">`</span>
-gmt mgd77convert <span class="m">01010047</span> -Fc -Ta -V
-diff <span class="nv">$orig</span> <span class="m">01010047</span>.mgd77
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">orig</span><span class="o">=</span><span class="sb">`</span>gmt<span class="w"> </span>mgd77path<span class="w"> </span><span class="m">01010047</span><span class="w"> </span>-Ic<span class="sb">`</span>
+gmt<span class="w"> </span>mgd77convert<span class="w"> </span><span class="m">01010047</span><span class="w"> </span>-Fc<span class="w"> </span>-Ta<span class="w"> </span>-V
+diff<span class="w"> </span><span class="nv">$orig</span><span class="w"> </span><span class="m">01010047</span>.mgd77
 </pre></div>
 </div>
 </div></blockquote>
 <p>To convert 01010047.nc to a plain ASCII table for manual editing,
 overwriting any existing table, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt mgd77convert <span class="m">01010047</span> -Fc -Tt+f -V
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>mgd77convert<span class="w"> </span><span class="m">01010047</span><span class="w"> </span>-Fc<span class="w"> </span>-Tt+f<span class="w"> </span>-V
 </pre></div>
 </div>
 </div></blockquote>
 <p>To recover the original NCEI MGD77 version of 01020051.nc and ignore any
 E77 corrections, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt mgd77convert <span class="m">01020051</span> -FC -Ta -V
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>mgd77convert<span class="w"> </span><span class="m">01020051</span><span class="w"> </span>-FC<span class="w"> </span>-Ta<span class="w"> </span>-V
 </pre></div>
 </div>
 </div></blockquote>
@@ -325,8 +322,7 @@ examined with general-purpose tools such as ncBrowse and ncView.</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
-<p>ncBrowse, see <a class="reference external" href="https://www.pmel.noaa.gov/epic/java/ncBrowse/">https://www.pmel.noaa.gov/epic/java/ncBrowse/</a>
-ncView, see <a class="reference external" href="https://cirrus.ucsd.edu/~pierce/software/ncview/index.html">https://cirrus.ucsd.edu/~pierce/software/ncview/index.html</a>
+<p>ncView, see <a class="reference external" href="https://cirrus.ucsd.edu/~pierce/software/ncview/index.html">https://cirrus.ucsd.edu/~pierce/software/ncview/index.html</a>
 The Marine Geophysical Data Exchange Format - “MGD77”, see
 <a class="reference external" href="https://www.ngdc.noaa.gov/mgg/dat/geodas/docs/mgd77.txt">https://www.ngdc.noaa.gov/mgg/dat/geodas/docs/mgd77.txt</a></p>
 <p>Wessel, P., and Chandler, M. T., 2007, The mgd77 supplement to the Generic Mapping Tools,
@@ -345,8 +341,8 @@ The Marine Geophysical Data Exchange Format - “MGD77”, see
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

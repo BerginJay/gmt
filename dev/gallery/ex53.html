@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(53) Building subplots and using per-country shading &mdash; GMT 6.4.0 documentation</title>
+  <title>(53) Building subplots and using per-country shading &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -182,23 +179,23 @@ center of each map.</p>
 <span class="c1"># GMT modules:  makecpt, subplot, set, plot, grdimage, clip, coast</span>
 <span class="c1">#</span>
 
-gmt begin ex53
-	gmt <span class="nb">set</span> PROJ_ELLIPSOID Sphere MAP_ANNOT_OBLIQUE lon_horizontal,lat_parallel,tick_normal FONT_TAG 10p
-	gmt makecpt -Cterra
-	<span class="nv">data</span><span class="o">=</span><span class="k">$(</span>gmt which -G @Top12Cities.txt<span class="k">)</span>
-	gmt subplot begin 4x3 -Fs6c -A+gwhite+p0.25p+o0.2c+sblack@50 -Baf -R-1500/1500/-1500/1500+uk -X1c -Y0.9c
-		<span class="k">while</span> <span class="nb">read</span> lon lat population iso name<span class="p">;</span> <span class="k">do</span>
-			gmt subplot <span class="nb">set</span> -A<span class="s2">&quot;</span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2"> [</span><span class="si">${</span><span class="nv">population</span><span class="si">}</span><span class="s2">M]&quot;</span>
-			gmt grdimage @earth_relief_06m -JA<span class="si">${</span><span class="nv">lon</span><span class="si">}</span>/<span class="si">${</span><span class="nv">lat</span><span class="si">}</span>/? -I+m-0.5
-			gmt coast -E<span class="si">${</span><span class="nv">iso</span><span class="si">}</span>+c
-			gmt grdimage @earth_relief_06m -JA<span class="si">${</span><span class="nv">lon</span><span class="si">}</span>/<span class="si">${</span><span class="nv">lat</span><span class="si">}</span>/? -I+d
-			gmt clip -C
-			gmt coast -E<span class="si">${</span><span class="nv">iso</span><span class="si">}</span>+pfaint -N1/thinner,darkred
-			<span class="nb">echo</span> <span class="si">${</span><span class="nv">lon</span><span class="si">}</span> <span class="si">${</span><span class="nv">lat</span><span class="si">}</span> <span class="p">|</span> gmt plot -Skcity/0.25c -Gred -W0.5p -B0
-		<span class="k">done</span> &lt; <span class="nv">$data</span>
-	gmt subplot end
-	rm -f Top12Cities.txt
-gmt end show
+gmt<span class="w"> </span>begin<span class="w"> </span>ex53
+<span class="w">	</span>gmt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>PROJ_ELLIPSOID<span class="w"> </span>Sphere<span class="w"> </span>MAP_ANNOT_OBLIQUE<span class="w"> </span>lon_horizontal,lat_parallel,tick_normal<span class="w"> </span>FONT_TAG<span class="w"> </span>10p
+<span class="w">	</span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cterra
+<span class="w">	</span><span class="nv">data</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>which<span class="w"> </span>-G<span class="w"> </span>@Top12Cities.txt<span class="k">)</span>
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>begin<span class="w"> </span>4x3<span class="w"> </span>-Fs6c<span class="w"> </span>-A+gwhite+p0.25p+o0.2c+sblack@50<span class="w"> </span>-Baf<span class="w"> </span>-R-1500/1500/-1500/1500+uk<span class="w"> </span>-X1c<span class="w"> </span>-Y0.9c
+<span class="w">		</span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>lon<span class="w"> </span>lat<span class="w"> </span>population<span class="w"> </span>iso<span class="w"> </span>name<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">			</span>gmt<span class="w"> </span>subplot<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-A<span class="s2">&quot;</span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2"> [</span><span class="si">${</span><span class="nv">population</span><span class="si">}</span><span class="s2">M]&quot;</span>
+<span class="w">			</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>@earth_relief_06m<span class="w"> </span>-JA<span class="si">${</span><span class="nv">lon</span><span class="si">}</span>/<span class="si">${</span><span class="nv">lat</span><span class="si">}</span>/?<span class="w"> </span>-I+m-0.5
+<span class="w">			</span>gmt<span class="w"> </span>coast<span class="w"> </span>-E<span class="si">${</span><span class="nv">iso</span><span class="si">}</span>+c
+<span class="w">			</span>gmt<span class="w"> </span>grdimage<span class="w"> </span>@earth_relief_06m<span class="w"> </span>-JA<span class="si">${</span><span class="nv">lon</span><span class="si">}</span>/<span class="si">${</span><span class="nv">lat</span><span class="si">}</span>/?<span class="w"> </span>-I+d
+<span class="w">			</span>gmt<span class="w"> </span>clip<span class="w"> </span>-C
+<span class="w">			</span>gmt<span class="w"> </span>coast<span class="w"> </span>-E<span class="si">${</span><span class="nv">iso</span><span class="si">}</span>+pfaint<span class="w"> </span>-N1/thinner,darkred
+<span class="w">			</span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">lon</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">lat</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>plot<span class="w"> </span>-Skcity/0.25c<span class="w"> </span>-Gred<span class="w"> </span>-W0.5p<span class="w"> </span>-B0
+<span class="w">		</span><span class="k">done</span><span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$data</span>
+<span class="w">	</span>gmt<span class="w"> </span>subplot<span class="w"> </span>end
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>Top12Cities.txt
+gmt<span class="w"> </span>end<span class="w"> </span>show
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
@@ -220,8 +217,8 @@ gmt end show
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

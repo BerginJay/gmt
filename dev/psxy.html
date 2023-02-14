@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>psxy &mdash; GMT 6.4.0 documentation</title>
+  <title>psxy &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -159,7 +156,7 @@
 [ <a class="reference internal" href="#b"><span><strong>-B</strong></span></a></strong>[<strong>p</strong>|<strong>s</strong>]<em>parameters</em> ]
 [ <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong><em>cpt</em> ]
 [ <a class="reference internal" href="#d"><span><strong>-D</strong></span></a></strong><em>dx</em>/<em>dy</em> ]
-[ <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong>[<strong>x</strong>|<strong>y</strong>|<strong>X</strong>|<strong>Y</strong>][<strong>+a</strong>|<strong>A</strong>][<strong>+cl</strong>|<strong>f</strong>][<strong>+n</strong>][<strong>+w</strong><em>cap</em>][<strong>+p</strong><em>pen</em>] ]
+[ <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong>[<strong>x</strong>|<strong>y</strong>|<strong>X</strong>|<strong>Y</strong>][<strong>+a</strong>|<strong>A</strong>][<strong>+cl</strong>|<strong>f</strong>][<strong>+n</strong>][<strong>+w</strong><em>width</em>[/<em>cap</em>]][<strong>+p</strong><em>pen</em>] ]
 [ <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong>[<strong>c</strong>|<strong>n</strong>|<strong>r</strong>][<strong>a</strong>|<strong>f</strong>|<strong>s</strong>|<strong>r</strong>|<em>refpoint</em>] ]
 [ <a class="reference internal" href="#g"><span><strong>-G</strong></span></a></strong><em>fill</em> ]
 [ <a class="reference internal" href="#h"><span><strong>-H</strong></span></a></strong>[<em>scale</em>] ]
@@ -269,10 +266,11 @@ You may append dimensional units from <strong>c</strong>|<strong>i</strong>|<str
 </dd>
 </dl>
 <dl class="simple" id="e">
-<dt><strong>-E</strong>[<strong>x</strong>|<strong>y</strong>|<strong>X</strong>|<strong>Y</strong>][<strong>+a</strong>|<strong>A</strong>][<strong>+cl</strong>|<strong>f</strong>][<strong>+n</strong>][<strong>+w</strong><em>cap</em>][<strong>+p</strong><em>pen</em>]</dt><dd><p>Draw symmetrical error bars. Append <strong>x</strong> and/or <strong>y</strong> to indicate which bars you
-want to draw (Default is both x and y). The x and/or y errors must be
+<dt><strong>-E</strong>[<strong>x</strong>|<strong>y</strong>|<strong>X</strong>|<strong>Y</strong>][<strong>+a</strong>|<strong>A</strong>][<strong>+cl</strong>|<strong>f</strong>][<strong>+n</strong>][<strong>+w</strong><em>width</em>[/<em>cap</em>]][<strong>+p</strong><em>pen</em>]</dt><dd><p>Draw error bars. Append <strong>x</strong> and/or <strong>y</strong> to indicate which bars you
+want to draw [Default is both x and y]. The x and/or y errors must be
 stored in the columns after the (x,y) pair [or (x,y,z) triplet]. If
-<strong>+a</strong> is appended then we will draw asymmetrical error bars; these requires
+<strong>+a</strong> is appended then we will draw asymmetrical error bars [Default
+is symmetrical error bars]; these requires
 two rather than one extra data column, with the two signed deviations.
 Use <strong>+A</strong> to read the low and high bounds rather than signed deviations.
 If upper case <strong>X</strong> and/or <strong>Y</strong> are used we will instead draw
@@ -284,9 +282,11 @@ using <a class="reference internal" href="#g"><span><strong>-G</strong></span></
 “box-and-whisker” symbol where the notch width reflects the uncertainty
 in the median. This symbol requires a 5th extra data column to contain the
 number of points in the distribution.  The <strong>+w</strong> modifier sets the
-<em>cap</em> width that indicates the length of the end-cap on the error bars
-[7<strong>p</strong>]. Pen attributes for error bars may also be set via <strong>+p</strong><em>pen</em>.
-[Defaults: width = default, color = black, style = solid]. When <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> is
+<em>width</em> that indicates the length of the end-cap on the error bars
+[7<strong>p</strong>]. For box-and-whisker symbols it sets both the default box width and whisker cap length [7<strong>p</strong>].
+Append both <em>width</em>/<em>cap</em> to set separate width and cap dimensions for such symbols.
+Pen attributes for error bars may also be set via <strong>+p</strong><em>pen</em>.
+[Defaults: width = 0.25p, color = black, style = solid]. When <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> is
 used we can control how the look-up color is applied to our symbol.
 Append <strong>+cf</strong> to use it to fill the symbol, while <strong>+cl</strong> will just
 set the error pen color and turn off symbol fill.  Giving <strong>+c</strong> will
@@ -374,13 +374,14 @@ your segments are interpreted as polygons, else they are seen as lines.</p>
 </dd>
 </dl>
 <dl class="simple" id="n">
-<dt><strong>-N</strong>[<strong>c</strong>|<strong>r</strong>]</dt><dd><p>Do NOT clip symbols that fall outside map border [Default plots points
-whose coordinates are strictly inside the map border only]. The option does not apply to lines and polygons
-which are always clipped to the map region. For periodic (360-longitude)
+<dt><strong>-N</strong>[<strong>c</strong>|<strong>r</strong>]</dt><dd><p>Do <strong>not</strong> clip symbols that fall outside map border [Default plots points
+whose coordinates are strictly inside the map border only]. For periodic (360-longitude)
 maps we must plot all symbols twice in case they are clipped by the repeating
 boundary. The <a class="reference internal" href="#n"><span><strong>-N</strong></span></a></strong> will turn off clipping and not plot repeating symbols.
 Use <strong>-Nr</strong> to turn off clipping but retain the plotting of such repeating symbols, or
-use <strong>-Nc</strong> to retain clipping but turn off plotting of repeating symbols.</p>
+use <strong>-Nc</strong> to retain clipping but turn off plotting of repeating symbols.
+<strong>Note</strong>: A plain <a class="reference internal" href="#n"><span><strong>-N</strong></span></a></strong> may also be used with lines or polygons but note that this deactivates
+any consideration of periodicity (e.g., longitudes) and may have unintended consequences.</p>
 </dd>
 </dl>
 <dl id="s">
@@ -566,35 +567,37 @@ and <strong>+s</strong> can represent those as groups of individual bars instead
 </figure>
 <dl class="simple">
 <dt><strong>-Sb</strong>[<em>size</em>[<strong>c</strong>|<strong>i</strong>|<strong>p</strong>|<strong>q</strong>]][<strong>+b</strong>|<strong>B</strong>[<em>base</em>]][<strong>+v</strong>|<strong>i</strong><em>ny</em>][<strong>+s</strong>[<em>gap</em>]]</dt><dd><p>Vertical <strong>b</strong>ar extending from <em>base</em> to y. The <em>size</em> is bar width.
-Append <strong>q</strong> if <em>size</em> is a quantity in x-units [Default is plot-distance units].
+Append <strong>q</strong> if <em>size</em> is a quantity in x-units [Default is plot-distance units <strong>c</strong>|<strong>i</strong>|<strong>p</strong>].
 By default, <em>base</em> = 0. Append <strong>+b</strong>[<em>base</em>] to change this
 value. If <em>base</em> is not appended then we read it from the last input
 data column.  Use <strong>+B</strong>[<em>base</em>] if the bar height is measured relative
 to <em>base</em> [Relative to origin]. Normally, the bar requires a single input <em>y</em>-value.
 To plot multi-band bars, please append <strong>+v</strong>|<strong>i</strong><em>ny</em>, where <em>ny</em> indicates the
-total number of bands in the bar.  Here, <strong>+i</strong> means we must accumulate the
+total number of bands in the bar (and hence the number of values required to follow
+the x,y coordinate pair in the input).  Here, <strong>+i</strong> means we must accumulate the
 bar values from the increments <em>dy</em>, while <strong>+v</strong> means we get the complete
-values relative to <em>base</em>. Normally, the bands are plotted as sections of a final single bar.
+values relative to <em>base</em> in increasing order. Normally, the bands are plotted as sections of a final single bar.
 Use <strong>+s</strong> to instead split the bar into <em>ny</em> side-by-side, individual and thinner bars. The
 optional <em>gap</em> is a percent (of fraction) of <em>size</em> for adding gaps between the bars [none],
 where <em>size</em> is the combined width of all the individual, thinner bars plus the gaps.
-Multiband bars requires <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> with one color per band (CPT z-values must be 0, 1, …, <em>ny</em> - 1).
+Multi-band bars require <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> with one color per band (CPT z-values must be 0, 1, …, <em>ny</em> - 1).
 Thus, input records are either (<em>x y1 y2 … yn</em>) or (<em>x dy1 dy2 … dyn</em>).</p>
 </dd>
-<dt><strong>-SB</strong>[<em>size</em>[<strong>c</strong>|<strong>i</strong>|<strong>p</strong>|<strong>q</strong>]][<strong>+b</strong>|<strong>B</strong>[<em>base</em>]][<strong>+v</strong>|<strong>i</strong><em>nx</em>][<strong>+s</strong>[<em>gap</em>]]</dt><dd><p>Horizontal <strong>b</strong>ar extending from <em>base</em> to x. The <em>size</em> is bar width.
-Append <strong>q</strong> if <em>size</em> is a quantity in y-units [Default is plot-distance units].
+<dt><strong>-SB</strong>[<em>size</em>[<strong>c</strong>|<strong>i</strong>|<strong>p</strong>|<strong>q</strong>]][<strong>+b</strong>|<strong>B</strong>[<em>base</em>]][<strong>+v</strong>|<strong>i</strong><em>nx</em>][<strong>+s</strong>[<em>gap</em>]]</dt><dd><p>Horizontal <strong>B</strong>ar extending from <em>base</em> to x. The <em>size</em> is bar width.
+Append <strong>q</strong> if <em>size</em> is a quantity in y-units [Default is plot-distance units <strong>c</strong>|<strong>i</strong>|<strong>p</strong>].
 By default, <em>base</em> = 0. Append <strong>+b</strong>[<em>base</em>] to change this
 value. If <em>base</em> is not appended then we read it from the last input
 data column.  Use <strong>+B</strong>[<em>base</em>] if the bar length is measured relative
 to <em>base</em> [Relative to origin]. Normally, the bar requires a single input <em>x</em>-value.
 To plot multi-band bars, please append <strong>+v</strong>|<strong>i</strong><em>nx</em>, where <em>nx</em> indicates the
-total number of bands in the bar.  Here, <strong>+i</strong> means we must accumulate the
+total number of bands in the bar (and hence the number of values required to follow
+the x,y coordinate pair in the input).  Here, <strong>+i</strong> means we must accumulate the
 bar value from the increments <em>dx</em>, while <strong>+v</strong> means we get the complete
-values relative to <em>base</em>. Normally, the bands are plotted as sections of a final single bar.
+values relative to <em>base</em> in increasing order. Normally, the bands are plotted as sections of a final single bar.
 Use <strong>+s</strong> to instead split the bar into <em>nx</em> side-by-side, individual and thinner bars. The
 optional <em>gap</em> is a percent (of fraction) of <em>size</em> for adding gaps between the bars [none],
 where <em>size</em> is the combined width of all the individual, thinner bars plus the gaps.
-Multiband bars requires <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> with one color per band (CPT z-values must be 0, 1, …, <em>nx</em> - 1).
+Multi-band bars require <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong> with one color per band (CPT z-values must be 0, 1, …, <em>nx</em> - 1).
 Thus, input records are either (<em>x1 y x2 … xn</em>) or (<em>dx1 y dx2 … dxn</em>).</p>
 </dd>
 </dl>
@@ -659,13 +662,17 @@ take many parameters and can make decisions based on these parameters.</span><a 
 </figcaption>
 </figure>
 <dl class="simple">
-<dt><strong>-Sk</strong><em>name</em>/<em>size</em></dt><dd><p><strong>k</strong>ustom symbol. We will look for a symbol definition file called <em>name</em>.def in
+<dt><strong>-S</strong>[<strong>k</strong><em>name</em>[/<em>size</em>]]</dt><dd><p>A <strong>k</strong>ustom symbol. We will look for a symbol definition file called <em>name</em>.def in
 (1) the current directory, (2) in ~/.gmt or (3) in <strong>$GMT_SHAREDIR</strong>/custom.
-The symbol defined in the definition file is of normalized unit size by default;
+The symbol in the definition file is of normalized unit size by default;
 the appended <em>size</em> will scale the symbol accordingly. Users may create their own
 custom *.def files; see <a class="reference internal" href="#custom-symbols">Custom Symbols</a> below.
 Alternatively, you can supply an EPS file instead of a *.def file and
-we will scale and place that graphic as a symbol.</p>
+we will scale and place that graphic as a symbol.  If <em>size</em> is not given then we
+expect in from the input file. <strong>Note</strong>: To also give the name of the custom
+symbol via the input, the trailing text must start with the symbol name which must
+include the leading <strong>k</strong>. The <em>size</em> must either be given as a numerical column
+(as for all other symbols) or be added to the name with the required slash.</p>
 </dd>
 </dl>
 <p>The last group of symbols are all special <em>lines</em> with embellishments along them.
@@ -972,7 +979,7 @@ Typically used to move plot origin via <a class="reference internal" href="#x"><
 </dd>
 </dl>
 <dl class="simple" id="u">
-<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
+<dt><strong>-U</strong>[<em>label</em>|<strong>+c</strong>][<strong>+j</strong><em>just</em>][<strong>+o</strong><em>dx</em>[/<em>dy</em>]][<strong>+t</strong><em>text</em>]</dt><dd><p>Draw GMT time stamp logo on plot. <a class="reference internal" href="gmt.html#u-full"><span class="std std-ref">(See full description)</span></a> <a class="reference internal" href="cookbook/options.html#timestamps-on-plots-the-u-option"><span class="std std-ref">(See cookbook information)</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="v">
@@ -981,7 +988,7 @@ Typically used to move plot origin via <a class="reference internal" href="#x"><
 </dl>
 <dl class="simple" id="w">
 <dt><strong>-W</strong>[<em>pen</em>][<em>attr</em>] <a class="reference internal" href="cookbook/features.html#wpen-attrib"><span class="std std-ref">(more …)</span></a></dt><dd><p>Set pen attributes for lines or the outline of symbols [Defaults:
-width = default, color = black, style = solid]. If the modifier <strong>+cl</strong>
+width = 0.25p, color = black, style = solid]. If the modifier <strong>+cl</strong>
 is appended then the color of the line are taken from the CPT (see
 <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong>). If instead modifier <strong>+cf</strong> is appended then the color from the cpt
 file is applied to symbol fill.  Use just <strong>+c</strong> for both effects.
@@ -1126,7 +1133,7 @@ end point (<strong>e</strong>) of a line segment:</p>
 <blockquote>
 <div><p><strong>+a</strong><em>angle</em> sets the angle <span class="math notranslate nohighlight">\(\theta\)</span> of the vector head apex [30].</p>
 <p><strong>+b</strong> places a vector head at the <strong>b</strong>eginning of the vector path [none].
-Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle,
+Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle, <strong>s</strong> for a square,
 <strong>a</strong> for arrow [Default], <strong>i</strong> for tail, <strong>A</strong> for plain open arrow,
 and <strong>I</strong> for plain open tail. <strong>Note</strong>: For geovectors only <strong>a</strong> and <strong>A</strong> are available.
 Further append <strong>l</strong>|<strong>r</strong> to only draw the left or right
@@ -1135,7 +1142,7 @@ half-sides of this head [both sides].</p>
 requires a separate data column following the 2 or 3 coordinates]. Requires that data
 quantity scaling (with unit <strong>q</strong> via <strong>+v</strong> or <strong>+z</strong>) and a CPT have been selected.</p>
 <p><strong>+e</strong> places a vector head at the <strong>e</strong>nd of the vector path [none].
-Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle,
+Optionally, append <strong>t</strong> for a terminal line, <strong>c</strong> for a circle, <strong>s</strong> for a square,
 <strong>a</strong> for arrow [Default], <strong>i</strong> for tail, <strong>A</strong> for plain open arrow,
 and <strong>I</strong> for plain open tail. <strong>Note</strong>: For geovectors only <strong>a</strong> and <strong>A</strong> are available.
 Further append <strong>l</strong>|<strong>r</strong> to only draw the left or right
@@ -1258,7 +1265,7 @@ of uses that are common but cannot be run verbatim as written.</p>
 in the file DSDP.txt on a Mercator map at 0.3 cm/degree of the area 100E to
 160E, 20S to 30N, with automatic tick-marks and gridlines, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psxy DSDP.txt -R100/160/-20/30 -Jm0.3c -Sc0.2c -Gred -Bafg &gt; map.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psxy<span class="w"> </span>DSDP.txt<span class="w"> </span>-R100/160/-20/30<span class="w"> </span>-Jm0.3c<span class="w"> </span>-Sc0.2c<span class="w"> </span>-Gred<span class="w"> </span>-Bafg<span class="w"> </span>&gt;<span class="w"> </span>map.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -1266,20 +1273,20 @@ in the file DSDP.txt on a Mercator map at 0.3 cm/degree of the area 100E to
 given by the magnitude in the 4th column and color based on the depth in
 the third using the CPT rgb.cpt on a linear map, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psxy quakes.xyzm -R0/1000/0/1000 -JX6i -Sc -Crgb -B200 &gt; map.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psxy<span class="w"> </span>quakes.xyzm<span class="w"> </span>-R0/1000/0/1000<span class="w"> </span>-JX6i<span class="w"> </span>-Sc<span class="w"> </span>-Crgb<span class="w"> </span>-B200<span class="w"> </span>&gt;<span class="w"> </span>map.ps
 </pre></div>
 </div>
 </div></blockquote>
 <p>To plot the file trench.txt on a Mercator map, with white triangles with
 sides 0.25 inch on the left side of the line, spaced every 0.8 inch, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psxy trench.txt -R150/200/20/50 -Jm0.15i -Sf0.8i/0.1i+l+t -Gwhite -W -Baf &gt; map.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psxy<span class="w"> </span>trench.txt<span class="w"> </span>-R150/200/20/50<span class="w"> </span>-Jm0.15i<span class="w"> </span>-Sf0.8i/0.1i+l+t<span class="w"> </span>-Gwhite<span class="w"> </span>-W<span class="w"> </span>-Baf<span class="w"> </span>&gt;<span class="w"> </span>map.ps
 </pre></div>
 </div>
 </div></blockquote>
 <p>To plot a point with color dictated by the <em>t.cpt</em> file for the <em>z</em>-value 65, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="m">175</span> <span class="m">30</span> <span class="p">|</span> gmt psxy -R150/200/20/50 -JX15c -Sc0.5c -Zf65 -Ct.cpt &gt; map.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="m">175</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>psxy<span class="w"> </span>-R150/200/20/50<span class="w"> </span>-JX15c<span class="w"> </span>-Sc0.5c<span class="w"> </span>-Zf65<span class="w"> </span>-Ct.cpt<span class="w"> </span>&gt;<span class="w"> </span>map.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -1288,7 +1295,7 @@ the last column, and with size given by the magnitude in the 4th column,
 and color based on the third column via the CPT chrome on a
 linear map, use</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psxy misc.txt -R0/100/-50/100 -JX6i -S -Cchrome -B20 &gt; map.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psxy<span class="w"> </span>misc.txt<span class="w"> </span>-R0/100/-50/100<span class="w"> </span>-JX6i<span class="w"> </span>-S<span class="w"> </span>-Cchrome<span class="w"> </span>-B20<span class="w"> </span>&gt;<span class="w"> </span>map.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -1299,7 +1306,7 @@ end, and heads may be the traditional arrow, a circle, or a terminal cross-line.
 To place a few vectors with
 a circle at the start location and an arrow head at the end, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psxy -R0/50/-50/50 -JX6i -Sv0.15i+bc+ea -Gyellow -W0.5p -Baf <span class="s">&lt;&lt; EOF &gt; map.ps</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psxy<span class="w"> </span>-R0/50/-50/50<span class="w"> </span>-JX6i<span class="w"> </span>-Sv0.15i+bc+ea<span class="w"> </span>-Gyellow<span class="w"> </span>-W0.5p<span class="w"> </span>-Baf<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; map.ps</span>
 <span class="s">10 10 45 2i</span>
 <span class="s">30 -20 0 1.5i</span>
 <span class="s">EOF</span>
@@ -1311,7 +1318,7 @@ record of the form lon, lat, dx, dy, where dx, dy are the Cartesian
 vector components given in user units, and these user units should be converted
 to cm given the scale 3.60, try</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt psxy -R20/40/-20/0 -JM6i -Sv0.15i+e+z3.6c -Gred -W0.25p -Baf data.txt &gt; map.ps
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>psxy<span class="w"> </span>-R20/40/-20/0<span class="w"> </span>-JM6i<span class="w"> </span>-Sv0.15i+e+z3.6c<span class="w"> </span>-Gred<span class="w"> </span>-W0.25p<span class="w"> </span>-Baf<span class="w"> </span>data.txt<span class="w"> </span>&gt;<span class="w"> </span>map.ps
 </pre></div>
 </div>
 </div></blockquote>
@@ -1409,7 +1416,7 @@ from file.  In addition, your use of options <a class="reference internal" href=
 require extra columns.  The order of the data record is fixed regardless of
 option order, even if not all items may be activated. We expect data columns
 to come in the following order:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>x y <span class="o">[</span>z<span class="o">]</span> <span class="o">[</span>size-columns<span class="o">]</span> <span class="o">[</span>scale<span class="o">]</span> <span class="o">[</span>intens<span class="o">]</span> <span class="o">[</span>transp <span class="o">[</span>transp2<span class="o">]]</span> <span class="o">[</span>trailing-text<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>x<span class="w"> </span>y<span class="w"> </span><span class="o">[</span>z<span class="o">]</span><span class="w"> </span><span class="o">[</span>size-columns<span class="o">]</span><span class="w"> </span><span class="o">[</span>scale<span class="o">]</span><span class="w"> </span><span class="o">[</span>intens<span class="o">]</span><span class="w"> </span><span class="o">[</span>transp<span class="w"> </span><span class="o">[</span>transp2<span class="o">]]</span><span class="w"> </span><span class="o">[</span>trailing-text<span class="o">]</span>
 </pre></div>
 </div>
 <p>where items given in brackets are optional and under the control of the stated
@@ -1440,8 +1447,8 @@ rearrange your data record to match the expected format.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

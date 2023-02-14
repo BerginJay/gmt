@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(6) Demonstrate aliasing by sampling a chirp &mdash; GMT 6.4.0 documentation</title>
+  <title>(6) Demonstrate aliasing by sampling a chirp &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -172,10 +169,10 @@ The movie took ~3 minutes to render on a 24-core MacPro 2013.</p>
 <span class="c1"># https://youtu.be/3vB53hoLsls</span>
 <span class="c1"># The movie took ~3 minutes to render on a 24-core MacPro 2013.</span>
 
-<span class="nv">rate</span><span class="o">=</span><span class="m">24</span>			<span class="c1"># Frames per seconds</span>
-<span class="nv">frames</span><span class="o">=</span><span class="k">$(</span>gmt math -Q <span class="m">60</span> <span class="nv">$rate</span> <span class="nv">MUL</span> <span class="o">=</span><span class="k">)</span>
+<span class="nv">rate</span><span class="o">=</span><span class="m">24</span><span class="w">			</span><span class="c1"># Frames per seconds</span>
+<span class="nv">frames</span><span class="o">=</span><span class="k">$(</span>gmt<span class="w"> </span>math<span class="w"> </span>-Q<span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="nv">$rate</span><span class="w"> </span><span class="nv">MUL</span><span class="w"> </span><span class="o">=</span><span class="k">)</span>
 <span class="c1"># 0. Initial parameters</span>
-cat <span class="s">&lt;&lt; EOF &gt; init.sh</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; init.sh</span>
 <span class="s">R=-R-7.5/2.5/-1.5/2	# Fixed plot domain window</span>
 <span class="s">J=-JX22c/11.5c		# Frame size after removing margin space</span>
 <span class="s">f=2			# Frequency of chirp in Hz at end time</span>
@@ -183,7 +180,7 @@ cat <span class="s">&lt;&lt; EOF &gt; init.sh</span>
 <span class="s">frames=$frames</span>
 <span class="s">EOF</span>
 <span class="c1"># 1. Make a title slide explaining things</span>
-cat <span class="s">&lt;&lt; &#39;EOF&#39; &gt; title.sh</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; title.sh</span>
 <span class="s">gmt begin</span>
 <span class="s">	echo &quot;12 11.5 Demonstration of aliasing by sampling a linear chirp&quot; | gmt text -R0/24/0/13.5 -Jx1c -F+f26p,Helvetica-Bold+jCB -X0 -Y0</span>
 <span class="s">	echo &quot;12 10.5 y(t) = cos (2@~p@~t@+2@+/60)&quot; | gmt text -F+f36p,Times-Italic+jTC</span>
@@ -206,7 +203,7 @@ cat <span class="s">&lt;&lt; &#39;EOF&#39; &gt; title.sh</span>
 <span class="s">gmt end show</span>
 <span class="s">EOF</span>
 <span class="c1"># 2. Create background plot and build data files needed in the main script</span>
-cat <span class="s">&lt;&lt; &#39;EOF&#39; &gt; pre.sh</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; pre.sh</span>
 <span class="s">gmt begin</span>
 <span class="s">	gmt plot $R $J -X1c -Y1c -B+gcornsilk -S1c -Ggreen &lt;&lt;- END</span>
 <span class="s">	0	-1.5	t</span>
@@ -222,7 +219,7 @@ cat <span class="s">&lt;&lt; &#39;EOF&#39; &gt; pre.sh</span>
 <span class="s">gmt math -T0/$frames/1 T $rate DIV = frame_times.txt</span>
 <span class="s">EOF</span>
 <span class="c1"># 3. Set up the main frame script</span>
-cat <span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
 <span class="s">gmt begin</span>
 <span class="s">	# Shift the chirp in time to simulate paper movement</span>
 <span class="s">	gmt math chirp.txt -C0 ${MOVIE_COL1} SUB = chirp_shifted.txt</span>
@@ -256,11 +253,11 @@ cat <span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
 <span class="s">gmt end</span>
 <span class="s">EOF</span>
 <span class="c1"># 4. Run the movie</span>
-gmt movie main.sh -Sbpre.sh -CHD -Iinit.sh -Tframe_times.txt -D<span class="nv">$rate</span> -Etitle.sh+d6s+fo1s+gwhite -Nanim06 -H8 -Zs -Fmp4 -W -V
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-Sbpre.sh<span class="w"> </span>-CHD<span class="w"> </span>-Iinit.sh<span class="w"> </span>-Tframe_times.txt<span class="w"> </span>-D<span class="nv">$rate</span><span class="w"> </span>-Etitle.sh+d6s+fo1s+gwhite<span class="w"> </span>-Nanim06<span class="w"> </span>-H8<span class="w"> </span>-Zs<span class="w"> </span>-Fmp4<span class="w"> </span>-W<span class="w"> </span>-V
 </pre></div>
 </div>
-<div class="youtube_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
-<iframe allowfullscreen="true" src="https://www.youtube.com/embed/3vB53hoLsls?autoplay=1" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
+<div class="video_wrapper" style="padding-bottom: 56.250000%; padding-top: 30px; position: relative; width: 100%">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/3vB53hoLsls" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%">
 </iframe></div></section>
 
 
@@ -274,8 +271,8 @@ gmt movie main.sh -Sbpre.sh -CHD -Iinit.sh -Tframe_times.txt -D<span class="nv">
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

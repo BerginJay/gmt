@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grd2cpt &mdash; GMT 6.4.0 documentation</title>
+  <title>grd2cpt &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -93,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -157,7 +154,7 @@
 [ <a class="reference internal" href="#c"><span><strong>-C</strong></span></a></strong><em>cpt</em> ]
 [ <a class="reference internal" href="#d"><span><strong>-D</strong></span></a></strong>[<strong>i</strong>|<strong>o</strong>] ]
 [ <a class="reference internal" href="#e"><span><strong>-E</strong></span></a></strong>[<em>nlevels</em>][<strong>+c</strong>][<strong>+f</strong><em>file</em>] ]
-[ <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong>[<strong>R</strong>|<strong>r</strong>|<strong>h</strong>|<strong>c</strong>][<strong>+c</strong>[<em>label</em>]] ]
+[ <a class="reference internal" href="#f"><span><strong>-F</strong></span></a></strong>[<strong>R</strong>|<strong>r</strong>|<strong>h</strong>|<strong>c</strong>|<strong>x</strong>][<strong>+c</strong>[<em>label</em>]] ]
 [ <a class="reference internal" href="#g"><span><strong>-G</strong></span></a></strong><em>zlo</em>/<em>zhi</em> ]
 [ <a class="reference internal" href="#h"><span><strong>-H</strong></span></a></strong> ]
 [ <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong>[<strong>c</strong>][<strong>z</strong>] ]
@@ -276,9 +273,10 @@ see <strong>-bo</strong> and <strong>-o</strong> for output formatting.</p>
 </dd>
 </dl>
 <dl class="simple" id="f">
-<dt><strong>-F</strong>[<strong>R</strong>|<strong>r</strong>|<strong>h</strong>|<strong>c</strong>][<strong>+c</strong>[<em>label</em>]]</dt><dd><p>Force output CPT to written with r/g/b codes, gray-scale values
+<dt><strong>-F</strong>[<strong>R</strong>|<strong>r</strong>|<strong>h</strong>|<strong>c</strong>|<strong>x</strong>][<strong>+c</strong>[<em>label</em>]]</dt><dd><p>Force output CPT to written with r/g/b codes, gray-scale values
 or color name (<strong>R</strong>, default) or r/g/b codes only (<strong>r</strong>), or h-s-v
-codes (<strong>h</strong>), or c/m/y/k codes (<strong>c</strong>).  Optionally or alternatively,
+codes (<strong>h</strong>), or c/m/y/k codes (<strong>c</strong>), or #rrggbb hex codes (<strong>x</strong>).
+Optionally or alternatively,
 append <strong>+c</strong> to write discrete palettes in categorical format.
 If <em>label</em> is appended then we create labels for each category to be used
 when the CPT is plotted. The <em>label</em> may be a comma-separated list of
@@ -445,7 +443,7 @@ Other commands requiring input files are just dummy examples of the types
 of uses that are common but cannot be run verbatim as written.</p>
 <p>To get a reasonable and symmetrical color table for the data in the region 0/60/0/60
 from the remote 5m relief file, using the geo color table, try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grd2cpt @earth_relief_05m -R0/60/0/60 -Cgeo -Su
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grd2cpt<span class="w"> </span>@earth_relief_05m<span class="w"> </span>-R0/60/0/60<span class="w"> </span>-Cgeo<span class="w"> </span>-Su
 </pre></div>
 </div>
 <p>Sometimes you don’t want to make a CPT (yet) but would find it
@@ -453,7 +451,7 @@ helpful to know that 90% of your data lie between z1 and z2, something
 you cannot learn from <a class="reference internal" href="grdinfo.html"><span class="doc">grdinfo</span></a>. So you can do this to see some points
 on the CDF(Z) curve (use <a class="reference internal" href="#v"><span><strong>-V</strong></span></a></strong> option to see more):</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grd2cpt mydata.nc -V &gt; /dev/null
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grd2cpt<span class="w"> </span>mydata.nc<span class="w"> </span>-V<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 </pre></div>
 </div>
 </div></blockquote>
@@ -461,14 +459,14 @@ on the CDF(Z) curve (use <a class="reference internal" href="#v"><span><strong>-
 data below zero in computing CDF(Z), and use the built-in master cpt
 file relief, run</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grd2cpt mydata.nc -Crelief -L0/10000 -T0/200/20 &gt; mydata.cpt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grd2cpt<span class="w"> </span>mydata.nc<span class="w"> </span>-Crelief<span class="w"> </span>-L0/10000<span class="w"> </span>-T0/200/20<span class="w"> </span>&gt;<span class="w"> </span>mydata.cpt
 </pre></div>
 </div>
 </div></blockquote>
 <p>To determine the empirical cumulative density function of a grid and
 create a CPT that would give equal area to each color in the image,
 and save the CDF to file as well. try:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt grd2cpt @earth_relief_10m -E11+c+fcdf.txt &gt; cdf.cpt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>grd2cpt<span class="w"> </span>@earth_relief_10m<span class="w"> </span>-E11+c+fcdf.txt<span class="w"> </span>&gt;<span class="w"> </span>cdf.cpt
 </pre></div>
 </div>
 <p>Here, cdf.txt would be the cumulative hypsometric curve for the Earth.</p>
@@ -524,8 +522,8 @@ CPTs.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

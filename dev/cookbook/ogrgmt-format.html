@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>20. The GMT Vector Data Format for OGR Compatibility &mdash; GMT 6.4.0 documentation</title>
+  <title>20. The GMT Vector Data Format for OGR Compatibility &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -52,7 +49,7 @@
             <a href="../index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -133,7 +130,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devdocs/team.html">Team Gallery</a></li>
@@ -540,7 +537,7 @@ the outer perimeter, or an inner ring (hole). This is done using a
 The <strong>&#64;P</strong> specifies a new feature boundary (perimeter), any following
 <strong>&#64;H</strong> polygons are holes, and must be within the preceding <strong>&#64;P</strong>
 polygon (as described in the shapefile specification). Any <strong>&#64;H</strong>
-polygons will NOT have any <strong>&#64;D</strong> values, as the aspatial attribute data
+polygons will <strong>not</strong> have any <strong>&#64;D</strong> values, as the aspatial attribute data
 pertain to the entire feature, the <strong>&#64;H</strong> polygons are not new polygons,
 but are merely a continuation of the definition of the same feature.
 <strong>Note</strong>: The perimeter and the hole(s) must have different handedness.
@@ -562,9 +559,9 @@ point file:</p>
 <span class="c1"># @Jp&quot;+proj=longlat +ellps=WGS84 +datum=WGS84+no_defs&quot;</span>
 <span class="c1"># FEATURE_DATA</span>
 <span class="c1"># @D&quot;point 1&quot;|-34.5|1</span>
-<span class="m">178</span>.5 -45.7
+<span class="m">178</span>.5<span class="w"> </span>-45.7
 <span class="c1"># @D&quot;Point 2&quot;|-57.98|2</span>
-<span class="m">178</span>.43 -46.8
+<span class="m">178</span>.43<span class="w"> </span>-46.8
 ...
 </pre></div>
 </div>
@@ -576,15 +573,15 @@ point file:</p>
 <span class="c1"># @R178.1/178.6/-48.7/-45.6</span>
 <span class="c1"># @Jp&quot;+proj=longlat +ellps=WGS84 +datum=WGS84+no_defs&quot;</span>
 <span class="c1"># FEATURE_DATA</span>
-&gt; -W0.25p
+&gt;<span class="w"> </span>-W0.25p
 <span class="c1"># @D&quot;Line 1&quot;|-50|1</span>
-<span class="m">178</span>.5 -45.7
-<span class="m">178</span>.6 -48.2
-<span class="m">178</span>.4 -48.7
-<span class="m">178</span>.1 -45.6
-&gt; -W0.25p
+<span class="m">178</span>.5<span class="w"> </span>-45.7
+<span class="m">178</span>.6<span class="w"> </span>-48.2
+<span class="m">178</span>.4<span class="w"> </span>-48.7
+<span class="m">178</span>.1<span class="w"> </span>-45.6
+&gt;<span class="w"> </span>-W0.25p
 <span class="c1"># @D&quot;Line 2&quot;|-57.98|$</span>
-<span class="m">178</span>.43 -46.8
+<span class="m">178</span>.43<span class="w"> </span>-46.8
 ...
 </pre></div>
 </div>
@@ -595,24 +592,24 @@ point file:</p>
 <span class="c1"># @R178.1/178.6/-48.7/-45.6</span>
 <span class="c1"># @Jj@Jp&quot;+proj=longlat +ellps=WGS84 +datum=WGS84+no_defs&quot;</span>
 <span class="c1"># FEATURE_DATA</span>
-&gt; -Gblue -W0.25p
+&gt;<span class="w"> </span>-Gblue<span class="w"> </span>-W0.25p
 <span class="c1"># @P</span>
 <span class="c1"># @D&quot;Area 1&quot;|finesand|1</span>
-<span class="m">178</span>.1 -45.6
-<span class="m">178</span>.1 -48.2
-<span class="m">178</span>.5 -48.2
-<span class="m">178</span>.5 -45.6
-<span class="m">178</span>.1 -45.6
+<span class="m">178</span>.1<span class="w"> </span>-45.6
+<span class="m">178</span>.1<span class="w"> </span>-48.2
+<span class="m">178</span>.5<span class="w"> </span>-48.2
+<span class="m">178</span>.5<span class="w"> </span>-45.6
+<span class="m">178</span>.1<span class="w"> </span>-45.6
 &gt;
 <span class="c1"># @H</span>
 <span class="c1"># First hole in the preceding perimeter, so is technically still</span>
 <span class="c1"># part of the same geometry, despite the preceding &gt; character.</span>
 <span class="c1"># No attribute data is provided, as this is inherited.</span>
-<span class="m">178</span>.2 -45.4
-<span class="m">178</span>.2 -46.5
-<span class="m">178</span>.4 -46.5
-<span class="m">178</span>.4 -45.4
-<span class="m">178</span>.2 -45.4
+<span class="m">178</span>.2<span class="w"> </span>-45.4
+<span class="m">178</span>.2<span class="w"> </span>-46.5
+<span class="m">178</span>.4<span class="w"> </span>-46.5
+<span class="m">178</span>.4<span class="w"> </span>-45.4
+<span class="m">178</span>.2<span class="w"> </span>-45.4
 &gt;
 <span class="c1"># @P</span>
 ...
@@ -633,8 +630,8 @@ point file:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 

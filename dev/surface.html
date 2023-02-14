@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>surface &mdash; GMT 6.4.0 documentation</title>
+  <title>surface &mdash; GMT 6.5.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
@@ -14,16 +14,13 @@
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/favicon.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>let toggleHintShow = 'Click to show example script';</script>
@@ -53,7 +50,7 @@
             <a href="index.html" class="icon icon-home"> GMT
           </a>
               <div class="version">
-                6.4
+                6.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -94,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/gmt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/GenericMappingTools/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/contributing.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/maintenance.html">Maintainers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="devdocs/team.html">Team Gallery</a></li>
@@ -185,7 +182,7 @@
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
-<p><strong>surface</strong> reads randomly-spaced (x,y,z) triples from standard input
+<p><strong>surface</strong> reads randomly-spaced (x,y,z) triplets from standard input
 [or <em>table</em>] and produces a binary file of gridded values z(x,y) by
 solving the differential equation (away from data points)</p>
 <div class="math notranslate nohighlight">
@@ -232,7 +229,7 @@ automatic scaling to preserve precision for integer grids [Default
 is 1].</p></li>
 </ul>
 </div></blockquote>
-<p>Note: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
+<p><strong>Note</strong>: Any offset is added before any scaling. <strong>+sa</strong> also sets <strong>+oa</strong>
 (unless overridden). To write specific formats via GDAL, use =<em>gd</em>
 and supply <em>driver</em> (and optionally <em>dataType</em>) and/or one or more
 concatenated GDAL <strong>-co</strong> options using <strong>+c</strong>. See
@@ -300,7 +297,7 @@ by the grid spacing multiplier.</p>
 </dl>
 <dl class="simple" id="j">
 <dt><strong>-J</strong><em>parameters</em></dt><dd><p>Specify the projection. Select the data map projection. This projection is only used to add a referencing info
-to the grid formats that support it. E.g., netCDF, GeoTIFF, and others supported by GDAL.</p>
+to the grid formats that support it. E.g., netCDF, GeoTIFF, and others supported by <a class="reference external" href="https://gdal.org/">GDAL</a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="d">
@@ -351,7 +348,7 @@ sizes suggested by <a class="reference internal" href="#q"><span><strong>-Q</str
 <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong>. You can recover the <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> and <a class="reference internal" href="#i"><span><strong>-I</strong></span></a></strong> you want later by
 using <a class="reference internal" href="grdsample.html"><span class="doc">grdsample</span></a> or <a class="reference internal" href="grdcut.html"><span class="doc">grdcut</span></a> on the output of <strong>surface</strong>.
 Alternatively, append <strong>r</strong> to have <strong>surface</strong> use the specified
-<strong>-R</strong> setting exactly as given in the calculations [Default automatically
+<a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> setting exactly as given in the calculations [Default automatically
 seeks a slightly larger region if that allows for more intermediate
 steps to ensure the best possible convergence; the region is then trimmed
 back to what was requested in <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> upon output].</p>
@@ -394,7 +391,7 @@ the equations exactly, and will always assure stable convergence.
 Larger values overestimate the incremental changes during
 convergence, and will reach a solution more rapidly but may become
 unstable. If you use a large value for this factor, it is a good
-idea to monitor each iteration with the <strong>-Vi</strong> option. [Default =
+idea to monitor each iteration with the <a class="reference internal" href="#v"><span><strong>-V</strong></span></a></strong><strong>i</strong> option. [Default =
 1.4 converges quickly and is almost always stable.]</p>
 </dd>
 </dl>
@@ -489,14 +486,14 @@ hawaii_5x5.xyg, using a <em>tension_factor</em> = 0.25, a
 <em>convergence_limit</em> = 0.1 mGal, writing the result to a file called
 hawaii_grd.nc, and monitoring each iteration, try:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt surface hawaii_5x5.xyg -R198/208/18/25 -I5m -Ghawaii_grd.nc -T0.25 -C0.1 -Vi
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>surface<span class="w"> </span>hawaii_5x5.xyg<span class="w"> </span>-R198/208/18/25<span class="w"> </span>-I5m<span class="w"> </span>-Ghawaii_grd.nc<span class="w"> </span>-T0.25<span class="w"> </span>-C0.1<span class="w"> </span>-Vi
 </pre></div>
 </div>
 </div></blockquote>
 </section>
 <section id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">¶</a></h2>
-<p>While the region specified by <strong>-R</strong> determines your final output grid, internally
+<p>While the region specified by <a class="reference internal" href="#r"><span><strong>-R</strong></span></a></strong> determines your final output grid, internally
 we may use a slightly larger region that will allow for more intermediate grids
 (i.e., more common factors between <em>n_columns - 1</em> and <em>n_rows - 1</em>). This
 should allow for better convergence in the final solution.</p>
@@ -582,8 +579,8 @@ splines in tension, <em>Geophysics</em>, 55, 293-305, <a class="reference extern
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, The GMT Team.
-      <span class="lastupdated">Last updated on Jun 14, 2022.
+    <p>&#169; Copyright 2023, The GMT Team.
+      <span class="lastupdated">Last updated on Feb 14, 2023.
       </span></p>
   </div>
 
